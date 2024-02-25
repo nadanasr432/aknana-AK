@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactsControllers;
+use App\Http\Controllers\ReservationsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[HomeController::class,'index']);
+
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/reservation', [ReservationsController::class, 'index'])->name('reservation.create');
+Route::get('/contactUs', [ContactsControllers::class, 'index'])->name('contactUs.create');
+
