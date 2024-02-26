@@ -489,6 +489,15 @@
             });
         });
     </script>
+<script>
+    // Check if there is a success message in the session
+    @if(session('success'))
+        // Open the modal when there is a success message
+        $(document).ready(function(){
+            $('#myModal').modal('show');
+        });
+    @endif
+</script>
 
 
 

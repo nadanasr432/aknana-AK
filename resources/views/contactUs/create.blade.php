@@ -11,12 +11,14 @@
                 border: 2px ;
                 background: #FFFFFF;
                 ">
-           <img src="{{ asset('images/Frame.svg') }}" class="img-fluid responsive-image" style="position: absolute; top: 0; left: 0;">
+            <img src="{{ asset('images/Frame.svg') }}" class="img-fluid responsive-image"
+                style="position: absolute; top: 0; left: 0;">
 
 
             <div class="card-body ">
 
-                <form>
+                <form action="{{ route('contactUs.store') }}" method="POST">
+                    @csrf
                     <div class="form-row justify-content-center mt-3">
                         <div class="form-group mb-4 col-md-10 text-right">
 
@@ -76,7 +78,8 @@
                     <!-- First line with one input field -->
                     <div class="form-row justify-content-center">
                         <div class="form-group mb-4 col-md-10 text-right">
-                            <input type="text" class="form-control text-right" id="inputLastName" placeholder="الاسم "
+                            <input type="text" name="name" class="form-control text-right" id="inputLastName"
+                                placeholder="الاسم "
                                 style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
                                         padding-right: 31px; ">
 
@@ -87,7 +90,7 @@
 
                     <div class="form-row justify-content-center">
                         <div class="form-group mb-4 col-md-5 text-right">
-                            <input type="text" class="form-control text-right" id="inputLastName"
+                            <input type="email" name="email" class="form-control text-right" id="inputLastName"
                                 placeholder="البريد الالكتروني"
                                 style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
                                         padding-right: 31px; ">
@@ -96,20 +99,23 @@
                                 style="width: 20px; height: 20px; margin-top: -100px; margin-right: 5px;">
                         </div>
                         <div class="form-group mb-4 col-md-5 text-right">
-                            <input type="text" class="form-control text-right" id="inputLastName"
+                            <input type="tel" name="phone" class="form-control text-right" id="inputLastName"
                                 placeholder="رقم الجوال"
                                 style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
-                                        padding-right: 31px; ">
+                                    padding-right: 31px; "
+                                pattern="^\+966[0-9]{9}$"
+                                title="Please enter a valid Saudi Arabia phone number starting with +966">
 
                             <img src="{{ asset('images/phone.svg') }}" alt="Icon"
                                 style="width: 20px; height: 20px; margin-top: -100px; margin-right: 5px;">
                         </div>
+
                     </div>
 
                     <!-- Third line with one textarea -->
                     <div class="form-row justify-content-center">
                         <div class="form-group mb-4 col-md-10 text-right">
-                            <textarea class="form-control text-right" id="textareaField" rows="4" placeholder="رسالتك"
+                            <textarea name="text" class="form-control text-right" id="textareaField" rows="4" placeholder="رسالتك"
                                 style="height: 247px; padding: 0px 12px 0px 0px; border-radius: 10px; border: 1px #F9F9F9 solid; gap: 13px; background: #F9F9F9; color: #555;">
                             </textarea>
                         </div>

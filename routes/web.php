@@ -21,5 +21,7 @@ Route::get('/',[HomeController::class,'index']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/reservation', [ReservationsController::class, 'index'])->name('reservation.create');
+Route::post('/reservation', [ReservationsController::class, 'store'])->name('reservation.store');
 Route::get('/contactUs', [ContactsControllers::class, 'index'])->name('contactUs.create');
+Route::post('/contactUs', [ContactsControllers::class, 'store'])->name('contactUs.store');
 
