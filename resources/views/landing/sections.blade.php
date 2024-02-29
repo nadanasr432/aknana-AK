@@ -1,9 +1,9 @@
 @extends('layouts.layout')
 @section('content')
-    <section class="services container mb-5" style="max-width: 1500px " id="service">
-        <div class="row d-flex justify-content-center mb-5">
+    <section class="services container mb-5" style="max-width: 1500rem" id="service">
+        <div class=" 1 row d-flex justify-content-center mb-5">
             <div class="col-md-5 text-center ">
-                <p class="mb-0"
+                <p class="mb-0 service_text2"
                     style="color:#121743;
                 font-family: Cairo;
                 font-size: 35px;
@@ -12,7 +12,7 @@
                 letter-spacing: 0em;
                 text-align: center;">
                     نقدم لكم العديد من
-                <p class="center "
+                <p class="center service_text3 "
                     style="color: #DF8317;
                     font-size: 35px;
                     font-weight: 667;
@@ -23,7 +23,7 @@
                     خدماتنا
                 </p>
                 </p>
-                <p
+                <p class=" service_text1"
                     style="font-family: Cairo;
                     font-size: 22px;
                     font-weight: 400;
@@ -35,7 +35,7 @@
                     شركة أكنانا متخصصة في حضانات الاعمال في المملكة </p>
             </div>
         </div>
-        <div class="row d-flex justify-content-center align-item-center">
+        <div class=" he row d-flex justify-content-between">
             <div class="col-md-2 ">
 
                 <div class="d-flex justify-content-center align-items-center  mb-5">
@@ -65,10 +65,10 @@
                     بواسطة الاستعانة بنخبة من المدربين ذوي الخبرة في كل القطاعات.
                 </p>
             </div>
-            <div class="col-md-1 d-flex justify-content-center " style="margin-bottom: 150px">
+            <div class="col-md-1  d-flex justify-content-center " style="margin-bottom: 150px">
                 <img src="{{ asset('images/Vector f.svg') }}">
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 ">
 
                 <div class="d-flex justify-content-center align-items-center mb-5">
                     <img src="{{ asset('images/03.svg') }}">
@@ -97,10 +97,10 @@
                     لنوفر للعميل كافة المسائل التي تحيط بمشروعه ليتمكن من اتخاذ القرار
                 </p>
             </div>
-            <div class="col-md-1 d-flex justify-content-center " style="margin-bottom: 150px">
+            <div class="col-md-1  d-flex justify-content-center " style="margin-bottom: 150px">
                 <img src="{{ asset('images/Vector f.svg') }}">
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 ">
 
                 <div class="d-flex justify-content-center align-items-center  mb-5">
                     <img src="{{ asset('images/02.svg') }}">
@@ -129,10 +129,10 @@
                     نوفر الاماكن التي يحتاجها العملاء حتي نوفر بيئة مناسبة للعمل
                 </p>
             </div>
-            <div class="col-md-1 d-flex justify-content-center " style="margin-bottom: 150px">
+            <div class="col-md-1  d-flex justify-content-center " style="margin-bottom: 150px">
                 <img src="{{ asset('images/Vector f.svg') }}">
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2  ">
 
                 <div class="d-flex justify-content-center align-items-center  mb-5">
                     <img src="{{ asset('images/01.svg') }}">
@@ -164,15 +164,17 @@
 
     </section>
 
-    <section class="US container text-center"
-        style="max-width: 1400px;margin-top: 10rem !important;margin-bottom: 10rem !important; ">
 
-        <div class="row d-flex justify-content-between mb-5">
+
+    <section class="US container text-center"
+        style="max-width: 1400px;margin-top: 5rem !important;margin-bottom: 10rem !important; ">
+
+        <div class="row d-flex justify-content-between mb-5 custom-row-style">
             <div class="col-md-6 d-flex justify-content-start">
-                <img src="{{ asset('images/about us.svg') }}">
+                <img src="{{ asset('images/about us.svg') }}" class="custom-image-style">
             </div>
-            <div class="col-md-6 " style=" margin-top: 120px ">
-                <p class="center mb-5 "
+            <div class="col-md-6 ">
+                <p class="center mb-3 custom-text-style "
                     style="font-family: Cairo;
                         font-size: 40px;
                         font-weight: 667;
@@ -180,7 +182,7 @@
                         letter-spacing: -0.01em;
                         text-align: right;">
                     <img src="{{ asset('images/Vector (1).svg') }}">
-                    ما هي شركة <span
+                    ما هي شركة <span class="custom-text-style"
                         style="color: #DF8317;
                         font-size: 40px;
                         font-weight: 667;
@@ -190,7 +192,7 @@
                     ">أكنانا!؟</span>
                 </p>
                 </p>
-                <p
+                <p class="custom-text_2"
                     style="font-family: Cairo;
                 font-size: 22px;
                 font-weight: 400;
@@ -421,14 +423,14 @@
 
             </div>
             <div class="col-md-6 d-flex justify-content-end">
-                <img src="{{ asset('images/2030.svg') }}">
+                <img src="{{ asset('images/2030.svg') }}" class="custom-image-style">
             </div>
         </div>
     </section>
     <section class="the_range container d-flex justify-content-center "
         style="background-color: #121743;max-width: 100%;height:155px" id="range">
 
-        <div class=" container d-flex justify-content-center  pr-5 pl-5" style=" gap: 50px ">
+        <div class=" container d-flex justify-content-between ">
             <div class="col-md-3 ">
                 <div class="mt-5"
                     style="font-family: Cairo;
@@ -523,71 +525,25 @@
         </div>
         </div>
     </section>
-    <section class="features container text-center " id="features"
-        style=" max-width:1240px; margin-bottom: 100px;margin-top: 100px">
+    <section class="features container text-center " id="features" style="  margin-bottom: 100px;margin-top: 100px">
 
         <div class="row justify-content-center mt-10 mb-7">
 
-            <div class="col-md-6 d-flex justify-content-center">
+            <div class="col-md-6 d-flex justify-content-end">
 
-                <div class="row gap-6  mt-4" style="margin-left: 50px">
-                    <div class="col-md-6">
-
-                        <!-- Card 4 -->
-                        <div class="card"
-                            style="margin-left: -20px; margin-bottom: 30px;width:270px; border-radius: 20px; background: #121743;">
-
-                            <div class="card-body text-right">
-                                <div>
-                                    <img src="{{ asset('images/dark icon.svg') }}" alt="Icon Image">
-                                </div>
-
-                                <p class="mt-3 text-white"
-                                    style="font-family: Cairo;
-                                    font-size: 18px;
-                                    font-weight: 500;
-                                    line-height: 26px;
-                                    letter-spacing: 0em;
-                                    text-align: right;
-                                    ">
-                                    الادارة المساندة</p>
-                                <p class="mt-3 text-white"
-                                    style="font-family: Cairo;
-                                    font-size: 14px;
-                                    font-weight: 400;
-                                    line-height: 25px;
-                                    letter-spacing: 0em;
-                                    text-align: right;
-                                    ">
-                                    أكنانا تساعد في تعزيز الإرادة المساندة عبر تقديم الدعم والتوجيه للأفراد والشركات،حتي
-                                    يحققوا أهدافهم وتجاوز التحديات بثقة
-                                </p>
-                                <div class="d-flex justify-content-end align-items-end">
-                                    <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
-                                    <p class="color-DF8317"
+                <div class="row mt-4">
+                    <div class="col-md-12 ">
+                        <div class="d-flex justify-content-between  " style="margin-bottom: 1.8rem !important;">
+                            <!-- Card 4 -->
+                            <!-- Card 3 -->
+                            <div class="card"
+                                style="width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                <div class="card-body text-right">
+                                    <div>
+                                        <img src="{{ asset('images/ligth icon.svg') }}" alt="Icon Image">
+                                    </div>
+                                    <p class="mt-3 "
                                         style="font-family: Cairo;
-                                        font-size: 14px;
-                                        font-weight: 400;
-                                        line-height: 20px;
-                                        letter-spacing: 0em;
-                                        text-align: center;
-                                        color:#DF8317;
-                                        margin-bottom: 0;
-                                    ">
-                                        معرفة المزيد</p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!-- Card 3 -->
-                        <div class="card"
-                            style="margin-left: -20px; margin-bottom: 15px;width:270px; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
-                            <div class="card-body text-right">
-                                <div>
-                                    <img src="{{ asset('images/ligth icon.svg') }}" alt="Icon Image">
-                                </div>
-                                <p class="mt-3 "
-                                    style="font-family: Cairo;
                                     font-size: 18px;
                                     font-weight: 500;
                                     line-height: 26px;
@@ -596,9 +552,9 @@
 
                                     color:#121743;
                                     ">
-                                    التوجيه و الارشاد</p>
-                                <p class="mt-3 "
-                                    style="font-family: Cairo;
+                                        التوجيه و الارشاد</p>
+                                    <p class="mt-3 "
+                                        style="font-family: Cairo;
                                     font-size: 14px;
                                     font-weight: 400;
                                     line-height: 25px;
@@ -606,13 +562,14 @@
                                     text-align: right;
                                     color:#121743;
                                     ">
-                                    نعمل في أكنانا على فهم عميق لاحتياجات كل شركة وتحدياتها نقدم حلولًا مخصصة تساعدها على
-                                    تحقيق أهدافها بنجاح.
-                                </p>
-                                <div class="d-flex justify-content-end align-items-end">
-                                    <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
-                                    <p class="color-DF8317"
-                                        style="font-family: Cairo;
+                                        نعمل في أكنانا على فهم عميق لاحتياجات كل شركة وتحدياتها نقدم حلولًا مخصصة تساعدها
+                                        على
+                                        تحقيق أهدافها بنجاح.
+                                    </p>
+                                    <div class="d-flex justify-content-end align-items-end">
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                        <p class="color-DF8317"
+                                            style="font-family: Cairo;
                                         font-size: 14px;
                                         font-weight: 400;
                                         line-height: 20px;
@@ -621,107 +578,152 @@
                                         color:#DF8317;
                                         margin-bottom: 0;
                                     ">
-                                        معرفة المزيد</p>
+                                            معرفة المزيد</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card "
+                                style="margin-left: 30px; width:100%; border-radius: 20px; background: #121743;">
+
+                                <div class="card-body text-right">
+                                    <div>
+                                        <img src="{{ asset('images/dark icon.svg') }}" alt="Icon Image">
+                                    </div>
+
+                                    <p class="mt-3 text-white"
+                                        style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    ">
+                                        الادارة المساندة</p>
+                                    <p class="mt-3 text-white"
+                                        style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    ">
+                                        أكنانا تساعد في تعزيز الإرادة المساندة عبر تقديم الدعم والتوجيه للأفراد والشركات،حتي
+                                        يحققوا أهدافهم وتجاوز التحديات بثقة
+                                    </p>
+                                    <div class="d-flex justify-content-end align-items-end">
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                        <p class="color-DF8317"
+                                            style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                            معرفة المزيد</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="card" style="width:100%; border-radius: 20px; background: #121743;">
+
+                                <div class="card-body text-right">
+                                    <div>
+                                        <img src="{{ asset('images/dark icon.svg') }}" alt="Icon Image">
+                                    </div>
+
+                                    <p class="mt-3 text-white"
+                                        style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    ">
+                                        الادارة المساندة</p>
+                                    <p class="mt-3 text-white"
+                                        style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    ">
+                                        أكنانا تساعد في تعزيز الإرادة المساندة عبر تقديم الدعم والتوجيه للأفراد والشركات،حتي
+                                        يحققوا أهدافهم وتجاوز التحديات بثقة
+                                    </p>
+                                    <div class="d-flex justify-content-end align-items-end">
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                        <p class="color-DF8317"
+                                            style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                            معرفة المزيد</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- Card 3 -->
+                            <div class="card"
+                                style="margin-left: 30px; width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                <div class="card-body text-right">
+                                    <div>
+                                        <img src="{{ asset('images/ligth icon.svg') }}" alt="Icon Image">
+                                    </div>
+                                    <p class="mt-3 "
+                                        style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+
+                                    color:#121743;
+                                    ">
+                                        التوجيه و الارشاد</p>
+                                    <p class="mt-3 "
+                                        style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    color:#121743;
+                                    ">
+                                        نعمل في أكنانا على فهم عميق لاحتياجات كل شركة وتحدياتها نقدم حلولًا مخصصة تساعدها
+                                        على
+                                        تحقيق أهدافها بنجاح.
+                                    </p>
+                                    <div class="d-flex justify-content-end align-items-end">
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                        <p class="color-DF8317"
+                                            style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                            معرفة المزيد</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    <div class="col-md-6">
-                        <!-- Card 3 -->
-                        <div class="card"
-                            style="margin-bottom: 28px;width:270px; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
-                            <div class="card-body text-right">
-                                <div>
-                                    <img src="{{ asset('images/ligth icon.svg') }}" alt="Icon Image">
-                                </div>
-                                <p class="mt-3 "
-                                    style="font-family: Cairo;
-                                    font-size: 18px;
-                                    font-weight: 500;
-                                    line-height: 26px;
-                                    letter-spacing: 0em;
-                                    text-align: right;
 
-                                    color:#121743;
-                                    ">
-                                    التوجيه و الارشاد</p>
-                                <p class="mt-3 "
-                                    style="font-family: Cairo;
-                                    font-size: 14px;
-                                    font-weight: 400;
-                                    line-height: 25px;
-                                    letter-spacing: 0em;
-                                    text-align: right;
-                                    color:#121743;
-                                    ">
-                                    نعمل في أكنانا على فهم عميق لاحتياجات كل شركة وتحدياتها نقدم حلولًا مخصصة تساعدها على
-                                    تحقيق أهدافها بنجاح.
-                                </p>
-                                <div class="d-flex justify-content-end align-items-end">
-                                    <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
-                                    <p class="color-DF8317"
-                                        style="font-family: Cairo;
-                                        font-size: 14px;
-                                        font-weight: 400;
-                                        line-height: 20px;
-                                        letter-spacing: 0em;
-                                        text-align: center;
-                                        color:#DF8317;
-                                        margin-bottom: 0;
-                                    ">
-                                        معرفة المزيد</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card 4 -->
-                        <div class="card"
-                            style=" margin-bottom: 20px;width:270px; border-radius: 20px; background: #121743;">
-
-                            <div class="card-body text-right">
-                                <div>
-                                    <img src="{{ asset('images/dark icon.svg') }}" alt="Icon Image">
-                                </div>
-
-                                <p class="mt-3 text-white"
-                                    style="font-family: Cairo;
-                                    font-size: 18px;
-                                    font-weight: 500;
-                                    line-height: 26px;
-                                    letter-spacing: 0em;
-                                    text-align: right;
-                                    ">
-                                    الادارة المساندة</p>
-                                <p class="mt-3 text-white"
-                                    style="font-family: Cairo;
-                                    font-size: 14px;
-                                    font-weight: 400;
-                                    line-height: 25px;
-                                    letter-spacing: 0em;
-                                    text-align: right;
-                                    ">
-                                    أكنانا تساعد في تعزيز الإرادة المساندة عبر تقديم الدعم والتوجيه للأفراد والشركات،حتي
-                                    يحققوا أهدافهم وتجاوز التحديات بثقة
-                                </p>
-                                <div class="d-flex justify-content-end align-items-end">
-                                    <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
-                                    <p class="color-DF8317"
-                                        style="font-family: Cairo;
-                                        font-size: 14px;
-                                        font-weight: 400;
-                                        line-height: 20px;
-                                        letter-spacing: 0em;
-                                        text-align: center;
-                                        color:#DF8317;
-                                        margin-bottom: 0;
-                                    ">
-                                        معرفة المزيد</p>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
 
             </div>
@@ -733,56 +735,22 @@
                     <span
                         style="font-family: Cairo;color: #091157; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: end;">
                         لماذا تختار أكنانا عن
-                        <span style="color: #DF8317;">غيرها</span>
+                        <span class="responsive-text1" style="color: #DF8317;">غيرها</span>
                     </span>
                 </div>
 
-                <div class="mt-2 mb-5 text-right ">
-                    <div
-                        style="font-family: Cairo;
-                    font-size: 22px;
-                    font-weight: 400;
-                    line-height: 38px;
-                    letter-spacing: 0em;
-                    text-align: right;
-                    color:#222751;
-                    ">
-                        تعمل شركة أكنانا لريادة الاعمال علي توسيع نطاق العمل</div>
-                    <div
-                        style="font-family: Cairo;
-                    font-size: 22px;
-                    font-weight: 400;
-                    line-height: 38px;
-                    letter-spacing: 0em;
-                    text-align: right;
-                    color:#222751;">
-                        الخاص بها علي أكمل وجه كما تأكد من أن نطاق العمل</div>
-                    <div
-                        style="font-family: Cairo;
-                    font-size: 22px;
-                    font-weight: 400;
-                    line-height: 38px;
-                    letter-spacing: 0em;
-                    text-align: right;
-                    color:#222751;">
+                <div class="mt-2 mb-5 text-right">
+                    <div class="responsive-text">تعمل شركة أكنانا لريادة الاعمال على توسيع نطاق العمل</div>
+                    <div class="responsive-text">الخاص بها على أكمل وجه كما تأكد من أن نطاق العمل</div>
+                    <div class="responsive-text">
                         يتماشى مع الموارد والجدول الزمني والميزانية المتاحة
-
-                        <div class="text-right"
-                            style="font-family: Cairo;
-                    font-size: 22px;
-                    font-weight: 400;
-                    line-height: 38px;
-                    letter-spacing: 0em;
-                    text-align: left;
-                    color:#222751;">
-                            ...لعملائها
-                            حتي تضمن نجاح العمل</div>
+                        <div class="text-right responsive-text">...لعملائها حتي تضمن نجاح العمل</div>
                     </div>
                 </div>
 
                 <div class="d-flex justify-content-end " style="gap: 30px">
                     <!-- Card 4 -->
-                    <div class="card" style=" margin-top:25px;width:270px; border-radius: 20px; background: #121743;">
+                    <div class="card" style=" margin-top:25px;width:100%; border-radius: 20px; background: #121743;">
 
                         <div class="card-body text-right">
                             <div>
@@ -828,7 +796,7 @@
                     </div>
                     <!-- Card 3 -->
                     <div class="card"
-                        style="margin-top:25px;width:270px; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                        style="margin-top:25px;width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
                         <div class="card-body text-right">
                             <div>
                                 <img src="{{ asset('images/ligth icon.svg') }}" alt="Icon Image">
@@ -881,9 +849,7 @@
     </section>
 
     <section class="container text-center mb-5" id="programs">
-
-
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="height: 600px">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <div class="row">
                 <div class="col-md-6">
 
@@ -930,36 +896,24 @@
                 <div class="carousel-item active">
                     <div class="row mb-5">
                         <div class="col-md-4">
-                            <span class="d-flex justify-contente-center mb-2 pr-2">
-                                <img src="{{ asset('images/Blog 5 (2).svg') }}">
-                            </span>
-                            <div class="d-flex justify-content-end pr-1"
-                                style="font-family: Cairo;
-                                font-size: 18px;
-                                font-weight: 667;
-                                line-height: 34px;
-                                letter-spacing: 0em;
-                                text-align: right;
-                                color: rgba(18, 23, 67, 1);
+                            <div class="justify-content-center">
+                                <span class="d-flex justify-content-center mb-2 ">
+                                    <img src="{{ asset('images/Blog 5 (2).svg') }}">
+                                </span>
 
-                                ">
-                                ‫التعلقً‬‫ ( ‬‫خلقً الانسا‬‫نً‬ منً علق ‬‫)‬</div>
-                            <div class="mt-2  pr-1"
-                                style="font-family: Cairo;
-                                    font-size: 16px;
-                                    font-weight: 400;
-                                    line-height: 25px;
+                                <div class="d-flex justify-content-end pr-1"
+                                    style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 667;
+                                    line-height: 34px;
                                     letter-spacing: 0em;
                                     text-align: right;
+                                    color: rgba(18, 23, 67, 1);
 
-                                color: rgba(102, 102, 102, 1);
-                                margin: 0;
-                                ">
-                                م/ عبد الله البراق
-                                <img src="{{ asset('images/Vector (6).svg') }}">
-                            </div>
-                            <div class="mt-2  pr-1"
-                                style="font-family: Cairo;
+                                    ">
+                                    ‫التعلقً‬‫ ( ‬‫خلقً الانسا‬‫نً‬ منً علق ‬‫)‬</div>
+                                <div class="mt-2  pr-1"
+                                    style="font-family: Cairo;
                                         font-size: 16px;
                                         font-weight: 400;
                                         line-height: 25px;
@@ -969,8 +923,23 @@
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                المدة :ساعتين ونصف
-                                <img src="{{ asset('images/Vector (5).svg') }}">
+                                    م/ عبد الله البراق
+                                    <img src="{{ asset('images/Vector (6).svg') }}">
+                                </div>
+                                <div class="mt-2  pr-1"
+                                    style="font-family: Cairo;
+                                        font-size: 16px;
+                                        font-weight: 400;
+                                        line-height: 25px;
+                                        letter-spacing: 0em;
+                                        text-align: right;
+
+                                    color: rgba(102, 102, 102, 1);
+                                    margin: 0;
+                                    ">
+                                    المدة :ساعتين ونصف
+                                    <img src="{{ asset('images/Vector (5).svg') }}">
+                                </div>
                             </div>
                             <div class="d-flex justify-content-between align-items-between">
                                 <button id="ServButton2" class="btn btn-primary"
@@ -1027,53 +996,53 @@
                             letter-spacing: 0em;
                             text-align: right;
 
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
+                            color: rgba(102, 102, 102, 1);
+                            margin: 0;
+                            ">
                                 م/ عبد الله البراق
                                 <img src="{{ asset('images/Vector (6).svg') }}">
                             </div>
                             <div class="mt-2  pr-1"
                                 style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align: right;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 25px;
+                                letter-spacing: 0em;
+                                text-align: right;
 
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
+                            color: rgba(102, 102, 102, 1);
+                            margin: 0;
+                            ">
                                 المدة :ساعتين ونصف
                                 <img src="{{ asset('images/Vector (5).svg') }}">
                             </div>
                             <div class="d-flex justify-content-between align-items-between">
                                 <button id="ServButton3" class="btn btn-primary"
                                     style="width:155px;height:35px;font-family: Cairo;
-                    font-family: Cairo;
-                    font-size: 15px;
-                    font-weight: 600;
-                    line-height: 28px;
-                    letter-spacing: 0em;
-                    text-align: center;
+                                    font-family: Cairo;
+                                    font-size: 15px;
+                                    font-weight: 600;
+                                    line-height: 28px;
+                                    letter-spacing: 0em;
+                                    text-align: center;
 
-                    color:#FFFFFF;
-                    ">
+                                    color:#FFFFFF;
+                                    ">
                                     أنضم الان
 
                                 </button>
 
                                 <div class="mt-2  pr-0"
                                     style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align:;
+                                        font-size: 16px;
+                                        font-weight: 400;
+                                        line-height: 25px;
+                                        letter-spacing: 0em;
+                                        text-align:;
 
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
+                                    color: rgba(102, 102, 102, 1);
+                                    margin: 0;
+                                    ">
                                     ‫واحةً سلمانً للعلوم‬
                                     <img src="{{ asset('images/location1.svg') }}">
                                 </div>
@@ -1085,14 +1054,14 @@
                             </span>
                             <div class="d-flex justify-content-end pr-1"
                                 style="font-family: Cairo;
-                font-size: 18px;
-                font-weight: 667;
-                line-height: 34px;
-                letter-spacing: 0em;
-                text-align: right;
-                color: rgba(18, 23, 67, 1);
+                                font-size: 18px;
+                                font-weight: 667;
+                                line-height: 34px;
+                                letter-spacing: 0em;
+                                text-align: right;
+                                color: rgba(18, 23, 67, 1);
 
-                ">
+                                ">
                                 ‫التعلقً‬‫ ( ‬‫خلقً الانسا‬‫نً‬ منً علق ‬‫)‬</div>
                             <div class="mt-2  pr-1"
                                 style="font-family: Cairo;
@@ -1102,53 +1071,53 @@
                             letter-spacing: 0em;
                             text-align: right;
 
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
+                                color: rgba(102, 102, 102, 1);
+                                margin: 0;
+                                ">
                                 م/ عبد الله البراق
                                 <img src="{{ asset('images/Vector (6).svg') }}">
                             </div>
                             <div class="mt-2  pr-1"
                                 style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align: right;
+                                    font-size: 16px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
 
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
+                                color: rgba(102, 102, 102, 1);
+                                margin: 0;
+                                ">
                                 المدة :ساعتين ونصف
                                 <img src="{{ asset('images/Vector (5).svg') }}">
                             </div>
                             <div class="d-flex justify-content-between align-items-between">
                                 <button id="ServButton4" class="btn btn-primary"
                                     style="width:155px;height:35px;font-family: Cairo;
-                    font-family: Cairo;
-                    font-size: 15px;
-                    font-weight: 600;
-                    line-height: 28px;
-                    letter-spacing: 0em;
-                    text-align: center;
+                                    font-family: Cairo;
+                                    font-size: 15px;
+                                    font-weight: 600;
+                                    line-height: 28px;
+                                    letter-spacing: 0em;
+                                    text-align: center;
 
-                    color:#FFFFFF;
-                    ">
+                                    color:#FFFFFF;
+                                    ">
                                     أنضم الان
 
                                 </button>
 
                                 <div class="mt-2  pr-0"
                                     style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align:;
+                                    font-size: 16px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align:;
 
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
+                                    color: rgba(102, 102, 102, 1);
+                                    margin: 0;
+                                    ">
                                     ‫واحةً سلمانً للعلوم‬
                                     <img src="{{ asset('images/location1.svg') }}">
                                 </div>
@@ -1157,236 +1126,7 @@
 
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <div class="row  mb-5">
-                        <div class="col-md-4">
-                            <span class="d-flex justify-contente-center mb-2 pr-2">
-                                <img src="{{ asset('images/Blog 5 (2).svg') }}">
-                            </span>
-                            <div class="d-flex justify-content-end pr-1"
-                                style="font-family: Cairo;
-                font-size: 18px;
-                font-weight: 667;
-                line-height: 34px;
-                letter-spacing: 0em;
-                text-align: right;
-                color: rgba(18, 23, 67, 1);
 
-                ">
-                                ‫التعلقً‬‫ ( ‬‫خلقً الانسا‬‫نً‬ منً علق ‬‫)‬</div>
-                            <div class="mt-2  pr-1"
-                                style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align: right;
-
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
-                                م/ عبد الله البراق
-                                <img src="{{ asset('images/Vector (6).svg') }}">
-                            </div>
-                            <div class="mt-2  pr-1"
-                                style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align: right;
-
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
-                                المدة :ساعتين ونصف
-                                <img src="{{ asset('images/Vector (5).svg') }}">
-                            </div>
-                            <div class="d-flex justify-content-between align-items-between">
-                                <button id="ServButton5" class="btn btn-primary"
-                                    style="width:155px;height:35px;font-family: Cairo;
-                    font-family: Cairo;
-                    font-size: 15px;
-                    font-weight: 600;
-                    line-height: 28px;
-                    letter-spacing: 0em;
-                    text-align: center;
-
-                    color:#FFFFFF;
-                    ">
-                                    أنضم الان
-
-                                </button>
-
-                                <div class="mt-2  pr-0"
-                                    style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align:;
-
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
-                                    ‫واحةً سلمانً للعلوم‬
-                                    <img src="{{ asset('images/location1.svg') }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <span class="d-flex justify-contente-center mb-2 pr-2">
-                                <img src="{{ asset('images/Blog 5 (1).svg') }}">
-                            </span>
-                            <div class="d-flex justify-content-end pr-1"
-                                style="font-family: Cairo;
-                font-size: 18px;
-                font-weight: 667;
-                line-height: 34px;
-                letter-spacing: 0em;
-                text-align: right;
-                color: rgba(18, 23, 67, 1);
-
-                ">
-                                ‫التعلقً‬‫ ( ‬‫خلقً الانسا‬‫نً‬ منً علق ‬‫)‬</div>
-                            <div class="mt-2  pr-1"
-                                style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align: right;
-
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
-                                م/ عبد الله البراق
-                                <img src="{{ asset('images/Vector (6).svg') }}">
-                            </div>
-                            <div class="mt-2  pr-1"
-                                style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align: right;
-
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
-                                المدة :ساعتين ونصف
-                                <img src="{{ asset('images/Vector (5).svg') }}">
-                            </div>
-                            <div class="d-flex justify-content-between align-items-between">
-                                <button id="ServButton6" class="btn btn-primary"
-                                    style="width:155px;height:35px;font-family: Cairo;
-                    font-family: Cairo;
-                    font-size: 15px;
-                    font-weight: 600;
-                    line-height: 28px;
-                    letter-spacing: 0em;
-                    text-align: center;
-
-                    color:#FFFFFF;
-                    ">
-                                    أنضم الان
-
-                                </button>
-
-                                <div class="mt-2  pr-0"
-                                    style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align:;
-
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
-                                    ‫واحةً سلمانً للعلوم‬
-                                    <img src="{{ asset('images/location1.svg') }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <span class="d-flex justify-contente-center mb-2 pr-2">
-                                <img src="{{ asset('images/Blog 5.svg') }}">
-                            </span>
-                            <div class="d-flex justify-content-end pr-1"
-                                style="font-family: Cairo;
-                font-size: 18px;
-                font-weight: 667;
-                line-height: 34px;
-                letter-spacing: 0em;
-                text-align: right;
-                color: rgba(18, 23, 67, 1);
-
-                ">
-                                ‫التعلقً‬‫ ( ‬‫خلقً الانسا‬‫نً‬ منً علق ‬‫)‬</div>
-                            <div class="mt-2  pr-1"
-                                style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align: right;
-
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
-                                م/ عبد الله البراق
-                                <img src="{{ asset('images/Vector (6).svg') }}">
-                            </div>
-                            <div class="mt-2  pr-1"
-                                style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align: right;
-
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
-                                المدة :ساعتين ونصف
-                                <img src="{{ asset('images/Vector (5).svg') }}">
-                            </div>
-                            <div class="d-flex justify-content-between align-items-between">
-                                <button id="ServButton7" class="btn btn-primary"
-                                    style="width:155px;height:35px;font-family: Cairo;
-                    font-family: Cairo;
-                    font-size: 15px;
-                    font-weight: 600;
-                    line-height: 28px;
-                    letter-spacing: 0em;
-                    text-align: center;
-
-                    color:#FFFFFF;
-                    ">
-                                    أنضم الان
-
-                                </button>
-
-                                <div class="mt-2  pr-0"
-                                    style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align:;
-
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
-                                    ‫واحةً سلمانً للعلوم‬
-                                    <img src="{{ asset('images/location1.svg') }}">
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
                 <div class="carousel-item">
                     <div class="row  mb-5">
                         <div class="col-md-4">
@@ -1629,7 +1369,7 @@
     </section>
 
     <section class="container text-center mt-5 mb-5" id='projects'>
-        <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel" style="height: 400px">
+        <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
             <div class="row">
                 <div class="col-md-6">
                     <!-- Left and Right Arrow Images -->
@@ -1703,14 +1443,14 @@
                             <img src="{{ asset('images/pro1.svg') }}">
                             <div
                                 class="d-flex justify-content-center pr-1"style="margin-top: 2.1rem !important;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                font-family: Cairo;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                font-size: 18px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                font-weight: 600;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                line-height: 34px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                letter-spacing: 0em;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                text-align: center;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                color:#000000;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            font-family: Cairo;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            font-size: 18px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            font-weight: 600;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            line-height: 34px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            letter-spacing: 0em;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text-align: center;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            color:#000000;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ">
                                 منصة التواصل اجتماعي</div>
                         </div>
                     </div>
@@ -1820,14 +1560,14 @@
                             <img src="{{ asset('images/pro1.svg') }}">
                             <div
                                 class="d-flex justify-content-center pr-1"style="margin-top: 2.1rem !important;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            font-family: Cairo;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            font-size: 18px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            font-weight: 600;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            line-height: 34px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            letter-spacing: 0em;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text-align: center;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            color:#000000;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        font-family: Cairo;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        font-size: 18px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        font-weight: 600;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        line-height: 34px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        letter-spacing: 0em;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        text-align: center;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        color:#000000;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ">
                                 منصة التواصل اجتماعي</div>
                         </div>
                     </div>
@@ -1846,7 +1586,7 @@
     </section>
 
     <section class="container text-center mt-5 mb-5" id='events'>
-        <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel" style="height: 600px">
+        <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
             <div class="row">
                 <div class="col-md-6">
                     <!-- Left and Right Arrow Images -->
@@ -1862,7 +1602,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="center mt-2"
+                    <div class="center mt-2 "
                         style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right; color:#121743;">
                         <img src="{{ asset('images/Vector (1).svg') }}">
                         الفعاليات<span
@@ -2126,9 +1866,9 @@
     </section>
 
     <section class="reviews container text-center mt-5 mb-5"
-        style="background-image: url('{{ asset('images/client bg.svg') }}'); background-size: 105% 100%; background-repeat: no-repeat;">
+        style="background-image: url('{{ asset('images/client bg.svg') }}'); background-size: 100% 100%; background-repeat: no-repeat;">
 
-        <div class="row d-flex justify-content-center">
+        <div class="row d-flex justify-content-center mt-5 mb-5">
             <div class="center mt-5"
                 style="font-family: Cairo;
                             font-size: 35px;
@@ -2149,85 +1889,24 @@
                     عملاءنا</span>
             </div>
         </div>
-        <div class=" row " style="margin-left: -150px ">
-            <div class="mt-5 pr-2">
-                {{-- <img src="{{ asset('images/Orn.svg') }}"> --}}
-            </div>
-            <div class="pr-5 pl-1">
-                {{-- <img src="{{ asset('images/Orn1.svg') }}"> --}}
-            </div>
-        </div>
+
 
         <div class="row d-flex justify-content-center">
-            <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel" style="height: 600px">
+            <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel" style="height:auto">
                 <div class="pl-5 d-flex justify-content-between" style="padding-left: 5rem !important;">
-                    <span class="d-flex justify-content-center mb-4 pr-2" style="margin-bottom: 12rem !important;"
+                    <span class="d-flex justify-content-center mb-4 pr-2" style="margin-bottom:2rem !important;"
                         data-target="#carouselExampleIndicators2" data-slide="prev">
                         <img src="{{ asset('images/left.svg') }}" alt="Previous">
                     </span>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
+                        <div class="carousel-item active ">
                             <div class="card"
                                 style="width: 841px;
-                                    height: 343px;
+                                    height:auto;
                                     border:#F8F8F8;
                                     border-radius: 12px;background-color: #F8F8F8">
                                 <div class="card-body">
-                                    <div class="d-flex justify-content-center pl-5 pr-5 mt-5">
-                                        <p class=" card-text text-center"
-                                            style="font-family: Poppins;
-                                            font-size: 20px;
-                                            font-weight: 400;
-                                            line-height: 32px;
-                                            letter-spacing: 0em;
-                                            text-align: center;
-                                            color:#637381;
-                                            ">
-                                            من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي شخص
-                                            محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في تحقيق
-                                            اي
-                                            شئ وجعل المستحيل ممكن
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-center mt-4">
-                                        <p
-                                            style="font-family: Cairo;
-                                                font-size: 30px;
-                                                font-weight: 600;
-                                                line-height: 56px;
-                                                letter-spacing: 0em;
-                                                text-align: center;
-                                                color:#222751;
-                                                ">
-                                            طلال بن سلمان
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-center mt-4">
-                                        <p
-                                            style="font-family: Cairo;
-                                                font-size: 20px;
-                                                font-weight: 500;
-                                                line-height: 37px;
-                                                letter-spacing: 0em;
-                                                text-align: center;
-
-                                                color:#F0A202;
-                                                ">
-                                            مؤسس شركة
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <img src="{{ asset('images/Group 1.svg') }}" alt="Previous">
-                        </div>
-                        <div class="carousel-item ">
-                            <div class="card"
-                                style="width: 841px;
-                                    height: 343px;
-                                    border:#F8F8F8;
-                                    border-radius: 12px;background-color: #F8F8F8">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-center pl-5 pr-5 mt-5">
+                                    <div class="d-flex justify-content-center ">
                                         <p class=" card-text text-center"
                                             style="font-family: Poppins;
                                             font-size: 20px;
@@ -2272,25 +1951,28 @@
                                         </p>
                                     </div>
                                 </div>
+
                             </div>
-                            <img src="{{ asset('images/Group 1.svg') }}" alt="Previous">
+                            <div class="d-flex-justify-content-center">
+                                <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
+                            </div>
                         </div>
-                        <div class="carousel-item">
+                        <div class="carousel-item  ">
                             <div class="card"
                                 style="width: 841px;
-                                    height: 343px;
+                                    height:auto;
                                     border:#F8F8F8;
                                     border-radius: 12px;background-color: #F8F8F8">
                                 <div class="card-body">
-                                    <div class="d-flex justify-content-center pl-5 pr-5 mt-5">
+                                    <div class="d-flex justify-content-center ">
                                         <p class=" card-text text-center"
                                             style="font-family: Poppins;
                                             font-size: 20px;
+                                            border:#F8F8F8;
                                             font-weight: 400;
                                             line-height: 32px;
                                             letter-spacing: 0em;
                                             text-align: center;
-                                            
                                             color:#637381;
                                             ">
                                             من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي شخص
@@ -2327,14 +2009,74 @@
                                         </p>
                                     </div>
                                 </div>
-                            </div>
-                            <img src="{{ asset('images/Group 1.svg') }}" alt="Previous">
 
+                            </div>
+                            <div class="d-flex-justify-content-center">
+                                <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
+                            </div>
+                        </div>
+                        <div class="carousel-item  ">
+                            <div class="card"
+                                style="width: 841px;
+                                    height:auto;
+                                    border:#F8F8F8;
+                                    border-radius: 12px;background-color: #F8F8F8">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-center ">
+                                        <p class=" card-text text-center"
+                                            style="font-family: Poppins;
+                                            font-size: 20px;
+                                            border:#F8F8F8;
+                                            font-weight: 400;
+                                            line-height: 32px;
+                                            letter-spacing: 0em;
+                                            text-align: center;
+                                            color:#637381;
+                                            ">
+                                            من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي شخص
+                                            محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في تحقيق
+                                            اي
+                                            شئ وجعل المستحيل ممكن
+                                        </p>
+                                    </div>
+                                    <div class="d-flex justify-content-center mt-4">
+                                        <p
+                                            style="font-family: Cairo;
+                                                font-size: 30px;
+                                                font-weight: 600;
+                                                line-height: 56px;
+                                                letter-spacing: 0em;
+                                                text-align: center;
+                                                color:#222751;
+                                                ">
+                                            طلال بن سلمان
+                                        </p>
+                                    </div>
+                                    <div class="d-flex justify-content-center mt-4">
+                                        <p
+                                            style="font-family: Cairo;
+                                                font-size: 20px;
+                                                font-weight: 500;
+                                                line-height: 37px;
+                                                letter-spacing: 0em;
+                                                text-align: center;
+
+                                                color:#F0A202;
+                                                ">
+                                            مؤسس شركة
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="d-flex-justify-content-center">
+                                <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
+                            </div>
                         </div>
                     </div>
-                    <span class="pl-2" style="margin-top: 7rem !important;" data-target="#carouselExampleIndicators2"
+                    <span class="pl-2" style="margin-top:7rem !important;" data-target="#carouselExampleIndicators2"
                         data-slide="next">
-                        <img src="{{ asset('images/right.svg') }}" alt="Next">
+                        <img src="{{ asset('images/right.svg') }}" alt="Next" class="next">
                     </span>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators3" role="button" data-slide="prev">
@@ -2348,4 +2090,160 @@
             </div>
         </div>
     </section>
+    <style>
+        .responsive-text {
+            font-family: Cairo;
+            font-size: 22px;
+            font-weight: 400;
+            line-height: 38px;
+            letter-spacing: 0em;
+            text-align: right;
+            color: #222751;
+        }
+
+        @media (max-width: 767px) {
+            .responsive-text {
+                font-size: 18px;
+                line-height: 32px;
+            }
+
+            .features .col-md-6 {
+                flex: 1;
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .features .row.gap-6 .col-md-6 .card {
+                margin-left: -15px;
+
+                margin-right: -15px;
+                overflow-x: auto;
+
+            }
+
+            .features .col-md-6 .card {
+                margin-left: 15px;
+                margin-bottom: 15px;
+
+            }
+
+            .card {
+                max-width: 210px;
+                height: auto;
+            }
+
+            .features .center.pr-0.text-right {
+                margin-top: 10px;
+            }
+
+            .features .d-flex.justify-content-end {
+                gap: 30px;
+            }
+
+            .the_range .container [style*="font-size: 25px;"] {
+                font-size: 16px !important;
+                /* Adjust as needed */
+                line-height: 16px !important;
+                /* Adjust as needed */
+            }
+
+            .the_range .container [style*="gap: 50px;"] {
+                gap: 0px !important;
+                /* Adjust as needed */
+            }
+
+            .the_range .container [style*="font-size: 18px;"] {
+                font-size: 12px !important;
+                /* Adjust as needed */
+                line-height: 15px !important;
+                /* Adjust as needed */
+            }
+
+            .he {
+                flex-wrap: nowrap;
+
+                overflow-x: auto;
+                scrollbar-width: thin;
+                scrollbar-color: #f5f4f4 transparent;
+
+
+                max-width: 100%;
+
+
+            }
+
+            .service_text1 {
+                font-size: 18px !important;
+
+                line-height: 20px !important;
+
+            }
+
+            .service_text2 {
+                font-size: 25px !important;
+                margin-top: 10px;
+
+                line-height: 20px !important;
+
+            }
+
+            .service_text3 {
+                font-size: 25px !important;
+                margin-top: 20px;
+
+                line-height: 20px !important;
+
+            }
+
+            .col-md-1 {
+                display: block !important;
+                margin-top: 90px
+            }
+
+            .col-md-2 {
+                display: inline-block !important;
+            }
+
+            .custom-image-style {
+                max-width: 80%;
+
+            }
+
+            .next {
+                margin-top: 7.5rem !important;
+            }
+
+            .prev {
+                margin-bottom: 12rem !important;
+            }
+
+            .carousel-inner .carousel-item .row {
+                flex-wrap: nowrap;
+
+                overflow-x: auto;
+                scrollbar-width: thin;
+                scrollbar-color: #ffffff transparent;
+
+                &::-webkit-scrollbar {
+                    width: 1px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background-color: #ddd;
+                }
+
+                max-width: 100%;
+
+
+
+            }
+
+            .carousel-item .active .img-fluid {
+                width: 400px;
+
+            }
+
+
+        }
+    </style>
 @endsection

@@ -6,9 +6,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyOB4Ml3r6DIj5e7n9O3PjUbo+qDFFUw" crossorigin="anonymous">
     <title>AKNANA</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
+        body {
+            overflow: auto;
+        }
+
+        &::-webkit-scrollbar {
+            width: 1px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #000000;
+        }
+
+        body::-webkit-scrollbar {
+            width: 1px;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: #000000;
+            width: 1px;
+        }
+
+        @media (max-width: 767px) {
+            body {
+                overflow: auto;
+            }
+
+            &::-webkit-scrollbar {
+                width: 1px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: #000000;
+            }
+
+            body::-webkit-scrollbar {
+                width: 1px;
+            }
+
+            body::-webkit-scrollbar-thumb {
+                background-color: #000000;
+                width: 1px;
+            }
+
+            .content-text1 {
+                font-size: 15px !important;
+
+                line-height: 20px !important;
+
+            }
+
+            .content-text2 {
+                margin-bottom: 30px;
+                font-size: 30px !important;
+
+                line-height: 20px !important;
+
+            }
+
+            .content-text3 {
+
+                font-size: 18px !important;
+
+                line-height: 20px !important;
+
+            }
+
+            #contactButton {
+                width: 150px !important;
+                /* Adjust as needed */
+                height: 40px !important;
+                /* Adjust as needed */
+                font-size: 18px !important;
+                /* Adjust as needed */
+                line-height: 26px !important;
+                /* Adjust as needed */
+            }
+
+        }
+
         section.head::before {
             content: '';
             position: absolute;
@@ -40,7 +121,8 @@
 </head>
 
 <body>
-    <section class="head">
+
+    <section class="head" id="head">
         <nav class="navbar navbar-expand-lg">
             <button class="navbar-toggler btn-primary" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,7 +170,7 @@
         </nav>
         <div class="content">
 
-            <p
+            <p class="content-text2"
                 style="font-family: Cairo;
                 font-size: 45px;
                 font-weight: 600;
@@ -98,7 +180,7 @@
                 color:#FFFFFF;
                 ">
                 هنا تبدأ رحلتك من الفكرة إلى الريادة</p>
-            <p class="head-text mb-0"
+            <p class="head-text mb-0 content-text1"
                 style="font-family: Cairo;
                     font-size: 20px;
                     font-weight: 400;
@@ -109,7 +191,7 @@
                     ">
                 مع أكنانا لريادة و حضانة الاعمال تحقيق الاحلام أصبح ممكن حيث نقدم
             </p>
-            <p class="head-text mb-0"
+            <p class="head-text mb-0 content-text1"
                 style="font-family: Cairo;
                     font-size: 20px;
                     font-weight: 400;
@@ -121,7 +203,7 @@
                     ">
                 حلول مبتكرة في عالم الأعمال من خلال نخبة من الاستشاريين في
             </p>
-            <p class="head-text mb-0"
+            <p class="head-text mb-0 content-text1"
                 style="font-family: Cairo;
                     font-size: 20px;
                     font-weight: 400;
@@ -135,7 +217,7 @@
             </p>
             <div class="d-flex justify-content-center align-items-between mt-5 ">
                 <a href="" class="d-flex align-items-center pr-4 ">
-                    <p class="pr-2"
+                    <p class="pr-2 content-text3"
                         style="font-family: Cairo;
                         font-size: 25px;
                         font-weight: 600;
@@ -147,7 +229,7 @@
                         نبذة عنا</p>
                     <img src="{{ asset('images/icon (1).svg') }}" style="margin-right: 10px;">
                 </a>
-                <button id="contactButton" class="btn btn-primary"
+                <button id="contactButton" class="btn btn-primary "
                     style="width:193px;height:50px;font-family: Cairo;
                         font-size: 22px;
                         font-weight: 600;
@@ -449,6 +531,10 @@
         </div>
         <!-- Copyright -->
     </footer>
+    <a id="scrollToTopButton" href="#head" class="btn fixed-bottom mr-4 mb-4 rounded-circle"
+        style="width: 50px;height:50px">
+        <img src="{{ asset('images/turn-up.gif') }}" width="40px" height="40x">
+    </a>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
@@ -459,6 +545,26 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-eVAPKd6M5fNvJ0zQQXPPQ1NtNxEI6IsClwBq5L2RmPBb85q3X5FLwP+xCFXTZSih" crossorigin="anonymous">
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Show or hide the button based on scroll position
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) {
+                    $('#scrollToTopButton').fadeIn();
+                } else {
+                    $('#scrollToTopButton').fadeOut();
+                }
+            });
+
+            // Smooth scroll to landing page when the button is clicked
+            $('#scrollToTopButton').click(function() {
+                $('html, body').animate({
+                    scrollTop: $('#landing').offset().top
+                }, 800);
+                return false;
+            });
+        });
     </script>
     <script>
         $(document).ready(function() {
