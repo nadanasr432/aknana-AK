@@ -8,11 +8,365 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyOB4Ml3r6DIj5e7n9O3PjUbo+qDFFUw" crossorigin="anonymous">
+
     <title>AKNANA</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
+        @keyframes slideFromTop {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+
+        .fade-in {
+            animation: slideFromLeft 2s ease-out;
+        }
+
+        #ServButton {
+            opacity: 1;
+            animation: fadeIn 2s ease-out 0.5s;
+            animation-fill-mode: forwards;
+            animation: slideFromLeft 3s ease-out;
+        }
+
+        /* .fade-in.animate {
+    opacity: 1;
+    transform: translateY(0);
+} */
+        .animate-fade-up {
+            animation: fadeUp 1s ease;
+            animation: slideFromLeft 2s ease-out;
+
+        }
+
+        .animate-fade-in {
+            animation: fadeUp 1s ease;
+            animation: slideFromLeft 2s ease-out;
+            animation-fill-mode: forwards;
+
+        }
+
+        .the_range {
+            animation: slideInFromBottom 2s ease-out;
+        }
+
+        .the_range .container {
+            animation: fadeIn 2s ease-out;
+        }
+
+        .the_range .mt-5 {
+            animation: fadeIn 2s ease-out;
+        }
+
+        .content-text2 {
+            animation: slideFromTop 1.5s ease-out;
+        }
+
+
+        .content-text1:nth-child(3),
+        .content-text1:nth-child(1),
+        .content-text1:nth-child(2) {
+            animation: fadeIn 2s ease-out 0.5s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        #textContent {
+            animation: fadeIn 1.5s ease-out 0.5s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        #contactButton {
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s;
+            animation-fill-mode: forwards;
+        }
+
+        #contactButton2 {
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s;
+            animation-fill-mode: forwards;
+        }
+
+
+        .scroll-animation {
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s;
+            animation-fill-mode: forwards;
+        }
+
+
+        #home a {
+            color: #FFE4C5;
+
+        }
+
+
+        #home a::after {
+            content: '';
+            display: block;
+            height: 2px;
+            width: 75%;
+            margin-left: 15px;
+            background-color: #FFE4C5;
+            margin-top: 3px;
+
+
+        }
+
+
+        #home a:hover {
+            color: #FFE4C5;
+
+        }
+
+        .navbar-nav .nav-item.active a:hover {
+            color: #FFE4C5;
+
+        }
+
+
+        #home a:hover::after {
+            background-color: #FFE4C5;
+        }
+
+
+
+
+
+        @keyframes slideFromLeft {
+            from {
+                transform: translateX(-50%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .US {
+            animation: slideInFromRight 2s ease-out;
+        }
+
+        .custom-image-style {
+            animation: slideFromLeft 2s ease-out;
+        }
+
+        .custom-text-style {
+            animation: slideFromLeft 2.5s ease-out;
+        }
+
+        .custom-text_2 {
+            animation: slideFromLeft 2s ease-out;
+        }
+
+        #contactButton3 {
+
+            opacity: 1;
+            animation: fadeIn 2s ease-out 0.5s;
+            animation-fill-mode: forwards;
+            animation: slideFromLeft 3s ease-out;
+        }
+
+        #contactButton4 {
+
+            opacity: 1;
+            animation: fadeIn 2s ease-out 0.5s;
+            animation-fill-mode: forwards;
+            animation: slideFromLeft 3s ease-out;
+        }
+
+
+        .service_text2 {
+            animation: slideFromLeft 1.5s ease-out;
+        }
+
+        #textd {
+            animation: slideFromLeft 2s ease-out;
+        }
+
+        .service_text3 {
+            animation: slideFromLeft 2.5s ease-out;
+        }
+
+
+        .he .col-md-2 {
+            animation: slideFromLeft 1.5s ease-out;
+        }
+
+
+        .he .col-md-1 img {
+            animation: fadeIn 1.5s ease-out 1.5s;
+        }
+
+
+        .he .col-md-2 p {
+            animation: fadeIn 1.5s;
+        }
+
+
+
+
+        .responsive-text {
+            font-family: Cairo;
+            font-size: 22px;
+            font-weight: 400;
+            line-height: 38px;
+            letter-spacing: 0em;
+            text-align: right;
+            color: #222751;
+        }
+
+        @media (max-width: 767px) {
+            .responsive-text {
+                font-size: 18px;
+                line-height: 32px;
+            }
+
+            .features .col-md-6 {
+                flex: 1;
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .features .row.gap-6 .col-md-6 .card {
+                margin-left: -15px;
+
+                margin-right: -15px;
+                overflow-x: auto;
+
+            }
+
+            .features .col-md-6 .card {
+                margin-left: 15px;
+                margin-bottom: 15px;
+
+            }
+
+            .card {
+                max-width: 210px;
+                height: auto;
+            }
+
+            .features .center.pr-0.text-right {
+                margin-top: 10px;
+            }
+
+            .features .d-flex.justify-content-end {
+                gap: 30px;
+            }
+
+            .the_range .container [style*="font-size: 25px;"] {
+                font-size: 16px !important;
+
+                line-height: 16px !important;
+
+            }
+
+            .the_range .container [style*="gap: 50px;"] {
+                gap: 0px !important;
+
+            }
+
+            .the_range .container [style*="font-size: 18px;"] {
+                font-size: 12px !important;
+
+                line-height: 15px !important;
+
+            }
+
+            .he {
+                flex-wrap: nowrap;
+
+                overflow-x: auto;
+                scrollbar-width: thin;
+                scrollbar-color: #f5f4f4 transparent;
+
+
+                max-width: 100%;
+
+
+            }
+
+            .service_text1 {
+                font-size: 18px !important;
+
+                line-height: 20px !important;
+
+            }
+
+            .service_text2 {
+                font-size: 25px !important;
+                margin-top: 10px;
+
+                line-height: 20px !important;
+
+            }
+
+            .service_text3 {
+                font-size: 25px !important;
+                margin-top: 20px;
+
+                line-height: 20px !important;
+
+            }
+
+            .col-md-1 {
+                display: block !important;
+                margin-top: 90px
+            }
+
+            .col-md-2 {
+                display: inline-block !important;
+            }
+
+            .custom-image-style {
+                max-width: 80%;
+
+            }
+
+            .next {
+                margin-top: 8.5rem !important;
+            }
+
+            .prev {
+                margin-bottom: 12rem !important;
+            }
+        }
+
         body {
             overflow: auto;
+            animation: slideInFromBottom 2s ease-out;
         }
 
         &::-webkit-scrollbar {
@@ -30,6 +384,35 @@
         body::-webkit-scrollbar-thumb {
             background-color: #000000;
             width: 1px;
+        }
+
+
+        .fade-in-animation {
+            animation: fadeIn 2s ease;
+
+        }
+
+        @media (max-width: 767px) {
+            .navbar-nav {
+                background-color: #121743;
+                padding: 20px;
+                text-align: left;
+                display: inline-block;
+                margin-right: 10px;
+                font-size: 14px;
+            }
+
+            #home a::after {
+                content: '';
+                display: block;
+                height: 2px;
+                width: 90%;
+                margin-left: 0px;
+                background-color: #FFE4C5;
+                margin-top: 3px;
+
+            }
+
         }
 
         @media (max-width: 767px) {
@@ -79,13 +462,9 @@
 
             #contactButton {
                 width: 150px !important;
-                /* Adjust as needed */
                 height: 40px !important;
-                /* Adjust as needed */
                 font-size: 18px !important;
-                /* Adjust as needed */
                 line-height: 26px !important;
-                /* Adjust as needed */
             }
 
         }
@@ -117,17 +496,17 @@
 
         }
     </style>
-
 </head>
 
 <body>
 
     <section class="head" id="head">
         <nav class="navbar navbar-expand-lg">
-            <button class="navbar-toggler btn-primary" type="button" data-toggle="collapse" data-target="#navbarNav"
+            <a class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <img src="{{ asset('images/list.png') }}" width="25px" height="25px">
+
+            </a>
             <button id="contactButton2" class="btn btn-primary">
                 تواصل معنا
             </button>
@@ -135,17 +514,17 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav" style="gap: 30px;">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#events">فعاليات
+                        <a class="nav-link no-reload" href="#events">فعاليات
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#programs">البرامج</a>
+                        <a class="nav-link no-reload" href="#programs">البرامج</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#projects">مشاريعنا</a>
+                        <a class="nav-link no-reload" href="#projects">مشاريعنا</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#range">النطاق</a>
+                        <a class="nav-link " href="#range">النطاق</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="#service">خدماتنا <span class="sr-only">(current)</span></a>
@@ -154,10 +533,10 @@
                         <a class="nav-link" href="#2030"> 2030</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#features">من نحن</a>
+                        <a class="nav-link" href="#US">من نحن</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">الرئيسية</a>
+                    <li class="nav-item active" id="home">
+                        <a class="nav-link" href="#head">الرئيسية</a>
                     </li>
 
                 </ul>
@@ -168,7 +547,7 @@
                 <img src="{{ asset('images/logo 4.svg') }}">
             </div>
         </nav>
-        <div class="content">
+        <div class="content" id="content">
 
             <p class="content-text2"
                 style="font-family: Cairo;
@@ -203,7 +582,7 @@
                     ">
                 حلول مبتكرة في عالم الأعمال من خلال نخبة من الاستشاريين في
             </p>
-            <p class="head-text mb-0 content-text1"
+            <p id="textContent" class="head-text mb-0 content-text1 "
                 style="font-family: Cairo;
                     font-size: 20px;
                     font-weight: 400;
@@ -216,7 +595,7 @@
                 الأعمال التي تشرف عليها الشركة أو تتولى توثيقها
             </p>
             <div class="d-flex justify-content-center align-items-between mt-5 ">
-                <a href="" class="d-flex align-items-center pr-4 ">
+                <a href="" class="d-flex align-items-center pr-4  " id="contactButton2">
                     <p class="pr-2 content-text3"
                         style="font-family: Cairo;
                         font-size: 25px;
@@ -536,7 +915,7 @@
         <img src="{{ asset('images/turn-up.gif') }}" width="40px" height="40x">
     </a>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
@@ -546,9 +925,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-eVAPKd6M5fNvJ0zQQXPPQ1NtNxEI6IsClwBq5L2RmPBb85q3X5FLwP+xCFXTZSih" crossorigin="anonymous">
     </script>
-    <script>
+    {{-- <script>
         $(document).ready(function() {
-            // Show or hide the button based on scroll position
+          
             $(window).scroll(function() {
                 if ($(this).scrollTop() > 100) {
                     $('#scrollToTopButton').fadeIn();
@@ -557,15 +936,15 @@
                 }
             });
 
-            // Smooth scroll to landing page when the button is clicked
             $('#scrollToTopButton').click(function() {
                 $('html, body').animate({
                     scrollTop: $('#landing').offset().top
-                }, 800);
+                }, 10); 
                 return false;
             });
         });
-    </script>
+    </script> --}}
+
     <script>
         $(document).ready(function() {
             $('#contactButton').click(function() {
@@ -610,6 +989,46 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            // Smooth scroll to section when a nav link is clicked
+            $('a.nav-link').on('click', function(event) {
+                if (this.hash !== "") {
+                    var hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 1500, function() {
+                        window.location.hash = hash;
+
+                        // Check if the clicked link has the 'no-reload' class
+                        if (!$(event.currentTarget).hasClass('no-reload')) {
+                            // Reload the page in the background
+                            window.location.reload();
+                        }
+                    });
+                }
+            });
+
+            // Show or hide the button based on scroll position
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) {
+                    $('#scrollToTopButton').fadeIn();
+                } else {
+                    $('#scrollToTopButton').fadeOut();
+                }
+            });
+
+            // Smooth scroll to landing page when the button is clicked
+            $('#scrollToTopButton').click(function() {
+                $('html, body').animate({
+                    scrollTop: $('#head').offset().top
+                }, 800);
+                return false;
+            });
+        });
+    </script>
+
+
 
 
 

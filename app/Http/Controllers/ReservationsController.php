@@ -10,8 +10,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 class ReservationsController extends Controller
 {
    public function index(){
-      $courses= Course::all();  
-      
+      $courses= Course::all();      
         return view('reservations.create',compact('courses')); 
    }
  public function store(Request $request)
@@ -27,7 +26,7 @@ class ReservationsController extends Controller
             'date_of_period' => 'date',
         ]);
 
-        $period =Course::find($request->input('course_id'));
+        $course =Course::find($request->input('course_id'));
 
         $reservation = Reservation::create([
             'name' => $request->input('name'),
@@ -36,9 +35,8 @@ class ReservationsController extends Controller
             'email' => $request->input('email'),
             'gender' => $request->input('gender'),
             'job_title' => $request->input('job_title'),
-            'course_id' => $period->id,
+            'course_id' => $course->id,
             'date_of_course' => $request->input('date_of_course'),
-            
         ]);
         
           return redirect()->route('reservation.create')->with('success', 'Data stored successfully');

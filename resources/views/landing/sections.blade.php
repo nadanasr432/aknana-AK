@@ -23,7 +23,7 @@
                     خدماتنا
                 </p>
                 </p>
-                <p class=" service_text1"
+                <p id="textd" class=" service_text1"
                     style="font-family: Cairo;
                     font-size: 22px;
                     font-weight: 400;
@@ -166,7 +166,7 @@
 
 
 
-    <section class="US container text-center"
+    <section id="US" class="US container text-center"
         style="max-width: 1400px;margin-top: 5rem !important;margin-bottom: 10rem !important; ">
 
         <div class="row d-flex justify-content-between mb-5 custom-row-style">
@@ -205,7 +205,7 @@
                     ألكثر من 15 عام في مجال تطوير المشاريع ، ومن خالل حزمة المشاريع والنظم التي قامت أكنانابتطويرها وتنفيذها
                     .وعلى ايدي شباب وشابات في مجاالت مختلفة</p>
                 <div class="d-flex justify-content-end align-items-between mt-5 ">
-                    <a href="" class="d-flex align-items-center pr-4 ">
+                    <a id="contactButton4" href="" class="d-flex align-items-center pr-4">
                         <p class="pr-2"
                             style="font-family: Cairo;
                         font-size: 25px;
@@ -238,7 +238,7 @@
     <section class="2030 container" style="max-width: 1400px;margin-bottom: 10rem !important; " id="2030">
         <div class="row d-flex justify-content-between mb-5">
 
-            <div class="col-md-5 ">
+            <div class="col-md-5  fade-in ">
                 <p class="center "
                     style="font-family: Cairo;
                         font-size: 40px;
@@ -430,98 +430,41 @@
     <section class="the_range container d-flex justify-content-center "
         style="background-color: #121743;max-width: 100%;height:155px" id="range">
 
-        <div class=" container d-flex justify-content-between ">
-            <div class="col-md-3 ">
-                <div class="mt-5"
-                    style="font-family: Cairo;
-                font-size: 25px;
-                font-weight: 500;
-                line-height: 32px;
-                letter-spacing: 0em;
-                text-align: center;
-                color:#F4F0F0;
-                ">
-                    350</div>
+        <div class="container d-flex justify-content-between">
+            <div class="col-md-3">
+                <div class="mt-5 counter1"
+                    style="font-family: Cairo; font-size: 25px; font-weight: 500; line-height: 32px; letter-spacing: 0em; text-align: center; color: #F4F0F0;">
+                </div>
                 <div
-                    style="font-family: Cairo;
-                font-size: 18px;
-                font-weight: 400;
-                line-height: 32px;
-                letter-spacing: 0em;
-                text-align: center;
-                color:#F4F0F0;
-                ">
+                    style="font-family: Cairo; font-size: 18px; font-weight: 400; line-height: 32px; letter-spacing: 0em; text-align: center; color: #F4F0F0;">
                     عدد الزيارات</div>
             </div>
             <div class="col-md-3">
-                <blockquote class="blockquote">
-                    <div class="mt-5"
-                        style="font-family: Cairo;
-                font-size: 25px;
-                font-weight: 500;
-                line-height: 32px;
-                letter-spacing: 0em;
-                text-align: center;
-                color:#F4F0F0;
-                ">
-                        200</div>
-                    <div
-                        style="font-family: Cairo;
-                font-size: 18px;
-                font-weight: 400;
-                line-height: 32px;
-                letter-spacing: 0em;
-                text-align: center;
-                color:#F4F0F0;
-                ">
-                        عدد الموظفين</div>
-                </blockquote>
+                <div class="mt-5 counter2"
+                    style="font-family: Cairo; font-size: 25px; font-weight: 500; line-height: 32px; letter-spacing: 0em; text-align: center; color: #F4F0F0;">
+                </div>
+                <div
+                    style="font-family: Cairo; font-size: 18px; font-weight: 400; line-height: 32px; letter-spacing: 0em; text-align: center; color: #F4F0F0;">
+                    عدد الموظفين</div>
             </div>
             <div class="col-md-3">
-                <div class="mt-5"
-                    style="font-family: Cairo;
-                font-size: 25px;
-                font-weight: 500;
-                line-height: 32px;
-                letter-spacing: 0em;
-                text-align: center;
-                color:#F4F0F0;
-                ">
-                    20</div>
+                <div class="mt-5 counter3"
+                    style="font-family: Cairo; font-size: 25px; font-weight: 500; line-height: 32px; letter-spacing: 0em; text-align: center; color: #F4F0F0;">
+                </div>
                 <div
-                    style="font-family: Cairo;
-                font-size: 18px;
-                font-weight: 400;
-                line-height: 32px;
-                letter-spacing: 0em;
-                text-align: center;
-                color:#F4F0F0;
-                ">
+                    style="font-family: Cairo; font-size: 18px; font-weight: 400; line-height: 32px; letter-spacing: 0em; text-align: center; color: #F4F0F0;">
                     عدد المشاريع</div>
             </div>
             <div class="col-md-3">
-                <div class="mt-5"
-                    style="font-family: Cairo;
-                font-size: 25px;
-                font-weight: 500;
-                line-height: 32px;
-                letter-spacing: 0em;
-                text-align: center;
-                color:#F4F0F0;
-                ">
-                    90</div>
+                <div class="mt-5 counter4"
+                    style="font-family: Cairo; font-size: 25px; font-weight: 500; line-height: 32px; letter-spacing: 0em; text-align: center; color: #F4F0F0;">
+                </div>
                 <div
-                    style="font-family: Cairo;
-                font-size: 18px;
-                font-weight: 400;
-                line-height: 32px;
-                letter-spacing: 0em;
-                text-align: center;
-                color:#F4F0F0;
-                ">
+                    style="font-family: Cairo; font-size: 18px; font-weight: 400; line-height: 32px; letter-spacing: 0em; text-align: center; color: #F4F0F0;">
                     عدد الشركات</div>
             </div>
         </div>
+
         </div>
         </div>
     </section>
@@ -529,7 +472,7 @@
 
         <div class="row justify-content-center mt-10 mb-7">
 
-            <div class="col-md-6 d-flex justify-content-end">
+            <div class="col-md-6 d-flex justify-content-end animate-fade-up">
 
                 <div class="row mt-4">
                     <div class="col-md-12 ">
@@ -728,7 +671,7 @@
 
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 animate-fade-in">
 
                 <div class="center pr-0 text-right" style="margin-top: 30px ">
                     <img src="{{ asset('images/Vector (1).svg') }}">
@@ -1443,14 +1386,14 @@
                             <img src="{{ asset('images/pro1.svg') }}">
                             <div
                                 class="d-flex justify-content-center pr-1"style="margin-top: 2.1rem !important;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            font-family: Cairo;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            font-size: 18px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            font-weight: 600;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            line-height: 34px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            letter-spacing: 0em;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            text-align: center;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            color:#000000;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-family: Cairo;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-size: 18px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-weight: 600;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    line-height: 34px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    letter-spacing: 0em;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    text-align: center;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    color:#000000;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ">
                                 منصة التواصل اجتماعي</div>
                         </div>
                     </div>
@@ -1560,14 +1503,14 @@
                             <img src="{{ asset('images/pro1.svg') }}">
                             <div
                                 class="d-flex justify-content-center pr-1"style="margin-top: 2.1rem !important;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        font-family: Cairo;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        font-size: 18px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        font-weight: 600;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        line-height: 34px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        letter-spacing: 0em;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        text-align: center;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        color:#000000;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                font-family: Cairo;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                font-size: 18px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                font-weight: 600;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                line-height: 34px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                letter-spacing: 0em;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                text-align: center;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                color:#000000;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ">
                                 منصة التواصل اجتماعي</div>
                         </div>
                     </div>
@@ -1895,14 +1838,14 @@
             <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel" style="height:auto">
                 <div class="pl-5 d-flex justify-content-between" style="padding-left: 5rem !important;">
                     <span class="d-flex justify-content-center mb-4 pr-2" style="margin-bottom:2rem !important;"
-                        data-target="#carouselExampleIndicators2" data-slide="prev">
+                        data-target="#carouselExampleIndicators3" data-slide="prev">
                         <img src="{{ asset('images/left.svg') }}" alt="Previous">
                     </span>
                     <div class="carousel-inner">
                         <div class="carousel-item active ">
                             <div class="card"
-                                style="width: 841px;
-                                    height:auto;
+                                style="width: 100%;
+                                    height:100%;
                                     border:#F8F8F8;
                                     border-radius: 12px;background-color: #F8F8F8">
                                 <div class="card-body">
@@ -1959,8 +1902,8 @@
                         </div>
                         <div class="carousel-item  ">
                             <div class="card"
-                                style="width: 841px;
-                                    height:auto;
+                                style="width: 100%;
+                                    height:100%;
                                     border:#F8F8F8;
                                     border-radius: 12px;background-color: #F8F8F8">
                                 <div class="card-body">
@@ -2017,8 +1960,8 @@
                         </div>
                         <div class="carousel-item  ">
                             <div class="card"
-                                style="width: 841px;
-                                    height:auto;
+                                style="width: 100%;
+                                    height:100%;
                                     border:#F8F8F8;
                                     border-radius: 12px;background-color: #F8F8F8">
                                 <div class="card-body">
@@ -2074,7 +2017,7 @@
                             </div>
                         </div>
                     </div>
-                    <span class="pl-2" style="margin-top:7rem !important;" data-target="#carouselExampleIndicators2"
+                    <span class="pl-2" style="margin-top:7rem !important;" data-target="#carouselExampleIndicators3"
                         data-slide="next">
                         <img src="{{ asset('images/right.svg') }}" alt="Next" class="next">
                     </span>
@@ -2090,160 +2033,33 @@
             </div>
         </div>
     </section>
-    <style>
-        .responsive-text {
-            font-family: Cairo;
-            font-size: 22px;
-            font-weight: 400;
-            line-height: 38px;
-            letter-spacing: 0em;
-            text-align: right;
-            color: #222751;
+
+    <script>
+        function updateCounter(targetNumber, counterSelector) {
+            let currentNumber = 0;
+            const counterElement = document.querySelector(counterSelector);
+
+            const interval = setInterval(function() {
+                currentNumber++;
+                counterElement.textContent = '+ ' + currentNumber;
+
+                if (currentNumber === targetNumber) {
+                    clearInterval(interval);
+                }
+            }, 20);
         }
 
-        @media (max-width: 767px) {
-            .responsive-text {
-                font-size: 18px;
-                line-height: 32px;
-            }
-
-            .features .col-md-6 {
-                flex: 1;
-                margin-left: 0;
-                width: 100%;
-            }
-
-            .features .row.gap-6 .col-md-6 .card {
-                margin-left: -15px;
-
-                margin-right: -15px;
-                overflow-x: auto;
-
-            }
-
-            .features .col-md-6 .card {
-                margin-left: 15px;
-                margin-bottom: 15px;
-
-            }
-
-            .card {
-                max-width: 210px;
-                height: auto;
-            }
-
-            .features .center.pr-0.text-right {
-                margin-top: 10px;
-            }
-
-            .features .d-flex.justify-content-end {
-                gap: 30px;
-            }
-
-            .the_range .container [style*="font-size: 25px;"] {
-                font-size: 16px !important;
-                /* Adjust as needed */
-                line-height: 16px !important;
-                /* Adjust as needed */
-            }
-
-            .the_range .container [style*="gap: 50px;"] {
-                gap: 0px !important;
-                /* Adjust as needed */
-            }
-
-            .the_range .container [style*="font-size: 18px;"] {
-                font-size: 12px !important;
-                /* Adjust as needed */
-                line-height: 15px !important;
-                /* Adjust as needed */
-            }
-
-            .he {
-                flex-wrap: nowrap;
-
-                overflow-x: auto;
-                scrollbar-width: thin;
-                scrollbar-color: #f5f4f4 transparent;
-
-
-                max-width: 100%;
-
-
-            }
-
-            .service_text1 {
-                font-size: 18px !important;
-
-                line-height: 20px !important;
-
-            }
-
-            .service_text2 {
-                font-size: 25px !important;
-                margin-top: 10px;
-
-                line-height: 20px !important;
-
-            }
-
-            .service_text3 {
-                font-size: 25px !important;
-                margin-top: 20px;
-
-                line-height: 20px !important;
-
-            }
-
-            .col-md-1 {
-                display: block !important;
-                margin-top: 90px
-            }
-
-            .col-md-2 {
-                display: inline-block !important;
-            }
-
-            .custom-image-style {
-                max-width: 80%;
-
-            }
-
-            .next {
-                margin-top: 7.5rem !important;
-            }
-
-            .prev {
-                margin-bottom: 12rem !important;
-            }
-
-            .carousel-inner .carousel-item .row {
-                flex-wrap: nowrap;
-
-                overflow-x: auto;
-                scrollbar-width: thin;
-                scrollbar-color: #ffffff transparent;
-
-                &::-webkit-scrollbar {
-                    width: 1px;
-                }
-
-                &::-webkit-scrollbar-thumb {
-                    background-color: #ddd;
-                }
-
-                max-width: 100%;
-
-
-
-            }
-
-            .carousel-item .active .img-fluid {
-                width: 400px;
-
-            }
-
-
+        function startCounters() {
+            updateCounter(350, '.counter1');
+            updateCounter(200, '.counter2');
+            updateCounter(20, '.counter3');
+            updateCounter(90, '.counter4');
         }
-    </style>
+
+        // Call the function to start the counters when the document is ready
+        document.addEventListener('DOMContentLoaded', startCounters);
+
+        // Update counters every 5 seconds
+        setInterval(startCounters, 10000);
+    </script>
 @endsection

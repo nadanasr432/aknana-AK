@@ -74,15 +74,48 @@
                 display: none;
             }
         }
+        #home a {
+    color: #FFE4C5;
+    /* Set text color for the active route */
+}
+
+/* Add a small line under the active route */
+#home a::after {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 75%;
+    margin-left: 15px;
+    background-color: #FFE4C5;
+    margin-top: 3px;
+
+   
+}
+
+#home a:hover {
+    color: #DF8317;
+
+}
+
+.navbar-nav .nav-item.active a:hover {
+    color: #DF8317;
+    
+}
+
+
+#home a:hover::after {
+    background-color: #DF8317;
+    
+}
 
 
 
 
         .custom-arrow-select2 option:hover {
             background-color: #ffcc00;
-            /* Set the background color for the hovered but unselected option */
+           
             color: #333333;
-            /* Set the text color for the hovered but unselected option */
+            
         }
 
 
@@ -92,13 +125,13 @@
             appearance: none;
             background: none;
             padding-right: 8%;
-            /* Remove any padding added for the default arrow */
+           
         }
 
         .custom-arrow {
 
             margin-top: -100px;
-            /* Ensure the arrow doesn't interfere with dropdown interaction */
+           
         }
 
         select option:checked,
@@ -114,7 +147,37 @@
 
             margin-top: -100px;
 
-            /* Ensure the arrow doesn't interfere with dropdown interaction */
+          
+        }
+         @media (max-width: 767px) {
+            .navbar-nav {
+                background-color: #FFE4C5 ;
+                padding: 20px;
+            
+                text-align: left;
+                display: inline-block;
+            
+                margin-right: 10px;
+             
+                font-size: 14px;
+                columns: white;
+              
+            }
+
+            #home a::after {
+                content: '';
+                display: block;
+                height: 2px;
+                width: 90%;
+                margin-left: 0px;
+                background-color: #bebebe;
+                margin-top: 3px;
+            }
+            .navbar-nav .nav-item.active a:hover {
+                color:   #bebebe;
+                /* Set text color for the hover state */
+            }
+
         }
     </style>
 </head>
@@ -123,6 +186,11 @@
     <div id="app">
         <div class="head">
             <nav class="navbar navbar-expand-lg d-flex justify-content-between">
+                <a class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <img src="{{ asset('images/list2.png') }}" width="25px" height="25px">
+
+            </a>
                 <button id="actionButton" class="btn btn-primary"
                     style="font-family: Cairo;
                     font-size: 16px;
@@ -134,11 +202,7 @@
                     ">
                     تواصل معنا
                 </button>
-                <button class="navbar-toggler btn-primary" type="button" data-toggle="collapse"
-                    data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+               
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav" style="gap: 30px;">
                         <li class="nav-item active">
@@ -165,7 +229,7 @@
                             <a class="nav-link" href="{{ route('home') }}#features">من نحن</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('home') }}#">الرئيسية</a>
+                            <a class="nav-link" href="{{ route('home') }}#" id="home">الرئيسية</a>
                         </li>
 
                     </ul>
