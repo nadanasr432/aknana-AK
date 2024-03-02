@@ -8,8 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
+     <title>AKNANA</title>
+     <link rel="icon" href="{{ asset('images/logo 4 (1).png') }}"  type="image/png">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -20,6 +20,26 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
+         body {
+                overflow: auto;
+            }
+
+            &::-webkit-scrollbar {
+                width: 1px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: #000000;
+            }
+
+            body::-webkit-scrollbar {
+                width: 1px;
+            }
+
+            body::-webkit-scrollbar-thumb {
+                background-color: #000000;
+                width: 1px;
+            }
         footer {
             background-image: url('{{ asset('images/footer.svg') }}');
             background-size: cover;
@@ -247,7 +267,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-body-tertiary">
+       <footer class="bg-body-tertiary">
         <!-- Grid container -->
         <div class="container" style="margin-top:60px">
             <div class="row" style="gap: 55px">
@@ -335,7 +355,7 @@
 
                         <li class="mb-2">
 
-                            <a href="#!"
+                            <a href="{{ route('home') }}#2030"
                                 style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -349,7 +369,7 @@
                         </li>
                         <li class="mb-2">
 
-                            <a href="#!"
+                            <a href="{{ route('home') }}#projects"
                                 style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -363,7 +383,7 @@
                         </li>
                         <li class="mb-2">
 
-                            <a href="#!"
+                            <a href="{{ route('home') }}#!"
                                 style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -377,7 +397,7 @@
                         </li>
                         <li class="mb-2">
 
-                            <a href="#!"
+                            <a href="{{ route('home') }}#reviews"
                                 style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -412,7 +432,7 @@
                     <ul class="list-unstyled">
                         <li class="mb-2">
 
-                            <a href="#!"
+                            <a  href="{{ route('home') }}#head"
                                 style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -426,7 +446,7 @@
                         </li>
                         <li class="mb-2">
 
-                            <a href="#!"
+                            <a href="{{ route('home') }}#service"
                                 style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -440,7 +460,7 @@
                         </li>
                         <li class="mb-2">
 
-                            <a href="#!"
+                            <a href="{{ route('home') }}#US"
                                 style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -454,7 +474,7 @@
                         </li>
                         <li class="mb-2">
 
-                            <a href="#!"
+                            <a  href="{{ route('home') }}#programs"
                                 style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -531,7 +551,6 @@
         </div>
         <!-- Copyright -->
     </footer>
-
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
@@ -561,6 +580,53 @@
             $('#myModal').modal('show');
         });
     @endif
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+         $('#course_id').on('change', function() {
+            var selectedDate = $(this).find(':selected').data('date');
+            $('#inputDateOfCourse').val(selectedDate);
+        });
+        $('#course_id').on('change', function() {
+            var selectedCourseId = $(this).val();
+
+            // Make an AJAX request to get the maximum male and female values for the selected course
+            $.ajax({
+                type: 'GET',
+                url: '{{ route("getMaxMaleValue") }}',
+                data: {
+                    course_id: selectedCourseId
+                },
+                success: function(response) {
+                    updateGenderOptions(response.max_male, response.max_female, response.maleCount, response.femaleCount);
+                },
+                error: function(error) {
+                    console.error('Error fetching max values:', error);
+                    // You might want to handle errors here
+                }
+            });
+        });
+
+        function updateGenderOptions(maxMale, maxFemale, maleCount, femaleCount) {
+            // Reset the gender options
+            $('#gender').empty();
+
+            // Add the default option
+            $('#gender').append('<option value="" disabled selected>النوع</option>');
+
+            // Add options based on the counts and max values
+            if (maleCount < maxMale) {
+                $('#gender').append('<option value="male">ذكر</option>');
+            }
+
+            if (femaleCount < maxFemale) {
+                $('#gender').append('<option value="female">أنثى</option>');
+            }
+        }
+    });
 </script>
 
 

@@ -14,4 +14,14 @@ class Media extends Model
     {
         return $this->morphTo();
     }
+
+     public function service()
+    {
+        return $this->morphTo('mediable');
+    }
+
+     public function project()
+    {
+        return $this->morphTo('mediable');
+    }
 }

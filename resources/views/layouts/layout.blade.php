@@ -10,6 +10,7 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyOB4Ml3r6DIj5e7n9O3PjUbo+qDFFUw" crossorigin="anonymous">
 
     <title>AKNANA</title>
+    <link rel="icon" href="{{ asset('images/logo 4 (1).png') }}" type="image/png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         @keyframes slideFromTop {
@@ -253,6 +254,8 @@
                 line-height: 32px;
             }
 
+
+
             .features .col-md-6 {
                 flex: 1;
                 margin-left: 0;
@@ -458,6 +461,10 @@
 
                 line-height: 20px !important;
 
+            }
+
+            #tex_2 {
+                font-size: 25px;
             }
 
             #contactButton {
@@ -714,7 +721,7 @@
 
                         <li class="mb-2">
 
-                            <a href="#!"
+                            <a href="#2030"
                                 style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -728,7 +735,7 @@
                         </li>
                         <li class="mb-2">
 
-                            <a href="#!"
+                            <a href="#projects"
                                 style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -756,7 +763,7 @@
                         </li>
                         <li class="mb-2">
 
-                            <a href="#!"
+                            <a href="#reviews"
                                 style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -791,7 +798,7 @@
                     <ul class="list-unstyled">
                         <li class="mb-2">
 
-                            <a href="#!"
+                            <a href="#head"
                                 style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -805,7 +812,7 @@
                         </li>
                         <li class="mb-2">
 
-                            <a href="#!"
+                            <a href="#service"
                                 style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -819,7 +826,7 @@
                         </li>
                         <li class="mb-2">
 
-                            <a href="#!"
+                            <a href="#US"
                                 style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -833,7 +840,7 @@
                         </li>
                         <li class="mb-2">
 
-                            <a href="#!"
+                            <a href="#programs"
                                 style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -910,9 +917,9 @@
         </div>
         <!-- Copyright -->
     </footer>
-    <a id="scrollToTopButton" href="#head" class="btn fixed-bottom mr-4 mb-4 rounded-circle"
-        style="width: 50px;height:50px">
-        <img src="{{ asset('images/turn-up.gif') }}" width="40px" height="40x">
+    <a id="scrollToTopButton" href="#head" class="btn fixed-bottom ml-3 mb-4 mt-4 rounded-circle"
+        style="width: 60px;height:60px">
+        <img src="{{ asset('images/turn-up.gif') }}" width="35px" height="40x">
     </a>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

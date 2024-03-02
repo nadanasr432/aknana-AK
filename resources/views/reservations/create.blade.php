@@ -2,6 +2,8 @@
 @section('content')
     <div class="container" style="max-width: 1440px;">
         <div class="row d-flex justify-content-between">
+
+
             <div class="col-md-5">
                 <img src="{{ asset('images/about us.svg') }}" class="img-fluid" alt="About Us Image">
             </div>
@@ -57,40 +59,39 @@
                     ">
                     شكرا لتواصلكم معانا سيتم التواصل معكم في أقرب وقت
                 </div>
-                {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    Open Modal
-</button> --}}
+                <x-qrcode-modal />
 
-                @component('components.qrcode-modal')
-                @endcomponent
                 <form id="reservationForm" action="{{ route('reservation.store') }}" method="post">
                     @csrf
                     <div class="form-row">
 
 
                         <div class="form-group mb-5 col-md-6 ml-auto text-right">
-                            <input disabled type="text" class="form-control text-right" id="inputLastName"
-                                placeholder="موعد الدورة" id="date_of_period" name="date_of_course"
+                            <input disabled type="text" class="form-control text-right" id="inputDateOfCourse"
+                                placeholder="موعد الدورة" name="date_of_course"
                                 style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
-                                       padding-right: 31px; ">
-
+                                padding-right: 31px;">
                             <img src="{{ asset('images/select-16.svg') }}" alt="Icon"
                                 style="width: 20px; height: 20px;margin-top: -100px;margin-right: 5px;">
                         </div>
+
                         <div class="form-group mb-5 col-md-6 ml-auto text-right">
                             <select class="form-control text-right custom-arrow-select" id="course_id" name="course_id"
                                 style="width: 100%; height: 70px; border-radius: 10px; border: 1px #F2F2F2; gap: 98px;
-                                background-color:#F9F9F9; font-family: Cairo; font-size: 18px; font-weight: 400;
-                                line-height: 50px; letter-spacing: 0em; text-align: center;">
+                    background-color:#F9F9F9; font-family: Cairo; font-size: 18px; font-weight: 400;
+                    line-height: 50px; letter-spacing: 0em; text-align: center;">
+
                                 <option value="" disabled selected>اختر الدورة</option>
-                                @php
-                                    $courses = App\Models\Course::all();
-                                @endphp
-                                @foreach ($courses as $course)
-                                    <option value="{{ $course->id }}">{{ $course->name }}</option>
+
+                                @foreach ($availableCourses as $course)
+                                    <option value="{{ $course->id }}" data-date="{{ $course->date_of_course }}">
+                                        {{ $course->name }}</option>
                                 @endforeach
 
                             </select>
+
+
+
                             <img src="{{ asset('images/Vector (7).svg') }}" class="pr-2 custom-arrow" alt="Custom Arrow2"
                                 style="margin-right: 340px;">
                             <img src="{{ asset('images/Vector (9).svg') }}" class="pr-2 custom-arrow" alt="Custom Arrow">
@@ -146,16 +147,13 @@
                         <div class="form-group mb-5 col-md-6 ml-auto text-right">
                             <select class="form-control text-right custom-arrow-select2" id="gender" name="gender"
                                 style="width: 100%; height: 70px; border-radius: 10px; border: 1px #F2F2F2; gap: 98px;
-                                        background-color:#F9F9F9; font-family: Cairo; font-size: 18px; font-weight: 400;
-                                        line-height: 50px; letter-spacing: 0em; text-align: center;">
-
+                                background-color:#F9F9F9; font-family: Cairo; font-size: 18px; font-weight: 400;
+                                line-height: 50px; letter-spacing: 0em; text-align: center;">
                                 <option value="" disabled selected>النوع</option>
-                                <option value="female">أنثى</option>
-                                <option value="male">ذكر</option>
-
                             </select>
-                            <img src="{{ asset('images/Vector (7).svg') }}" class="pr-2 custom-arrow"
-                                alt="Custom Arrow2" style="margin-right: 365px;">
+
+                            <img src="{{ asset('images/Vector (7).svg') }}" class="pr-2 custom-arrow" alt="Custom Arrow2"
+                                style="margin-right: 365px;">
                             <img src="{{ asset('images/gender.svg') }}" class="pr-2 custom-arrow" alt="Custom Arrow"
                                 style="margin-top: -140px; margin-left: 2px; margin-right: -5px;">
                         </div>
@@ -181,11 +179,11 @@
                         width: 100%; height: 70px; padding: 0 12px 0 0; border-radius: 10px; gap: 13px; color:#FFFFFF">ارسال</button>
                 </form>
                 <script>
-                    // Check if there is a success message in the session
-                    @if (session('success'))
-                        // Open the modal when there is a success message
+                    // Check if there is a success message and QR code data
+                    @if (session('success') && session('qrCodeData'))
+                        // Open the QR code modal when there is a success message and QR code data
                         $(document).ready(function() {
-                            $('#myModal').modal('show');
+                            $('#myModal1').modal('show');
                         });
                     @endif
                 </script>
@@ -194,4 +192,5 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 @endsection

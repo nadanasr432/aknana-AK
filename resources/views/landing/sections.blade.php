@@ -239,7 +239,7 @@
         <div class="row d-flex justify-content-between mb-5">
 
             <div class="col-md-5  fade-in ">
-                <p class="center "
+                <p class="center " id="text1"
                     style="font-family: Cairo;
                         font-size: 40px;
                         font-weight: 667;
@@ -247,7 +247,7 @@
                         letter-spacing: -0.01em;
                         text-align: right;">
                     <img src="{{ asset('images/Vector (1).svg') }}">
-                    كيف نساعد في<span
+                    كيف نساعد في<span id="tex_2"
                         style="color: #DF8317;
                         font-size: 40px;
                         font-weight: 667;
@@ -1808,7 +1808,7 @@
         </div>
     </section>
 
-    <section class="reviews container text-center mt-5 mb-5"
+    <section class="reviews container text-center mt-5 mb-5" id="reviews"
         style="background-image: url('{{ asset('images/client bg.svg') }}'); background-size: 100% 100%; background-repeat: no-repeat;">
 
         <div class="row d-flex justify-content-center mt-5 mb-5">

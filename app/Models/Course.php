@@ -14,4 +14,16 @@ class Course extends Model
     {
         return $this->hasMany(Reservation::class);
     }
+        protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($course) {
+          
+            $maleCount = $course->reservations()->where('gender', 'male')->count();
+            $femaleCount = $course->reservations()->where('gender', 'female')->count();
+           $course->max_male_count = $maleCount;
+            $course->max_female_count = $femaleCount;
+        });
+    }
 }
