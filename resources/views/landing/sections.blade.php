@@ -1,5 +1,6 @@
 @extends('layouts.layout')
 @section('content')
+
     <section class="services container mb-5" style="max-width: 1500rem" id="service">
         <div class=" 1 row d-flex justify-content-center mb-5">
             <div class="col-md-5 text-center ">
@@ -35,139 +36,73 @@
                     شركة أكنانا متخصصة في حضانات الاعمال في المملكة </p>
             </div>
         </div>
-        <div class=" he row d-flex justify-content-between">
-            <div class="col-md-2 ">
 
-                <div class="d-flex justify-content-center align-items-center  mb-5">
-                    <img src="{{ asset('images/04.svg') }}">
+        <div class="he row d-flex justify-content-between">
+            @foreach ($services as $key => $service)
+                <div class="col-md-2 mb-5">
+                    <div class="d-flex justify-content-center align-items-center mb-5">
+                        <img src="{{ asset('storage/' . $service->media()->first()->file_path) }}">
+                    </div>
+                    <p
+                        style="font-family: Cairo; font-size: 24px; font-weight: 600; line-height: 36px; letter-spacing: -0.01em; text-align: center; color: #141414;">
+                        {{ $service->title }}
+                    </p>
+                    <div class="description-container">
+                        <p class="short-description"
+                            style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
 
+                            <a class="ml-0 mr-0 text-muted read-more-button">
+                                {{ \Illuminate\Support\Str::words($service->description, 9, '...') }}</a>
+
+                        </p>
+                        <p class="full-description"
+                            style="display: none; font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                            {{ $service->description }}
+                        </p>
+
+                        <a class=" show-less-button" style="display: none;color:#121743"> ..عرض القليل</a>
+                    </div>
                 </div>
-                <p
-                    style="font-family: Cairo;
-                    font-size: 24px;
-                    font-weight: 600;
-                    line-height: 36px;
-                    letter-spacing: -0.01em;
-                    text-align: center;
-                    color: #141414;
-                    ">
-                    التوجيه و الارشاد
-                </p>
-                <p
-                    style="font-family: Cairo;
-                    font-size: 16px;
-                    font-weight: 400;
-                    line-height: 26px;
-                    letter-spacing: 0em;
-                    text-align: center;
-                    color:rgba(20, 20, 20, 0.75);
-                    ">
-                    بواسطة الاستعانة بنخبة من المدربين ذوي الخبرة في كل القطاعات.
-                </p>
-            </div>
-            <div class="col-md-1  d-flex justify-content-center " style="margin-bottom: 150px">
-                <img src="{{ asset('images/Vector f.svg') }}">
-            </div>
-            <div class="col-md-2 ">
 
-                <div class="d-flex justify-content-center align-items-center mb-5">
-                    <img src="{{ asset('images/03.svg') }}">
-
-                </div>
-                <p
-                    style="font-family: Cairo;
-                    font-size: 24px;
-                    font-weight: 600;
-                    line-height: 36px;
-                    letter-spacing: -0.01em;
-                    text-align:center;
-                    color: #141414;
-                    ">
-                    ادارة مشاريع
-                </p>
-                <p
-                    style="font-family: Cairo;
-                    font-size: 16px;
-                    font-weight: 400;
-                    line-height: 26px;
-                    letter-spacing: 0em;
-                    text-align: center;
-                    color:rgba(20, 20, 20, 0.75);
-                    ">
-                    لنوفر للعميل كافة المسائل التي تحيط بمشروعه ليتمكن من اتخاذ القرار
-                </p>
-            </div>
-            <div class="col-md-1  d-flex justify-content-center " style="margin-bottom: 150px">
-                <img src="{{ asset('images/Vector f.svg') }}">
-            </div>
-            <div class="col-md-2 ">
-
-                <div class="d-flex justify-content-center align-items-center  mb-5">
-                    <img src="{{ asset('images/02.svg') }}">
-
-                </div>
-                <p
-                    style="font-family: Cairo;
-                    font-size: 24px;
-                    font-weight: 600;
-                    line-height: 36px;
-                    letter-spacing: -0.01em;
-                    text-align: center;
-                    color: #141414;
-                    ">
-                    مساحات عمل مشتركة
-                </p>
-                <p
-                    style="font-family: Cairo;
-                    font-size: 16px;
-                    font-weight: 400;
-                    line-height: 26px;
-                    letter-spacing: 0em;
-                    text-align: center;
-                    color:rgba(20, 20, 20, 0.75);
-                    ">
-                    نوفر الاماكن التي يحتاجها العملاء حتي نوفر بيئة مناسبة للعمل
-                </p>
-            </div>
-            <div class="col-md-1  d-flex justify-content-center " style="margin-bottom: 150px">
-                <img src="{{ asset('images/Vector f.svg') }}">
-            </div>
-            <div class="col-md-2  ">
-
-                <div class="d-flex justify-content-center align-items-center  mb-5">
-                    <img src="{{ asset('images/01.svg') }}">
-                </div>
-                <p
-                    style="font-family: Cairo;
-                    font-size: 24px;
-                    font-weight: 600;
-                    line-height: 36px;
-                    letter-spacing: -0.01em;
-                    text-align: center;
-                    color: #141414;
-                    ">
-                    حضانة أعمال
-                </p>
-                <p
-                    style="font-family: Cairo;
-                    font-size: 17px;
-                    font-weight: 400;
-                    line-height: 26px;
-                    text-align: center;
-                    color:rgba(20, 20, 20, 0.75);
-                    ">
-                    احتضان المشاريع عبر تحويل أفكارهم إلى
-                    مشاريع على أرض الواقع
-                </p>
-            </div>
+                @if ($key < count($services) - 1)
+                    <div class="col-md-1  d-flex justify-content-center " style="margin-bottom: 150px">
+                        <img src="{{ asset('images/Vector f.svg') }}">
+                    </div>
+                @endif
+            @endforeach
         </div>
 
     </section>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const descriptionContainers = document.querySelectorAll('.description-container');
 
+            descriptionContainers.forEach(function(container) {
+                const shortDescription = container.querySelector('.short-description');
+                const fullDescription = container.querySelector('.full-description');
+                const readMoreButton = container.querySelector('.read-more-button');
+                const showLessButton = container.querySelector('.show-less-button');
 
-    <section id="US" class="US container text-center"
-        style="max-width: 1400px;margin-top: 5rem !important;margin-bottom: 10rem !important; ">
+                readMoreButton.addEventListener('click', function() {
+                    shortDescription.style.display = 'none';
+                    fullDescription.style.display = 'block';
+                    readMoreButton.style.display = 'none';
+                    showLessButton.style.display = 'block';
+                });
+
+                showLessButton.addEventListener('click', function() {
+                    shortDescription.style.display = 'block';
+                    fullDescription.style.display = 'none';
+                    readMoreButton.style.display = 'block';
+                    showLessButton.style.display = 'none';
+                });
+            });
+        });
+    </script>
+
+    <section id="US" class="US container text-center "
+        style="max-width: 1400px;margin-top: 10rem !important;margin-bottom: 10rem !important; ">
 
         <div class="row d-flex justify-content-between mb-5 custom-row-style">
             <div class="col-md-6 d-flex justify-content-start">
@@ -807,6 +742,19 @@
                             <img src="{{ asset('images/right.svg') }}" alt="Next">
                         </span>
                     </div>
+                    <div class="d-flex justify-content-start mb-4">
+
+
+                        <a class="btn btn-outline-primary" href="{{ route('courses.index') }}"
+                            style="
+                               
+                                border:#121743 1px  solid;
+                                color:white;
+                                background:#121743;
+                                ">
+                            <img src="{{ asset('images/course.png') }}" style="width: 27px;height;27px">
+                            البرامج </a>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="center mt-2"
@@ -835,17 +783,27 @@
                 </div>
             </div>
 
-            <div class="carousel-inner ">
-                <div class="carousel-item active">
-                    <div class="row mb-5">
-                        <div class="col-md-4">
-                            <div class="justify-content-center">
-                                <span class="d-flex justify-content-center mb-2 ">
-                                    <img src="{{ asset('images/Blog 5 (2).svg') }}">
-                                </span>
+            <div class="carousel-inner">
+                @for ($i = 0; $i < ceil(count($courses) / 3); $i++)
+                    <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                        <div class="row mb-5 justify-content-between">
+                            @foreach ($courses->slice($i * 3, 3) as $course)
+                                @php
+                                    $maleCount = $course->reservations()->where('gender', 'male')->count();
+                                    $femaleCount = $course->reservations()->where('gender', 'female')->count();
+                                    $maxMaleCount = $course->male_count;
+                                    $maxFemaleCount = $course->female_count;
+                                    $isCourseAvailable = $maleCount < $maxMaleCount || $femaleCount < $maxFemaleCount;
+                                @endphp
+                                <div class="col-md-4 mt-5">
+                                    <div class="justify-content-center">
+                                        <span class="d-flex justify-content-center mb-2 ">
+                                            <img src="{{ asset('storage/' . $course->media->first()->file_path) }}"
+                                                style="width: 350px;height:258px" alt="First Image">
+                                        </span>
 
-                                <div class="d-flex justify-content-end pr-1"
-                                    style="font-family: Cairo;
+                                        <div class="d-flex justify-content-end pr-1"
+                                            style="font-family: Cairo;
                                     font-size: 18px;
                                     font-weight: 667;
                                     line-height: 34px;
@@ -854,9 +812,9 @@
                                     color: rgba(18, 23, 67, 1);
 
                                     ">
-                                    ‫التعلقً‬‫ ( ‬‫خلقً الانسا‬‫نً‬ منً علق ‬‫)‬</div>
-                                <div class="mt-2  pr-1"
-                                    style="font-family: Cairo;
+                                            {{ $course->name }}</div>
+                                        <div class="mt-2  pr-1"
+                                            style="font-family: Cairo;
                                         font-size: 16px;
                                         font-weight: 400;
                                         line-height: 25px;
@@ -866,11 +824,11 @@
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                    م/ عبد الله البراق
-                                    <img src="{{ asset('images/Vector (6).svg') }}">
-                                </div>
-                                <div class="mt-2  pr-1"
-                                    style="font-family: Cairo;
+                                            م/{{ $course->professor_name }}
+                                            <img src="{{ asset('images/Vector (6).svg') }}">
+                                        </div>
+                                        <div class="mt-2  pr-1"
+                                            style="font-family: Cairo;
                                         font-size: 16px;
                                         font-weight: 400;
                                         line-height: 25px;
@@ -880,28 +838,27 @@
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                    المدة :ساعتين ونصف
-                                    <img src="{{ asset('images/Vector (5).svg') }}">
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-between">
-                                <button id="ServButton2" class="btn btn-primary"
-                                    style="width:155px;height:35px;font-family: Cairo;
-                                font-family: Cairo;
-                                font-size: 15px;
-                                font-weight: 600;
-                                line-height: 28px;
-                                letter-spacing: 0em;
-                                text-align: center;
+                                            المدة : {{ $course->time_duration }}
+                                            <img src="{{ asset('images/Vector (5).svg') }}">
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-between">
+                                        @if ($isCourseAvailable)
+                                            <a href="{{ route('reservation.create', ['course_id' => $course->id]) }}"
+                                                id="ServButton2" class="btn btn-primary"
+                                                style="width:155px;height:35px;font-family: Cairo; font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">
+                                                أنضم الان
+                                            </a>
+                                        @else
+                                            <a type="button" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#courseFullModal" class="btn btn-primary"
+                                                style="width:155px;height:35px;font-family: Cairo; font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">
+                                                أنضم الان
+                                            </a>
+                                        @endif
 
-                                color:#FFFFFF;
-                                ">
-                                    أنضم الان
-
-                                </button>
-
-                                <div class="mt-2  pr-0"
-                                    style="font-family: Cairo;
+                                        <div class="mt-2  pr-0"
+                                            style="font-family: Cairo;
                                         font-size: 16px;
                                         font-weight: 400;
                                         line-height: 25px;
@@ -911,403 +868,25 @@
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                    ‫واحةً سلمانً للعلوم‬
-                                    <img src="{{ asset('images/location1.svg') }}">
+                                            {{ $course->location }}
+                                            <img src="{{ asset('images/location1.svg') }}">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            @endforeach
+                            <x-pop_up_course />
                         </div>
-                        <div class="col-md-4">
-                            <span class="d-flex justify-contente-center mb-2 pr-2">
-                                <img src="{{ asset('images/Blog 5 (1).svg') }}">
-                            </span>
-                            <div class="d-flex justify-content-end pr-1"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 667;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: right;
-                            color: rgba(18, 23, 67, 1);
-
-                            ">
-                                ‫التعلقً‬‫ ( ‬‫خلقً الانسا‬‫نً‬ منً علق ‬‫)‬</div>
-                            <div class="mt-2  pr-1"
-                                style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align: right;
-
-                            color: rgba(102, 102, 102, 1);
-                            margin: 0;
-                            ">
-                                م/ عبد الله البراق
-                                <img src="{{ asset('images/Vector (6).svg') }}">
-                            </div>
-                            <div class="mt-2  pr-1"
-                                style="font-family: Cairo;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 25px;
-                                letter-spacing: 0em;
-                                text-align: right;
-
-                            color: rgba(102, 102, 102, 1);
-                            margin: 0;
-                            ">
-                                المدة :ساعتين ونصف
-                                <img src="{{ asset('images/Vector (5).svg') }}">
-                            </div>
-                            <div class="d-flex justify-content-between align-items-between">
-                                <button id="ServButton3" class="btn btn-primary"
-                                    style="width:155px;height:35px;font-family: Cairo;
-                                    font-family: Cairo;
-                                    font-size: 15px;
-                                    font-weight: 600;
-                                    line-height: 28px;
-                                    letter-spacing: 0em;
-                                    text-align: center;
-
-                                    color:#FFFFFF;
-                                    ">
-                                    أنضم الان
-
-                                </button>
-
-                                <div class="mt-2  pr-0"
-                                    style="font-family: Cairo;
-                                        font-size: 16px;
-                                        font-weight: 400;
-                                        line-height: 25px;
-                                        letter-spacing: 0em;
-                                        text-align:;
-
-                                    color: rgba(102, 102, 102, 1);
-                                    margin: 0;
-                                    ">
-                                    ‫واحةً سلمانً للعلوم‬
-                                    <img src="{{ asset('images/location1.svg') }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <span class="d-flex justify-contente-center mb-2 pr-2">
-                                <img src="{{ asset('images/Blog 5.svg') }}">
-                            </span>
-                            <div class="d-flex justify-content-end pr-1"
-                                style="font-family: Cairo;
-                                font-size: 18px;
-                                font-weight: 667;
-                                line-height: 34px;
-                                letter-spacing: 0em;
-                                text-align: right;
-                                color: rgba(18, 23, 67, 1);
-
-                                ">
-                                ‫التعلقً‬‫ ( ‬‫خلقً الانسا‬‫نً‬ منً علق ‬‫)‬</div>
-                            <div class="mt-2  pr-1"
-                                style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align: right;
-
-                                color: rgba(102, 102, 102, 1);
-                                margin: 0;
-                                ">
-                                م/ عبد الله البراق
-                                <img src="{{ asset('images/Vector (6).svg') }}">
-                            </div>
-                            <div class="mt-2  pr-1"
-                                style="font-family: Cairo;
-                                    font-size: 16px;
-                                    font-weight: 400;
-                                    line-height: 25px;
-                                    letter-spacing: 0em;
-                                    text-align: right;
-
-                                color: rgba(102, 102, 102, 1);
-                                margin: 0;
-                                ">
-                                المدة :ساعتين ونصف
-                                <img src="{{ asset('images/Vector (5).svg') }}">
-                            </div>
-                            <div class="d-flex justify-content-between align-items-between">
-                                <button id="ServButton4" class="btn btn-primary"
-                                    style="width:155px;height:35px;font-family: Cairo;
-                                    font-family: Cairo;
-                                    font-size: 15px;
-                                    font-weight: 600;
-                                    line-height: 28px;
-                                    letter-spacing: 0em;
-                                    text-align: center;
-
-                                    color:#FFFFFF;
-                                    ">
-                                    أنضم الان
-
-                                </button>
-
-                                <div class="mt-2  pr-0"
-                                    style="font-family: Cairo;
-                                    font-size: 16px;
-                                    font-weight: 400;
-                                    line-height: 25px;
-                                    letter-spacing: 0em;
-                                    text-align:;
-
-                                    color: rgba(102, 102, 102, 1);
-                                    margin: 0;
-                                    ">
-                                    ‫واحةً سلمانً للعلوم‬
-                                    <img src="{{ asset('images/location1.svg') }}">
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                </div>
-
-                <div class="carousel-item">
-                    <div class="row  mb-5">
-                        <div class="col-md-4">
-                            <span class="d-flex justify-contente-center mb-2 pr-2">
-                                <img src="{{ asset('images/Blog 5 (2).svg') }}">
-                            </span>
-                            <div class="d-flex justify-content-end pr-1"
-                                style="font-family: Cairo;
-                font-size: 18px;
-                font-weight: 667;
-                line-height: 34px;
-                letter-spacing: 0em;
-                text-align: right;
-                color: rgba(18, 23, 67, 1);
-
-                ">
-                                ‫التعلقً‬‫ ( ‬‫خلقً الانسا‬‫نً‬ منً علق ‬‫)‬</div>
-                            <div class="mt-2  pr-1"
-                                style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align: right;
-
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
-                                م/ عبد الله البراق
-                                <img src="{{ asset('images/Vector (6).svg') }}">
-                            </div>
-                            <div class="mt-2  pr-1"
-                                style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align: right;
-
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
-                                المدة :ساعتين ونصف
-                                <img src="{{ asset('images/Vector (5).svg') }}">
-                            </div>
-                            <div class="d-flex justify-content-between align-items-between">
-                                <button id="ServButton8" class="btn btn-primary"
-                                    style="width:155px;height:35px;font-family: Cairo;
-                    font-family: Cairo;
-                    font-size: 15px;
-                    font-weight: 600;
-                    line-height: 28px;
-                    letter-spacing: 0em;
-                    text-align: center;
-
-                    color:#FFFFFF;
-                    ">
-                                    أنضم الان
-
-                                </button>
-
-                                <div class="mt-2  pr-0"
-                                    style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align:;
-
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
-                                    ‫واحةً سلمانً للعلوم‬
-                                    <img src="{{ asset('images/location1.svg') }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <span class="d-flex justify-contente-center mb-2 pr-2">
-                                <img src="{{ asset('images/Blog 5 (1).svg') }}">
-                            </span>
-                            <div class="d-flex justify-content-end pr-1"
-                                style="font-family: Cairo;
-                font-size: 18px;
-                font-weight: 667;
-                line-height: 34px;
-                letter-spacing: 0em;
-                text-align: right;
-                color: rgba(18, 23, 67, 1);
-
-                ">
-                                ‫التعلقً‬‫ ( ‬‫خلقً الانسا‬‫نً‬ منً علق ‬‫)‬</div>
-                            <div class="mt-2  pr-1"
-                                style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align: right;
-
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
-                                م/ عبد الله البراق
-                                <img src="{{ asset('images/Vector (6).svg') }}">
-                            </div>
-                            <div class="mt-2  pr-1"
-                                style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align: right;
-
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
-                                المدة :ساعتين ونصف
-                                <img src="{{ asset('images/Vector (5).svg') }}">
-                            </div>
-                            <div class="d-flex justify-content-between align-items-between">
-                                <button id="ServButton9" class="btn btn-primary"
-                                    style="width:155px;height:35px;font-family: Cairo;
-                    font-family: Cairo;
-                    font-size: 15px;
-                    font-weight: 600;
-                    line-height: 28px;
-                    letter-spacing: 0em;
-                    text-align: center;
-
-                    color:#FFFFFF;
-                    ">
-                                    أنضم الان
-
-                                </button>
-
-                                <div class="mt-2  pr-0"
-                                    style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align:;
-
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
-                                    ‫واحةً سلمانً للعلوم‬
-                                    <img src="{{ asset('images/location1.svg') }}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <span class="d-flex justify-contente-center mb-2 pr-2">
-                                <img src="{{ asset('images/Blog 5.svg') }}">
-                            </span>
-                            <div class="d-flex justify-content-end pr-1"
-                                style="font-family: Cairo;
-                font-size: 18px;
-                font-weight: 667;
-                line-height: 34px;
-                letter-spacing: 0em;
-                text-align: right;
-                color: rgba(18, 23, 67, 1);
-
-                ">
-                                ‫التعلقً‬‫ ( ‬‫خلقً الانسا‬‫نً‬ منً علق ‬‫)‬</div>
-                            <div class="mt-2  pr-1"
-                                style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align: right;
-
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
-                                م/ عبد الله البراق
-                                <img src="{{ asset('images/Vector (6).svg') }}">
-                            </div>
-                            <div class="mt-2  pr-1"
-                                style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align: right;
-
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
-                                المدة :ساعتين ونصف
-                                <img src="{{ asset('images/Vector (5).svg') }}">
-                            </div>
-                            <div class="d-flex justify-content-between align-items-between">
-                                <button id="ServButton0" class="btn btn-primary"
-                                    style="width:155px;height:35px;font-family: Cairo;
-                    font-family: Cairo;
-                    font-size: 15px;
-                    font-weight: 600;
-                    line-height: 28px;
-                    letter-spacing: 0em;
-                    text-align: center;
-
-                    color:#FFFFFF;
-                    ">
-                                    أنضم الان
-
-                                </button>
-
-                                <div class="mt-2  pr-0"
-                                    style="font-family: Cairo;
-                            font-size: 16px;
-                            font-weight: 400;
-                            line-height: 25px;
-                            letter-spacing: 0em;
-                            text-align:;
-
-                        color: rgba(102, 102, 102, 1);
-                        margin: 0;
-                        ">
-                                    ‫واحةً سلمانً للعلوم‬
-                                    <img src="{{ asset('images/location1.svg') }}">
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                @endfor
             </div>
+
+            <!-- Carousel Indicators -->
             <div class="carousel-indicators mt-5">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                @for ($i = 0; $i < ceil(count($courses) / 3); $i++)
+                    <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
+                        class="{{ $i === 0 ? 'active' : '' }}"></li>
+                @endfor
             </div>
-
         </div>
     </section>
 
@@ -1386,14 +965,14 @@
                             <img src="{{ asset('images/pro1.svg') }}">
                             <div
                                 class="d-flex justify-content-center pr-1"style="margin-top: 2.1rem !important;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-family: Cairo;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-size: 18px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-weight: 600;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    line-height: 34px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    letter-spacing: 0em;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    text-align: center;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    color:#000000;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-family: Cairo;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-size: 18px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-weight: 600;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    line-height: 34px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    letter-spacing: 0em;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    text-align: center;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    color:#000000;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ">
                                 منصة التواصل اجتماعي</div>
                         </div>
                     </div>
@@ -1503,14 +1082,14 @@
                             <img src="{{ asset('images/pro1.svg') }}">
                             <div
                                 class="d-flex justify-content-center pr-1"style="margin-top: 2.1rem !important;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                font-family: Cairo;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                font-size: 18px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                font-weight: 600;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                line-height: 34px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                letter-spacing: 0em;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                text-align: center;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                color:#000000;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                font-family: Cairo;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                font-size: 18px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                font-weight: 600;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                line-height: 34px;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                letter-spacing: 0em;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                text-align: center;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                color:#000000;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ">
                                 منصة التواصل اجتماعي</div>
                         </div>
                     </div>
@@ -1543,10 +1122,24 @@
                             <img src="{{ asset('images/right.svg') }}" alt="Next">
                         </span>
                     </div>
+                    <div class="d-flex justify-content-start">
+
+
+                        <a class="btn btn-outline-primary" href="{{ route('events.index') }}"
+                            style="
+                               
+                                border:#121743 1px  solid;
+                                color:white;
+                                background:#121743;
+                                ">
+                            <img src="{{ asset('images/event6.png') }}" style="width: 27px;height;27px">
+                            الفعاليات </a>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="center mt-2 "
                         style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right; color:#121743;">
+
                         <img src="{{ asset('images/Vector (1).svg') }}">
                         الفعاليات<span
                             style="color: #DF8317; font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right;">
@@ -1556,254 +1149,35 @@
             </div>
 
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row mb-5 d-flex justify-content-between">
-                        <div class="col-md-4">
+                @for ($i = 0; $i < ceil(count($events) / 3); $i++)
+                    <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                        <div class="row mb-5 justify-content-between">
+                            @foreach ($events->slice($i * 3, 3) as $event)
+                                <div class="col-md-4 pr-3 mt-4">
+                                    <img src="{{ asset('storage/' . $event->media->first()->file_path) }}"
+                                        style="width: 350px;height:258px" alt="Event Image">
 
-                            <img src="{{ asset('images/Image (3).svg') }}" alt="First Image">
-
-                            <div class="d-flex justify-content-center mt-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;
-                            ">
-                                يوم العلم السعودي</div>
-                            <div class="d-flex
-                                justify-content-center pr-1"
-                                style="font-family: Cairo;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 25px;
-                                letter-spacing: 0em;
-                                text-align: center;
-                                ">
-                                في 11 مارس 1937، أصدر الملك عبد العزيز أمره بالموافقة على قرار مجلس الشورى رقم "354"، الذي
-                                أقر فيه مقاس العَلَم السعودي وشكله الذي نراه اليوم</div>
-                        </div>
-                        <div class="col-md-4">
-                            <img src="{{ asset('images/Image (2).svg') }}" alt="First Image">
-                            <div class="d-flex justify-content-center mt-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;
-                            ">
-                                اليوم الوطنى السعودي </div>
-                            <div class="d-flex
-                                justify-content-center pr-1"
-                                style="font-family: Cairo;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 25px;
-                                letter-spacing: 0em;
-                                text-align: center;
-                                ">
-                                تحتفل  المملكة العربية السعودية باليوم الوطني لتوحيد المملكة في23سبتمبر من كل عام. وهذا
-                                التاريخ يعود إلى المرسوم الملكي الذي أصدره الملك عبدالعزيز</div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="d-flex-justify-content-center">
-                                <img src="{{ asset('images/Image (4).svg') }}">
-                            </div>
-                            <div class="d-flex justify-content-center mt-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;
-                           ">
-                                ذكرى مبايعة الامير محمد بن سلمان ولياً للعهد</div>
-                            <div class="d-flex
-                                justify-content-center pr-1"
-                                style="font-family: Cairo;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 25px;
-                                letter-spacing: 0em;
-                                text-align: center;
-                                ">
-                                وبويع الأمير محمد بن سلمان وليا للعهد في 21 يونيو من عام 2017، ليتولى المنصب خلفا للأمير
-                                محمد بن نايف آل سعود، بعد أن كان وليا لولي العهد</div>
+                                    <div class="d-flex justify-content-center mt-2"
+                                        style="font-family: Cairo; font-size: 18px; font-weight: 600; line-height: 34px; letter-spacing: 0em; text-align: center; color:#000000;">
+                                        {{ $event->title }}
+                                    </div>
+                                    <div class="d-flex justify-content-center pr-1"
+                                        style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 25px; letter-spacing: 0em; text-align: center;">
+                                        {{ $event->text }}
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
-                </div>
-                <div class="carousel-item ">
-                    <div class="row mb-5 d-flex justify-content-between">
-                        <div class="col-md-4">
-
-                            <img src="{{ asset('images/Image (3).svg') }}" alt="First Image">
-
-                            <div class="d-flex justify-content-center mt-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;
-                            ">
-                                يوم العلم السعودي</div>
-                            <div class="d-flex
-                                justify-content-center pr-1"
-                                style="font-family: Cairo;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 25px;
-                                letter-spacing: 0em;
-                                text-align: center;
-                                ">
-                                في 11 مارس 1937، أصدر الملك عبد العزيز أمره بالموافقة على قرار مجلس الشورى رقم "354"، الذي
-                                أقر فيه مقاس العَلَم السعودي وشكله الذي نراه اليوم</div>
-                        </div>
-                        <div class="col-md-4">
-                            <img src="{{ asset('images/Image (2).svg') }}" alt="First Image">
-                            <div class="d-flex justify-content-center mt-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;
-                            ">
-                                اليوم الوطنى السعودي </div>
-                            <div class="d-flex
-                                justify-content-center pr-1"
-                                style="font-family: Cairo;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 25px;
-                                letter-spacing: 0em;
-                                text-align: center;
-                                ">
-                                تحتفل  المملكة العربية السعودية باليوم الوطني لتوحيد المملكة في23سبتمبر من كل عام. وهذا
-                                التاريخ يعود إلى المرسوم الملكي الذي أصدره الملك عبدالعزيز</div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="d-flex-justify-content-center">
-                                <img src="{{ asset('images/Image (4).svg') }}">
-                            </div>
-                            <div class="d-flex justify-content-center mt-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;
-                           ">
-                                ذكرى مبايعة الامير محمد بن سلمان ولياً للعهد</div>
-                            <div class="d-flex
-                                justify-content-center pr-1"
-                                style="font-family: Cairo;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 25px;
-                                letter-spacing: 0em;
-                                text-align: center;
-                                ">
-                                وبويع الأمير محمد بن سلمان وليا للعهد في 21 يونيو من عام 2017، ليتولى المنصب خلفا للأمير
-                                محمد بن نايف آل سعود، بعد أن كان وليا لولي العهد</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item ">
-                    <div class="row mb-5 d-flex justify-content-between">
-                        <div class="col-md-4">
-
-                            <img src="{{ asset('images/Image (3).svg') }}" alt="First Image">
-
-                            <div class="d-flex justify-content-center mt-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;
-                            ">
-                                يوم العلم السعودي</div>
-                            <div class="d-flex
-                                justify-content-center pr-1"
-                                style="font-family: Cairo;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 25px;
-                                letter-spacing: 0em;
-                                text-align: center;
-                                ">
-                                في 11 مارس 1937، أصدر الملك عبد العزيز أمره بالموافقة على قرار مجلس الشورى رقم "354"، الذي
-                                أقر فيه مقاس العَلَم السعودي وشكله الذي نراه اليوم</div>
-                        </div>
-                        <div class="col-md-4">
-                            <img src="{{ asset('images/Image (2).svg') }}" alt="First Image">
-                            <div class="d-flex justify-content-center mt-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;
-                            ">
-                                اليوم الوطنى السعودي </div>
-                            <div class="d-flex
-                                justify-content-center pr-1"
-                                style="font-family: Cairo;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 25px;
-                                letter-spacing: 0em;
-                                text-align: center;
-                                ">
-                                تحتفل  المملكة العربية السعودية باليوم الوطني لتوحيد المملكة في23سبتمبر من كل عام. وهذا
-                                التاريخ يعود إلى المرسوم الملكي الذي أصدره الملك عبدالعزيز</div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="d-flex-justify-content-center">
-                                <img src="{{ asset('images/Image (4).svg') }}">
-                            </div>
-                            <div class="d-flex justify-content-center mt-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;
-                           ">
-                                ذكرى مبايعة الامير محمد بن سلمان ولياً للعهد</div>
-                            <div class="d-flex
-                                justify-content-center pr-1"
-                                style="font-family: Cairo;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 25px;
-                                letter-spacing: 0em;
-                                text-align: center;
-                                ">
-                                وبويع الأمير محمد بن سلمان وليا للعهد في 21 يونيو من عام 2017، ليتولى المنصب خلفا للأمير
-                                محمد بن نايف آل سعود، بعد أن كان وليا لولي العهد</div>
-                        </div>
-                    </div>
-                </div>
-
+                @endfor
             </div>
 
             <!-- Carousel Indicators -->
             <div class="carousel-indicators mt-5">
-                <li data-target="#carouselExampleIndicators2" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators2" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators2" data-slide-to="2"></li>
+                @for ($i = 0; $i < ceil(count($events) / 3); $i++)
+                    <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
+                        class="{{ $i === 0 ? 'active' : '' }}"></li>
+                @endfor
             </div>
         </div>
     </section>
@@ -2062,4 +1436,17 @@
         // Update counters every 5 seconds
         setInterval(startCounters, 10000);
     </script>
+    <style>
+        .he {
+            flex-wrap: nowrap;
+
+            overflow-x: scroll;
+            scrollbar-width: thin;
+            scrollbar-color: #f9f8f8 transparent;
+            max-width: 100%;
+
+        }
+    </style>
+
+
 @endsection

@@ -9,7 +9,7 @@ class Service extends Model
 {
     use HasFactory;
     protected $fillable = ['title', 'description'];
-     public function images()
+      public function media()
     {
         return $this->morphMany(Media::class, 'mediable');
     }

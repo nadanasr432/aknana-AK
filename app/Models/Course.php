@@ -8,22 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'date_of_period'];
-
+   protected $fillable = [
+        'name',
+        'date_of_course',
+        'professor_name',
+        'time_duration',
+        'location',
+        'female_count',
+        'male_count'
+    ];
+    
     public function reservations()
     {
         return $this->hasMany(Reservation::class);
     }
-        protected static function boot()
-    {
-        parent::boot();
 
-        static::saving(function ($course) {
-          
-            $maleCount = $course->reservations()->where('gender', 'male')->count();
-            $femaleCount = $course->reservations()->where('gender', 'female')->count();
-           $course->max_male_count = $maleCount;
-            $course->max_female_count = $femaleCount;
-        });
+     public function media()
+    {
+        return $this->morphMany(Media::class, 'mediable');
     }
+ 
 }

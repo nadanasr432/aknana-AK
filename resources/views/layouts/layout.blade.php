@@ -8,113 +8,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyOB4Ml3r6DIj5e7n9O3PjUbo+qDFFUw" crossorigin="anonymous">
-
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>AKNANA</title>
     <link rel="icon" href="{{ asset('images/logo 4 (1).png') }}" type="image/png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-        @keyframes slideFromTop {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-
-        .fade-in {
-            animation: slideFromLeft 2s ease-out;
-        }
-
-        #ServButton {
-            opacity: 1;
-            animation: fadeIn 2s ease-out 0.5s;
-            animation-fill-mode: forwards;
-            animation: slideFromLeft 3s ease-out;
-        }
-
-        /* .fade-in.animate {
-    opacity: 1;
-    transform: translateY(0);
-} */
-        .animate-fade-up {
-            animation: fadeUp 1s ease;
-            animation: slideFromLeft 2s ease-out;
-
-        }
-
-        .animate-fade-in {
-            animation: fadeUp 1s ease;
-            animation: slideFromLeft 2s ease-out;
-            animation-fill-mode: forwards;
-
-        }
-
-        .the_range {
-            animation: slideInFromBottom 2s ease-out;
-        }
-
-        .the_range .container {
-            animation: fadeIn 2s ease-out;
-        }
-
-        .the_range .mt-5 {
-            animation: fadeIn 2s ease-out;
-        }
-
-        .content-text2 {
-            animation: slideFromTop 1.5s ease-out;
-        }
-
-
-        .content-text1:nth-child(3),
-        .content-text1:nth-child(1),
-        .content-text1:nth-child(2) {
-            animation: fadeIn 2s ease-out 0.5s;
-            opacity: 0;
-            animation-fill-mode: forwards;
-        }
-
-        #textContent {
-            animation: fadeIn 1.5s ease-out 0.5s;
-            opacity: 0;
-            animation-fill-mode: forwards;
-        }
-
-        #contactButton {
-            opacity: 0;
-            animation: fadeIn 1s ease-out 0.5s;
-            animation-fill-mode: forwards;
-        }
-
-        #contactButton2 {
-            opacity: 0;
-            animation: fadeIn 1s ease-out 0.5s;
-            animation-fill-mode: forwards;
-        }
-
-
-        .scroll-animation {
-            opacity: 0;
-            animation: fadeIn 1s ease-out 0.5s;
-            animation-fill-mode: forwards;
-        }
-
-
         #home a {
             color: #FFE4C5;
 
@@ -153,90 +51,6 @@
 
 
 
-        @keyframes slideFromLeft {
-            from {
-                transform: translateX(-50%);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .US {
-            animation: slideInFromRight 2s ease-out;
-        }
-
-        .custom-image-style {
-            animation: slideFromLeft 2s ease-out;
-        }
-
-        .custom-text-style {
-            animation: slideFromLeft 2.5s ease-out;
-        }
-
-        .custom-text_2 {
-            animation: slideFromLeft 2s ease-out;
-        }
-
-        #contactButton3 {
-
-            opacity: 1;
-            animation: fadeIn 2s ease-out 0.5s;
-            animation-fill-mode: forwards;
-            animation: slideFromLeft 3s ease-out;
-        }
-
-        #contactButton4 {
-
-            opacity: 1;
-            animation: fadeIn 2s ease-out 0.5s;
-            animation-fill-mode: forwards;
-            animation: slideFromLeft 3s ease-out;
-        }
-
-
-        .service_text2 {
-            animation: slideFromLeft 1.5s ease-out;
-        }
-
-        #textd {
-            animation: slideFromLeft 2s ease-out;
-        }
-
-        .service_text3 {
-            animation: slideFromLeft 2.5s ease-out;
-        }
-
-
-        .he .col-md-2 {
-            animation: slideFromLeft 1.5s ease-out;
-        }
-
-
-        .he .col-md-1 img {
-            animation: fadeIn 1.5s ease-out 1.5s;
-        }
-
-
-        .he .col-md-2 p {
-            animation: fadeIn 1.5s;
-        }
-
-
-
 
         .responsive-text {
             font-family: Cairo;
@@ -249,6 +63,54 @@
         }
 
         @media (max-width: 767px) {
+            @keyframes slideFromTop {
+                from {
+                    transform: translateY(-100%);
+                    opacity: 0;
+                }
+
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+
+                to {
+                    opacity: 1;
+                }
+            }
+
+
+            .service_text2 {
+                animation: slideFromLeft 1.5s ease-out;
+            }
+
+            #textd {
+                animation: slideFromLeft 2s ease-out;
+            }
+
+            .service_text3 {
+                animation: slideFromLeft 2.5s ease-out;
+            }
+
+
+
+
+
+            .he .col-md-1 img {
+                animation: fadeIn 1.5s ease-out 1.5s;
+            }
+
+
+            .he .col-md-2 p {
+                animation: fadeIn 1.5s;
+            }
+
             .responsive-text {
                 font-size: 18px;
                 line-height: 32px;
@@ -311,7 +173,7 @@
             .he {
                 flex-wrap: nowrap;
 
-                overflow-x: auto;
+                overflow-x: scroll;
                 scrollbar-width: thin;
                 scrollbar-color: #f5f4f4 transparent;
 
@@ -369,6 +231,7 @@
 
         body {
             overflow: auto;
+            overflow-x: hidden;
             animation: slideInFromBottom 2s ease-out;
         }
 
@@ -421,6 +284,7 @@
         @media (max-width: 767px) {
             body {
                 overflow: auto;
+                overflow-x: hidden;
             }
 
             &::-webkit-scrollbar {
@@ -501,6 +365,21 @@
             padding-top: 90px;
             padding-bottom: 50px;
 
+        }
+
+        /* Add this CSS to your existing styles or in a separate stylesheet */
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active-dot {
+            background-color: #717171;
         }
     </style>
 </head>
@@ -953,6 +832,62 @@
     </script> --}}
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var carousel = document.getElementById('carouselExampleIndicators2');
+            var indicatorsContainer = document.querySelector('.carousel-indicators');
+
+            carousel.addEventListener('slid.bs.carousel', function(event) {
+                var activeIndex = event.detail.index;
+                var indicatorWidth = indicatorsContainer.children[0]
+                    .offsetWidth; // Assuming all indicators have the same width
+                var scrollPosition = activeIndex * indicatorWidth;
+
+                indicatorsContainer.scrollTo({
+                    left: scrollPosition,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+    <script>
+        // Wait for the document to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the carousel element
+            var carousel = document.getElementById('carouselExampleIndicators2');
+
+            // Get the custom indicators container
+            var customIndicators = document.querySelector('.custom-indicators');
+
+            // Update the custom indicators based on the carousel items
+            updateIndicators();
+
+            // Listen for carousel slide event
+            carousel.addEventListener('slide.bs.carousel', function(event) {
+                // Update the custom indicators when the carousel slides
+                updateIndicators();
+            });
+
+            // Function to update the custom indicators
+            function updateIndicators() {
+                // Clear existing indicators
+                customIndicators.innerHTML = '';
+
+                // Get the total number of items in the carousel
+                var totalItems = document.querySelectorAll('#carouselExampleIndicators2 .carousel-item').length;
+
+                // Create custom indicators based on the total number of items
+                for (var i = 0; i < totalItems; i++) {
+                    var indicator = document.createElement('li');
+                    indicator.setAttribute('data-target', '#carouselExampleIndicators2');
+                    indicator.setAttribute('data-slide-to', i);
+                    indicator.className = i === 0 ? 'active' : ''; // Set the first one as active
+                    customIndicators.appendChild(indicator);
+                }
+            }
+        });
+    </script>
+
+    <script>
         $(document).ready(function() {
             $('#contactButton').click(function() {
                 window.location.href = '{{ route('contactUs.create') }}';
@@ -1007,11 +942,6 @@
                     }, 1500, function() {
                         window.location.hash = hash;
 
-                        // Check if the clicked link has the 'no-reload' class
-                        if (!$(event.currentTarget).hasClass('no-reload')) {
-                            // Reload the page in the background
-                            window.location.reload();
-                        }
                     });
                 }
             });
@@ -1034,7 +964,143 @@
             });
         });
     </script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+        // Initialize ScrollReveal with the reset option
+        ScrollReveal({
+            reset: true
+        });
 
+        // Add individual reveal statements for each element
+        ScrollReveal().reveal('.fade-in', {
+            distance: '50%',
+            origin: 'left',
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('#ServButton', {
+            delay: 500,
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('.animate-fade-up', {
+            distance: '50%',
+            origin: 'left',
+            duration: 2500,
+            opacity: 0
+        });
+        ScrollReveal().reveal('.animate-fade-in', {
+            distance: '50%',
+            origin: 'right',
+            duration: 2500,
+            opacity: 0
+        });
+        ScrollReveal().reveal('.the_range', {
+            distance: '50%',
+            origin: 'bottom',
+            duration: 2000
+        });
+        ScrollReveal().reveal('.content-text2', {
+            distance: '100%',
+            origin: 'top',
+            duration: 1500
+        });
+        ScrollReveal().reveal('.the_range .container', {
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('.the_range .mt-5', {
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('.content-text1:nth-child(3)', {
+            delay: 500,
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('.content-text1:nth-child(1)', {
+            delay: 500,
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('.content-text1:nth-child(2)', {
+            delay: 500,
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('#textContent', {
+            delay: 500,
+            duration: 1500,
+            opacity: 0
+        });
+        ScrollReveal().reveal('#contactButton', {
+            delay: 500,
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('#contactButton2', {
+            delay: 500,
+            duration: 500,
+            opacity: 0
+        });
+        ScrollReveal().reveal('.US', {
+            duration: 500,
+            origin: 'right',
+            opacity: 0
+        });
+        ScrollReveal().reveal('.custom-image-style', {
+            distance: '50%',
+            origin: 'right',
+            duration: 2000
+        });
+        ScrollReveal().reveal('.custom-text-style', {
+            distance: '50%',
+            origin: 'right',
+            duration: 2500
+        });
+        ScrollReveal().reveal('.custom-text_2', {
+            distance: '50%',
+            origin: 'left',
+            duration: 2000
+        });
+        ScrollReveal().reveal('#contactButton3', {
+            delay: 500,
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('#contactButton4', {
+            delay: 500,
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('.service_text2', {
+            distance: '50%',
+            origin: 'left',
+            duration: 1500
+        });
+        ScrollReveal().reveal('#textd', {
+            distance: '50%',
+            origin: 'left',
+            duration: 2000
+        });
+        ScrollReveal().reveal('.service_text3', {
+            distance: '50%',
+            origin: 'right',
+            duration: 2500,
+        });
+        ScrollReveal().reveal('.he ', {
+        duration: 1500,
+        opacity: 0,
+        delay: 1500
+        });
+
+        ScrollReveal().reveal('.he .col-md-1 img', {
+            duration: 1500,
+            opacity: 1,
+            delay: 1500
+        });
+       
+    </script>
 
 
 

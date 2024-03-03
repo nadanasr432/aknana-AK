@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Media;
 use App\Models\Course;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ReservationsController extends Controller
@@ -18,8 +20,8 @@ class ReservationsController extends Controller
        $availableCourses = $courses->filter(function ($course) {
         $maleCount = $course->reservations()->where('gender', 'male')->count();
         $femaleCount = $course->reservations()->where('gender', 'female')->count();
-        $maxMaleCount = $course->max_male_count;
-        $maxFemaleCount = $course->max_female_count;
+        $maxMaleCount = $course->male_count;
+        $maxFemaleCount = $course->female_count;
         // dd($femaleCount);
         return $maleCount < $maxMaleCount || $femaleCount < $maxFemaleCount;
      
@@ -68,11 +70,21 @@ class ReservationsController extends Controller
       'date_of_course'=>$reservation->course->date_of_course
     
   ];
+    $qrCode = QrCode::format('svg')->size(300)->generate(json_encode($qrCodeData));
+    $qrCodePath = 'qrcodes/' . $reservation->id . '.svg';
+    Storage::disk('public')->put($qrCodePath, $qrCode);
 
- return redirect()->route('reservation.create')->with([
+    $reservation->media()->create([
+            'file_path' =>  $qrCodePath,
+        ]);
+    $reservation->save();
+    
+    return redirect()->route('reservation.create')->with([
         'success' => 'Data stored successfully',
         'qrCodeData' => $qrCodeData,
+        'reservation'=>$reservation
     ]);
+
 }
 
 public function getMaxMaleValue(Request $request)
@@ -87,8 +99,8 @@ public function getMaxMaleValue(Request $request)
 
     // Return the maximum male and female values
     return response()->json([
-        'max_male' => $course->max_male_count,
-        'max_female' => $course->max_female_count,
+        'max_male' => $course->male_count,
+        'max_female' => $course->female_count,
         'maleCount'=>$maleCount,
         'femaleCount'=>$femaleCount,
 

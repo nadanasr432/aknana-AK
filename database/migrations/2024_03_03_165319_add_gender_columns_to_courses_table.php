@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('courses', function (Blueprint $table) {
-        $table->unsignedInteger('max_male_count')->default(50);
-        $table->unsignedInteger('max_female_count')->default(50);
+         Schema::table('courses', function (Blueprint $table) {
+            $table->unsignedInteger('female_count')->default(0);
+            $table->unsignedInteger('male_count')->default(0);
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-         Schema::table('courses', function (Blueprint $table) {
+        Schema::table('courses', function (Blueprint $table) {
             //
         });
     }

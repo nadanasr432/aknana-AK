@@ -6,7 +6,7 @@
     }
 </style>
 
-<div id="myModal1" class="modal fade d-flex-justify-content-center" role="dialog" style="width: ; height: 610px; margin-top: 200px">
+<div id="myModal1" class="modal fade d-flex-justify-content-center" role="dialog" style=" height: 610px; margin-top: 150px">
     <div class="modal-dialog">
         <!-- Modal content -->
         <div class="modal-content" style="border-radius:30px">
@@ -23,34 +23,14 @@
     </div>
 </div>
 
-<!-- Table to display the decoded data -->
-{{-- <table id="dataTable" style="display: none;">
-    <thead>
-        <tr>
-            <th>Field</th>
-            <th>Value</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Data will be dynamically populated here -->
-    </tbody>
-</table> --}}
-
 <script>
     function printQRCode() {
         var printWindow = window.open('', '_blank');
         var qrCodeData = {!! json_encode(session('qrCodeData')) !!};
-        var dataTable = '<thead><tr><th>Field</th><th>Value</th></tr></thead><tbody>';
-        for (var key in qrCodeData) {
-            dataTable += '<tr><td>' + key + '</td><td>' + qrCodeData[key] + '</td></tr>';
-        }
-        dataTable += '</tbody>';
-        document.getElementById('dataTable').innerHTML = dataTable;
 
         printWindow.document.write('<html><head><title>QR Code and Data</title></head><body>');
         printWindow.document.write('<div id="printContent">' + document.getElementById('printContent').innerHTML +
             '</div>');
-        printWindow.document.write('<table border="1">' + document.getElementById('dataTable').innerHTML + '</table>');
         printWindow.document.write('</body></html>');
 
         printWindow.document.close();

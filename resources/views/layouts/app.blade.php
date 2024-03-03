@@ -8,8 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-     <title>AKNANA</title>
-     <link rel="icon" href="{{ asset('images/logo 4 (1).png') }}"  type="image/png">
+    <title>AKNANA</title>
+    <link rel="icon" href="{{ asset('images/logo 4 (1).png') }}" type="image/png">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -20,26 +20,27 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-         body {
-                overflow: auto;
-            }
+        body {
+            overflow: auto;
+        }
 
-            &::-webkit-scrollbar {
-                width: 1px;
-            }
+        &::-webkit-scrollbar {
+            width: 1px;
+        }
 
-            &::-webkit-scrollbar-thumb {
-                background-color: #000000;
-            }
+        &::-webkit-scrollbar-thumb {
+            background-color: #000000;
+        }
 
-            body::-webkit-scrollbar {
-                width: 1px;
-            }
+        body::-webkit-scrollbar {
+            width: 1px;
+        }
 
-            body::-webkit-scrollbar-thumb {
-                background-color: #000000;
-                width: 1px;
-            }
+        body::-webkit-scrollbar-thumb {
+            background-color: #000000;
+            width: 1px;
+        }
+
         footer {
             background-image: url('{{ asset('images/footer.svg') }}');
             background-size: cover;
@@ -94,48 +95,49 @@
                 display: none;
             }
         }
+
         #home a {
-    color: #FFE4C5;
-    /* Set text color for the active route */
-}
+            color: #FFE4C5;
+            /* Set text color for the active route */
+        }
 
-/* Add a small line under the active route */
-#home a::after {
-    content: '';
-    display: block;
-    height: 2px;
-    width: 75%;
-    margin-left: 15px;
-    background-color: #FFE4C5;
-    margin-top: 3px;
-
-   
-}
-
-#home a:hover {
-    color: #DF8317;
-
-}
-
-.navbar-nav .nav-item.active a:hover {
-    color: #DF8317;
-    
-}
+        /* Add a small line under the active route */
+        #home a::after {
+            content: '';
+            display: block;
+            height: 2px;
+            width: 75%;
+            margin-left: 15px;
+            background-color: #FFE4C5;
+            margin-top: 3px;
 
 
-#home a:hover::after {
-    background-color: #DF8317;
-    
-}
+        }
+
+        #home a:hover {
+            color: #DF8317;
+
+        }
+
+        .navbar-nav .nav-item.active a:hover {
+            color: #DF8317;
+
+        }
+
+
+        #home a:hover::after {
+            background-color: #DF8317;
+
+        }
 
 
 
 
         .custom-arrow-select2 option:hover {
             background-color: #ffcc00;
-           
+
             color: #333333;
-            
+
         }
 
 
@@ -145,13 +147,13 @@
             appearance: none;
             background: none;
             padding-right: 8%;
-           
+
         }
 
         .custom-arrow {
 
             margin-top: -100px;
-           
+
         }
 
         select option:checked,
@@ -167,21 +169,22 @@
 
             margin-top: -100px;
 
-          
+
         }
-         @media (max-width: 767px) {
+
+        @media (max-width: 767px) {
             .navbar-nav {
-                background-color: #FFE4C5 ;
+                background-color: #FFE4C5;
                 padding: 20px;
-            
+
                 text-align: left;
                 display: inline-block;
-            
+
                 margin-right: 10px;
-             
+
                 font-size: 14px;
                 columns: white;
-              
+
             }
 
             #home a::after {
@@ -193,8 +196,9 @@
                 background-color: #bebebe;
                 margin-top: 3px;
             }
+
             .navbar-nav .nav-item.active a:hover {
-                color:   #bebebe;
+                color: #bebebe;
                 /* Set text color for the hover state */
             }
 
@@ -207,10 +211,10 @@
         <div class="head">
             <nav class="navbar navbar-expand-lg d-flex justify-content-between">
                 <a class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <img src="{{ asset('images/list2.png') }}" width="25px" height="25px">
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <img src="{{ asset('images/list2.png') }}" width="25px" height="25px">
 
-            </a>
+                </a>
                 <button id="actionButton" class="btn btn-primary"
                     style="font-family: Cairo;
                     font-size: 16px;
@@ -222,7 +226,7 @@
                     ">
                     تواصل معنا
                 </button>
-               
+
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav" style="gap: 30px;">
                         <li class="nav-item active">
@@ -267,7 +271,7 @@
     </div>
 
     <!-- Footer -->
-       <footer class="bg-body-tertiary">
+    <footer class="bg-body-tertiary">
         <!-- Grid container -->
         <div class="container" style="margin-top:60px">
             <div class="row" style="gap: 55px">
@@ -432,7 +436,7 @@
                     <ul class="list-unstyled">
                         <li class="mb-2">
 
-                            <a  href="{{ route('home') }}#head"
+                            <a href="{{ route('home') }}#head"
                                 style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -474,7 +478,7 @@
                         </li>
                         <li class="mb-2">
 
-                            <a  href="{{ route('home') }}#programs"
+                            <a href="{{ route('home') }}#programs"
                                 style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -572,42 +576,63 @@
             });
         });
     </script>
-<script>
-    // Check if there is a success message in the session
-    @if(session('success'))
-        // Open the modal when there is a success message
-        $(document).ready(function(){
-            $('#myModal').modal('show');
-        });
-    @endif
-</script>
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-         $('#course_id').on('change', function() {
-            var selectedDate = $(this).find(':selected').data('date');
-            $('#inputDateOfCourse').val(selectedDate);
-        });
-        $('#course_id').on('change', function() {
-            var selectedCourseId = $(this).val();
-
-            // Make an AJAX request to get the maximum male and female values for the selected course
-            $.ajax({
-                type: 'GET',
-                url: '{{ route("getMaxMaleValue") }}',
-                data: {
-                    course_id: selectedCourseId
-                },
-                success: function(response) {
-                    updateGenderOptions(response.max_male, response.max_female, response.maleCount, response.femaleCount);
-                },
-                error: function(error) {
-                    console.error('Error fetching max values:', error);
-                    // You might want to handle errors here
-                }
+    <script>
+        // Check if there is a success message in the session
+        @if (session('success'))
+            // Open the modal when there is a success message
+            $(document).ready(function() {
+                $('#myModal').modal('show');
             });
+        @endif
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Attach change event listener to #course_id
+            $('#course_id').on('change', function() {
+                // Get the selected date from the data attribute of the selected option
+                var selectedDate = $(this).find(':selected').data('date');
+
+                // Set the value of #inputDateOfCourse to the selected date
+                $('#inputDateOfCourse').val(selectedDate);
+            });
+
+            // Check if there's a course_id parameter in the request
+            var course_id_from_request = '{{ request('course_id') }}';
+
+            if (course_id_from_request) {
+                // Trigger change event on #course_id to pre-fill #inputDateOfCourse
+                $('#course_id').val(course_id_from_request).change();
+            }
+
+            $('#course_id').on('change', function() {
+                var selectedCourseId = $(this).val();
+
+                // Make an AJAX request to get the maximum male and female values for the selected course
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route('getMaxMaleValue') }}',
+                    data: {
+                        course_id: selectedCourseId
+                    },
+                    success: function(response) {
+                        updateGenderOptions(response.max_male, response.max_female, response
+                            .maleCount, response.femaleCount);
+                    },
+                    error: function(error) {
+                        console.error('Error fetching max values:', error);
+                        // You might want to handle errors here
+                    }
+                });
+            });
+
+            var course_id_from_request = '{{ request('course_id') }}';
+
+            if (course_id_from_request) {
+                // Trigger change event on #course_id to pre-fill #inputDateOfCourse and update gender options
+                $('#course_id').val(course_id_from_request).change();
+            }
         });
 
         function updateGenderOptions(maxMale, maxFemale, maleCount, femaleCount) {
@@ -626,8 +651,22 @@
                 $('#gender').append('<option value="female">أنثى</option>');
             }
         }
-    });
-</script>
+    </script>
+    
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            
+            @if (session('success') && session('qrCodeData'))
+
+                $(document).ready(function() {
+                    $('#myModal1').modal('show');
+                });
+            @endif
+        });
+    </script>
 
 
 

@@ -14,4 +14,9 @@ class Reservation extends Model
     {
         return $this->belongsTo(Course::class);
     }
+      public function media()
+    {
+        return $this->morphMany(Media::class, 'mediable');
+    }
+    
 }

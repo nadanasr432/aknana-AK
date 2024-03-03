@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
+    public function index(){
+        $events = Event::all();
+        return view('events.index',compact('events'));
+    }
+    public function create()
+    {
+        return view('events.create');
+    }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -39,7 +47,7 @@ class EventController extends Controller
             ]);
         }
 
-        return redirect()->route('events.show', $event->id)
+        return redirect()->route('events.index', $event->id)
             ->with('success', 'Event created successfully');
     }
 }

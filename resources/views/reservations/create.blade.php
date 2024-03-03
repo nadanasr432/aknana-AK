@@ -84,14 +84,12 @@
                                 <option value="" disabled selected>اختر الدورة</option>
 
                                 @foreach ($availableCourses as $course)
-                                    <option value="{{ $course->id }}" data-date="{{ $course->date_of_course }}">
+                                    <option value="{{ $course->id }}" data-date="{{ $course->date_of_course }}" {{ request('course_id') == $course->id ? 'selected' : '' }}>
                                         {{ $course->name }}</option>
                                 @endforeach
 
                             </select>
-
-
-
+                            
                             <img src="{{ asset('images/Vector (7).svg') }}" class="pr-2 custom-arrow" alt="Custom Arrow2"
                                 style="margin-right: 340px;">
                             <img src="{{ asset('images/Vector (9).svg') }}" class="pr-2 custom-arrow" alt="Custom Arrow">
@@ -178,15 +176,17 @@
                         text-align: center;
                         width: 100%; height: 70px; padding: 0 12px 0 0; border-radius: 10px; gap: 13px; color:#FFFFFF">ارسال</button>
                 </form>
-                <script>
-                    // Check if there is a success message and QR code data
-                    @if (session('success') && session('qrCodeData'))
-                        // Open the QR code modal when there is a success message and QR code data
-                        $(document).ready(function() {
-                            $('#myModal1').modal('show');
-                        });
-                    @endif
-                </script>
+                {{-- <script>
+                    $(document).ready(function() {
+                        // Check if there is a success message and QR code data
+                        @if (session('success') && session('qrCodeData'))
+                            // Open the QR code modal when there is a success message and QR code data
+                            $(document).ready(function() {
+                                $('#myModal1').modal('show');
+                            });
+                        @endif
+                    });
+                </script> --}}
 
 
             </div>
