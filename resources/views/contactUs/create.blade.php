@@ -34,7 +34,7 @@
                                 <img src="{{ asset('images/Vector (1).svg') }}">
                                 تواصل معانا
                             </div>
-                            <div class="text-right  mt-3"
+                            <div id="contact-text" class="text-right  mt-3"
                                 style="font-family: Cairo;
                     font-size: 40px;
                     font-weight: 400;
@@ -44,7 +44,7 @@
 
                     color:#121743;
                     ">
-                                أكنانا علي اتم الاستعداد <span
+                                أكنانا علي اتم الاستعداد <span id="contact-text2"
                                     style="color: #DF8317;
                         font-family: Cairo;
                         font-size: 40px;

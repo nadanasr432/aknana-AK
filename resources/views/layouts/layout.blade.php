@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  lang="{{ app()->getLocale() }}">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyOB4Ml3r6DIj5e7n9O3PjUbo+qDFFUw" crossorigin="anonymous">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <title>AKNANA</title>
     <link rel="icon" href="{{ asset('images/logo 4 (1).png') }}" type="image/png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -46,11 +46,6 @@
         #home a:hover::after {
             background-color: #FFE4C5;
         }
-
-
-
-
-
 
         .responsive-text {
             font-family: Cairo;
@@ -97,10 +92,6 @@
             .service_text3 {
                 animation: slideFromLeft 2.5s ease-out;
             }
-
-
-
-
 
             .he .col-md-1 img {
                 animation: fadeIn 1.5s ease-out 1.5s;
@@ -170,18 +161,6 @@
 
             }
 
-            .he {
-                flex-wrap: nowrap;
-
-                overflow-x: scroll;
-                scrollbar-width: thin;
-                scrollbar-color: #f5f4f4 transparent;
-
-
-                max-width: 100%;
-
-
-            }
 
             .service_text1 {
                 font-size: 18px !important;
@@ -232,7 +211,8 @@
         body {
             overflow: auto;
             overflow-x: hidden;
-            animation: slideInFromBottom 2s ease-out;
+            direction: @if(app()->getLocale() == 'ar') rtl @else ltr @endif;
+
         }
 
         &::-webkit-scrollbar {
@@ -268,6 +248,12 @@
                 font-size: 14px;
             }
 
+            body {
+
+                overflow-x: hidden;
+
+            }
+
             #home a::after {
                 content: '';
                 display: block;
@@ -282,6 +268,18 @@
         }
 
         @media (max-width: 767px) {
+            section.head {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            margin-top: -10px;
+            margin-bottom: 5%;
+        }
             body {
                 overflow: auto;
                 overflow-x: hidden;
@@ -305,7 +303,7 @@
             }
 
             .content-text1 {
-                font-size: 15px !important;
+                font-size: 12px !important;
 
                 line-height: 20px !important;
 
@@ -313,7 +311,7 @@
 
             .content-text2 {
                 margin-bottom: 30px;
-                font-size: 30px !important;
+                font-size: 25px !important;
 
                 line-height: 20px !important;
 
@@ -337,6 +335,7 @@
                 font-size: 18px !important;
                 line-height: 26px !important;
             }
+            
 
         }
 
@@ -967,17 +966,19 @@
     <script src="https://unpkg.com/scrollreveal"></script>
     <script>
         // Initialize ScrollReveal with the reset option
-        ScrollReveal({
-            reset: true
+        const scrollReveal = ScrollReveal({
+            reset: true,
+            mobile: true, // Enable mobile optimization
         });
 
         // Add individual reveal statements for each element
-        ScrollReveal().reveal('.fade-in', {
+        scrollReveal.reveal('.fade-in', {
             distance: '50%',
             origin: 'left',
             duration: 2000,
             opacity: 0
         });
+
         ScrollReveal().reveal('#ServButton', {
             delay: 500,
             duration: 2000,
@@ -1089,9 +1090,9 @@
             duration: 2500,
         });
         ScrollReveal().reveal('.he ', {
-        duration: 1500,
-        opacity: 0,
-        delay: 1500
+            duration: 1500,
+            opacity: 0,
+            delay: 1000
         });
 
         ScrollReveal().reveal('.he .col-md-1 img', {
@@ -1099,7 +1100,135 @@
             opacity: 1,
             delay: 1500
         });
-       
+        const mediaQuery = window.matchMedia('(max-width: 768px)');
+
+        if (mediaQuery.matches) {
+            // Adjust reveal configurations for smaller screens
+            scrollReveal.reveal('.fade-in', {
+                
+            });
+
+            ScrollReveal().reveal('#ServButton', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.animate-fade-up', {
+                origin: 'top',
+                duration: 2500,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.animate-fade-in', {
+                
+                origin: 'bottom',
+                duration: 2500,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.the_range', {
+                
+                origin: 'top',
+                duration: 2000
+            });
+            ScrollReveal().reveal('.content-text2', {
+                
+                origin: 'bottom',
+                duration: 1500
+            });
+            ScrollReveal().reveal('.the_range .container', {
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.the_range .mt-5', {
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.content-text1:nth-child(3)', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.content-text1:nth-child(1)', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.content-text1:nth-child(2)', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('#textContent', {
+                delay: 500,
+                duration: 1500,
+                opacity: 0
+            });
+            ScrollReveal().reveal('#contactButton', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('#contactButton2', {
+                delay: 500,
+                duration: 500,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.US', {
+                duration: 500,
+                origin: 'top',
+                opacity: 0
+            });
+            ScrollReveal().reveal('.custom-image-style', {
+                
+                origin: 'bottom',
+                duration: 2000
+            });
+            ScrollReveal().reveal('.custom-text-style', {
+                
+                origin: 'bottom',
+                duration: 2500
+            });
+            ScrollReveal().reveal('.custom-text_2', {
+                
+                origin: 'bottom',
+                duration: 2000
+            });
+            ScrollReveal().reveal('#contactButton3', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('#contactButton4', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.service_text2', {
+                
+                origin: 'top',
+                duration: 1500
+            });
+            ScrollReveal().reveal('#textd', {
+                
+                origin: 'bottom',
+                duration: 2000
+            });
+            ScrollReveal().reveal('.service_text3', {
+                
+                origin: 'bottom',
+                duration: 2500,
+            });
+            ScrollReveal().reveal('.he ', {
+                duration: 1000,
+                opacity: 0,
+                delay: 1500
+            });
+
+            ScrollReveal().reveal('.he .col-md-1 img', {
+                duration: 1500,
+                opacity: 1,
+                delay: 1500
+            });
+        }
     </script>
 
 

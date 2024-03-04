@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ContactsControllers;
 use App\Http\Controllers\ReservationsController;
@@ -39,7 +40,8 @@ Route::post('/courses/create', [CoursesController::class,'store'])->name('course
 Route::get('/services/create', [ServiceController::class,'create'])->name('services.create');
 Route::post('/services/create', [ServiceController::class,'store'])->name('services.store');
 Route::get('/courses/searchByPhone',  [CoursesController::class,'searchByPhone'])->name('courses.searchByPhone');
-
+Route::get('/projects', [ProjectController::class, 'create'])->name('projects.create');
+Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
 Route::get('/download-pdf',[ReservationsController::class, 'downloadPdf'])->name('download.pdf');
 Route::get('/get-max-male-value', [ReservationsController::class, 'getMaxMaleValue'])->name('getMaxMaleValue');
 

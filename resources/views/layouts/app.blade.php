@@ -171,6 +171,7 @@
 
 
         }
+        
 
         @media (max-width: 767px) {
             .navbar-nav {

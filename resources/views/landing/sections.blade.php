@@ -2,7 +2,7 @@
 @section('content')
 
     <section class="services container mb-5" style="max-width: 1500rem" id="service">
-        <div class=" 1 row d-flex justify-content-center mb-5">
+        <div class=" 1 row d-flex justify-content-center mb-2">
             <div class="col-md-5 text-center ">
                 <p class="mb-0 service_text2"
                     style="color:#121743;
@@ -52,7 +52,7 @@
                             style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
 
                             <a class="ml-0 mr-0 text-muted read-more-button">
-                                {{ \Illuminate\Support\Str::words($service->description, 9, '...') }}</a>
+                                {{ \Illuminate\Support\Str::words($service->description, 8, '...') }}</a>
 
                         </p>
                         <p class="full-description"
@@ -755,6 +755,7 @@
                             <img src="{{ asset('images/course.png') }}" style="width: 27px;height;27px">
                             البرامج </a>
                     </div>
+                    {{-- rounded image serveces --}}
                 </div>
                 <div class="col-md-6">
                     <div class="center mt-2"
@@ -795,7 +796,7 @@
                                     $maxFemaleCount = $course->female_count;
                                     $isCourseAvailable = $maleCount < $maxMaleCount || $femaleCount < $maxFemaleCount;
                                 @endphp
-                                <div class="col-md-4 mt-5">
+                                <div class="col-md-4 mt-0">
                                     <div class="justify-content-center">
                                         <span class="d-flex justify-content-center mb-2 ">
                                             <img src="{{ asset('storage/' . $course->media->first()->file_path) }}"
@@ -918,195 +919,41 @@
             </div>
 
             <div class="carousel-inner">
-                <!-- Carousel items go here -->
-                <!-- Item 1 -->
-                <div class="carousel-item active">
-                    <div class="row mb-5 d-flex justify-content-between">
-                        <div class="col-md-3">
-                            <img src="{{ asset('images/pro4.svg') }}">
-                            <div class="d-flex justify-content-center pr-1"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;
-                            margin-top: 2.2rem !important;">
-                                نظام البيع الذاتي</div>
+                @for ($i = 0; $i < ceil(count($projects) / 4); $i++)
+                    <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                        <div class="row mb-5 d-flex justify-content-between">
+                            @foreach ($projects->slice($i * 4, 4) as $project)
+                                <div class="col-md-3">
+                                    <img src="{{ asset('storage/' . $project->images->first()->file_path) }}">
+                                    <div class="d-flex justify-content-center pr-1"
+                                        style="font-family: Cairo;
+                                            font-size: 18px;
+                                            font-weight: 600;
+                                            line-height: 34px;
+                                            letter-spacing: 0em;
+                                            text-align: center;
+                                            color:#000000;
+                                            margin-top: 2.2rem !important;">
+                                        {{ $project->title }}
+                                    </div>
+                                </div>
+                            @endforeach
+
                         </div>
-                        <div class="col-md-3">
-                            <img src="{{ asset('images/pro3.svg') }}">
-                            <div class="d-flex justify-content-center pr-1"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;
-                            margin-top: 1.8rem !important;">
-                                مؤسسة ادارة المكآفات</div>
-                        </div>
-                        <div class="col-md-3">
-                            <img src="{{ asset('images/pro2.svg') }}">
-                            <div class="d-flex justify-content-center pr-1"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;
-                            margin-top: 1.7rem !important;">
-                                موقع للتسوق الالكترونى</div>
-                        </div>
-                        <div class="col-md-3">
-                            <img src="{{ asset('images/pro1.svg') }}">
-                            <div
-                                class="d-flex justify-content-center pr-1"style="margin-top: 2.1rem !important;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-family: Cairo;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-size: 18px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-weight: 600;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    line-height: 34px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    letter-spacing: 0em;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    text-align: center;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    color:#000000;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ">
-                                منصة التواصل اجتماعي</div>
-                        </div>
+
                     </div>
+                @endfor
 
-
-                </div>
-                <div class="carousel-item ">
-                    <div class="row mb-5 d-flex justify-content-between">
-                        <div class="col-md-3">
-                            <img src="{{ asset('images/pro5.svg') }}">
-                            <div class="d-flex justify-content-center mt-5 pr-1"
-                                style="
-                            font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;">
-                                علامة تجارية سعودية</div>
-                        </div>
-                        <div class="col-md-3">
-                            <img src="{{ asset('images/pro4.svg') }}">
-                            <div class="d-flex justify-content-center pr-1"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;
-                            margin-top: 2.2rem !important;">
-                                نظام البيع الذاتي</div>
-                        </div>
-                        <div class="col-md-3">
-                            <img src="{{ asset('images/pro3.svg') }}">
-                            <div class="d-flex justify-content-center pr-1"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;
-                            margin-top: 1.8rem !important;">
-                                مؤسسة ادارة المكآفات</div>
-                        </div>
-                        <div class="col-md-3">
-                            <img src="{{ asset('images/pro2.svg') }}">
-                            <div class="d-flex justify-content-center pr-1"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;
-                            margin-top: 1.7rem !important;">
-                                موقع للتسوق الالكترونى</div>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="carousel-item ">
-                    <div class="row mb-5 d-flex justify-content-between">
-                        <div class="col-md-3">
-                            <img src="{{ asset('images/pro4.svg') }}">
-                            <div class="d-flex justify-content-center pr-1"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;
-                            margin-top: 2.2rem !important;">
-                                نظام البيع الذاتي</div>
-                        </div>
-                        <div class="col-md-3">
-                            <img src="{{ asset('images/pro3.svg') }}">
-                            <div class="d-flex justify-content-center pr-1"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;
-                            margin-top: 1.8rem !important;">
-                                مؤسسة ادارة المكآفات</div>
-                        </div>
-                        <div class="col-md-3">
-                            <img src="{{ asset('images/pro2.svg') }}">
-                            <div class="d-flex justify-content-center pr-1"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 34px;
-                            letter-spacing: 0em;
-                            text-align: center;
-                            color:#000000;
-                            margin-top: 1.7rem !important;">
-                                موقع للتسوق الالكترونى</div>
-                        </div>
-                        <div class="col-md-3">
-                            <img src="{{ asset('images/pro1.svg') }}">
-                            <div
-                                class="d-flex justify-content-center pr-1"style="margin-top: 2.1rem !important;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                font-family: Cairo;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                font-size: 18px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                font-weight: 600;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                line-height: 34px;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                letter-spacing: 0em;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                text-align: center;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                color:#000000;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ">
-                                منصة التواصل اجتماعي</div>
-                        </div>
-                    </div>
-
-
-                </div>
             </div>
 
-            <!-- Carousel Indicators -->
             <div class="carousel-indicators mt-5">
-                <li data-target="#carouselExampleIndicators1" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators1" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators1" data-slide-to="2"></li>
+                @for ($i = 0; $i < ceil(count($projects) / 4); $i++)
+                    <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
+                        class="{{ $i === 0 ? 'active' : '' }}"></li>
+                @endfor
             </div>
         </div>
     </section>
-
     <section class="container text-center mt-5 mb-5" id='events'>
         <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
             <div class="row">
@@ -1439,11 +1286,10 @@
     <style>
         .he {
             flex-wrap: nowrap;
-
             overflow-x: scroll;
             scrollbar-width: thin;
             scrollbar-color: #f9f8f8 transparent;
-            max-width: 100%;
+            max-width: 150%;
 
         }
     </style>
