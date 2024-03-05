@@ -491,7 +491,7 @@
                         margin: 0;
                         ">
                         نبذة عنا</p>
-                    <img src="{{ asset('images/icon (1).svg') }}" style="margin-right: 10px;">
+                    <img src="{{ asset('images/video_big.svg') }}" style="margin-right: 10px;">
                 </a>
                 <button id="contactButton" class="btn btn-primary "
                     style="width:193px;height:50px;font-family: Cairo;
