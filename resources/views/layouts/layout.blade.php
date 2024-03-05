@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" dir="{{ app('direction') }}">
 
 <head>
     <meta charset="UTF-8">
@@ -211,7 +211,13 @@
         body {
             overflow: auto;
             overflow-x: hidden;
-            direction: @if(app()->getLocale() == 'ar') rtl @else ltr @endif;
+
+            direction: @if (app()->getLocale() == 'ar')
+                rtl
+            @else
+                ltr
+            @endif
+            ;
 
         }
 
@@ -269,17 +275,18 @@
 
         @media (max-width: 767px) {
             section.head {
-            position: relative;
-            width: 100%;
-            height: 60vh;
-            display: flex;
-            justify-content: center;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            margin-top: -10px;
-            margin-bottom: 5%;
-        }
+                position: relative;
+                width: 100%;
+                height: 60vh;
+                display: flex;
+                justify-content: center;
+                display: flex;
+                align-items: center;
+                overflow: hidden;
+                margin-top: -10px;
+                margin-bottom: 5%;
+            }
+
             body {
                 overflow: auto;
                 overflow-x: hidden;
@@ -335,7 +342,7 @@
                 font-size: 18px !important;
                 line-height: 26px !important;
             }
-            
+
 
         }
 
@@ -385,7 +392,7 @@
 
 <body>
 
-       <section class="head" id="head">
+    <section class="head" id="head">
         <nav class="navbar navbar-expand-lg">
             <a class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -587,7 +594,7 @@
                             </li>
                             <li class="mb-2">
 
-                                <a href="#!" 
+                                <a href="#!"
                                     style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -1118,7 +1125,7 @@
         <img src="{{ asset('images/turn-up.gif') }}" width="35px" height="40x">
     </a>
 
-  
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -1292,7 +1299,6 @@
     </script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script>
-      
         const scrollReveal = ScrollReveal({
             reset: true,
             mobile: true, // Enable mobile optimization
