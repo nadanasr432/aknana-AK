@@ -1,18 +1,32 @@
 @extends('layouts.app')
 @section('content')
     <div class="container ">
-        <div class="d-flex justify-content-end text-right mb-4">
+        @if (app()->getLocale() == 'ar')
+        <div class="d-flex justify-content-start text-left mb-4">
+            <div class="text mt-2 "
+                style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align:left; color:#121743;">
+                @lang('file.All') <span
+                    style="color: #DF8317; font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align:left;">
+                    @lang('file.events')
+                </span>
+                  <img src="{{ asset('images/Vector (1).svg') }}">
+            </div>
+
+        </div>
+        @else
+         <div class="d-flex justify-content-end text-right mb-4">
             <div class="center mt-2 "
                 style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right; color:#121743;">
 
                 <img src="{{ asset('images/Vector (1).svg') }}">
-                كل <span
+                @lang('file.All') <span
                     style="color: #DF8317; font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right;">
-                    الفعاليات
+                    @lang('file.events')
                 </span>
             </div>
 
         </div>
+        @endif
         <div>
             <div class="row mb-5  justify-content-between">
                 @foreach ($events as $event)

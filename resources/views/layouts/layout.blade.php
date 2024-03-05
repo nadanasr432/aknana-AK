@@ -24,12 +24,17 @@
             display: block;
             height: 2px;
             width: 75%;
-            margin-left: 15px;
-            background-color: #FFE4C5;
             margin-top: 3px;
+            background-color: #FFE4C5;
 
-
+            @if (app()->getLocale() == 'ar')
+                margin-right: 10px;
+            @else
+                margin-left: 15px;
+            @endif
         }
+
+
 
 
         #home a:hover {
@@ -264,12 +269,18 @@
                 content: '';
                 display: block;
                 height: 2px;
-                width: 90%;
-                margin-left: 0px;
-                background-color: #FFE4C5;
+                width: 75%;
                 margin-top: 3px;
+                background-color: #FFE4C5;
 
+                @if (app()->getLocale() == 'ar')
+                margin-right: 10px;
+                @else
+                    margin-left: 15px;
+                @endif
             }
+
+
 
         }
 
@@ -434,7 +445,7 @@
                         <a class="nav-link" href="#2030">{{ __('file.2030') }}</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#US">{{ __('file.about_us') }}</a>
+                        <a class="nav-link" href="#US">{{ __('file.About_Us') }}</a>
                     </li>
                     <li class="nav-item active" id="home">
                         <a class="nav-link" href="#head">{{ __('file.home') }}</a>
@@ -561,7 +572,7 @@
             <div class="container" style="margin-top:60px">
                 <div class="row" style="gap: 55px">
                     <!--Grid column-->
-                    <div class="col-lg-3 col-md-3 mb-4 mb-md-0 text-left">
+                    <div class="col-lg-2 col-md-3 mb-4 mb-md-0 text-left">
                         <p class="text-left mb-2"
                             style="font-family: Poppins;
                         font-size: 16px;
@@ -571,14 +582,14 @@
                         text-align: left;
                         color: #FFFFFF;
                         ">
-                            للتواصل
-                            معانا</p>
+                            @lang('file.To contact us')
+                            </p>
                         <span class="d-flex justify-content-end mb-2">
                             <img src="{{ asset('images/zigzag.png') }}">
                             <img src="{{ asset('images/zigzag.png') }}">
                         </span>
-                        <ul class="list-unstyled">
-                            <li class="mb-2">
+                        <ul class="list-unstyled ">
+                            <li class="mb-2 ">
 
                                 <a href="#!"
                                     style="font-family: Poppins;
@@ -592,9 +603,9 @@
                                     @lang('file.address')</a>
                                 <img src="{{ asset('images/home.png') }}">
                             </li>
-                            <li class="mb-2">
+                            <li class="mb-2 d-flex justify-content-end" style="gap: 7px;">
 
-                                <a href="#!" 
+                                <a href="#!"
                                     style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -604,7 +615,7 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.email')</a>
-                                <img src="{{ asset('images/email.png') }}">
+                                <img src="{{ asset('images/email.png') }}" style="pl-5">
                             </li>
                             <li class="mb-2">
 
@@ -624,8 +635,8 @@
                     </div>
 
                     <!--Grid column-->
-                    <div class="col=ml-2 col-md-2 mb-4 mb-md-0 text-right">
-                        <p class="text-right mb-2"
+                    <div class="col=ml-2 col-md-2 mb-4 mb-md-0 text-left">
+                        <p class="text-left mb-2"
                             style="font-family: Poppins;
                         font-size: 16px;
                         font-weight: 500;
@@ -653,7 +664,8 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.2030')</a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                    style="transform: scaleX(-1);">
                             </li>
                             <li class="mb-2">
 
@@ -667,7 +679,8 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.projects') </a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                    style="transform: scaleX(-1);">
                             </li>
                             <li class="mb-2">
 
@@ -681,9 +694,10 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.news') </a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                    style="transform: scaleX(-1);">
                             </li>
-                            <li class="mb-2">
+                            <li class="mb-2 ">
 
                                 <a href="#reviews"
                                     style="font-family: Poppins;
@@ -695,14 +709,15 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.customer_reviews')</a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                    style="transform: scaleX(-1);">
                             </li>
                         </ul>
                     </div>
 
                     <!--Grid column-->
-                    <div class="col-md-2 mb-4 mb-md-0 text-right">
-                        <p class="text-right mb-2"
+                    <div class="col-md-2 mb-4 mb-md-0 text-left">
+                        <p class="text-left mb-2"
                             style="font-family: Poppins;
                         font-size: 16px;
                         font-weight: 500;
@@ -730,7 +745,8 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.home') </a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                    style="transform: scaleX(-1);">
                             </li>
                             <li class="mb-2">
 
@@ -744,7 +760,8 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.services') </a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                    style="transform: scaleX(-1);">
                             </li>
                             <li class="mb-2">
 
@@ -758,7 +775,8 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.about_us')</a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                    style="transform: scaleX(-1);">
                             </li>
                             <li class="mb-2">
 
@@ -772,30 +790,31 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.programs') </a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                    style="transform: scaleX(-1);">
                             </li>
                         </ul>
                     </div>
 
                     <!--Grid column-->
-                    <div class="col-lg-4 col-md-4 mb-4  text-right pl-4">
+                    <div class="col-lg-4 col-md-4 mb-4 text-left pl-4">
                         <div class="d-flex justify-content-end mb-2">
                             <img src="{{ asset('images/logo 3.png') }}" alt="logo">
                         </div>
-                        <p class="text-right mb-0"
+                        <p class="text-left mb-0"
                             style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
                             @lang('file.dreams_made_easy')
                         </p>
 
-                        <p class="text-right mb-0"
+                        <p class="text-left mb-0"
                             style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
                             @lang('file.help_at_beginning')
                         </p>
-                        <p class="text-right"
+                        <p class="text-left"
                             style="color: #FFFFFFBF; font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px;">
                             @lang('file.contact_us_end_of_road')
                         </p>
-                        <div class="row d-flex justify-content-end pr-3" style="gap: 15px">
+                        <div class="row d-flex justify-content-end pl-3" style="gap: 15px">
 
                             <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
                                 style="width: 35px; height: 35px;">
@@ -963,7 +982,7 @@
                                     @lang('file.news') </a>
                                 <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
                             </li>
-                            <li class="mb-2">
+                            <li class="mb-2 ">
 
                                 <a href="#reviews"
                                     style="font-family: Poppins;
@@ -1298,7 +1317,6 @@
     </script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script>
-      
         const scrollReveal = ScrollReveal({
             reset: true,
             mobile: true, // Enable mobile optimization

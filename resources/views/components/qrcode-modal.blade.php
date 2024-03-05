@@ -17,7 +17,7 @@
                 
             </div>
             <div class="d-flex justify-content-center mb-3">
-                <button type="button" class="btn btn-primary " onclick="printQRCode()">Print</button>
+                <button type="button" class="btn btn-primary " onclick="printQRCode()">@lang('file.print')</button>
             </div>
         </div>
     </div>
