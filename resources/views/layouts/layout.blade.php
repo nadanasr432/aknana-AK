@@ -1298,7 +1298,7 @@
     </script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script>
-        // Initialize ScrollReveal with the reset option
+      
         const scrollReveal = ScrollReveal({
             reset: true,
             mobile: true, // Enable mobile optimization
