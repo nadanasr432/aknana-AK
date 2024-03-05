@@ -400,7 +400,7 @@
                 @csrf
                 <button type="button" onclick="toggleLanguage()" class="btn btn-link text-white">
                     {{ app()->getLocale() == 'en' ? 'En' : 'Ar' }}
-                    <img src="{{ asset('images/' . (app()->getLocale() == 'en' ? 'united-Kingdom' : 'saudi-arabia') . '.png') }}"
+                    <img src="{{ asset('images/' . (app()->getLocale() == 'en' ? 'united_Kingdom' : 'saudi_arabia') . '.png') }}"
                         width="20px" height="20px">
                 </button>
                 <input type="hidden" name="locale" id="localeInput" value="{{ app()->getLocale() }}">
