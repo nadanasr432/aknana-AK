@@ -151,7 +151,7 @@
                         margin: 0;
                         ">
                             نبذة عنا</p>
-                        <img src="{{ asset('images/icon (2).svg') }}" style="margin-right: 10px;">
+                        <img src="{{ asset('images/video.svg') }}" style="margin-right: 10px;">
                     </a>
                     <button id="contactButton3" class="btn btn-primary"
                         style="width:193px;height:50px;font-family: Cairo;
