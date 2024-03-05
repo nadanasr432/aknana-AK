@@ -1118,6 +1118,7 @@
         <img src="{{ asset('images/turn-up.gif') }}" width="35px" height="40x">
     </a>
 
+  
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -1291,7 +1292,7 @@
     </script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script>
-        // Initialize ScrollReveal with the reset option
+      
         const scrollReveal = ScrollReveal({
             reset: true,
             mobile: true, // Enable mobile optimization
@@ -1431,7 +1432,7 @@
         if (mediaQuery.matches) {
             // Adjust reveal configurations for smaller screens
             scrollReveal.reveal('.fade-in', {
-                
+
             });
 
             ScrollReveal().reveal('#ServButton', {
@@ -1445,18 +1446,18 @@
                 opacity: 0
             });
             ScrollReveal().reveal('.animate-fade-in', {
-                
+
                 origin: 'bottom',
                 duration: 2500,
                 opacity: 0
             });
             ScrollReveal().reveal('.the_range', {
-                
+
                 origin: 'top',
                 duration: 2000
             });
             ScrollReveal().reveal('.content-text2', {
-                
+
                 origin: 'bottom',
                 duration: 1500
             });
@@ -1504,17 +1505,17 @@
                 opacity: 0
             });
             ScrollReveal().reveal('.custom-image-style', {
-                
+
                 origin: 'bottom',
                 duration: 2000
             });
             ScrollReveal().reveal('.custom-text-style', {
-                
+
                 origin: 'bottom',
                 duration: 2500
             });
             ScrollReveal().reveal('.custom-text_2', {
-                
+
                 origin: 'bottom',
                 duration: 2000
             });
@@ -1529,17 +1530,17 @@
                 opacity: 0
             });
             ScrollReveal().reveal('.service_text2', {
-                
+
                 origin: 'top',
                 duration: 1500
             });
             ScrollReveal().reveal('#textd', {
-                
+
                 origin: 'bottom',
                 duration: 2000
             });
             ScrollReveal().reveal('.service_text3', {
-                
+
                 origin: 'bottom',
                 duration: 2500,
             });
