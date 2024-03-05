@@ -6,6 +6,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ContactsControllers;
 use App\Http\Controllers\ReservationsController;
 
@@ -45,5 +46,5 @@ Route::post('/projects', [ProjectController::class, 'store'])->name('projects.st
 Route::get('/download-pdf',[ReservationsController::class, 'downloadPdf'])->name('download.pdf');
 Route::get('/get-max-male-value', [ReservationsController::class, 'getMaxMaleValue'])->name('getMaxMaleValue');
 // routes/web.php
-Route::post('language/switch', [ReservationsController::class,'switch'])->name('language.switch');
+Route::post('language/switch', [LanguageController::class,'switch'])->name('language.switch');
 
