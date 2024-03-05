@@ -44,4 +44,6 @@ Route::get('/projects', [ProjectController::class, 'create'])->name('projects.cr
 Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
 Route::get('/download-pdf',[ReservationsController::class, 'downloadPdf'])->name('download.pdf');
 Route::get('/get-max-male-value', [ReservationsController::class, 'getMaxMaleValue'])->name('getMaxMaleValue');
+// routes/web.php
+Route::post('language/switch', [ReservationsController::class,'switch'])->name('language.switch');
 

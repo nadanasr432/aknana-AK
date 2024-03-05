@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}">
 
 <head>
     <meta charset="UTF-8">
@@ -385,7 +385,7 @@
 
 <body>
 
-    <section class="head" id="head">
+       <section class="head" id="head">
         <nav class="navbar navbar-expand-lg">
             <a class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -393,37 +393,45 @@
 
             </a>
             <button id="contactButton2" class="btn btn-primary">
-                تواصل معنا
+                {{ __('file.contact_us') }}
             </button>
 
+            <form method="post" action="{{ route('language.switch') }}" id="languageForm">
+                @csrf
+                <button type="button" onclick="toggleLanguage()" class="btn btn-link text-white">
+                    {{ app()->getLocale() == 'en' ? 'En' : 'Ar' }}
+                    <img src="{{ asset('images/' . (app()->getLocale() == 'en' ? 'united-Kingdom' : 'saudi-arabia') . '.png') }}"
+                        width="20px" height="20px">
+                </button>
+                <input type="hidden" name="locale" id="localeInput" value="{{ app()->getLocale() }}">
+            </form>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav" style="gap: 30px;">
                     <li class="nav-item active">
-                        <a class="nav-link no-reload" href="#events">فعاليات
-                        </a>
+                        <a class="nav-link no-reload" href="#events">{{ __('file.events') }}</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link no-reload" href="#programs">البرامج</a>
+                        <a class="nav-link no-reload" href="#programs">{{ __('file.programs') }}</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link no-reload" href="#projects">مشاريعنا</a>
+                        <a class="nav-link no-reload" href="#projects">{{ __('file.projects') }}</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link " href="#range">النطاق</a>
+                        <a class="nav-link" href="#range">{{ __('file.range') }}</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#service">خدماتنا <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#service">{{ __('file.services') }} <span
+                                class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#2030"> 2030</a>
+                        <a class="nav-link" href="#2030">{{ __('file.2030') }}</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#US">من نحن</a>
+                        <a class="nav-link" href="#US">{{ __('file.about_us') }}</a>
                     </li>
                     <li class="nav-item active" id="home">
-                        <a class="nav-link" href="#head">الرئيسية</a>
+                        <a class="nav-link" href="#head">{{ __('file.home') }}</a>
                     </li>
-
                 </ul>
             </div>
 
@@ -431,11 +439,12 @@
             <div class="navbar-brand">
                 <img src="{{ asset('images/logo 4.svg') }}">
             </div>
+
         </nav>
         <div class="content" id="content">
-
-            <p class="content-text2"
-                style="font-family: Cairo;
+            @if (app()->getLocale() == 'en')
+                <p class="content-text2"
+                    style="font-family: Cairo;
                 font-size: 45px;
                 font-weight: 600;
                 line-height: 74px;
@@ -443,7 +452,19 @@
                 text-align: center;
                 color:#FFFFFF;
                 ">
-                هنا تبدأ رحلتك من الفكرة إلى الريادة</p>
+                    {{ __('file.start_your_journey') }} </p>
+            @else
+                <p class="content-text2"
+                    style="font-family: Cairo;
+                font-size: 41px;
+                font-weight: 600;
+                line-height: 74px;
+                letter-spacing: 0.02em;
+                text-align: center;
+                color:#FFFFFF;
+                ">
+                    {{ __('file.start_your_journey') }} </p>
+            @endif
             <p class="head-text mb-0 content-text1"
                 style="font-family: Cairo;
                     font-size: 20px;
@@ -453,7 +474,7 @@
                     text-align: center;
                     color:rgba(255, 255, 255, 0.69);
                     ">
-                مع أكنانا لريادة و حضانة الاعمال تحقيق الاحلام أصبح ممكن حيث نقدم
+                {{ __('file.with_aknan') }}
             </p>
             <p class="head-text mb-0 content-text1"
                 style="font-family: Cairo;
@@ -465,7 +486,7 @@
                     color:rgba(255, 255, 255, 0.69);
 
                     ">
-                حلول مبتكرة في عالم الأعمال من خلال نخبة من الاستشاريين في
+                {{ __('file.innovative_solutions') }}
             </p>
             <p id="textContent" class="head-text mb-0 content-text1 "
                 style="font-family: Cairo;
@@ -477,12 +498,13 @@
                     color:rgba(255, 255, 255, 0.69);
 
                     ">
-                الأعمال التي تشرف عليها الشركة أو تتولى توثيقها
+                {{ __('file.company_overseen') }}
             </p>
             <div class="d-flex justify-content-center align-items-between mt-5 ">
-                <a href="" class="d-flex align-items-center pr-4  " id="contactButton2">
-                    <p class="pr-2 content-text3"
-                        style="font-family: Cairo;
+                @if (app()->getLocale() == 'en')
+                    <a href="" class="d-flex align-items-center pr-4  " id="contactButton2">
+                        <p class="pr-2 content-text3"
+                            style="font-family: Cairo;
                         font-size: 25px;
                         font-weight: 600;
                         line-height: 30px;
@@ -490,9 +512,24 @@
                         color:#FFFFFFB0;
                         margin: 0;
                         ">
-                        نبذة عنا</p>
-                    <img src="{{ asset('images/video_big.svg') }}" style="margin-right: 10px;">
-                </a>
+                            {{ __('file.about_us') }} </p>
+                        <img src="{{ asset('images/video_big.svg') }}" style="margin-right: 10px;">
+                    </a>
+                @else
+                    <a href="" class="d-flex align-items-center pr-4 pl-4  " id="contactButton2">
+                        <p class="pr-2 content-text3"
+                            style="font-family: Cairo;
+                        font-size: 25px;
+                        font-weight: 600;
+                        line-height: 30px;
+                        letter-spacing: 0em;
+                        color:#FFFFFFB0;
+                        margin: 0;
+                        ">
+                            {{ __('file.about_us') }} </p>
+                        <img src="{{ asset('images/video_big.svg') }}" style="margin-right: 10px;">
+                    </a>
+                @endif
                 <button id="contactButton" class="btn btn-primary "
                     style="width:193px;height:50px;font-family: Cairo;
                         font-size: 22px;
@@ -501,7 +538,7 @@
                         letter-spacing: 0em;
                         color:#FFFFFF;
                     ">
-                    تواصل معنا
+                    {{ __('file.contact_us') }}
                 </button>
             </div>
 
@@ -513,12 +550,13 @@
     <!-- Footer -->
     <footer class="bg-body-tertiary">
         <!-- Grid container -->
-        <div class="container" style="margin-top:60px">
-            <div class="row" style="gap: 55px">
-                <!--Grid column-->
-                <div class="col-lg-2 col-md-2 mb-4 mb-md-0 text-right">
-                    <p class="text-right mb-2"
-                        style="font-family: Poppins;
+        @if (app()->getLocale() == 'ar')
+            <div class="container" style="margin-top:60px">
+                <div class="row" style="gap: 55px">
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-3 mb-4 mb-md-0 text-left">
+                        <p class="text-left mb-2"
+                            style="font-family: Poppins;
                         font-size: 16px;
                         font-weight: 500;
                         line-height: 13px;
@@ -526,17 +564,17 @@
                         text-align: left;
                         color: #FFFFFF;
                         ">
-                        للتواصل
-                        معانا</p>
-                    <span class="d-flex justify-content-end mb-2">
-                        <img src="{{ asset('images/zigzag.png') }}">
-                        <img src="{{ asset('images/zigzag.png') }}">
-                    </span>
-                    <ul class="list-unstyled">
-                        <li class="mb-2">
+                            للتواصل
+                            معانا</p>
+                        <span class="d-flex justify-content-end mb-2">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                        </span>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
 
-                            <a href="#!" class="pr-2"
-                                style="font-family: Poppins;
+                                <a href="#!"
+                                    style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -544,13 +582,27 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                الرياض-السعودية </a>
-                            <img src="{{ asset('images/home.png') }}">
-                        </li>
-                        <li class="mb-2">
+                                    @lang('file.address')</a>
+                                <img src="{{ asset('images/home.png') }}">
+                            </li>
+                            <li class="mb-2">
 
-                            <a href="#!" class="pr-2"
-                                style="font-family: Poppins;
+                                <a href="#!" 
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: right;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.email')</a>
+                                <img src="{{ asset('images/email.png') }}">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#!"
+                                    style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -558,241 +610,507 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                akana@gmail.com </a>
-                            <img src="{{ asset('images/email.png') }}">
-                        </li>
-                        <li class="mb-2">
-
-                            <a href="#!" class="pr-2"
-                                style="font-family: Poppins;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 13px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                color: #FFFFFF;
-                                ">
-                                ‫‪0550915555‬‬ </a>
-                            <img src="{{ asset('images/telephone.png') }}">
-                        </li>
-                    </ul>
-                </div>
-
-                <!--Grid column-->
-                <div class="col-md-2 mb-4 mb-md-0 text-right">
-                    <p class="text-right mb-2"
-                        style="font-family: Poppins;
-                        font-size: 16px;
-                        font-weight: 500;
-                        line-height: 13px;
-                        letter-spacing: 0em;
-                        text-align: left;
-                        color: #FFFFFF;
-                        ">
-                        مسارات
-                        أكنانا</p>
-                    <span class="d-flex justify-content-end pr-3 mb-2">
-                        <img src="{{ asset('images/zigzag.png') }}">
-                        <img src="{{ asset('images/zigzag.png') }}">
-                    </span>
-                    <ul class="list-unstyled">
-
-                        <li class="mb-2">
-
-                            <a href="#2030"
-                                style="font-family: Poppins;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 13px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                color: #FFFFFF;
-                                ">
-                                رؤية 2030 </a>
-                            <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                        </li>
-                        <li class="mb-2">
-
-                            <a href="#projects"
-                                style="font-family: Poppins;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 13px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                color: #FFFFFF;
-                                ">
-                                المشاريع </a>
-                            <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                        </li>
-                        <li class="mb-2">
-
-                            <a href="#!"
-                                style="font-family: Poppins;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 13px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                color: #FFFFFF;
-                                ">
-                                الاخبار </a>
-                            <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                        </li>
-                        <li class="mb-2">
-
-                            <a href="#reviews"
-                                style="font-family: Poppins;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 13px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                color: #FFFFFF;
-                                ">
-                                اراء العملاء </a>
-                            <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                        </li>
-                    </ul>
-                </div>
-
-                <!--Grid column-->
-                <div class="col-md-2 mb-4 mb-md-0 text-right">
-                    <p class="text-right mb-2"
-                        style="font-family: Poppins;
-                        font-size: 16px;
-                        font-weight: 500;
-                        line-height: 13px;
-                        letter-spacing: 0em;
-                        text-align: left;
-                        color: #FFFFFF;
-                        ">
-                        مسارات
-                        أكنانا</p>
-                    <span class="d-flex justify-content-end pr-3 mb-2">
-                        <img src="{{ asset('images/zigzag.png') }}">
-                        <img src="{{ asset('images/zigzag.png') }}">
-                    </span>
-                    <ul class="list-unstyled">
-                        <li class="mb-2">
-
-                            <a href="#head"
-                                style="font-family: Poppins;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 13px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                color: #FFFFFF;
-                                ">
-                                الرئيسية </a>
-                            <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                        </li>
-                        <li class="mb-2">
-
-                            <a href="#service"
-                                style="font-family: Poppins;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 13px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                color: #FFFFFF;
-                                ">
-                                الخدمات </a>
-                            <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                        </li>
-                        <li class="mb-2">
-
-                            <a href="#US"
-                                style="font-family: Poppins;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 13px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                color: #FFFFFF;
-                                ">
-                                من نحن </a>
-                            <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                        </li>
-                        <li class="mb-2">
-
-                            <a href="#programs"
-                                style="font-family: Poppins;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 13px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                color: #FFFFFF;
-                                ">
-                                البرامج </a>
-                            <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                        </li>
-                    </ul>
-                </div>
-
-                <!--Grid column-->
-                <div class="col-lg-4 col-md-4 mb-4  text-right pl-4">
-                    <div class="d-flex justify-content-end mb-2">
-                        <img src="{{ asset('images/logo 3.png') }}" alt="logo">
-                    </div>
-                    <p class="text-right mb-0"
-                        style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
-                        تحقق الاحلام صار مرة سهل انضم الينا الان
-                    </p>
-
-                    <p class="text-right mb-0"
-                        style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
-                        وبنساعدك في بداية مشوارك المهني لحين
-                    </p>
-                    <p class="text-right"
-                        style="color: #FFFFFFBF; font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px;">
-                        ... نهاية الطريق تواصل معانا
-                    </p>
-                    <div class="row d-flex justify-content-end pr-3" style="gap: 15px">
-
-                        <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
-                            style="width: 35px; height: 35px;">
-                            <img src="{{ asset('images/twitter.png') }}" alt="logo" width="15px"
-                                height="15px">
-                        </div>
-                        <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
-                            style="width: 35px; height: 35px;">
-                            <img src="{{ asset('images/facebook.png') }}" alt="logo" width="15px"
-                                height="15px">
-                        </div>
-                        <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
-                            style="width: 35px; height: 35px;">
-                            <img src="{{ asset('images/instagram2.png') }}" alt="logo" width="15px"
-                                height="15px">
-                        </div>
-                        <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
-                            style="width: 35px; height: 35px;">
-                            <img src="{{ asset('images/youtube.png') }}" alt="logo" width="15px"
-                                height="15px">
-                        </div>
+                                    @lang('file.phone')</a>
+                                <img src="{{ asset('images/telephone.png') }}">
+                            </li>
+                        </ul>
                     </div>
 
-                </div>
+                    <!--Grid column-->
+                    <div class="col=ml-2 col-md-2 mb-4 mb-md-0 text-right">
+                        <p class="text-right mb-2"
+                            style="font-family: Poppins;
+                        font-size: 16px;
+                        font-weight: 500;
+                        line-height: 13px;
+                        letter-spacing: 0em;
+                        text-align: left;
+                        color: #FFFFFF;
+                        ">
+                            @lang('file.paths')</p>
+                        <span class="d-flex justify-content-end pr-3 mb-2">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                        </span>
+                        <ul class="list-unstyled">
 
+                            <li class="mb-2">
+
+                                <a href="#2030"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.2030')</a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#projects"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.projects') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#!"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.news') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#reviews"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.customer_reviews')</a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!--Grid column-->
+                    <div class="col-md-2 mb-4 mb-md-0 text-right">
+                        <p class="text-right mb-2"
+                            style="font-family: Poppins;
+                        font-size: 16px;
+                        font-weight: 500;
+                        line-height: 13px;
+                        letter-spacing: 0em;
+                        text-align: left;
+                        color: #FFFFFF;
+                        ">
+                            @lang('file.paths')
+                        </p>
+                        <span class="d-flex justify-content-end pr-3 mb-2">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                        </span>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+
+                                <a href="#head"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.home') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#service"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.services') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#US"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.about_us')</a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#programs"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.programs') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-4 mb-4  text-right pl-4">
+                        <div class="d-flex justify-content-end mb-2">
+                            <img src="{{ asset('images/logo 3.png') }}" alt="logo">
+                        </div>
+                        <p class="text-right mb-0"
+                            style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
+                            @lang('file.dreams_made_easy')
+                        </p>
+
+                        <p class="text-right mb-0"
+                            style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
+                            @lang('file.help_at_beginning')
+                        </p>
+                        <p class="text-right"
+                            style="color: #FFFFFFBF; font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px;">
+                            @lang('file.contact_us_end_of_road')
+                        </p>
+                        <div class="row d-flex justify-content-end pr-3" style="gap: 15px">
+
+                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                                style="width: 35px; height: 35px;">
+                                <img src="{{ asset('images/twitter.png') }}" alt="logo" width="15px"
+                                    height="15px">
+                            </div>
+                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                                style="width: 35px; height: 35px;">
+                                <img src="{{ asset('images/facebook.png') }}" alt="logo" width="15px"
+                                    height="15px">
+                            </div>
+                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                                style="width: 35px; height: 35px;">
+                                <img src="{{ asset('images/instagram2.png') }}" alt="logo" width="15px"
+                                    height="15px">
+                            </div>
+                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                                style="width: 35px; height: 35px;">
+                                <img src="{{ asset('images/youtube.png') }}" alt="logo" width="15px"
+                                    height="15px">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
-        </div>
-        <!-- Grid container -->
+            <!-- Grid container -->
 
-        <!-- Copyright -->
-        <div class="text-center p-3"
-            style="font-family: Tajawal;
+            <!-- Copyright -->
+            <div class="text-center p-3"
+                style="font-family: Tajawal;
                 font-size: 20px;
                 font-weight: 500;
                 line-height: 14px;
                 letter-spacing: 0px;
                 color:#FFFFFFCC;
                 ">
-            جميع الحقوق محفوظة لشركة أكنانا لريادة الاعمال {{ now()->year }}
-            <span>@</span>
-        </div>
+                {{ __('file.rights_reserved') }} {{ now()->year }}
+                <span>@</span>
+            </div>
+        @else
+            <div class="container" style="margin-top:60px">
+                <div class="row" style="gap: 55px">
+                    <!--Grid column-->
+                    <div class="col-lg-2 col-md-2 mb-4 mb-md-0 text-right">
+                        <p class="text-right mb-2"
+                            style="font-family: Poppins;
+                        font-size: 16px;
+                        font-weight: 500;
+                        line-height: 13px;
+                        letter-spacing: 0em;
+                        text-align: left;
+                        color: #FFFFFF;
+                        ">
+                            للتواصل
+                            معانا</p>
+                        <span class="d-flex justify-content-end mb-2">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                        </span>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+
+                                <a href="#!" class="pr-2"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.address')</a>
+                                <img src="{{ asset('images/home.png') }}">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#!" class="pr-2"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.email')</a>
+                                <img src="{{ asset('images/email.png') }}">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#!" class="pr-2"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.phone')</a>
+                                <img src="{{ asset('images/telephone.png') }}">
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!--Grid column-->
+                    <div class="col-md-2 mb-4 mb-md-0 text-right">
+                        <p class="text-right mb-2"
+                            style="font-family: Poppins;
+                        font-size: 16px;
+                        font-weight: 500;
+                        line-height: 13px;
+                        letter-spacing: 0em;
+                        text-align: left;
+                        color: #FFFFFF;
+                        ">
+                            @lang('file.paths')</p>
+                        <span class="d-flex justify-content-end pr-3 mb-2">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                        </span>
+                        <ul class="list-unstyled">
+
+                            <li class="mb-2">
+
+                                <a href="#2030"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.2030')</a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#projects"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.projects') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#!"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.news') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#reviews"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.customer_reviews')</a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!--Grid column-->
+                    <div class="col-md-2 mb-4 mb-md-0 text-right">
+                        <p class="text-right mb-2"
+                            style="font-family: Poppins;
+                        font-size: 16px;
+                        font-weight: 500;
+                        line-height: 13px;
+                        letter-spacing: 0em;
+                        text-align: left;
+                        color: #FFFFFF;
+                        ">
+                            @lang('file.paths')
+                        </p>
+                        <span class="d-flex justify-content-end pr-3 mb-2">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                        </span>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+
+                                <a href="#head"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.home') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#service"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.services') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#US"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.about_us')</a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#programs"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.programs') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-4 mb-4  text-right pl-4">
+                        <div class="d-flex justify-content-end mb-2">
+                            <img src="{{ asset('images/logo 3.png') }}" alt="logo">
+                        </div>
+                        <p class="text-right mb-0"
+                            style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
+                            @lang('file.dreams_made_easy')
+                        </p>
+
+                        <p class="text-right mb-0"
+                            style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
+                            @lang('file.help_at_beginning')
+                        </p>
+                        <p class="text-right"
+                            style="color: #FFFFFFBF; font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px;">
+                            @lang('file.contact_us_end_of_road')
+                        </p>
+                        <div class="row d-flex justify-content-end pr-3" style="gap: 15px">
+
+                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                                style="width: 35px; height: 35px;">
+                                <img src="{{ asset('images/twitter.png') }}" alt="logo" width="15px"
+                                    height="15px">
+                            </div>
+                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                                style="width: 35px; height: 35px;">
+                                <img src="{{ asset('images/facebook.png') }}" alt="logo" width="15px"
+                                    height="15px">
+                            </div>
+                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                                style="width: 35px; height: 35px;">
+                                <img src="{{ asset('images/instagram2.png') }}" alt="logo" width="15px"
+                                    height="15px">
+                            </div>
+                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                                style="width: 35px; height: 35px;">
+                                <img src="{{ asset('images/youtube.png') }}" alt="logo" width="15px"
+                                    height="15px">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- Grid container -->
+
+            <!-- Copyright -->
+            <div class="text-center p-3"
+                style="font-family: Tajawal;
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 14px;
+                letter-spacing: 0px;
+                color:#FFFFFFCC;
+                ">
+                {{ __('file.rights_reserved') }} {{ now()->year }}
+                <span>@</span>
+            </div>
+        @endif
         <!-- Copyright -->
     </footer>
     <a id="scrollToTopButton" href="#head" class="btn fixed-bottom ml-3 mb-4 mt-4 rounded-circle"
@@ -829,7 +1147,15 @@
             });
         });
     </script> --}}
+    <script>
+        function toggleLanguage() {
+            var currentLocale = document.getElementById('localeInput').value;
+            var newLocale = (currentLocale === 'en') ? 'ar' : 'en';
 
+            document.getElementById('localeInput').value = newLocale;
+            document.getElementById('languageForm').submit();
+        }
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var carousel = document.getElementById('carouselExampleIndicators2');
