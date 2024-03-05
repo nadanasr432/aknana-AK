@@ -41,7 +41,7 @@
             @foreach ($services as $key => $service)
                 <div class="col-md-2 mb-5">
                     <div class="d-flex justify-content-center align-items-center mb-5">
-                        <img src="{{ asset('storage/' . $service->media()->first()->file_path) }}">
+                        <img src="{{ asset('storage/app/public/' . $service->media()->first()->file_path) }}">
                     </div>
                     <p
                         style="font-family: Cairo; font-size: 24px; font-weight: 600; line-height: 36px; letter-spacing: -0.01em; text-align: center; color: #141414;">
@@ -799,7 +799,7 @@
                                 <div class="col-md-4 mt-0">
                                     <div class="justify-content-center">
                                         <span class="d-flex justify-content-center mb-2 ">
-                                            <img src="{{ asset('storage/' . $course->media->first()->file_path) }}"
+                                            <img src="{{ asset('storage/app/public/' . $course->media->first()->file_path) }}"
                                                 style="width: 350px;height:258px" alt="First Image">
                                         </span>
 
@@ -924,7 +924,7 @@
                         <div class="row mb-5 d-flex justify-content-between">
                             @foreach ($projects->slice($i * 4, 4) as $project)
                                 <div class="col-md-3">
-                                    <img src="{{ asset('storage/' . $project->images->first()->file_path) }}">
+                                    <img src="{{ asset('storage/app/public/' . $project->images->first()->file_path) }}">
                                     <div class="d-flex justify-content-center pr-1"
                                         style="font-family: Cairo;
                                             font-size: 18px;
@@ -1001,7 +1001,7 @@
                         <div class="row mb-5 justify-content-between">
                             @foreach ($events->slice($i * 3, 3) as $event)
                                 <div class="col-md-4 pr-3 mt-4">
-                                    <img src="{{ asset('storage/' . $event->media->first()->file_path) }}"
+                                    <img src="{{ asset('storage/app/public/' . $event->media->first()->file_path) }}"
                                         style="width: 350px;height:258px" alt="Event Image">
 
                                     <div class="d-flex justify-content-center mt-2"
