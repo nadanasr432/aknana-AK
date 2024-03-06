@@ -6,8 +6,13 @@
             @csrf
 
             <div class="mb-3">
-                <label for="name" class="form-label">Course Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <label for="name" class="form-label">Course Name (English)</label>
+                <input type="text" class="form-control" id="name" name="name[en]" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="name_ar" class="form-label">Course Name (Arabic)</label>
+                <input type="text" class="form-control" id="name_ar" name="name[ar]" required>
             </div>
 
             <div class="mb-3">
@@ -16,18 +21,33 @@
             </div>
 
             <div class="mb-3">
-                <label for="professor_name" class="form-label">Professor Name</label>
-                <input type="text" class="form-control" id="professor_name" name="professor_name" required>
+                <label for="professor_name" class="form-label">Professor Name (English)</label>
+                <input type="text" class="form-control" id="professor_name" name="professor_name[en]" required>
             </div>
 
             <div class="mb-3">
-                <label for="time_duration" class="form-label">Time Duration</label>
-                <input type="text" class="form-control" id="time_duration" name="time_duration" required>
+                <label for="professor_name_ar" class="form-label">Professor Name (Arabic)</label>
+                <input type="text" class="form-control" id="professor_name_ar" name="professor_name[ar]" required>
             </div>
 
             <div class="mb-3">
-                <label for="location" class="form-label">Location</label>
-                <input type="text" class="form-control" id="location" name="location" required>
+                <label for="time_duration" class="form-label">Time Duration (English)</label>
+                <input type="text" class="form-control" id="time_duration" name="time_duration[en]" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="time_duration_ar" class="form-label">Time Duration (Arabic)</label>
+                <input type="text" class="form-control" id="time_duration_ar" name="time_duration[ar]" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="location" class="form-label">Location (English)</label>
+                <input type="text" class="form-control" id="location" name="location[en]" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="location_ar" class="form-label">Location (Arabic)</label>
+                <input type="text" class="form-control" id="location_ar" name="location[ar]" required>
             </div>
 
             <div class="mb-3">

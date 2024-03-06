@@ -224,13 +224,6 @@
             @endif
             ;
 
-            direction: @if (app()->getLocale() == 'ar')
-                rtl
-            @else
-                ltr
-            @endif
-            ;
-
         }
 
         &::-webkit-scrollbar {
@@ -269,6 +262,7 @@
             body {
 
                 overflow-x: hidden;
+                width: 100%
 
             }
 
@@ -281,7 +275,7 @@
                 background-color: #FFE4C5;
 
                 @if (app()->getLocale() == 'ar')
-                margin-right: 10px;
+                    margin-right: 10px;
                 @else
                     margin-left: 15px;
                 @endif
@@ -293,18 +287,6 @@
 
         @media (max-width: 767px) {
             section.head {
-                position: relative;
-                width: 100%;
-                height: 60vh;
-                display: flex;
-                justify-content: center;
-                display: flex;
-                align-items: center;
-                overflow: hidden;
-                margin-top: -10px;
-                margin-bottom: 5%;
-            }
-
                 position: relative;
                 width: 100%;
                 height: 60vh;
@@ -374,7 +356,6 @@
             }
 
 
-
         }
 
         section.head::before {
@@ -432,7 +413,6 @@
             </a>
             <button id="contactButton2" class="btn btn-primary">
                 {{ __('file.contact_us') }}
-                {{ __('file.contact_us') }}
             </button>
 
             <form method="post" action="{{ route('language.switch') }}" id="languageForm">
@@ -448,35 +428,27 @@
                 <ul class="navbar-nav" style="gap: 30px;">
                     <li class="nav-item active">
                         <a class="nav-link no-reload" href="#events">{{ __('file.events') }}</a>
-                        <a class="nav-link no-reload" href="#events">{{ __('file.events') }}</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link no-reload" href="#programs">{{ __('file.programs') }}</a>
                         <a class="nav-link no-reload" href="#programs">{{ __('file.programs') }}</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link no-reload" href="#projects">{{ __('file.projects') }}</a>
-                        <a class="nav-link no-reload" href="#projects">{{ __('file.projects') }}</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#range">{{ __('file.range') }}</a>
                         <a class="nav-link" href="#range">{{ __('file.range') }}</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="#service">{{ __('file.services') }} <span
                                 class="sr-only">(current)</span></a>
-                        <a class="nav-link" href="#service">{{ __('file.services') }} <span
-                                class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#2030">{{ __('file.2030') }}</a>
                         <a class="nav-link" href="#2030">{{ __('file.2030') }}</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="#US">{{ __('file.About_Us') }}</a>
                     </li>
                     <li class="nav-item active" id="home">
-                        <a class="nav-link" href="#head">{{ __('file.home') }}</a>
                         <a class="nav-link" href="#head">{{ __('file.home') }}</a>
                     </li>
                 </ul>
@@ -487,12 +459,8 @@
                 <img src="{{ asset('images/logo 4.svg') }}">
             </div>
 
-
         </nav>
         <div class="content" id="content">
-            @if (app()->getLocale() == 'en')
-                <p class="content-text2"
-                    style="font-family: Cairo;
             @if (app()->getLocale() == 'en')
                 <p class="content-text2"
                     style="font-family: Cairo;
@@ -516,19 +484,6 @@
                 ">
                     {{ __('file.start_your_journey') }} </p>
             @endif
-                    {{ __('file.start_your_journey') }} </p>
-            @else
-                <p class="content-text2"
-                    style="font-family: Cairo;
-                font-size: 41px;
-                font-weight: 600;
-                line-height: 74px;
-                letter-spacing: 0.02em;
-                text-align: center;
-                color:#FFFFFF;
-                ">
-                    {{ __('file.start_your_journey') }} </p>
-            @endif
             <p class="head-text mb-0 content-text1"
                 style="font-family: Cairo;
                     font-size: 20px;
@@ -538,7 +493,6 @@
                     text-align: center;
                     color:rgba(255, 255, 255, 0.69);
                     ">
-                {{ __('file.with_aknan') }}
                 {{ __('file.with_aknan') }}
             </p>
             <p class="head-text mb-0 content-text1"
@@ -551,7 +505,6 @@
                     color:rgba(255, 255, 255, 0.69);
 
                     ">
-                {{ __('file.innovative_solutions') }}
                 {{ __('file.innovative_solutions') }}
             </p>
             <p id="textContent" class="head-text mb-0 content-text1 "
@@ -565,13 +518,8 @@
 
                     ">
                 {{ __('file.company_overseen') }}
-                {{ __('file.company_overseen') }}
             </p>
             <div class="d-flex justify-content-center align-items-between mt-5 ">
-                @if (app()->getLocale() == 'en')
-                    <a href="" class="d-flex align-items-center pr-4  " id="contactButton2">
-                        <p class="pr-2 content-text3"
-                            style="font-family: Cairo;
                 @if (app()->getLocale() == 'en')
                     <a href="" class="d-flex align-items-center pr-4  " id="contactButton2">
                         <p class="pr-2 content-text3"
@@ -584,7 +532,7 @@
                         margin: 0;
                         ">
                             {{ __('file.about_us') }} </p>
-                        <img src="{{ asset('images/icon (1).svg') }}" style="margin-right: 10px;">
+                        <img src="{{ asset('images/video_big.svg') }}" style="margin-right: 10px;">
                     </a>
                 @else
                     <a href="" class="d-flex align-items-center pr-4 pl-4  " id="contactButton2">
@@ -598,7 +546,7 @@
                         margin: 0;
                         ">
                             {{ __('file.about_us') }} </p>
-                        <img src="{{ asset('images/icon (1).svg') }}" style="margin-right: 10px;">
+                        <img src="{{ asset('images/video_big.svg') }}" style="margin-right: 10px;">
                     </a>
                 @endif
                 <button id="contactButton" class="btn btn-primary "
@@ -609,7 +557,6 @@
                         letter-spacing: 0em;
                         color:#FFFFFF;
                     ">
-                    {{ __('file.contact_us') }}
                     {{ __('file.contact_us') }}
                 </button>
             </div>
@@ -637,7 +584,7 @@
                         color: #FFFFFF;
                         ">
                             @lang('file.To contact us')
-                            </p>
+                        </p>
                         <span class="d-flex justify-content-end mb-2">
                             <img src="{{ asset('images/zigzag.png') }}">
                             <img src="{{ asset('images/zigzag.png') }}">
@@ -932,17 +879,7 @@
                         </span>
                         <ul class="list-unstyled">
                             <li class="mb-2">
-                            للتواصل
-                            معانا</p>
-                        <span class="d-flex justify-content-end mb-2">
-                            <img src="{{ asset('images/zigzag.png') }}">
-                            <img src="{{ asset('images/zigzag.png') }}">
-                        </span>
-                        <ul class="list-unstyled">
-                            <li class="mb-2">
 
-                                <a href="#!" class="pr-2"
-                                    style="font-family: Poppins;
                                 <a href="#!" class="pr-2"
                                     style="font-family: Poppins;
                                 font-size: 16px;
@@ -956,13 +893,7 @@
                                 <img src="{{ asset('images/home.png') }}">
                             </li>
                             <li class="mb-2">
-                                    @lang('file.address')</a>
-                                <img src="{{ asset('images/home.png') }}">
-                            </li>
-                            <li class="mb-2">
 
-                                <a href="#!" class="pr-2"
-                                    style="font-family: Poppins;
                                 <a href="#!" class="pr-2"
                                     style="font-family: Poppins;
                                 font-size: 16px;
@@ -976,13 +907,7 @@
                                 <img src="{{ asset('images/email.png') }}">
                             </li>
                             <li class="mb-2">
-                                    @lang('file.email')</a>
-                                <img src="{{ asset('images/email.png') }}">
-                            </li>
-                            <li class="mb-2">
 
-                                <a href="#!" class="pr-2"
-                                    style="font-family: Poppins;
                                 <a href="#!" class="pr-2"
                                     style="font-family: Poppins;
                                 font-size: 16px;
@@ -997,16 +922,7 @@
                             </li>
                         </ul>
                     </div>
-                                    @lang('file.phone')</a>
-                                <img src="{{ asset('images/telephone.png') }}">
-                            </li>
-                        </ul>
-                    </div>
 
-                    <!--Grid column-->
-                    <div class="col-md-2 mb-4 mb-md-0 text-right">
-                        <p class="text-right mb-2"
-                            style="font-family: Poppins;
                     <!--Grid column-->
                     <div class="col-md-2 mb-4 mb-md-0 text-right">
                         <p class="text-right mb-2"
@@ -1024,18 +940,9 @@
                             <img src="{{ asset('images/zigzag.png') }}">
                         </span>
                         <ul class="list-unstyled">
-                            @lang('file.paths')</p>
-                        <span class="d-flex justify-content-end pr-3 mb-2">
-                            <img src="{{ asset('images/zigzag.png') }}">
-                            <img src="{{ asset('images/zigzag.png') }}">
-                        </span>
-                        <ul class="list-unstyled">
 
                             <li class="mb-2">
-                            <li class="mb-2">
 
-                                <a href="#2030"
-                                    style="font-family: Poppins;
                                 <a href="#2030"
                                     style="font-family: Poppins;
                                 font-size: 16px;
@@ -1049,13 +956,7 @@
                                 <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
                             </li>
                             <li class="mb-2">
-                                    @lang('file.2030')</a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                            </li>
-                            <li class="mb-2">
 
-                                <a href="#projects"
-                                    style="font-family: Poppins;
                                 <a href="#projects"
                                     style="font-family: Poppins;
                                 font-size: 16px;
@@ -1069,13 +970,7 @@
                                 <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
                             </li>
                             <li class="mb-2">
-                                    @lang('file.projects') </a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                            </li>
-                            <li class="mb-2">
 
-                                <a href="#!"
-                                    style="font-family: Poppins;
                                 <a href="#!"
                                     style="font-family: Poppins;
                                 font-size: 16px;
@@ -1092,8 +987,6 @@
 
                                 <a href="#reviews"
                                     style="font-family: Poppins;
-                                <a href="#reviews"
-                                    style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -1106,16 +999,7 @@
                             </li>
                         </ul>
                     </div>
-                                    @lang('file.customer_reviews')</a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                            </li>
-                        </ul>
-                    </div>
 
-                    <!--Grid column-->
-                    <div class="col-md-2 mb-4 mb-md-0 text-right">
-                        <p class="text-right mb-2"
-                            style="font-family: Poppins;
                     <!--Grid column-->
                     <div class="col-md-2 mb-4 mb-md-0 text-right">
                         <p class="text-right mb-2"
@@ -1135,17 +1019,7 @@
                         </span>
                         <ul class="list-unstyled">
                             <li class="mb-2">
-                            @lang('file.paths')
-                        </p>
-                        <span class="d-flex justify-content-end pr-3 mb-2">
-                            <img src="{{ asset('images/zigzag.png') }}">
-                            <img src="{{ asset('images/zigzag.png') }}">
-                        </span>
-                        <ul class="list-unstyled">
-                            <li class="mb-2">
 
-                                <a href="#head"
-                                    style="font-family: Poppins;
                                 <a href="#head"
                                     style="font-family: Poppins;
                                 font-size: 16px;
@@ -1159,13 +1033,7 @@
                                 <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
                             </li>
                             <li class="mb-2">
-                                    @lang('file.home') </a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                            </li>
-                            <li class="mb-2">
 
-                                <a href="#service"
-                                    style="font-family: Poppins;
                                 <a href="#service"
                                     style="font-family: Poppins;
                                 font-size: 16px;
@@ -1179,13 +1047,7 @@
                                 <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
                             </li>
                             <li class="mb-2">
-                                    @lang('file.services') </a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                            </li>
-                            <li class="mb-2">
 
-                                <a href="#US"
-                                    style="font-family: Poppins;
                                 <a href="#US"
                                     style="font-family: Poppins;
                                 font-size: 16px;
@@ -1199,13 +1061,7 @@
                                 <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
                             </li>
                             <li class="mb-2">
-                                    @lang('file.about_us')</a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                            </li>
-                            <li class="mb-2">
 
-                                <a href="#programs"
-                                    style="font-family: Poppins;
                                 <a href="#programs"
                                     style="font-family: Poppins;
                                 font-size: 16px;
@@ -1215,11 +1071,6 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.programs') </a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                            </li>
-                        </ul>
-                    </div>
                                     @lang('file.programs') </a>
                                 <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
                             </li>
@@ -1235,25 +1086,7 @@
                             style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
                             @lang('file.dreams_made_easy')
                         </p>
-                    <!--Grid column-->
-                    <div class="col-lg-4 col-md-4 mb-4  text-right pl-4">
-                        <div class="d-flex justify-content-end mb-2">
-                            <img src="{{ asset('images/logo 3.png') }}" alt="logo">
-                        </div>
-                        <p class="text-right mb-0"
-                            style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
-                            @lang('file.dreams_made_easy')
-                        </p>
 
-                        <p class="text-right mb-0"
-                            style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
-                            @lang('file.help_at_beginning')
-                        </p>
-                        <p class="text-right"
-                            style="color: #FFFFFFBF; font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px;">
-                            @lang('file.contact_us_end_of_road')
-                        </p>
-                        <div class="row d-flex justify-content-end pr-3" style="gap: 15px">
                         <p class="text-right mb-0"
                             style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
                             @lang('file.help_at_beginning')
@@ -1285,41 +1118,13 @@
                                     height="15px">
                             </div>
                         </div>
-                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
-                                style="width: 35px; height: 35px;">
-                                <img src="{{ asset('images/twitter.png') }}" alt="logo" width="15px"
-                                    height="15px">
-                            </div>
-                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
-                                style="width: 35px; height: 35px;">
-                                <img src="{{ asset('images/facebook.png') }}" alt="logo" width="15px"
-                                    height="15px">
-                            </div>
-                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
-                                style="width: 35px; height: 35px;">
-                                <img src="{{ asset('images/instagram2.png') }}" alt="logo" width="15px"
-                                    height="15px">
-                            </div>
-                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
-                                style="width: 35px; height: 35px;">
-                                <img src="{{ asset('images/youtube.png') }}" alt="logo" width="15px"
-                                    height="15px">
-                            </div>
-                        </div>
 
-                    </div>
                     </div>
 
                 </div>
             </div>
             <!-- Grid container -->
-                </div>
-            </div>
-            <!-- Grid container -->
 
-            <!-- Copyright -->
-            <div class="text-center p-3"
-                style="font-family: Tajawal;
             <!-- Copyright -->
             <div class="text-center p-3"
                 style="font-family: Tajawal;
@@ -1333,17 +1138,12 @@
                 <span>@</span>
             </div>
         @endif
-                {{ __('file.rights_reserved') }} {{ now()->year }}
-                <span>@</span>
-            </div>
-        @endif
         <!-- Copyright -->
     </footer>
     <a id="scrollToTopButton" href="#head" class="btn fixed-bottom ml-3 mb-4 mt-4 rounded-circle"
         style="width: 60px;height:60px">
         <img src="{{ asset('images/turn-up.gif') }}" width="35px" height="40x">
     </a>
-
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
@@ -1378,15 +1178,7 @@
         function toggleLanguage() {
             var currentLocale = document.getElementById('localeInput').value;
             var newLocale = (currentLocale === 'en') ? 'ar' : 'en';
-    <script>
-        function toggleLanguage() {
-            var currentLocale = document.getElementById('localeInput').value;
-            var newLocale = (currentLocale === 'en') ? 'ar' : 'en';
 
-            document.getElementById('localeInput').value = newLocale;
-            document.getElementById('languageForm').submit();
-        }
-    </script>
             document.getElementById('localeInput').value = newLocale;
             document.getElementById('languageForm').submit();
         }
@@ -1525,13 +1317,15 @@
         });
     </script>
     <script src="https://unpkg.com/scrollreveal"></script>
-    <script>
+ 
+    @if (app()->getLocale() == 'ar')
+     <script>
         const scrollReveal = ScrollReveal({
             reset: true,
-            mobile: true, // Enable mobile optimization
+            mobile: true, 
         });
 
-        // Add individual reveal statements for each element
+        
         scrollReveal.reveal('.fade-in', {
             distance: '50%',
             origin: 'left',
@@ -1666,13 +1460,13 @@
             // Adjust reveal configurations for smaller screens
             scrollReveal.reveal('.fade-in', {
 
-
             });
 
             ScrollReveal().reveal('#ServButton', {
                 delay: 500,
                 duration: 2000,
                 opacity: 0
+                
             });
             ScrollReveal().reveal('.animate-fade-up', {
                 origin: 'top',
@@ -1681,19 +1475,16 @@
             });
             ScrollReveal().reveal('.animate-fade-in', {
 
-
                 origin: 'bottom',
                 duration: 2500,
                 opacity: 0
             });
             ScrollReveal().reveal('.the_range', {
 
-
                 origin: 'top',
                 duration: 2000
             });
             ScrollReveal().reveal('.content-text2', {
-
 
                 origin: 'bottom',
                 duration: 1500
@@ -1743,18 +1534,15 @@
             });
             ScrollReveal().reveal('.custom-image-style', {
 
-
                 origin: 'bottom',
                 duration: 2000
             });
             ScrollReveal().reveal('.custom-text-style', {
 
-
                 origin: 'bottom',
                 duration: 2500
             });
             ScrollReveal().reveal('.custom-text_2', {
-
 
                 origin: 'bottom',
                 duration: 2000
@@ -1771,18 +1559,282 @@
             });
             ScrollReveal().reveal('.service_text2', {
 
-
                 origin: 'top',
                 duration: 1500
             });
             ScrollReveal().reveal('#textd', {
-
 
                 origin: 'bottom',
                 duration: 2000
             });
             ScrollReveal().reveal('.service_text3', {
 
+                origin: 'top',
+                duration: 2500,
+            });
+            ScrollReveal().reveal('.he ', {
+                duration: 1000,
+                opacity: 0,
+                delay: 1500
+            });
+
+            ScrollReveal().reveal('.he .col-md-1 img', {
+                duration: 1500,
+                opacity: 1,
+                delay: 1500
+            });
+        }
+    </script>
+    @else
+       <script>
+        const scrollReveal = ScrollReveal({
+            reset: true,
+            mobile: true, 
+        });
+
+        
+        scrollReveal.reveal('.fade-in', {
+            distance: '50%',
+            origin: 'left',
+            duration: 2000,
+            opacity: 0
+        });
+
+        ScrollReveal().reveal('#ServButton', {
+            delay: 500,
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('.animate-fade-up', {
+            distance: '50%',
+            origin: 'left',
+            duration: 2500,
+            opacity: 0
+        });
+        ScrollReveal().reveal('.animate-fade-in', {
+            distance: '50%',
+            origin: 'right',
+            duration: 2500,
+            opacity: 0
+        });
+        ScrollReveal().reveal('.the_range', {
+            distance: '50%',
+            origin: 'bottom',
+            duration: 2000
+        });
+        ScrollReveal().reveal('.content-text2', {
+            distance: '100%',
+            origin: 'top',
+            duration: 1500
+        });
+        ScrollReveal().reveal('.the_range .container', {
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('.the_range .mt-5', {
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('.content-text1:nth-child(3)', {
+            delay: 500,
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('.content-text1:nth-child(1)', {
+            delay: 500,
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('.content-text1:nth-child(2)', {
+            delay: 500,
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('#textContent', {
+            delay: 500,
+            duration: 1500,
+            opacity: 0
+        });
+        ScrollReveal().reveal('#contactButton', {
+            delay: 500,
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('#contactButton2', {
+            delay: 500,
+            duration: 500,
+            opacity: 0
+        });
+        ScrollReveal().reveal('.US', {
+            duration: 500,
+            origin: 'right',
+            opacity: 0
+        });
+        ScrollReveal().reveal('.custom-image-style', {
+            distance: '50%',
+            origin: 'right',
+            duration: 2000
+        });
+        ScrollReveal().reveal('.custom-text-style', {
+            distance: '50%',
+            origin: 'right',
+            duration: 2500
+        });
+        ScrollReveal().reveal('.custom-text_2', {
+            distance: '50%',
+            origin: 'left',
+            duration: 2000
+        });
+        ScrollReveal().reveal('#contactButton3', {
+            delay: 500,
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('#contactButton4', {
+            delay: 500,
+            duration: 2000,
+            opacity: 0
+        });
+        ScrollReveal().reveal('.service_text2', {
+            distance: '50%',
+            origin: 'left',
+            duration: 1500
+        });
+        ScrollReveal().reveal('#textd', {
+            distance: '50%',
+            origin: 'left',
+            duration: 2000
+        });
+        ScrollReveal().reveal('.service_text3', {
+            distance: '50%',
+            origin: 'right',
+            duration: 2500,
+        });
+        ScrollReveal().reveal('.he ', {
+            duration: 1500,
+            opacity: 0,
+            delay: 1000
+        });
+
+        ScrollReveal().reveal('.he .col-md-1 img', {
+            duration: 1500,
+            opacity: 1,
+            delay: 1500
+        });
+        const mediaQuery = window.matchMedia('(max-width: 768px)');
+
+        if (mediaQuery.matches) {
+            // Adjust reveal configurations for smaller screens
+            scrollReveal.reveal('.fade-in', {
+
+            });
+
+            ScrollReveal().reveal('#ServButton', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+                
+            });
+            ScrollReveal().reveal('.animate-fade-up', {
+                origin: 'top',
+                duration: 2500,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.animate-fade-in', {
+
+                origin: 'bottom',
+                duration: 2500,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.the_range', {
+
+                origin: 'top',
+                duration: 2000
+            });
+            ScrollReveal().reveal('.content-text2', {
+
+                origin: 'bottom',
+                duration: 1500
+            });
+            ScrollReveal().reveal('.the_range .container', {
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.the_range .mt-5', {
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.content-text1:nth-child(3)', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.content-text1:nth-child(1)', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.content-text1:nth-child(2)', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('#textContent', {
+                delay: 500,
+                duration: 1500,
+                opacity: 0
+            });
+            ScrollReveal().reveal('#contactButton', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('#contactButton2', {
+                delay: 500,
+                duration: 500,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.US', {
+                duration: 500,
+                origin: 'top',
+                opacity: 0
+            });
+            ScrollReveal().reveal('.custom-image-style', {
+
+                origin: 'bottom',
+                duration: 2000
+            });
+            ScrollReveal().reveal('.custom-text-style', {
+
+                origin: 'bottom',
+                duration: 2500
+            });
+            ScrollReveal().reveal('.custom-text_2', {
+
+                origin: 'bottom',
+                duration: 2000
+            });
+            ScrollReveal().reveal('#contactButton3', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('#contactButton4', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.service_text2', {
+
+                origin: 'top',
+                duration: 1500
+            });
+            ScrollReveal().reveal('#textd', {
+
+                origin: 'bottom',
+                duration: 2000
+            });
+            ScrollReveal().reveal('.service_text3', {
 
                 origin: 'bottom',
                 duration: 2500,
@@ -1800,6 +1852,7 @@
             });
         }
     </script>
+    @endif
 
 
 

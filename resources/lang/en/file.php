@@ -39,7 +39,7 @@ return [
     'watch_video' => 'شاهد الفيديو',
     'contact_us' => 'تواصل معنا',
     'how_we_help' => 'كيف نساعد في',
-    'Achieve Vision 2030' => " تحقيق رؤية 2030",
+    'Achieve Vision 2030' => "  رؤية 2030",
     'vision_2030_description' => 'تعمل أكنانا على تحقيق أفضل رؤية للمملكة العربية السعودية في عام 2030 وفقًا لمعايير مميزة. تهدف إلى...',
     'local_content' => 'المحتوى المحلّي',
     'national_identity_enhancement' => 'تعزيز الهوية الوطنية',
