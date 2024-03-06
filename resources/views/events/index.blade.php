@@ -32,7 +32,7 @@
                 @foreach ($events as $event)
                     <div class="col-md-4 pr-3 mt-4">
 
-                        <img src="{{ asset('storage/' . $event->media->first()->file_path) }}"
+                        <img src="{{ asset('storage/app/public/' . $event->media->first()->file_path) }}"
                             style="width: 100%;height:258px" alt="First Image">
 
                         <div class="d-flex justify-content-center mt-2"
