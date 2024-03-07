@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('content')
     <div class="container">
-        <form method="POST" action="{{ route('courses.store') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('dashboard.courses.store') }}" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">
@@ -67,5 +67,26 @@
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+    </div>
+@endsection
+@extends('layouts.dashboard')
+@section('content')
+    <div class="content-wrapper">
+        <div class="page-header">
+            <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                    <i class="mdi mdi-home"></i>
+                </span> Dashboard
+            </h3>
+            <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <span></span>Overview <i
+                            class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
     </div>
 @endsection

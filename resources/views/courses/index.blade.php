@@ -57,7 +57,7 @@
                                     color: rgba(18, 23, 67, 1);
 
                                     ">
-                                    {{ $course->name }}</div>
+                                    {{ $course->getTranslation('name', 'en') }}</div>
                                 <div class="mt-2  pl-1"
                                     style="font-family: Cairo;
                                         font-size: 16px;
@@ -70,7 +70,7 @@
                                     margin: 0;
                                     ">
                                     <img src="{{ asset('images/Vector (6).svg') }}">
-                                    @lang('file.Eng/'){{ $course->professor_name }}
+                                    @lang('file.Eng/'){{ $course->getTranslation('professor_name', 'en') }}
 
                                 </div>
                                 <div class="mt-2  pl-1"
@@ -85,7 +85,7 @@
                                     margin: 0;
                                     ">
                                     <img src="{{ asset('images/Vector (5).svg') }}">
-                                    @lang('file.Duration') : {{ $course->time_duration }}
+                                    @lang('file.Duration') : {{ $course->getTranslation('time_duration', 'en') }}
 
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
                                     margin: 0;
                                     ">
                                     <img src="{{ asset('images/location1.svg') }}">
-                                    {{ $course->location }}
+                                    {{ $course->getTranslation('location', 'en') }}
 
                                 </div>
                                 @if ($isCourseAvailable)
@@ -185,7 +185,7 @@
                                     color: rgba(18, 23, 67, 1);
 
                                     ">
-                                    {{ $course->name }}</div>
+                                    {{ $course->getTranslation('name', 'ar') }}</div>
                                 <div class="mt-2  pr-1"
                                     style="font-family: Cairo;
                                         font-size: 16px;
@@ -197,7 +197,7 @@
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                    م/{{ $course->professor_name }}
+                                    م/{{ $course->getTranslation('professor_name', 'ar') }}
                                     <img src="{{ asset('images/Vector (6).svg') }}">
                                 </div>
                                 <div class="mt-2  pr-1"
@@ -211,7 +211,7 @@
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                    المدة : {{ $course->time_duration }}
+                                    المدة : {{ $course->getTranslation('time_duration', 'ar') }}
                                     <img src="{{ asset('images/Vector (5).svg') }}">
                                 </div>
                             </div>
@@ -241,7 +241,7 @@
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                    {{ $course->location }}
+                                    {{ $course->getTranslation('location', 'ar') }}
                                     <img src="{{ asset('images/location1.svg') }}">
                                 </div>
                             </div>

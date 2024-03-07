@@ -1328,7 +1328,7 @@
         
         scrollReveal.reveal('.fade-in', {
             distance: '50%',
-            origin: 'left',
+            origin: 'right',
             duration: 2000,
             opacity: 0
         });
@@ -1340,7 +1340,7 @@
         });
         ScrollReveal().reveal('.animate-fade-up', {
             distance: '50%',
-            origin: 'left',
+            origin: 'right',
             duration: 2500,
             opacity: 0
         });
@@ -1400,7 +1400,7 @@
         });
         ScrollReveal().reveal('.US', {
             duration: 500,
-            origin: 'right',
+            origin: 'left',
             opacity: 0
         });
         ScrollReveal().reveal('.custom-image-style', {
@@ -1415,7 +1415,7 @@
         });
         ScrollReveal().reveal('.custom-text_2', {
             distance: '50%',
-            origin: 'left',
+            origin: 'right',
             duration: 2000
         });
         ScrollReveal().reveal('#contactButton3', {
@@ -1430,12 +1430,12 @@
         });
         ScrollReveal().reveal('.service_text2', {
             distance: '50%',
-            origin: 'left',
+            origin: 'right',
             duration: 1500
         });
         ScrollReveal().reveal('#textd', {
             distance: '50%',
-            origin: 'left',
+            origin: 'right',
             duration: 2000
         });
         ScrollReveal().reveal('.service_text3', {

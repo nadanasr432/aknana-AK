@@ -192,7 +192,7 @@
                     ">
                             @lang('file.Aknana!?') </span>
                     </p>
-                    </p>
+
                     <p class="custom-text_2"
                         style="font-family: Cairo;
                 font-size: 22px;
@@ -213,29 +213,24 @@
                         color:#DF8317;
                         margin: 0;
                         ">
-                            نبذة عنا</p>
-                        <img src="{{ asset('images/video.svg') }}" style="margin-right: 10px;">
-                    </a>
-                    <button id="contactButton3" class="btn btn-primary"
-                        style="width:193px;height:50px;font-family: Cairo;
-                                @lang('file.about_us')</p>
+                                @lang('file.about_us') </p>
                             <img src="{{ asset('images/video.svg') }}" style="margin-right: 10px;">
                         </a>
-                        <button id="contactButton3" class="btn btn-primary"
-                            style="width:193px;height:50px;font-family: Cairo;
+                            <button id="contactButton3" class="btn btn-primary"
+                                style="width:193px;height:50px;font-family: Cairo;
                                 font-size: 22px;
                                 font-weight: 600;
                                 line-height: 30px;
                                 letter-spacing: 0em;
                                 color:#FFFFFF;
                             ">
-                            @lang('file.contact_us')
-                        </button>
+                                @lang('file.contact_us')
+                            </button>
+
+                        </div>
 
                     </div>
-
                 </div>
-            </div>
         @endif
     </section>
 
@@ -1213,7 +1208,8 @@
                                     ">
                                             @lang('file.at_aknana')
                                         </p>
-                                        <div class="d-flex justify-content-end align-items-end" style="margin-top: 2.5rem !important;">
+                                        <div class="d-flex justify-content-end align-items-end"
+                                            style="margin-top: 2.5rem !important;">
                                             <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
                                             <p class="color-DF8317"
                                                 style="font-family: Cairo;
@@ -1334,7 +1330,7 @@
                                     ">
                                     @lang('file.aknana_helps')
                                 </p>
-                                <div class="d-flex justify-content-end align-items-end" >
+                                <div class="d-flex justify-content-end align-items-end">
                                     <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
                                     <p class="color-DF8317"
                                         style="font-family: Cairo;

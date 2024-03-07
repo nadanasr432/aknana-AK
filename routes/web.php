@@ -8,6 +8,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ContactsControllers;
+use App\Http\Controllers\Dashboard\HomeController as DashboardHomeController;
 use App\Http\Controllers\ReservationsController;
 
 
@@ -45,6 +46,13 @@ Route::get('/projects', [ProjectController::class, 'create'])->name('projects.cr
 Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
 Route::get('/download-pdf',[ReservationsController::class, 'downloadPdf'])->name('download.pdf');
 Route::get('/get-max-male-value', [ReservationsController::class, 'getMaxMaleValue'])->name('getMaxMaleValue');
-// routes/web.php
 Route::post('language/switch', [LanguageController::class,'switch'])->name('language.switch');
 
+Route::get('dashboard', [DashboardHomeController::class, 'index'])->name('dashboard');
+
+Route::get('/courses/show', [App\Http\Controllers\Dashboard\CoursesController::class,'index'])->name('dashboard.courses.index');
+Route::get('/courses/Create', [App\Http\Controllers\Dashboard\CoursesController::class,'create'])->name('dashboard.courses.create');
+Route::post('/courses/Store', [App\Http\Controllers\Dashboard\CoursesController::class,'store'])->name('dashboard.courses.store');
+Route::get('/courses/Edit/{id}', [App\Http\Controllers\Dashboard\CoursesController::class, 'edit'])->name('dashboard.courses.edit');
+Route::put('/courses/Update/{id}', [App\Http\Controllers\Dashboard\CoursesController::class, 'update'])->name('dashboard.courses.update');
+Route::delete('/courses/Delete/{id}', [App\Http\Controllers\Dashboard\CoursesController::class, 'destroy'])->name('dashboard.courses.delete');
