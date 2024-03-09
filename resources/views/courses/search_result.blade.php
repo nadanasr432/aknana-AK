@@ -12,7 +12,6 @@
                     <div class="qrcode-image d-flex justify-content-center mb-3" id="qrcodeImage">
                         {!! QrCode::size(200)->generate($course->reservations->first()->get()) !!}
                     </div>
-                    
                     <div id="output" style="display: none;"></div>
                     <a class="btn btn-primary mt-3 mb-3" id="downloadLink" style="display: none;">Download QrCode</a>
                     <div class="d-flex justify-content-center">
