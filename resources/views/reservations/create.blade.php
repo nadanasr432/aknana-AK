@@ -1,15 +1,15 @@
 @extends('layouts.app')
 @section('content')
     <div class="container" style="max-width: 1440px;">
-        <div class="row d-flex justify-content-between">
+        @if (app()->getLocale() == 'ar')
+            <div class="row d-flex justify-content-between">
 
-
-            <div class="col-md-5">
-                <img src="{{ asset('images/about us.svg') }}" class="img-fluid" alt="About Us Image">
-            </div>
-            <div class="col-md-7 align-content-end text-right">
-                <div class="text-right  mt-2"
-                    style="font-family: Cairo;
+                <div class="col-md-5">
+                    <img src="{{ asset('images/Aknana.svg') }}" class="img-fluid" alt="About Us Image">
+                </div>
+                <div class="col-md-7 align-content-end text-left">
+                    <div class="text-left  mt-2"
+                        style="font-family: Cairo;
                         font-size: 25px;
                         font-weight: 667;
                         line-height: 50px;
@@ -17,11 +17,12 @@
                         text-align: center;
                         color:#DF8317;
                     ">
-                    <img src="{{ asset('images/Vector (1).svg') }}">
-                    مساويك أكنانا
-                </div>
-                <div class="text-right  mt-3"
-                    style="font-family: Cairo;
+
+                        @lang('file.Aknana Reservations ')
+                        <img src="{{ asset('images/Vector (1).svg') }}">
+                    </div>
+                    <div class="text-left  mt-3"
+                        style="font-family: Cairo;
                     font-size: 40px;
                     font-weight: 400;
                     line-height: 50px;
@@ -30,8 +31,8 @@
 
                     color:#121743;
                     ">
-                    أكنانا علي اتم الاستعداد <span
-                        style="color: #DF8317;
+                        @lang('file.Aknana is always fully ')<span
+                            style="color: #DF8317;
                         font-family: Cairo;
                         font-size: 40px;
                         font-weight: 600;
@@ -46,10 +47,192 @@
                         letter-spacing: 0em;
                         text-align: center;
                     ">
-                        دائما</span>
+                            @lang('file.prepared')</span>
+                    </div>
+                    <div class="text-left  mt-3 mb-3"
+                        style="font-family: Almarai;
+                    font-size: 25px;
+                    font-weight: 400;
+                    line-height: 50px;
+                    letter-spacing: 0em;
+                    text-align: left;
+                    color:#7B7B7B;
+                    ">
+                        @lang('file.Thank you for contacting us. We will contact you as soon as possible')
+                    </div>
+                    <x-qrcode-modal />
+
+                    <form id="reservationForm" action="{{ route('reservation.store') }}" method="post">
+                        @csrf
+                        <div class="form-row">
+
+
+                            <div class="form-group mb-5 col-md-6 ml-auto text-left">
+                                <input disabled type="text" class="form-control text-left" id="inputDateOfCourse"
+                                    placeholder='@lang('file.Course date')' name="date_of_course"
+                                    style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
+                                padding-left: 31px;">
+                                <img src="{{ asset('images/select-16.svg') }}" alt="Icon"
+                                    style="width: 20px; height: 20px;margin-top: -100px;margin-left: 5px;">
+                            </div>
+
+                            <div class="form-group mb-5 col-md-6 ml-auto text-left">
+                                <select class="form-control text-left custom-arrow-select" id="course_id" name="course_id"
+                                    style="width: 100%; height: 70px; border-radius: 10px; border: 1px #F2F2F2; gap: 98px;
+                    background-color:#F9F9F9; font-family: Cairo; font-size: 18px; font-weight: 400;
+                    line-height: 50px; letter-spacing: 0em; text-align: center; padding-left: 31px;">
+
+                                    <option value="" disabled selected>@lang('file.Select the course') </option>
+
+                                    @foreach ($availableCourses as $course)
+                                        <option value="{{ $course->id }}" data-date="{{ $course->date_of_course }}"
+                                            {{ request('course_id') == $course->id ? 'selected' : '' }}>
+                                            {{ $course->getTranslation('name','en') }}</option>
+                                    @endforeach
+
+                                </select>
+
+
+                                <img src="{{ asset('images/Vector (9).svg') }}" class="pl-2 custom-arrow"
+                                    alt="Custom Arrow">
+                                <img src="{{ asset('images/Vector (7).svg') }}" class="pr-2 custom-arrow"
+                                    alt="Custom Arrow2" style="margin-left: 340px;">
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group mb-5 col-md-6 ml-auto text-left">
+                                <input type="text" id="phone" name="phone" class="form-control text-left"
+                                    id="inputLastName" placeholder='@lang('file.Phone')' pattern="^\+966[0-9]{9}$"
+                                    style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
+                                       padding-left: 31px; "
+                                    required>
+
+                                <img src="{{ asset('images/phone.svg') }}" alt="Icon"
+                                    style="width: 20px; height: 20px;margin-top: -100px;margin-left: 5px;">
+                            </div>
+                            <div class="form-group mb-5 col-md-6 ml-auto text-left">
+                                <input type="text" id="name" name="name" class="form-control text-left"
+                                    id="inputLastName" placeholder='@lang('file.Name')'
+                                    style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
+                                       padding-left: 31px; "
+                                    required>
+
+                                <img src="{{ asset('images/Vector (10).svg') }}" alt="Icon"
+                                    style="width: 20px; height: 20px;margin-top: -100px;margin-left: 5px;">
+                            </div>
+
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group mb-5 col-md-6 ml-auto text-left">
+                                <input type="email" id="email" name="email" class="form-control text-left"
+                                    id="inputLastName" placeholder='@lang('file.E-mail')'
+                                    style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
+                                       padding-left: 31px; ">
+
+                                <img src="{{ asset('images/email.svg') }}" alt="Icon"
+                                    style="width: 20px; height: 20px;margin-top: -100px;margin-left: 5px;">
+                            </div>
+                            <div class="form-group mb-5 col-md-6 ml-auto text-left">
+                                <input type="text" name="entity_name" class="form-control text-left" id="inputLastName"
+                                    placeholder='@lang('file.Entity name')'
+                                    style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
+                                       padding-left: 31px; "
+                                    required>
+
+                                <img src="{{ asset('images/calender (2).svg') }}" alt="Icon"
+                                    style="width: 20px; height: 20px;margin-top: -100px;margin-left: 5px;">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group mb-5 col-md-6 ml-auto text-left">
+                                <select class="form-control text-left custom-arrow-select2" id="gender" name="gender"
+                                    style="width: 100%; height: 70px; border-radius: 10px; border: 1px #F2F2F2; gap: 98px;
+                                background-color:#F9F9F9; font-family: Cairo; font-size: 18px; font-weight: 400;
+                                line-height: 50px; letter-spacing: 0em; text-align: center;padding-left: 31px;">
+                                    <option value="" disabled selected>@lang('file.Gender')</option>
+                                </select>
+
+
+                                <img src="{{ asset('images/gender.svg') }}" class="pr-l custom-arrow" alt="Custom Arrow"
+                                    style="margin-top: -100px; margin-left: 2px;">
+                                <img src="{{ asset('images/Vector (7).svg') }}" class="pr-2 custom-arrow"
+                                    alt="Custom Arrow2" style="margin-left: 340px;">
+                            </div>
+
+
+                            <div class="form-group mb-5 col-md-6 ml-auto text-left">
+                                <input type="text" class="form-control text-left" id="inputLastName"
+                                    placeholder='@lang('file.Job title')' id="job_title" name="job_title"
+                                    style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
+                                       padding-left: 31px; ">
+
+                                <img src="{{ asset('images/icons (2).svg') }}" alt="Icon"
+                                    style="width: 20px; height: 20px;margin-top: -100px;margin-left: 5px;">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block"
+                            style="font-family: Cairo;
+                        font-size: 22px;
+                        font-weight: 400;
+                        line-height: 50px;
+                        letter-spacing: 0em;
+                        text-align: center;
+                        width: 100%; height: 70px; padding: 0 12px 0 0; border-radius: 10px; gap: 13px; color:#FFFFFF">@lang('file.Submit')</button>
+                    </form>
                 </div>
-                <div class="text-right  mt-3 mb-3"
-                    style="font-family: Almarai;
+            </div>
+        @else
+            <div class="row d-flex justify-content-between">
+
+
+                <div class="col-md-5">
+                    <img src="{{ asset('images/Aknana.svg') }}" class="img-fluid" alt="About Us Image">
+                </div>
+                <div class="col-md-7 align-content-end text-right">
+                    <div class="text-right  mt-2"
+                        style="font-family: Cairo;
+                        font-size: 25px;
+                        font-weight: 667;
+                        line-height: 50px;
+                        letter-spacing: 0em;
+                        text-align: center;
+                        color:#DF8317;
+                    ">
+                        <img src="{{ asset('images/Vector (1).svg') }}">
+                        @lang('file.Aknana Reservations ')
+                    </div>
+                    <div class="text-right  mt-3"
+                        style="font-family: Cairo;
+                    font-size: 40px;
+                    font-weight: 400;
+                    line-height: 50px;
+                    letter-spacing: 0em;
+                    text-align: center;
+
+                    color:#121743;
+                    ">
+                        @lang('file.Aknana is always fully ')<span
+                            style="color: #DF8317;
+                        font-family: Cairo;
+                        font-size: 40px;
+                        font-weight: 600;
+                        line-height: 50px;
+                        letter-spacing: 0em;
+                        text-align: center;
+
+                        font-family: Cairo;
+                        font-size: 40px;
+                        font-weight: 400;
+                        line-height: 50px;
+                        letter-spacing: 0em;
+                        text-align: center;
+                    ">
+                            @lang('file.prepared')</span>
+                    </div>
+                    <div class="text-right  mt-3 mb-3"
+                        style="font-family: Almarai;
                     font-size: 25px;
                     font-weight: 400;
                     line-height: 50px;
@@ -57,126 +240,130 @@
                     text-align: right;
                     color:#7B7B7B;
                     ">
-                    شكرا لتواصلكم معانا سيتم التواصل معكم في أقرب وقت
-                </div>
-                <x-qrcode-modal />
+                        @lang('file.Thank you for contacting us. We will contact you as soon as possible')
+                    </div>
+                    <x-qrcode-modal />
 
-                <form id="reservationForm" action="{{ route('reservation.store') }}" method="post">
-                    @csrf
-                    <div class="form-row">
+                    <form id="reservationForm" action="{{ route('reservation.store') }}" method="post">
+                        @csrf
+                        <div class="form-row">
 
 
-                        <div class="form-group mb-5 col-md-6 ml-auto text-right">
-                            <input disabled type="text" class="form-control text-right" id="inputDateOfCourse"
-                                placeholder="موعد الدورة" name="date_of_course"
-                                style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
+                            <div class="form-group mb-5 col-md-6 ml-auto text-right">
+                                <input disabled type="text" class="form-control text-right" id="inputDateOfCourse"
+                                    placeholder='@lang('file.Course date')' name="date_of_course"
+                                    style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
                                 padding-right: 31px;">
-                            <img src="{{ asset('images/select-16.svg') }}" alt="Icon"
-                                style="width: 20px; height: 20px;margin-top: -100px;margin-right: 5px;">
-                        </div>
+                                <img src="{{ asset('images/select-16.svg') }}" alt="Icon"
+                                    style="width: 20px; height: 20px;margin-top: -100px;margin-right: 5px;">
+                            </div>
 
-                        <div class="form-group mb-5 col-md-6 ml-auto text-right">
-                            <select class="form-control text-right custom-arrow-select" id="course_id" name="course_id"
-                                style="width: 100%; height: 70px; border-radius: 10px; border: 1px #F2F2F2; gap: 98px;
+                            <div class="form-group mb-5 col-md-6 ml-auto text-right">
+                                <select class="form-control text-right custom-arrow-select" id="course_id"
+                                    name="course_id"
+                                    style="width: 100%; height: 70px; border-radius: 10px; border: 1px #F2F2F2; gap: 98px;
                     background-color:#F9F9F9; font-family: Cairo; font-size: 18px; font-weight: 400;
                     line-height: 50px; letter-spacing: 0em; text-align: center;">
 
-                                <option value="" disabled selected>اختر الدورة</option>
+                                    <option value="" disabled selected>@lang('file.Select the course') </option>
 
-                                @foreach ($availableCourses as $course)
-                                    <option value="{{ $course->id }}" data-date="{{ $course->date_of_course }}" {{ request('course_id') == $course->id ? 'selected' : '' }}>
-                                        {{ $course->name }}</option>
-                                @endforeach
+                                    @foreach ($availableCourses as $course)
+                                        <option value="{{ $course->id }}" data-date="{{ $course->date_of_course }}"
+                                            {{ request('course_id') == $course->id ? 'selected' : '' }}>
+                                            {{ $course->getTranslation('name','ar') }}</option>
+                                    @endforeach
 
-                            </select>
-                            
-                            <img src="{{ asset('images/Vector (7).svg') }}" class="pr-2 custom-arrow" alt="Custom Arrow2"
-                                style="margin-right: 340px;">
-                            <img src="{{ asset('images/Vector (9).svg') }}" class="pr-2 custom-arrow" alt="Custom Arrow">
+                                </select>
+
+                                <img src="{{ asset('images/Vector (7).svg') }}" class="pr-2 custom-arrow"
+                                    alt="Custom Arrow2" style="margin-right: 340px;">
+                                <img src="{{ asset('images/Vector (9).svg') }}" class="pr-2 custom-arrow"
+                                    alt="Custom Arrow">
+                            </div>
+
                         </div>
-
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group mb-5 col-md-6 ml-auto text-right">
-                            <input type="text" id="phone" name="phone" class="form-control text-right"
-                                id="inputLastName" placeholder="رقم الجوال" pattern="^\+966[0-9]{9}$"
-                                style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
+                        <div class="form-row">
+                            <div class="form-group mb-5 col-md-6 ml-auto text-right">
+                                <input type="text" id="phone" name="phone" class="form-control text-right"
+                                    id="inputLastName" placeholder='@lang('file.Phone')' pattern="^\+966[0-9]{9}$"
+                                    style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
                                        padding-right: 31px; "
-                                required>
+                                    required>
 
-                            <img src="{{ asset('images/phone.svg') }}" alt="Icon"
-                                style="width: 20px; height: 20px;margin-top: -100px;margin-right: 5px;">
-                        </div>
-                        <div class="form-group mb-5 col-md-6 ml-auto text-right">
-                            <input type="text" id="name" name="name" class="form-control text-right"
-                                id="inputLastName" placeholder="الاسم "
-                                style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
+                                <img src="{{ asset('images/phone.svg') }}" alt="Icon"
+                                    style="width: 20px; height: 20px;margin-top: -100px;margin-right: 5px;">
+                            </div>
+                            <div class="form-group mb-5 col-md-6 ml-auto text-right">
+                                <input type="text" id="name" name="name" class="form-control text-right"
+                                    id="inputLastName" placeholder='@lang('file.Name')'
+                                    style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
                                        padding-right: 31px; "
-                                required>
+                                    required>
 
-                            <img src="{{ asset('images/Vector (10).svg') }}" alt="Icon"
-                                style="width: 20px; height: 20px;margin-top: -100px;margin-right: 5px;">
+                                <img src="{{ asset('images/Vector (10).svg') }}" alt="Icon"
+                                    style="width: 20px; height: 20px;margin-top: -100px;margin-right: 5px;">
+                            </div>
+
+
                         </div>
-
-
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group mb-5 col-md-6 ml-auto text-right">
-                            <input type="email" id="email" name="email" class="form-control text-right"
-                                id="inputLastName" placeholder="البريد الالكتروني"
-                                style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
+                        <div class="form-row">
+                            <div class="form-group mb-5 col-md-6 ml-auto text-right">
+                                <input type="email" id="email" name="email" class="form-control text-right"
+                                    id="inputLastName" placeholder='@lang('file.E-mail')'
+                                    style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
                                        padding-right: 31px; ">
 
-                            <img src="{{ asset('images/email.svg') }}" alt="Icon"
-                                style="width: 20px; height: 20px;margin-top: -100px;margin-right: 5px;">
-                        </div>
-                        <div class="form-group mb-5 col-md-6 ml-auto text-right">
-                            <input type="text" name="entity_name" class="form-control text-right" id="inputLastName"
-                                placeholder="اسم الجهة"
-                                style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
+                                <img src="{{ asset('images/email.svg') }}" alt="Icon"
+                                    style="width: 20px; height: 20px;margin-top: -100px;margin-right: 5px;">
+                            </div>
+                            <div class="form-group mb-5 col-md-6 ml-auto text-right">
+                                <input type="text" name="entity_name" class="form-control text-right"
+                                    id="inputLastName" placeholder='@lang('file.Entity name')'
+                                    style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
                                        padding-right: 31px; "
-                                required>
+                                    required>
 
-                            <img src="{{ asset('images/calender (2).svg') }}" alt="Icon"
-                                style="width: 20px; height: 20px;margin-top: -100px;margin-right: 5px;">
+                                <img src="{{ asset('images/calender (2).svg') }}" alt="Icon"
+                                    style="width: 20px; height: 20px;margin-top: -100px;margin-right: 5px;">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group mb-5 col-md-6 ml-auto text-right">
-                            <select class="form-control text-right custom-arrow-select2" id="gender" name="gender"
-                                style="width: 100%; height: 70px; border-radius: 10px; border: 1px #F2F2F2; gap: 98px;
+                        <div class="form-row">
+                            <div class="form-group mb-5 col-md-6 ml-auto text-right">
+                                <select class="form-control text-right custom-arrow-select2" id="gender"
+                                    name="gender"
+                                    style="width: 100%; height: 70px; border-radius: 10px; border: 1px #F2F2F2; gap: 98px;
                                 background-color:#F9F9F9; font-family: Cairo; font-size: 18px; font-weight: 400;
                                 line-height: 50px; letter-spacing: 0em; text-align: center;">
-                                <option value="" disabled selected>النوع</option>
-                            </select>
+                                    <option value="" disabled selected>@lang('file.Gender')</option>
+                                </select>
 
-                            <img src="{{ asset('images/Vector (7).svg') }}" class="pr-2 custom-arrow" alt="Custom Arrow2"
-                                style="margin-right: 365px;">
-                            <img src="{{ asset('images/gender.svg') }}" class="pr-2 custom-arrow" alt="Custom Arrow"
-                                style="margin-top: -140px; margin-left: 2px; margin-right: -5px;">
-                        </div>
+                                <img src="{{ asset('images/Vector (7).svg') }}" class="pr-2 custom-arrow"
+                                    alt="Custom Arrow2" style="margin-right: 365px;">
+                                <img src="{{ asset('images/gender.svg') }}" class="pr-2 custom-arrow" alt="Custom Arrow"
+                                    style="margin-top: -140px; margin-left: 2px; margin-right: -5px;">
+                            </div>
 
 
-                        <div class="form-group mb-5 col-md-6 ml-auto text-right">
-                            <input type="text" class="form-control text-right" id="inputLastName"
-                                placeholder="المسمي الوظيفي" id="job_title" name="job_title"
-                                style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
+                            <div class="form-group mb-5 col-md-6 ml-auto text-right">
+                                <input type="text" class="form-control text-right" id="inputLastName"
+                                    placeholder='@lang('file.Job title')' id="job_title" name="job_title"
+                                    style="background-color: #F9F9F9; height: 70px; border-radius: 10px; border: 1px solid #F2F2F2; gap: 98px;
                                        padding-right: 31px; ">
 
-                            <img src="{{ asset('images/icons (2).svg') }}" alt="Icon"
-                                style="width: 20px; height: 20px;margin-top: -100px;margin-right: 5px;">
+                                <img src="{{ asset('images/icons (2).svg') }}" alt="Icon"
+                                    style="width: 20px; height: 20px;margin-top: -100px;margin-right: 5px;">
+                            </div>
                         </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block"
-                        style="font-family: Cairo;
+                        <button type="submit" class="btn btn-primary btn-block"
+                            style="font-family: Cairo;
                         font-size: 22px;
                         font-weight: 400;
                         line-height: 50px;
                         letter-spacing: 0em;
                         text-align: center;
-                        width: 100%; height: 70px; padding: 0 12px 0 0; border-radius: 10px; gap: 13px; color:#FFFFFF">ارسال</button>
-                </form>
-                {{-- <script>
+                        width: 100%; height: 70px; padding: 0 12px 0 0; border-radius: 10px; gap: 13px; color:#FFFFFF">@lang('file.Submit')</button>
+                    </form>
+                    {{-- <script>
                     $(document).ready(function() {
                         // Check if there is a success message and QR code data
                         @if (session('success') && session('qrCodeData'))
@@ -189,8 +376,9 @@
                 </script> --}}
 
 
+                </div>
             </div>
-        </div>
+        @endif
     </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 @endsection

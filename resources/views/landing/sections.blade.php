@@ -12,7 +12,7 @@
                 line-height: 50px;
                 letter-spacing: 0em;
                 text-align: center;">
-                    نقدم لكم العديد من
+                    @lang('file.offer_many_services')
                 <p class="center service_text3 "
                     style="color: #DF8317;
                     font-size: 35px;
@@ -21,7 +21,7 @@
                     text-align: center;
                         ">
                     <img src="{{ asset('images/Vector (1).svg') }}">
-                    خدماتنا
+                    @lang('file.our_services')
                 </p>
                 </p>
                 <p id="textd" class=" service_text1"
@@ -33,45 +33,84 @@
                     
                     color:#7B7B7B;
                     ">
-                    شركة أكنانا متخصصة في حضانات الاعمال في المملكة </p>
+                    @lang('file.aknana_specialized_in_business_incubators')</p>
             </div>
         </div>
+        @if (app()->getLocale() == 'ar')
+            <div class="he row d-flex justify-content-between">
+                @foreach ($services as $key => $service)
+                    <div class="col-md-2 mb-5">
+                        <div class="d-flex justify-content-center align-items-center mt-5 mb-5">
+                            <img src="{{ asset('images/frameserv.svg') }}" alt=""
+                                style="width: 195px; height: 195px; position: absolute;">
+                            <img src="{{ asset('storage/' . $service->media()->first()->file_path) }}" alt="Service Image"
+                                style="width: 183px; height: 183px; border-radius: 50%; z-index: 1;">
+                        </div>
 
-        <div class="he row d-flex justify-content-between">
-            @foreach ($services as $key => $service)
-                <div class="col-md-2 mb-5">
-                    <div class="d-flex justify-content-center align-items-center mb-5">
-                        <img src="{{ asset('storage/app/public/' . $service->media()->first()->file_path) }}">
-                    </div>
-                    <p
-                        style="font-family: Cairo; font-size: 24px; font-weight: 600; line-height: 36px; letter-spacing: -0.01em; text-align: center; color: #141414;">
-                        {{ $service->title }}
-                    </p>
-                    <div class="description-container">
-                        <p class="short-description"
-                            style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
-
-                            <a class="ml-0 mr-0 text-muted read-more-button">
-                                {{ \Illuminate\Support\Str::words($service->description, 8, '...') }}</a>
-
+                        <p
+                            style="font-family: Cairo; font-size: 23px; font-weight: 600; line-height: 36px; letter-spacing: -0.01em; text-align: center; color: #141414;">
+                            {{ $service->getTranslation('title', 'en') }}
                         </p>
-                        <p class="full-description"
-                            style="display: none; font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
-                            {{ $service->description }}
+                        <div class="description-container">
+                            <p class="short-description"
+                                style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                <a class="ml-0 mr-0 text-muted read-more-button">
+                                    {{ \Illuminate\Support\Str::words($service->getTranslation('description', 'en'), 8, '...') }}</a>
+                            </p>
+                            <p class="full-description"
+                                style="display: none; font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                {{ $service->getTranslation('description', 'en') }}
+                            </p>
+                            <a class=" show-less-button" style="display: none;color:#121743"> @lang('file.show_less') </a>
+                        </div>
+                    </div>
+
+                    @if ($key < count($services) - 1)
+                        <div class="col-md-1  d-flex justify-content-center " style="margin-bottom: 150px">
+                            <img src="{{ asset('images/Vector f.svg') }}">
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        @else
+            <div class="he row d-flex justify-content-between">
+                @foreach ($services as $key => $service)
+                    <div class="col-md-2 mb-5">
+                        <div class="d-flex justify-content-center align-items-center mt-5 mb-5">
+                            <img src="{{ asset('images/frameserv.svg') }}" alt=""
+                                style="width: 195px; height: 195px; position: absolute;">
+                            <img src="{{ asset('storage/' . $service->media()->first()->file_path) }}" alt="Service Image"
+                                style="width: 183px; height: 183px; border-radius: 50%; z-index: 1;">
+                        </div>
+
+                        <p
+                            style="font-family: Cairo; font-size: 24px; font-weight: 600; line-height: 36px; letter-spacing: -0.01em; text-align: center; color: #141414;">
+                            {{ $service->getTranslation('title', 'ar') }}
                         </p>
+                        <div class="description-container">
+                            <p class="short-description"
+                                style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                <a class="ml-0 mr-0 text-muted read-more-button">
+                                    {{ \Illuminate\Support\Str::words($service->getTranslation('description', 'ar'), 8, '...') }}</a>
+                            </p>
+                            <p class="full-description"
+                                style="display: none; font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                {{ $service->getTranslation('description', 'ar') }}
+                            </p>
 
-                        <a class=" show-less-button" style="display: none;color:#121743"> ..عرض القليل</a>
+
+                            <a class=" show-less-button" style="display: none;color:#121743"> @lang('file.show_less') </a>
+                        </div>
                     </div>
-                </div>
 
-                @if ($key < count($services) - 1)
-                    <div class="col-md-1  d-flex justify-content-center " style="margin-bottom: 150px">
-                        <img src="{{ asset('images/Vector f.svg') }}">
-                    </div>
-                @endif
-            @endforeach
-        </div>
-
+                    @if ($key < count($services) - 1)
+                        <div class="col-md-1  d-flex justify-content-center " style="margin-bottom: 150px">
+                            <img src="{{ asset('images/Vector f.svg') }}">
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        @endif
     </section>
 
     <script>
@@ -103,46 +142,45 @@
 
     <section id="US" class="US container text-center "
         style="max-width: 1400px;margin-top: 10rem !important;margin-bottom: 10rem !important; ">
-
-        <div class="row d-flex justify-content-between mb-5 custom-row-style">
-            <div class="col-md-6 d-flex justify-content-start">
-                <img src="{{ asset('images/about us.svg') }}" class="custom-image-style">
-            </div>
-            <div class="col-md-6 ">
-                <p class="center mb-3 custom-text-style "
-                    style="font-family: Cairo;
+        @if (app()->getLocale() == 'ar')
+            <div class="row d-flex justify-content-between mb-5 custom-row-style">
+                <div class="col-md-6 d-flex justify-content-start">
+                    <img src="{{ asset('images/Aknana.svg') }}" class="custom-image-style">
+                </div>
+                <div class="col-md-6 ">
+                    <p class="center mb-3 custom-text-style "
+                        style="font-family: Cairo;
                         font-size: 40px;
                         font-weight: 667;
                         line-height: 75px;
                         letter-spacing: -0.01em;
-                        text-align: right;">
-                    <img src="{{ asset('images/Vector (1).svg') }}">
-                    ما هي شركة <span class="custom-text-style"
-                        style="color: #DF8317;
+                        text-align: left;
+                        color:#121743">
+                        <img src="{{ asset('images/Vector (1).svg') }}">
+                        @lang('file.what_is')<span class="custom-text-style"
+                            style="color: #DF8317;
                         font-size: 40px;
                         font-weight: 667;
                         line-height: 75px;
                         letter-spacing: -0.01em;
-                        text-align: center;
-                    ">أكنانا!؟</span>
-                </p>
-                </p>
-                <p class="custom-text_2"
-                    style="font-family: Cairo;
+                        text-align: left;
+                    ">
+                            @lang('file.Aknana!?') </span>
+                    </p>
+                    </p>
+                    <p class="custom-text_2"
+                        style="font-family: Cairo;
                 font-size: 22px;
                 font-weight: 400;
                 line-height: 48px;
                 letter-spacing: 0em;
-                text-align: right;
+                text-align: left;
                 ">
-                    أكنانا لحاضنات ومسرعات األعمال شركة سعودية متخصصة في تقديم الخدمات التكاملية المتطورة لمنظومةقطاع
-                    التجزئة االلكترونية والمشاريع الناشئة ومتناهية الصغر والصغيرة وأتمتة االعمال ، تستند على خبرةتراكمية
-                    ألكثر من 15 عام في مجال تطوير المشاريع ، ومن خالل حزمة المشاريع والنظم التي قامت أكنانابتطويرها وتنفيذها
-                    .وعلى ايدي شباب وشابات في مجاالت مختلفة</p>
-                <div class="d-flex justify-content-end align-items-between mt-5 ">
-                    <a id="contactButton4" href="" class="d-flex align-items-center pr-4">
-                        <p class="pr-2"
-                            style="font-family: Cairo;
+                        @lang('file.about_aknana')</p>
+                    <div class="d-flex justify-content-end align-items-between mt-5 ">
+                        <a id="contactButton4" href="" class="d-flex align-items-center pl-4">
+                            <p class="pr-2"
+                                style="font-family: Cairo;
                         font-size: 25px;
                         font-weight: 600;
                         line-height: 30px;
@@ -150,64 +188,132 @@
                         color:#DF8317;
                         margin: 0;
                         ">
-                            نبذة عنا</p>
-                        <img src="{{ asset('images/video.svg') }}" style="margin-right: 10px;">
-                    </a>
-                    <button id="contactButton3" class="btn btn-primary"
-                        style="width:193px;height:50px;font-family: Cairo;
+                                @lang('file.about_us')</p>
+                            <img src="{{ asset('images/video.svg') }}" style="margin-right: 10px;">
+                        </a>
+                        <button id="contactButton3" class="btn btn-primary"
+                            style="width:193px;height:50px;font-family: Cairo;
                                 font-size: 22px;
                                 font-weight: 600;
                                 line-height: 30px;
                                 letter-spacing: 0em;
                                 color:#FFFFFF;
                             ">
-                        تواصل معنا
-                    </button>
+                            @lang('file.contact_us')
+                        </button>
+
+                    </div>
 
                 </div>
-
             </div>
-        </div>
-    </section>
-
-    <section class="2030 container" style="max-width: 1400px;margin-bottom: 10rem !important; " id="2030">
-        <div class="row d-flex justify-content-between mb-5">
-
-            <div class="col-md-5  fade-in ">
-                <p class="center " id="text1"
-                    style="font-family: Cairo;
+        @else
+            <div class="row d-flex justify-content-between mb-5 custom-row-style">
+                <div class="col-md-6 d-flex justify-content-start">
+                    <img src="{{ asset('images/Aknana.svg') }}" class="custom-image-style">
+                </div>
+                <div class="col-md-6 ">
+                    <p class="center mb-3 custom-text-style "
+                        style="font-family: Cairo;
                         font-size: 40px;
                         font-weight: 667;
                         line-height: 75px;
                         letter-spacing: -0.01em;
-                        text-align: right;">
-                    <img src="{{ asset('images/Vector (1).svg') }}">
-                    كيف نساعد في<span id="tex_2"
-                        style="color: #DF8317;
+                        text-align: right;
+                        color:#121743">
+                        <img src="{{ asset('images/Vector (1).svg') }}">
+                        @lang('file.what_is')<span class="custom-text-style"
+                            style="color: #DF8317;
                         font-size: 40px;
                         font-weight: 667;
                         line-height: 75px;
                         letter-spacing: -0.01em;
                         text-align: center;
                     ">
-                        رؤية 2030 </span>
-                </p>
-                <p
-                    style="font-family: Cairo;
+                            @lang('file.Aknana!?') </span>
+                    </p>
+
+                    <p class="custom-text_2"
+                        style="font-family: Cairo;
+                font-size: 22px;
+                font-weight: 400;
+                line-height: 48px;
+                letter-spacing: 0em;
+                text-align: right;
+                ">
+                        @lang('file.about_aknana')</p>
+                    <div class="d-flex justify-content-end align-items-between mt-5 ">
+                        <a id="contactButton4" href="" class="d-flex align-items-center pr-4">
+                            <p class="pr-2"
+                                style="font-family: Cairo;
+                        font-size: 25px;
+                        font-weight: 600;
+                        line-height: 30px;
+                        letter-spacing: 0em;
+                        color:#DF8317;
+                        margin: 0;
+                        ">
+                                @lang('file.about_us') </p>
+                            <img src="{{ asset('images/video.svg') }}" style="margin-right: 10px;">
+                        </a>
+                        <button id="contactButton3" class="btn btn-primary"
+                            style="width:193px;height:50px;font-family: Cairo;
+                                font-size: 22px;
+                                font-weight: 600;
+                                line-height: 30px;
+                                letter-spacing: 0em;
+                                color:#FFFFFF;
+                            ">
+                            @lang('file.contact_us')
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+        @endif
+    </section>
+
+    <section class="2030 container" style="max-width: 1400px;margin-bottom: 10rem !important; " id="2030">
+        @if (app()->getLocale() == 'ar')
+            <div class="row d-flex justify-content-between mb-5">
+
+                <div class="col-md-5 fade-in ">
+                    <p class="center" id="hepltext2"
+                        style="font-family: Cairo;
+                        color:#121743;
+                        font-size: 35px;
+                        font-weight: 667;
+                        line-height: 75px;
+                        letter-spacing: -0.01em;
+                        text-align: left;
+                        ">
+                        <img src="{{ asset('images/Vector (1).svg') }}">
+                        @lang('file.how_we_help')<span id="tex_22"
+                            style="color: #DF8317;
+                        font-size: 35px;
+                        font-weight: 667;
+                        line-height: 75px;
+                        letter-spacing: -0.01em;
+                        text-align: left;
+                    ">
+                            @lang('file.Achieve Vision 2030')</span>
+                    </p>
+                    <p
+                        style="font-family: Cairo;
                     font-size: 22px;
                     font-weight: 400;
                     line-height: 48px;
                     letter-spacing: 0em;
-                    text-align: right;
+                    text-align: left;
                     ">
-                    تعمل شركة أكنانا علي تحقيق أفضل رؤية للمملكة العربية السعودية في 2030 طبقا لمعايير مميزة....
-                </p>
-                <div class="row d-flex justify-content-between align-items-between mt-4 ">
-                    <div class="col-md-5 ">
+                        @lang('file.vision_2030_description')
+                    </p>
+                    <div class="row d-flex justify-content-between align-items-between mt-4 ">
+                        <div class="col-md-6 ">
 
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div
+                                    style="font-family: Cairo;
                             font-size: 18px;
                             font-weight: 600;
                             line-height: 30px;
@@ -215,12 +321,12 @@
                             text-align: left;
                             color: #121743;
                         ">
-                                المحتوى المحلّي</div>
-                            <img src="{{ asset('images/mark.svg') }}">
-                        </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
+                                    @lang('file.local_content')</div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div
+                                    style="font-family: Cairo;
                             font-size: 18px;
                             font-weight: 600;
                             line-height: 30px;
@@ -228,12 +334,12 @@
                             text-align: left;
                             color: #121743;
                         ">
-                                تعزيز الهوية الوطنية</div>
-                            <img src="{{ asset('images/mark.svg') }}">
-                        </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
+                                    @lang('file.national_identity_enhancement')</div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div
+                                    style="font-family: Cairo;
                             font-size: 18px;
                             font-weight: 600;
                             line-height: 30px;
@@ -241,12 +347,12 @@
                             text-align: left;
                             color: #121743;
                         ">
-                                الثقافة والترفيه</div>
-                            <img src="{{ asset('images/mark.svg') }}">
-                        </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
+                                    @lang('file.culture_and_entertainment')</div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div
+                                    style="font-family: Cairo;
                             font-size: 18px;
                             font-weight: 600;
                             line-height: 30px;
@@ -254,12 +360,12 @@
                             text-align: left;
                             color: #121743;
                         ">
-                                تمكين المرأة</div>
-                            <img src="{{ asset('images/mark.svg') }}">
-                        </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
+                                    @lang('file.women_empowerment') </div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div
+                                    style="font-family: Cairo;
                             font-size: 18px;
                             font-weight: 600;
                             line-height: 30px;
@@ -267,17 +373,17 @@
                             text-align: left;
                             color: #121743;
                         ">
-                                زيادة فرص العمل</div>
-                            <img src="{{ asset('images/mark.svg') }}">
+                                    @lang('file.job_opportunities_increase')</div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+
                         </div>
 
-                    </div>
+                        <div class="col-md-6 ">
 
-                    <div class="col-md-5 ">
-
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div
+                                    style="font-family: Cairo;
                             font-size: 18px;
                             font-weight: 600;
                             line-height: 30px;
@@ -285,12 +391,12 @@
                             text-align: left;
                             color: #121743;
                         ">
-                                التحوّل الرقمي</div>
-                            <img src="{{ asset('images/mark.svg') }}">
-                        </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
+                                    @lang('file.digital_transformation')</div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div
+                                    style="font-family: Cairo;
                             font-size: 18px;
                             font-weight: 600;
                             line-height: 30px;
@@ -298,12 +404,12 @@
                             text-align: left;
                             color: #121743;
                         ">
-                                تنويع الموارد</div>
-                            <img src="{{ asset('images/mark.svg') }}">
-                        </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
+                                    @lang('file.resource_diversification')</div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div
+                                    style="font-family: Cairo;
                             font-size: 18px;
                             font-weight: 600;
                             line-height: 30px;
@@ -311,12 +417,12 @@
                             text-align: left;
                             color: #121743;
                         ">
-                                الادخار والاستثمار</div>
-                            <img src="{{ asset('images/mark.svg') }}">
-                        </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
+                                    @lang('file.savings_and_investment')</div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div
+                                    style="font-family: Cairo;
                             font-size: 18px;
                             font-weight: 600;
                             line-height: 30px;
@@ -324,12 +430,12 @@
                             text-align: left;
                             color: #121743;
                         ">
-                                الاثر الاجتماعي</div>
-                            <img src="{{ asset('images/mark.svg') }}">
-                        </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
+                                    @lang('file.social_impact')</div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div
+                                    style="font-family: Cairo;
                             font-size: 18px;
                             font-weight: 600;
                             line-height: 30px;
@@ -337,30 +443,223 @@
                             text-align: left;
                             color: #121743;
                         ">
-                                التنافسية العالمية</div>
-                            <img src="{{ asset('images/mark.svg') }}">
-                        </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <button id="ServButton" class="btn btn-primary"
-                                style="width:220px;height:50px;font-family: Cairo;
+                                    @lang('file.global_competitiveness')</div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <button id="ServButton" class="btn btn-primary"
+                                    style="width:220px;height:50px;font-family: Cairo;
                         font-size: 22px;
                         font-weight: 600;
                         line-height: 30px;
                         letter-spacing: 0em;
                         color:#FFFFFF;
                         ">
-                                أنضم الان
-                            </button>
+                                    @lang('file.join_now')
+                                </button>
+                            </div>
                         </div>
+
                     </div>
 
                 </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <img src="{{ asset('images/GroupUs.svg') }}" class="custom-image-style">
+                </div>
+            </div>
+        @else
+            <div class="row d-flex justify-content-between mb-5">
 
+                <div class="col-md-5  fade-in ">
+                    <p class="center " id="hepltext"
+                        style="font-family: Cairo;
+                        font-size: 40px;
+                        font-weight: 667;
+                        line-height: 75px;
+                        letter-spacing: -0.01em;
+                        text-align: right;
+                        color:#121743">
+                        <img src="{{ asset('images/Vector (1).svg') }}">
+                        @lang('file.how_we_help')<span id="tex_2"
+                            style="color: #DF8317;
+                        font-size: 40px;
+                        font-weight: 667;
+                        line-height: 75px;
+                        letter-spacing: -0.01em;
+                        text-align: center;
+                    ">
+                            @lang('file.Achieve Vision 2030')</span>
+                    </p>
+                    <p
+                        style="font-family: Cairo;
+                    font-size: 22px;
+                    font-weight: 400;
+                    line-height: 48px;
+                    letter-spacing: 0em;
+                    text-align: right;
+                    ">
+                        @lang('file.vision_2030_description')
+                    </p>
+                    <div class="row d-flex justify-content-between align-items-between mt-4 ">
+                        <div class="col-md-5 ">
+
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div class="pr-2"
+                                    style="font-family: Cairo;
+                            font-size: 18px;
+                            font-weight: 600;
+                            line-height: 30px;
+                            letter-spacing: 0em;
+                            text-align: left;
+                            color: #121743;
+                        ">
+                                    @lang('file.local_content')</div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div class="pr-2"
+                                    style="font-family: Cairo;
+                            font-size: 18px;
+                            font-weight: 600;
+                            line-height: 30px;
+                            letter-spacing: 0em;
+                            text-align: left;
+                            color: #121743;
+                        ">
+                                    @lang('file.national_identity_enhancement')</div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div class="pr-2"
+                                    style="font-family: Cairo;
+                            font-size: 18px;
+                            font-weight: 600;
+                            line-height: 30px;
+                            letter-spacing: 0em;
+                            text-align: left;
+                            color: #121743;
+                        ">
+                                    @lang('file.culture_and_entertainment')</div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div class="pr-2"
+                                    style="font-family: Cairo;
+                            font-size: 18px;
+                            font-weight: 600;
+                            line-height: 30px;
+                            letter-spacing: 0em;
+                            text-align: left;
+                            color: #121743;
+                        ">
+                                    @lang('file.women_empowerment') </div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div class="pr-2"
+                                    style="font-family: Cairo;
+                            font-size: 18px;
+                            font-weight: 600;
+                            line-height: 30px;
+                            letter-spacing: 0em;
+                            text-align: left;
+                            color: #121743;
+                        ">
+                                    @lang('file.job_opportunities_increase')</div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-5 ">
+
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div class="pr-2"
+                                    style="font-family: Cairo;
+                            font-size: 18px;
+                            font-weight: 600;
+                            line-height: 30px;
+                            letter-spacing: 0em;
+                            text-align: left;
+                            color: #121743;
+                        ">
+                                    @lang('file.digital_transformation')</div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div class="pr-2"
+                                    style="font-family: Cairo;
+                            font-size: 18px;
+                            font-weight: 600;
+                            line-height: 30px;
+                            letter-spacing: 0em;
+                            text-align: left;
+                            color: #121743;
+                        ">
+                                    @lang('file.resource_diversification')</div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div class="pr-2"
+                                    style="font-family: Cairo;
+                            font-size: 18px;
+                            font-weight: 600;
+                            line-height: 30px;
+                            letter-spacing: 0em;
+                            text-align: left;
+                            color: #121743;
+                        ">
+                                    @lang('file.savings_and_investment')</div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div class="pr-2"
+                                    style="font-family: Cairo;
+                            font-size: 18px;
+                            font-weight: 600;
+                            line-height: 30px;
+                            letter-spacing: 0em;
+                            text-align: left;
+                            color: #121743;
+                        ">
+                                    @lang('file.social_impact')</div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <div class="pr-2"
+                                    style="font-family: Cairo;
+                            font-size: 18px;
+                            font-weight: 600;
+                            line-height: 30px;
+                            letter-spacing: 0em;
+                            text-align: left;
+                            color: #121743;
+                        ">
+                                    @lang('file.global_competitiveness')</div>
+                                <img src="{{ asset('images/mark.svg') }}">
+                            </div>
+                            <div class="d-flex justify-content-end text-center mb-4">
+                                <button id="ServButton" class="btn btn-primary"
+                                    style="width:220px;height:50px;font-family: Cairo;
+                        font-size: 22px;
+                        font-weight: 600;
+                        line-height: 30px;
+                        letter-spacing: 0em;
+                        color:#FFFFFF;
+                        ">
+                                    @lang('file.join_now')
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <img src="{{ asset('images/2030.svg') }}" class="custom-image-style">
+                </div>
             </div>
-            <div class="col-md-6 d-flex justify-content-end">
-                <img src="{{ asset('images/2030.svg') }}" class="custom-image-style">
-            </div>
-        </div>
+        @endif
     </section>
     <section class="the_range container d-flex justify-content-center "
         style="background-color: #121743;max-width: 100%;height:155px" id="range">
@@ -372,7 +671,7 @@
                 </div>
                 <div
                     style="font-family: Cairo; font-size: 18px; font-weight: 400; line-height: 32px; letter-spacing: 0em; text-align: center; color: #F4F0F0;">
-                    عدد الزيارات</div>
+                    @lang('file.visits_count')</div>
             </div>
             <div class="col-md-3">
                 <div class="mt-5 counter2"
@@ -380,7 +679,7 @@
                 </div>
                 <div
                     style="font-family: Cairo; font-size: 18px; font-weight: 400; line-height: 32px; letter-spacing: 0em; text-align: center; color: #F4F0F0;">
-                    عدد الموظفين</div>
+                    @lang('file.employees_count') </div>
             </div>
             <div class="col-md-3">
                 <div class="mt-5 counter3"
@@ -388,7 +687,7 @@
                 </div>
                 <div
                     style="font-family: Cairo; font-size: 18px; font-weight: 400; line-height: 32px; letter-spacing: 0em; text-align: center; color: #F4F0F0;">
-                    عدد المشاريع</div>
+                    @lang('file.projects_count') </div>
             </div>
             <div class="col-md-3">
                 <div class="mt-5 counter4"
@@ -396,7 +695,7 @@
                 </div>
                 <div
                     style="font-family: Cairo; font-size: 18px; font-weight: 400; line-height: 32px; letter-spacing: 0em; text-align: center; color: #F4F0F0;">
-                    عدد الشركات</div>
+                    @lang('file.companies_count') </div>
             </div>
         </div>
 
@@ -404,16 +703,13 @@
         </div>
     </section>
     <section class="features container text-center " id="features" style="  margin-bottom: 100px;margin-top: 100px">
+        @if (app()->getLocale() == 'ar')
+            <div class="row justify-content-between mt-10 mb-7">
 
-        <div class="row justify-content-center mt-10 mb-7">
+                <div class="col-md-6 animate-fade-up">
 
-            <div class="col-md-6 d-flex justify-content-end animate-fade-up">
-
-                <div class="row mt-4">
-                    <div class="col-md-12 ">
-                        <div class="d-flex justify-content-between  " style="margin-bottom: 1.8rem !important;">
-                            <!-- Card 4 -->
-                            <!-- Card 3 -->
+                    <div class="row mt-4 mb-4">
+                        <div class="col-md-6">
                             <div class="card"
                                 style="width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
                                 <div class="card-body text-right">
@@ -430,7 +726,7 @@
 
                                     color:#121743;
                                     ">
-                                        التوجيه و الارشاد</p>
+                                        @lang('file.Guidance and guidance')</p>
                                     <p class="mt-3 "
                                         style="font-family: Cairo;
                                     font-size: 14px;
@@ -440,12 +736,11 @@
                                     text-align: right;
                                     color:#121743;
                                     ">
-                                        نعمل في أكنانا على فهم عميق لاحتياجات كل شركة وتحدياتها نقدم حلولًا مخصصة تساعدها
-                                        على
-                                        تحقيق أهدافها بنجاح.
+                                        @lang('file.at_aknana')
                                     </p>
-                                    <div class="d-flex justify-content-end align-items-end">
-                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                    <div class="d-flex justify-content-end align-items-end"
+                                        style="margin-top: 2.5rem !important;">
+
                                         <p class="color-DF8317"
                                             style="font-family: Cairo;
                                         font-size: 14px;
@@ -456,10 +751,13 @@
                                         color:#DF8317;
                                         margin-bottom: 0;
                                     ">
-                                            معرفة المزيد</p>
+                                            @lang('file.know_more')</p>
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="card "
                                 style="margin-left: 30px; width:100%; border-radius: 20px; background: #121743;">
 
@@ -476,7 +774,7 @@
                                     letter-spacing: 0em;
                                     text-align: right;
                                     ">
-                                        الادارة المساندة</p>
+                                        @lang('file.Supportive administration') </p>
                                     <p class="mt-3 text-white"
                                         style="font-family: Cairo;
                                     font-size: 14px;
@@ -485,11 +783,10 @@
                                     letter-spacing: 0em;
                                     text-align: right;
                                     ">
-                                        أكنانا تساعد في تعزيز الإرادة المساندة عبر تقديم الدعم والتوجيه للأفراد والشركات،حتي
-                                        يحققوا أهدافهم وتجاوز التحديات بثقة
+                                        @lang('file.aknana_helps')
                                     </p>
                                     <div class="d-flex justify-content-end align-items-end">
-                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+
                                         <p class="color-DF8317"
                                             style="font-family: Cairo;
                                         font-size: 14px;
@@ -500,14 +797,18 @@
                                         color:#DF8317;
                                         margin-bottom: 0;
                                     ">
-                                            معرفة المزيد</p>
+                                            @lang('file.know_more') </p>
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
                                     </div>
 
                                 </div>
                             </div>
-
                         </div>
-                        <div class="d-flex justify-content-between">
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
                             <div class="card" style="width:100%; border-radius: 20px; background: #121743;">
 
                                 <div class="card-body text-right">
@@ -523,7 +824,7 @@
                                     letter-spacing: 0em;
                                     text-align: right;
                                     ">
-                                        الادارة المساندة</p>
+                                        @lang('file.Guidance and guidance') </p>
                                     <p class="mt-3 text-white"
                                         style="font-family: Cairo;
                                     font-size: 14px;
@@ -532,11 +833,10 @@
                                     letter-spacing: 0em;
                                     text-align: right;
                                     ">
-                                        أكنانا تساعد في تعزيز الإرادة المساندة عبر تقديم الدعم والتوجيه للأفراد والشركات،حتي
-                                        يحققوا أهدافهم وتجاوز التحديات بثقة
+                                        @lang('file.aknana_helps')
                                     </p>
                                     <div class="d-flex justify-content-end align-items-end">
-                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+
                                         <p class="color-DF8317"
                                             style="font-family: Cairo;
                                         font-size: 14px;
@@ -547,11 +847,14 @@
                                         color:#DF8317;
                                         margin-bottom: 0;
                                     ">
-                                            معرفة المزيد</p>
+                                            @lang('file.know_more')</p>
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
                                     </div>
 
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-6">
                             <!-- Card 3 -->
                             <div class="card"
                                 style="margin-left: 30px; width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
@@ -569,7 +872,7 @@
 
                                     color:#121743;
                                     ">
-                                        التوجيه و الارشاد</p>
+                                        @lang('file.Supportive administration')</p>
                                     <p class="mt-3 "
                                         style="font-family: Cairo;
                                     font-size: 14px;
@@ -579,12 +882,11 @@
                                     text-align: right;
                                     color:#121743;
                                     ">
-                                        نعمل في أكنانا على فهم عميق لاحتياجات كل شركة وتحدياتها نقدم حلولًا مخصصة تساعدها
-                                        على
-                                        تحقيق أهدافها بنجاح.
+                                        @lang('file.at_aknana')
                                     </p>
-                                    <div class="d-flex justify-content-end align-items-end">
-                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                    <div class="d-flex justify-content-end align-items-end"
+                                        style="margin-top: 2.5rem !important;">
+
                                         <p class="color-DF8317"
                                             style="font-family: Cairo;
                                         font-size: 14px;
@@ -595,7 +897,176 @@
                                         color:#DF8317;
                                         margin-bottom: 0;
                                     ">
-                                            معرفة المزيد</p>
+                                            @lang('file.know_more')</p>
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 animate-fade-in">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card"
+                                style="margin-top:25px;width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                <div class="card-body text-right">
+                                    <div>
+                                        <img src="{{ asset('images/ligth icon.svg') }}" alt="Icon Image">
+                                    </div>
+                                    <p class="mt-3 "
+                                        style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+
+                                    color:#121743;
+                                    ">
+                                        @lang('file.Guidance and guidance')</p>
+                                    <p class="mt-3 "
+                                        style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    color:#121743;
+                                    ">
+                                        @lang('file.at_aknana')
+                                    </p>
+                                    <div class="d-flex justify-content-end align-items-end"
+                                        style="margin-top: 2.5rem !important;">
+
+                                        <p class="color-DF8317"
+                                            style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                            @lang('file.know_more')</p>
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="center pr-0 text-left" style="margin-top: 25px ">
+                                <img src="{{ asset('images/Vector (1).svg') }}">
+                                <span
+                                    style="font-family: Cairo;color: #091157; font-size: 16px; font-weight: 667; line-height: 45px; letter-spacing: -0.01em; text-align: end;">
+                                    @lang('file.Why choose Aknana over')
+                                    <span class="responsive-text1"
+                                        style="color: #DF8317; font-weight: 760">@lang('file.others?')</span>
+                                </span>
+                            </div>
+
+                            <div class="center pr-0 text-left mt-2 mb-5 text-left">
+                                <div class="responsive-text text-left" style="font-size: 14px">
+                                    @lang('file.work_aknana')
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6">
+                            <div class="card"
+                                style=" margin-top:25px;width:100%; border-radius: 20px; background: #121743;">
+
+                                <div class="card-body text-right">
+                                    <div>
+                                        <img src="{{ asset('images/dark icon.svg') }}" alt="Icon Image">
+                                    </div>
+
+                                    <p class="mt-3 text-white"
+                                        style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    ">
+                                        @lang('file.Supportive administration')</p>
+                                    <p class="mt-3 text-white"
+                                        style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    ">
+                                        @lang('file.aknana_helps')
+                                    </p>
+                                    <div class="d-flex justify-content-end align-items-end">
+
+                                        <p class="color-DF8317"
+                                            style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                            @lang('file.know_more')</p>
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card"
+                                style="margin-top:25px;width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                <div class="card-body text-right">
+                                    <div>
+                                        <img src="{{ asset('images/ligth icon.svg') }}" alt="Icon Image">
+                                    </div>
+                                    <p class="mt-3 "
+                                        style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+
+                                    color:#121743;
+                                    ">
+                                        @lang('file.Guidance and guidance')</p>
+                                    <p class="mt-3 "
+                                        style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    color:#121743;
+                                    ">
+                                        @lang('file.at_aknana')
+                                    </p>
+                                    <div class="d-flex justify-content-end align-items-end "
+                                        style="margin-top: 2.5rem !important;">
+
+                                        <p class="color-DF8317 "
+                                            style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                            @lang('file.know_more')</p>
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
                                     </div>
                                 </div>
                             </div>
@@ -605,82 +1076,24 @@
                 </div>
 
             </div>
+        @else
+            <div class="row justify-content-center mt-10 mb-7">
 
-            <div class="col-md-6 animate-fade-in">
+                <div class="col-md-6 d-flex justify-content-end animate-fade-up">
 
-                <div class="center pr-0 text-right" style="margin-top: 30px ">
-                    <img src="{{ asset('images/Vector (1).svg') }}">
-                    <span
-                        style="font-family: Cairo;color: #091157; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: end;">
-                        لماذا تختار أكنانا عن
-                        <span class="responsive-text1" style="color: #DF8317;">غيرها</span>
-                    </span>
-                </div>
-
-                <div class="mt-2 mb-5 text-right">
-                    <div class="responsive-text">تعمل شركة أكنانا لريادة الاعمال على توسيع نطاق العمل</div>
-                    <div class="responsive-text">الخاص بها على أكمل وجه كما تأكد من أن نطاق العمل</div>
-                    <div class="responsive-text">
-                        يتماشى مع الموارد والجدول الزمني والميزانية المتاحة
-                        <div class="text-right responsive-text">...لعملائها حتي تضمن نجاح العمل</div>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-end " style="gap: 30px">
-                    <!-- Card 4 -->
-                    <div class="card" style=" margin-top:25px;width:100%; border-radius: 20px; background: #121743;">
-
-                        <div class="card-body text-right">
-                            <div>
-                                <img src="{{ asset('images/dark icon.svg') }}" alt="Icon Image">
-                            </div>
-
-                            <p class="mt-3 text-white"
-                                style="font-family: Cairo;
-                                    font-size: 18px;
-                                    font-weight: 500;
-                                    line-height: 26px;
-                                    letter-spacing: 0em;
-                                    text-align: right;
-                                    ">
-                                الادارة المساندة</p>
-                            <p class="mt-3 text-white"
-                                style="font-family: Cairo;
-                                    font-size: 14px;
-                                    font-weight: 400;
-                                    line-height: 25px;
-                                    letter-spacing: 0em;
-                                    text-align: right;
-                                    ">
-                                أكنانا تساعد في تعزيز الإرادة المساندة عبر تقديم الدعم والتوجيه للأفراد والشركات،حتي
-                                يحققوا أهدافهم وتجاوز التحديات بثقة
-                            </p>
-                            <div class="d-flex justify-content-end align-items-end">
-                                <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
-                                <p class="color-DF8317"
-                                    style="font-family: Cairo;
-                                        font-size: 14px;
-                                        font-weight: 400;
-                                        line-height: 20px;
-                                        letter-spacing: 0em;
-                                        text-align: center;
-                                        color:#DF8317;
-                                        margin-bottom: 0;
-                                    ">
-                                    معرفة المزيد</p>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="card"
-                        style="margin-top:25px;width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
-                        <div class="card-body text-right">
-                            <div>
-                                <img src="{{ asset('images/ligth icon.svg') }}" alt="Icon Image">
-                            </div>
-                            <p class="mt-3 "
-                                style="font-family: Cairo;
+                    <div class="row mt-4">
+                        <div class="col-md-12 ">
+                            <div class="d-flex justify-content-between  " style="margin-bottom: 1.8rem !important;">
+                                <!-- Card 4 -->
+                                <!-- Card 3 -->
+                                <div class="card"
+                                    style="width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                    <div class="card-body text-right">
+                                        <div>
+                                            <img src="{{ asset('images/ligth icon.svg') }}" alt="Icon Image">
+                                        </div>
+                                        <p class="mt-3 "
+                                            style="font-family: Cairo;
                                     font-size: 18px;
                                     font-weight: 500;
                                     line-height: 26px;
@@ -689,9 +1102,9 @@
 
                                     color:#121743;
                                     ">
-                                التوجيه و الارشاد</p>
-                            <p class="mt-3 "
-                                style="font-family: Cairo;
+                                            @lang('file.Guidance and guidance')</p>
+                                        <p class="mt-3 "
+                                            style="font-family: Cairo;
                                     font-size: 14px;
                                     font-weight: 400;
                                     line-height: 25px;
@@ -699,13 +1112,13 @@
                                     text-align: right;
                                     color:#121743;
                                     ">
-                                نعمل في أكنانا على فهم عميق لاحتياجات كل شركة وتحدياتها نقدم حلولًا مخصصة تساعدها على
-                                تحقيق أهدافها بنجاح.
-                            </p>
-                            <div class="d-flex justify-content-end align-items-end">
-                                <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
-                                <p class="color-DF8317"
-                                    style="font-family: Cairo;
+                                            @lang('file.at_aknana')
+                                        </p>
+                                        <div class="d-flex justify-content-end align-items-end"
+                                            style="margin-top: 2.5rem !important;">
+                                            <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                            <p class="color-DF8317"
+                                                style="font-family: Cairo;
                                         font-size: 14px;
                                         font-weight: 400;
                                         line-height: 20px;
@@ -714,152 +1127,458 @@
                                         color:#DF8317;
                                         margin-bottom: 0;
                                     ">
-                                    معرفة المزيد</p>
+                                                @lang('file.know_more')</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card "
+                                    style="margin-left: 30px; width:100%; border-radius: 20px; background: #121743;">
+
+                                    <div class="card-body text-right">
+                                        <div>
+                                            <img src="{{ asset('images/dark icon.svg') }}" alt="Icon Image">
+                                        </div>
+
+                                        <p class="mt-3 text-white"
+                                            style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    ">
+                                            @lang('file.Supportive administration') </p>
+                                        <p class="mt-3 text-white"
+                                            style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    ">
+                                            @lang('file.aknana_helps')
+                                        </p>
+                                        <div class="d-flex justify-content-end align-items-end">
+                                            <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                            <p class="color-DF8317"
+                                                style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                                @lang('file.know_more') </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div class="card" style="width:100%; border-radius: 20px; background: #121743;">
+
+                                    <div class="card-body text-right">
+                                        <div>
+                                            <img src="{{ asset('images/dark icon.svg') }}" alt="Icon Image">
+                                        </div>
+
+                                        <p class="mt-3 text-white"
+                                            style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    ">
+                                            @lang('file.Guidance and guidance') </p>
+                                        <p class="mt-3 text-white"
+                                            style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    ">
+                                            @lang('file.aknana_helps')
+                                        </p>
+                                        <div class="d-flex justify-content-end align-items-end">
+                                            <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                            <p class="color-DF8317"
+                                                style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                                @lang('file.know_more')</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- Card 3 -->
+                                <div class="card"
+                                    style="margin-left: 30px; width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                    <div class="card-body text-right">
+                                        <div>
+                                            <img src="{{ asset('images/ligth icon.svg') }}" alt="Icon Image">
+                                        </div>
+                                        <p class="mt-3 "
+                                            style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+
+                                    color:#121743;
+                                    ">
+                                            @lang('file.Supportive administration')</p>
+                                        <p class="mt-3 "
+                                            style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    color:#121743;
+                                    ">
+                                            @lang('file.at_aknana')
+                                        </p>
+                                        <div class="d-flex justify-content-end align-items-end"
+                                            style="margin-top: 2.5rem !important;">
+                                            <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                            <p class="color-DF8317"
+                                                style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                                @lang('file.know_more')</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 animate-fade-in">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card"
+                                style="margin-top:25px;width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                <div class="card-body text-right">
+                                    <div>
+                                        <img src="{{ asset('images/ligth icon.svg') }}" alt="Icon Image">
+                                    </div>
+                                    <p class="mt-3 "
+                                        style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+
+                                    color:#121743;
+                                    ">
+                                        @lang('file.Guidance and guidance')</p>
+                                    <p class="mt-3 "
+                                        style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    color:#121743;
+                                    ">
+                                        @lang('file.at_aknana')
+                                    </p>
+                                    <div class="d-flex justify-content-end align-items-end"
+                                        style="margin-top: 2.5rem !important;">
+
+                                        <p class="color-DF8317"
+                                            style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                            @lang('file.know_more')</p>
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="center pr-0 text-right" style="margin-top: 30px ">
+                                <img src="{{ asset('images/Vector (1).svg') }}">
+                                <span
+                                    style="font-family: Cairo;color: #091157; font-size: 16px; font-weight: 667; line-height: 45px; letter-spacing: -0.01em; text-align: end;">
+                                    @lang('file.Why choose Aknana over')
+                                    <span class="responsive-text1"
+                                        style="color: #DF8317; font-weight: 760">@lang('file.others?')</span>
+                                </span>
+                            </div>
+
+                            <div class="center pr-0 text-right mt-2 mb-5 text-right">
+                                <div class="responsive-text text-right" style="font-size: 14px">
+                                    @lang('file.work_aknana')
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="d-flex justify-content-end " style="gap: 30px">
+                        <!-- Card 4 -->
+                        <div class="card"
+                            style=" margin-top:25px;width:100%; border-radius: 20px; background: #121743;">
+
+                            <div class="card-body text-right">
+                                <div>
+                                    <img src="{{ asset('images/dark icon.svg') }}" alt="Icon Image">
+                                </div>
+
+                                <p class="mt-3 text-white"
+                                    style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    ">
+                                    @lang('file.Supportive administration')</p>
+                                <p class="mt-3 text-white"
+                                    style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    ">
+                                    @lang('file.aknana_helps')
+                                </p>
+                                <div class="d-flex justify-content-end align-items-end">
+                                    <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                    <p class="color-DF8317"
+                                        style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                        @lang('file.know_more')</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="card"
+                            style="margin-top:25px;width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                            <div class="card-body text-right">
+                                <div>
+                                    <img src="{{ asset('images/ligth icon.svg') }}" alt="Icon Image">
+                                </div>
+                                <p class="mt-3 "
+                                    style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+
+                                    color:#121743;
+                                    ">
+                                    @lang('file.Guidance and guidance')</p>
+                                <p class="mt-3 "
+                                    style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    color:#121743;
+                                    ">
+                                    @lang('file.at_aknana')
+                                </p>
+                                <div class="d-flex justify-content-end align-items-end"
+                                    style="margin-top: 2.5rem !important;">
+                                    <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                    <p class="color-DF8317"
+                                        style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                        @lang('file.know_more')</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>
-
-        </div>
-
+        @endif
     </section>
 
     <section class="container text-center mb-5" id="programs">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <div class="row">
-                <div class="col-md-6">
-
-                    <!-- Left and Right Arrow Images -->
-                    <div class="d-flex justify-content-start">
-                        <span class="d-flex justify-content-center mb-4 pr-2" data-target="#carouselExampleIndicators"
-                            data-slide="prev">
-                            <img src="{{ asset('images/left.svg') }}" alt="Previous">
-                        </span>
-                        <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators"
-                            data-slide="next">
-                            <img src="{{ asset('images/right.svg') }}" alt="Next">
-                        </span>
-                    </div>
-                    <div class="d-flex justify-content-start mb-4">
+            @if (app()->getLocale() == 'ar')
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- Left and Right Arrow Images -->
+                        <div class="d-flex justify-content-start mb-5" style="margin-top: 2rem !important;">
 
 
-                        <a class="btn btn-outline-primary" href="{{ route('courses.index') }}"
-                            style="
+                            <a class="btn btn-outline-primary" href="{{ route('courses.index') }}"
+                                style="
                                
                                 border:#121743 1px  solid;
                                 color:white;
                                 background:#121743;
                                 ">
-                            <img src="{{ asset('images/course.png') }}" style="width: 27px;height;27px">
-                            البرامج </a>
+                                <img src="{{ asset('images/course.png') }}" style="width: 27px;height;27px">
+                                @lang('file.Programs') </a>
+                        </div>
+                        <div class="d-flex justify-content-start mb-5">
+                            <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators"
+                                data-slide="next">
+                                <img src="{{ asset('images/arrow_left.png') }}" width="43px" height="43px"
+                                    alt="Previous" style="transform: scaleX(-1);">
+                            </span>
+                            <span class="d-flex justify-content-center pr-2" data-target="#carouselExampleIndicators"
+                                data-slide="prev">
+                                <img src="{{ asset('images/arrow_reverse.png') }}" alt="Previous" width="43px"
+                                    height="43px">
+                            </span>
+
+                        </div>
+
+                        {{-- rounded image serveces --}}
                     </div>
-                    {{-- rounded image serveces --}}
-                </div>
-                <div class="col-md-6">
-                    <div class="center mt-2"
-                        style="font-family: Cairo;
+                    <div class="col-md-6">
+                        <div class="center mt-2 mb-4" id="programstext"
+                            style="font-family: Cairo;
                     font-size: 40px;
                     font-weight: 667;
                     line-height: 75px;
                     letter-spacing: -0.01em;
-                    text-align: right;
+                    text-align: left;
                     color:#121743;
                     ">
-                        <img src="{{ asset('images/Vector (1).svg') }}">
-                        البرامج ذات<span
-                            style="color: #DF8317;
+                            <img src="{{ asset('images/Vector (1).svg') }}">
+                            @lang('file.Related programs') <span id="programstext1"
+                                style="color: #DF8317;
                         font-family: Cairo;
                         font-size: 40px;
                         font-weight: 667;
                         line-height: 75px;
                         letter-spacing: -0.01em;
-                        text-align: right;
+                        text-align: left;
 
                     ">
-                            صلة</span>
+                                @lang('file.related')</span>
+                        </div>
+
                     </div>
-
                 </div>
-            </div>
 
-            <div class="carousel-inner">
-                @for ($i = 0; $i < ceil(count($courses) / 3); $i++)
-                    <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
-                        <div class="row mb-5 justify-content-between">
-                            @foreach ($courses->slice($i * 3, 3) as $course)
-                                @php
-                                    $maleCount = $course->reservations()->where('gender', 'male')->count();
-                                    $femaleCount = $course->reservations()->where('gender', 'female')->count();
-                                    $maxMaleCount = $course->male_count;
-                                    $maxFemaleCount = $course->female_count;
-                                    $isCourseAvailable = $maleCount < $maxMaleCount || $femaleCount < $maxFemaleCount;
-                                @endphp
-                                <div class="col-md-4 mt-0">
-                                    <div class="justify-content-center">
-                                        <span class="d-flex justify-content-center mb-2 ">
-                                            <img src="{{ asset('storage/app/public/' . $course->media->first()->file_path) }}"
-                                                style="width: 350px;height:258px" alt="First Image">
-                                        </span>
+                <div class="carousel-inner">
+                    @for ($i = 0; $i < ceil(count($courses) / 3); $i++)
+                        <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                            <div class="row mb-5 justify-content-between">
+                                @foreach ($courses->slice($i * 3, 3) as $course)
+                                    @php
+                                        $maleCount = $course->reservations()->where('gender', 'male')->count();
+                                        $femaleCount = $course->reservations()->where('gender', 'female')->count();
+                                        $maxMaleCount = $course->male_count;
+                                        $maxFemaleCount = $course->female_count;
+                                        $isCourseAvailable =
+                                            $maleCount < $maxMaleCount || $femaleCount < $maxFemaleCount;
+                                    @endphp
+                                    <div class="col-md-4 mt-0">
+                                        <div class="justify-content-center">
+                                            <span class="d-flex justify-content-center mb-2 ">
+                                                <img src="{{ asset('storage/' . $course->media->first()->file_path) }}"
+                                                    style="width: 350px;height:258px" alt="First Image">
+                                            </span>
 
-                                        <div class="d-flex justify-content-end pr-1"
-                                            style="font-family: Cairo;
+                                            <div class="d-flex justify-content-end pr-1"
+                                                style="font-family: Cairo;
                                     font-size: 18px;
                                     font-weight: 667;
                                     line-height: 34px;
                                     letter-spacing: 0em;
-                                    text-align: right;
+                                    text-align: left;
                                     color: rgba(18, 23, 67, 1);
 
                                     ">
-                                            {{ $course->name }}</div>
-                                        <div class="mt-2  pr-1"
-                                            style="font-family: Cairo;
+                                                {{ $course->getTranslation('name', 'en') }}</div>
+                                            <div class="mt-2  pl-1"
+                                                style="font-family: Cairo;
                                         font-size: 16px;
                                         font-weight: 400;
                                         line-height: 25px;
                                         letter-spacing: 0em;
-                                        text-align: right;
+                                        text-align: left;
 
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                            م/{{ $course->professor_name }}
-                                            <img src="{{ asset('images/Vector (6).svg') }}">
-                                        </div>
-                                        <div class="mt-2  pr-1"
-                                            style="font-family: Cairo;
+                                                @lang('file.Eng')/{{ $course->getTranslation('professor_name', 'en') }}
+                                                <img src="{{ asset('images/Vector (6).svg') }}">
+                                            </div>
+                                            <div class="mt-2  pl-1"
+                                                style="font-family: Cairo;
                                         font-size: 16px;
                                         font-weight: 400;
                                         line-height: 25px;
                                         letter-spacing: 0em;
-                                        text-align: right;
+                                        text-align: left;
 
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                            المدة : {{ $course->time_duration }}
-                                            <img src="{{ asset('images/Vector (5).svg') }}">
+                                                {{ $course->getTranslation('time_duration', 'en') }}:@lang('file.Duration')
+                                                <img src="{{ asset('images/Vector (5).svg') }}">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-between">
-                                        @if ($isCourseAvailable)
-                                            <a href="{{ route('reservation.create', ['course_id' => $course->id]) }}"
-                                                id="ServButton2" class="btn btn-primary"
-                                                style="width:155px;height:35px;font-family: Cairo; font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">
-                                                أنضم الان
-                                            </a>
-                                        @else
-                                            <a type="button" class="btn btn-primary" data-toggle="modal"
-                                                data-target="#courseFullModal" class="btn btn-primary"
-                                                style="width:155px;height:35px;font-family: Cairo; font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">
-                                                أنضم الان
-                                            </a>
-                                        @endif
-
-                                        <div class="mt-2  pr-0"
-                                            style="font-family: Cairo;
+                                        <div class="d-flex justify-content-between align-items-between">
+                                             @if ($isCourseAvailable)
+                                                <a href="{{ route('reservation.create', ['course_id' => $course->id]) }}"
+                                                    id="ServButton2" class="btn btn-primary"
+                                                    style="width:155px;height:35px;font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">
+                                                    @lang('file.join_now')
+                                                </a>
+                                            @else
+                                                <span class="btn btn-secondary" style="width:155px;height:35px;font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#808080; border:#808080; color:#FFFFFF;">
+                                                    @lang('file.completed')
+                                                </span>
+                                            @endif
+                                            <div class="mt-2  pr-0"
+                                                style="font-family: Cairo;
                                         font-size: 16px;
                                         font-weight: 400;
                                         line-height: 25px;
@@ -869,64 +1588,228 @@
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                            {{ $course->location }}
-                                            <img src="{{ asset('images/location1.svg') }}">
+                                                {{ $course->getTranslation('location', 'en') }}
+                                                <img src="{{ asset('images/location1.svg') }}">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
-                            <x-pop_up_course />
+                                @endforeach
+                                <x-pop_up_course />
+                            </div>
                         </div>
-                    </div>
-                @endfor
-            </div>
+                    @endfor
+                </div>
 
-            <!-- Carousel Indicators -->
-            <div class="carousel-indicators mt-5">
-                @for ($i = 0; $i < ceil(count($courses) / 3); $i++)
-                    <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
-                        class="{{ $i === 0 ? 'active' : '' }}"></li>
-                @endfor
-            </div>
+                <!-- Carousel Indicators -->
+                <div class="carousel-indicators mt-5">
+                    @for ($i = 0; $i < ceil(count($courses) / 3); $i++)
+                        <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
+                            class="{{ $i === 0 ? 'active' : '' }}"></li>
+                    @endfor
+                </div>
+            @else
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="d-flex justify-content-start mt-4 mb-3">
+
+
+                            <a class="btn btn-outline-primary" href="{{ route('courses.index') }}"
+                                style="
+                               
+                                border:#121743 1px  solid;
+                                color:white;
+                                background:#121743;
+                                ">
+                                <img src="{{ asset('images/course.png') }}" style="width: 27px;height;27px">
+                                @lang('file.Programs') </a>
+                        </div>
+                        <div class="d-flex justify-content-start">
+                            <span class="d-flex justify-content-center mb-4 pr-2" data-target="#carouselExampleIndicators"
+                                data-slide="prev">
+                                <img src="{{ asset('images/left.svg') }}" alt="Previous">
+                            </span>
+                            <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators"
+                                data-slide="next">
+                                <img src="{{ asset('images/right.svg') }}" alt="Next">
+                            </span>
+                        </div>
+
+                        {{-- rounded image serveces --}}
+                    </div>
+                    <div class="col-md-6">
+                        <div class="center mt-2"
+                            style="font-family: Cairo;
+                    font-size: 40px;
+                    font-weight: 667;
+                    line-height: 75px;
+                    letter-spacing: -0.01em;
+                    text-align: right;
+                    color:#121743;
+                    ">
+                            <img src="{{ asset('images/Vector (1).svg') }}">
+                            @lang('file.Related programs') <span
+                                style="color: #DF8317;
+                        font-family: Cairo;
+                        font-size: 40px;
+                        font-weight: 667;
+                        line-height: 75px;
+                        letter-spacing: -0.01em;
+                        text-align: right;
+
+                    ">
+                                @lang('file.related')</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="carousel-inner">
+                    @for ($i = 0; $i < ceil(count($courses) / 3); $i++)
+                        <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                            <div class="row mb-5 justify-content-between">
+                                @foreach ($courses->slice($i * 3, 3) as $course)
+                                    @php
+                                        $maleCount = $course->reservations()->where('gender', 'male')->count();
+                                        $femaleCount = $course->reservations()->where('gender', 'female')->count();
+                                        $maxMaleCount = $course->male_count;
+                                        $maxFemaleCount = $course->female_count;
+                                        $isCourseAvailable =
+                                            $maleCount < $maxMaleCount || $femaleCount < $maxFemaleCount;
+                                    @endphp
+                                    <div class="col-md-4 mt-0">
+                                        <div class="justify-content-center">
+                                            <span class="d-flex justify-content-center mb-2 ">
+                                                <img src="{{ asset('storage/' . $course->media->first()->file_path) }}"
+                                                    style="width: 350px;height:258px" alt="First Image">
+                                            </span>
+
+                                            <div class="d-flex justify-content-end pr-1"
+                                                style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 667;
+                                    line-height: 34px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    color: rgba(18, 23, 67, 1);
+
+                                    ">
+                                                {{ $course->getTranslation('name', 'ar') }}</div>
+                                            <div class="mt-2  pr-1"
+                                                style="font-family: Cairo;
+                                        font-size: 16px;
+                                        font-weight: 400;
+                                        line-height: 25px;
+                                        letter-spacing: 0em;
+                                        text-align: right;
+
+                                    color: rgba(102, 102, 102, 1);
+                                    margin: 0;
+                                    ">
+                                                م/{{ $course->getTranslation('professor_name', 'ar') }}
+                                                <img src="{{ asset('images/Vector (6).svg') }}">
+                                            </div>
+                                            <div class="mt-2  pr-1"
+                                                style="font-family: Cairo;
+                                        font-size: 16px;
+                                        font-weight: 400;
+                                        line-height: 25px;
+                                        letter-spacing: 0em;
+                                        text-align: right;
+
+                                    color: rgba(102, 102, 102, 1);
+                                    margin: 0;
+                                    ">
+                                                المدة : {{ $course->getTranslation('time_duration', 'ar') }}
+                                                <img src="{{ asset('images/Vector (5).svg') }}">
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-between">
+                                            @if ($isCourseAvailable)
+                                                <a href="{{ route('reservation.create', ['course_id' => $course->id]) }}"
+                                                    id="ServButton2" class="btn btn-primary"
+                                                    style="width:155px;height:35px;font-family: Cairo; font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">
+                                                    @lang('file.join_now')
+                                                </a>
+                                            @else
+                                                 <span class="btn btn-secondary" style="width:155px;height:35px;font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#808080; border:#808080; color:#FFFFFF;">
+                                                    @lang('file.completed')
+                                                </span>
+                                            @endif
+
+                                            <div class="mt-2  pr-0"
+                                                style="font-family: Cairo;
+                                        font-size: 16px;
+                                        font-weight: 400;
+                                        line-height: 25px;
+                                        letter-spacing: 0em;
+                                        text-align:;
+
+                                    color: rgba(102, 102, 102, 1);
+                                    margin: 0;
+                                    ">
+                                                {{ $course->getTranslation('location', 'ar') }}
+                                                <img src="{{ asset('images/location1.svg') }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                <x-pop_up_course />
+                            </div>
+                        </div>
+                    @endfor
+                </div>
+
+                <!-- Carousel Indicators -->
+                <div class="carousel-indicators mt-5">
+                    @for ($i = 0; $i < ceil(count($courses) / 3); $i++)
+                        <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
+                            class="{{ $i === 0 ? 'active' : '' }}"></li>
+                    @endfor
+                </div>
+            @endif
         </div>
     </section>
 
     <section class="container text-center mt-5 mb-5" id='projects'>
         <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
-            <div class="row">
-                <div class="col-md-6">
-                    <!-- Left and Right Arrow Images -->
-                    <div class="d-flex justify-content-start">
-                        <span class="d-flex justify-content-center mb-4 pr-2" data-target="#carouselExampleIndicators1"
-                            data-slide="prev">
-                            <img src="{{ asset('images/left.svg') }}" alt="Previous">
-                        </span>
-                        <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators1"
-                            data-slide="next">
-                            <img src="{{ asset('images/right.svg') }}" alt="Next">
-                        </span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="center mt-2"
-                        style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right; color:#121743;">
-                        <img src="{{ asset('images/Vector (1).svg') }}">
-                        مشاريع قمنا<span
-                            style="color: #DF8317; font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right;">
-                            بتنفيذها </span>
-                    </div>
-                </div>
-            </div>
+            @if (app()->getLocale() == 'ar')
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- Left and Right Arrow Images -->
+                        <div class="d-flex justify-content-start" style="margin-top: 25px;">
+                            <span class="d-flex justify-content-center mb-0" data-target="#carouselExampleIndicators1"
+                                data-slide="next">
+                                <img src="{{ asset('images/arrow_left.png') }}" width="43px" height="43px"
+                                    alt="Previous" style="transform: scaleX(-1);">
+                            </span>
+                            <span class="d-flex justify-content-center mb-0 pr-2"
+                                data-target="#carouselExampleIndicators1" data-slide="prev">
+                                <img src="{{ asset('images/left.svg') }}" alt="Previous">
+                            </span>
 
-            <div class="carousel-inner">
-                @for ($i = 0; $i < ceil(count($projects) / 4); $i++)
-                    <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
-                        <div class="row mb-5 d-flex justify-content-between">
-                            @foreach ($projects->slice($i * 4, 4) as $project)
-                                <div class="col-md-3">
-                                    <img src="{{ asset('storage/app/public/' . $project->images->first()->file_path) }}">
-                                    <div class="d-flex justify-content-center pr-1"
-                                        style="font-family: Cairo;
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="margin-bottom: 100px;">
+                        <div class="center mt-2 " id="projecttext"
+                            style="font-family: Cairo; font-size: 39px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: left; color:#121743;">
+                            <img src="{{ asset('images/Vector (1).svg') }}">
+                            @lang('file.projects')<span id="projecttext1"
+                                style="color: #DF8317; font-family: Cairo; font-size: 39px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: left;">
+                                @lang('file.implemented')</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-inner">
+                    @for ($i = 0; $i < ceil(count($projects) / 4); $i++)
+                        <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                            <div class="row mb-5 d-flex justify-content-between">
+                                @foreach ($projects->slice($i * 4, 4) as $project)
+                                    <div class="col-md-3">
+                                        <img src="{{ asset('storage/' . $project->images->first()->file_path) }}">
+                                        <div class="d-flex justify-content-center pr-1"
+                                            style="font-family: Cairo;
                                             font-size: 18px;
                                             font-weight: 600;
                                             line-height: 34px;
@@ -934,98 +1817,255 @@
                                             text-align: center;
                                             color:#000000;
                                             margin-top: 2.2rem !important;">
-                                        {{ $project->title }}
+                                            {{ $project->getTranslation('title', 'en') }}
+                                        </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+
+                            </div>
 
                         </div>
+                    @endfor
 
+                </div>
+
+                <div class="carousel-indicators mt-5">
+                    @for ($i = 0; $i < ceil(count($projects) / 4); $i++)
+                        <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
+                            class="{{ $i === 0 ? 'active' : '' }}"></li>
+                    @endfor
+                </div>
+            @else
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- Left and Right Arrow Images -->
+                        <div class="d-flex justify-content-start">
+                            <span class="d-flex justify-content-center mb-4 pr-2"
+                                data-target="#carouselExampleIndicators1" data-slide="prev">
+                                <img src="{{ asset('images/left.svg') }}" alt="Previous">
+                            </span>
+                            <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators1"
+                                data-slide="next">
+                                <img src="{{ asset('images/right.svg') }}" alt="Next">
+                            </span>
+                        </div>
                     </div>
-                @endfor
+                    <div class="col-md-6">
+                        <div class="center mt-2" id="projecttext"
+                            style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right; color:#121743;">
+                            <img src="{{ asset('images/Vector (1).svg') }}">
+                            @lang('file.Projects we have')<span id="projecttext1"
+                                style="color: #DF8317; font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right;">
+                                @lang('file.implemented')</span>
+                        </div>
+                    </div>
+                </div>
 
-            </div>
+                <div class="carousel-inner">
+                    @for ($i = 0; $i < ceil(count($projects) / 4); $i++)
+                        <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                            <div class="row mb-5 d-flex justify-content-between">
+                                @foreach ($projects->slice($i * 4, 4) as $project)
+                                    <div class="col-md-3">
+                                        <img src="{{ asset('storage/' . $project->images->first()->file_path) }}">
+                                        <div class="d-flex justify-content-center pr-1"
+                                            style="font-family: Cairo;
+                                            font-size: 18px;
+                                            font-weight: 600;
+                                            line-height: 34px;
+                                            letter-spacing: 0em;
+                                            text-align: center;
+                                            color:#000000;
+                                            margin-top: 2.2rem !important;">
+                                            {{ $project->getTranslation('title', 'ar') }}
+                                        </div>
+                                    </div>
+                                @endforeach
 
-            <div class="carousel-indicators mt-5">
-                @for ($i = 0; $i < ceil(count($projects) / 4); $i++)
-                    <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
-                        class="{{ $i === 0 ? 'active' : '' }}"></li>
-                @endfor
-            </div>
+                            </div>
+
+                        </div>
+                    @endfor
+
+                </div>
+
+                <div class="carousel-indicators mt-5">
+                    @for ($i = 0; $i < ceil(count($projects) / 4); $i++)
+                        <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
+                            class="{{ $i === 0 ? 'active' : '' }}"></li>
+                    @endfor
+                </div>
+            @endif
         </div>
     </section>
     <section class="container text-center mt-5 mb-5" id='events'>
         <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
-            <div class="row">
-                <div class="col-md-6">
-                    <!-- Left and Right Arrow Images -->
-                    <div class="d-flex justify-content-start">
-                        <span class="d-flex justify-content-center mb-4 pr-2" data-target="#carouselExampleIndicators2"
-                            data-slide="prev">
-                            <img src="{{ asset('images/left.svg') }}" alt="Previous">
-                        </span>
-                        <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators2"
-                            data-slide="next">
-                            <img src="{{ asset('images/right.svg') }}" alt="Next">
-                        </span>
-                    </div>
-                    <div class="d-flex justify-content-start">
+            @if (app()->getLocale() == 'ar')
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-start mb-5" style="margin-top: 2rem !important;">
 
-
-                        <a class="btn btn-outline-primary" href="{{ route('events.index') }}"
-                            style="
+                            <a class="btn btn-outline-primary" href="{{ route('events.index') }}"
+                                style="
                                
                                 border:#121743 1px  solid;
                                 color:white;
                                 background:#121743;
                                 ">
-                            <img src="{{ asset('images/event6.png') }}" style="width: 27px;height;27px">
-                            الفعاليات </a>
+                                <img src="{{ asset('images/event6.png') }}" style="width: 27px;height;27px">
+                                @lang('file.events') </a>
+                        </div>
+                        <div class="d-flex justify-content-start mb-4">
+                            <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators2"
+                                data-slide="next">
+                                <img src="{{ asset('images/arrow_left.png') }}" width="43px" height="43px"
+                                    alt="Previous" style="transform: scaleX(-1);">
+                            </span>
+                            <span class="d-flex justify-content-center pr-2" data-target="#carouselExampleIndicators2"
+                                data-slide="prev">
+                                <img src="{{ asset('images/left.svg') }}" alt="Previous">
+                            </span>
+
+                        </div>
+
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="center mt-2 "
-                        style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right; color:#121743;">
+                    <div class="col-md-6">
+                        <div class="center mt-2 " id="eventtext"
+                            style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: left; color:#121743;">
 
-                        <img src="{{ asset('images/Vector (1).svg') }}">
-                        الفعاليات<span
-                            style="color: #DF8317; font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right;">
-                            الاخيرة</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="carousel-inner">
-                @for ($i = 0; $i < ceil(count($events) / 3); $i++)
-                    <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
-                        <div class="row mb-5 justify-content-between">
-                            @foreach ($events->slice($i * 3, 3) as $event)
-                                <div class="col-md-4 pr-3 mt-4">
-                                    <img src="{{ asset('storage/app/public/' . $event->media->first()->file_path) }}"
-                                        style="width: 350px;height:258px" alt="Event Image">
-
-                                    <div class="d-flex justify-content-center mt-2"
-                                        style="font-family: Cairo; font-size: 18px; font-weight: 600; line-height: 34px; letter-spacing: 0em; text-align: center; color:#000000;">
-                                        {{ $event->title }}
-                                    </div>
-                                    <div class="d-flex justify-content-center pr-1"
-                                        style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 25px; letter-spacing: 0em; text-align: center;">
-                                        {{ $event->text }}
-                                    </div>
-                                </div>
-                            @endforeach
+                            <img src="{{ asset('images/Vector (1).svg') }}">
+                            @lang('file.Recent')<span id="eventtext1"
+                                style="color: #DF8317; font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: left;">
+                                @lang('file.events')</span>
                         </div>
                     </div>
-                @endfor
-            </div>
+                </div>
 
-            <!-- Carousel Indicators -->
-            <div class="carousel-indicators mt-5">
-                @for ($i = 0; $i < ceil(count($events) / 3); $i++)
-                    <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
-                        class="{{ $i === 0 ? 'active' : '' }}"></li>
-                @endfor
-            </div>
+                <div class="carousel-inner">
+                    @for ($i = 0; $i < ceil(count($events) / 3); $i++)
+                        <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                            <div class="row mb-5 justify-content-between">
+                                @foreach ($events->slice($i * 3, 3) as $event)
+                                    <div class="col-md-4 pr-3 mt-3">
+                                        <img src="{{ asset('storage/' . $event->media->first()->file_path) }}"
+                                            style="width: 350px;height:258px" alt="Event Image">
+
+                                        <div class="d-flex justify-content-center mt-2"
+                                            style="font-family: Cairo; font-size: 18px; font-weight: 600; line-height: 34px; letter-spacing: 0em; text-align: center; color:#000000;">
+                                            {{ $event->getTranslation('title', 'en') }}
+                                        </div>
+                                        <div class="event-container">
+                                            <p class="short-event"
+                                                style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                                <a class="ml-0 mr-0 text-muted read-more-button">
+                                                    <div class="d-flex justify-content-center pr-1"
+                                                        style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 25px; letter-spacing: 0em; text-align: center;">
+                                                        {{ \Illuminate\Support\Str::words($event->getTranslation('text', 'en'), 33, '...') }}
+                                                    </div>
+                                                </a>
+                                            </p>
+                                            <p class="full-event"
+                                                style="display: none; font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                                {{ $event->getTranslation('text', 'en') }}
+                                            </p>
+                                            <a class=" show-less-button" style="display: none;color:#121743">
+                                                @lang('file.show_less') </a>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endfor
+                </div>
+
+                <!-- Carousel Indicators -->
+                <div class="carousel-indicators mt-5">
+                    @for ($i = 0; $i < ceil(count($events) / 3); $i++)
+                        <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
+                            class="{{ $i === 0 ? 'active' : '' }}"></li>
+                    @endfor
+                </div>
+            @else
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-start mt-3 mb-4">
+
+
+                            <a class="btn btn-outline-primary" href="{{ route('events.index') }}"
+                                style="
+                               
+                                border:#121743 1px  solid;
+                                color:white;
+                                background:#121743;
+                                ">
+                                <img src="{{ asset('images/event6.png') }}" style="width: 27px;height;27px">
+                                @lang('file.events') </a>
+                        </div>
+                        <div class="d-flex justify-content-start">
+                            <span class="d-flex justify-content-center mb-4 pr-2"
+                                data-target="#carouselExampleIndicators2" data-slide="prev">
+                                <img src="{{ asset('images/left.svg') }}" alt="Previous">
+                            </span>
+                            <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators2"
+                                data-slide="next">
+                                <img src="{{ asset('images/right.svg') }}" alt="Next">
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="center mt-2 " id="eventtext"
+                            style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right; color:#121743;">
+
+                            <img src="{{ asset('images/Vector (1).svg') }}">
+                            @lang('file.events')<span id="eventtext1"
+                                style="color: #DF8317; font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right;">
+                                @lang('file.Recent')</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-inner">
+                    @for ($i = 0; $i < ceil(count($events) / 3); $i++)
+                        <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                            <div class="row mb-5 justify-content-between">
+                                @foreach ($events->slice($i * 3, 3) as $event)
+                                    <div class="col-md-4 pr-3 mt-4">
+                                        <img src="{{ asset('storage/' . $event->media->first()->file_path) }}"
+                                            style="width: 350px;height:258px" alt="Event Image">
+
+                                       <div class="event-container">
+                                            <p class="short-event"
+                                                style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                                <a class="ml-0 mr-0 text-muted read-more-button">
+                                                    <div class="d-flex justify-content-center pr-1"
+                                                        style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 25px; letter-spacing: 0em; text-align: center;">
+                                                        {{ \Illuminate\Support\Str::words($event->getTranslation('text', 'ar'), 33, '...') }}
+                                                    </div>
+                                                </a>
+                                            </p>
+                                            <p class="full-event"
+                                                style="display: none; font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                                {{ $event->getTranslation('text', 'ar') }}
+                                            </p>
+                                            <a class=" show-less-button" style="display: none;color:#121743">
+                                                @lang('file.show_less') </a>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endfor
+                </div>
+
+                <!-- Carousel Indicators -->
+                <div class="carousel-indicators mt-5">
+                    @for ($i = 0; $i < ceil(count($events) / 3); $i++)
+                        <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
+                            class="{{ $i === 0 ? 'active' : '' }}"></li>
+                    @endfor
+                </div>
+            @endif
         </div>
     </section>
 
@@ -1042,7 +2082,7 @@
                             text-align: center;
                             color:#121743;">
                 <img src="{{ asset('images/Vector (1).svg') }}">
-                تعرف علي رأي<span
+                @lang('file.Find out what')<span
                     style="color: #DF8317;font-family: Cairo;
                                 font-size: 35px;
                                 font-weight: 667;
@@ -1050,29 +2090,31 @@
                                 letter-spacing: 0em;
                                 text-align: center;
                                 ">
-                    عملاءنا</span>
+                    @lang('file.our customers think')</span>
             </div>
         </div>
 
+        @if (app()->getLocale() == 'ar')
+            <div class="row d-flex justify-content-center">
+                <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel" style="height:auto">
 
-        <div class="row d-flex justify-content-center">
-            <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel" style="height:auto">
-                <div class="pl-5 d-flex justify-content-between" style="padding-left: 5rem !important;">
-                    <span class="d-flex justify-content-center mb-4 pr-2" style="margin-bottom:2rem !important;"
-                        data-target="#carouselExampleIndicators3" data-slide="prev">
-                        <img src="{{ asset('images/left.svg') }}" alt="Previous">
-                    </span>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active ">
-                            <div class="card"
-                                style="width: 100%;
+                    <div class="d-flex justify-content-between">
+                        <span id="arrow" class="d-flex justify-content-center" style="margin-top:9rem !important;"
+                            data-target="#carouselExampleIndicators3" data-slide="prev">
+                            <img src="{{ asset('images/arrow_left.png') }}" width="43px" height="43px"
+                                alt="Previous" style="transform: scaleX(-1);">
+                        </span>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active ">
+                                <div class="card"
+                                    style="width: 100%;
                                     height:100%;
                                     border:#F8F8F8;
                                     border-radius: 12px;background-color: #F8F8F8">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-center ">
-                                        <p class=" card-text text-center"
-                                            style="font-family: Poppins;
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-center ">
+                                            <p class=" card-text text-center"
+                                                style="font-family: Poppins;
                                             font-size: 20px;
                                             border:#F8F8F8;
                                             font-weight: 400;
@@ -1081,15 +2123,17 @@
                                             text-align: center;
                                             color:#637381;
                                             ">
-                                            من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي شخص
-                                            محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في تحقيق
-                                            اي
-                                            شئ وجعل المستحيل ممكن
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-center mt-4">
-                                        <p
-                                            style="font-family: Cairo;
+                                                من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي
+                                                شخص
+                                                محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في
+                                                تحقيق
+                                                اي
+                                                شئ وجعل المستحيل ممكن
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
                                                 font-size: 30px;
                                                 font-weight: 600;
                                                 line-height: 56px;
@@ -1097,12 +2141,12 @@
                                                 text-align: center;
                                                 color:#222751;
                                                 ">
-                                            طلال بن سلمان
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-center mt-4">
-                                        <p
-                                            style="font-family: Cairo;
+                                                طلال بن سلمان
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
                                                 font-size: 20px;
                                                 font-weight: 500;
                                                 line-height: 37px;
@@ -1111,26 +2155,26 @@
 
                                                 color:#F0A202;
                                                 ">
-                                            مؤسس شركة
-                                        </p>
+                                                مؤسس شركة
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
 
+                                </div>
+                                <div class="d-flex-justify-content-center">
+                                    <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
+                                </div>
                             </div>
-                            <div class="d-flex-justify-content-center">
-                                <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
-                            </div>
-                        </div>
-                        <div class="carousel-item  ">
-                            <div class="card"
-                                style="width: 100%;
+                            <div class="carousel-item  ">
+                                <div class="card"
+                                    style="width: 100%;
                                     height:100%;
                                     border:#F8F8F8;
                                     border-radius: 12px;background-color: #F8F8F8">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-center ">
-                                        <p class=" card-text text-center"
-                                            style="font-family: Poppins;
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-center ">
+                                            <p class=" card-text text-center"
+                                                style="font-family: Poppins;
                                             font-size: 20px;
                                             border:#F8F8F8;
                                             font-weight: 400;
@@ -1139,15 +2183,17 @@
                                             text-align: center;
                                             color:#637381;
                                             ">
-                                            من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي شخص
-                                            محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في تحقيق
-                                            اي
-                                            شئ وجعل المستحيل ممكن
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-center mt-4">
-                                        <p
-                                            style="font-family: Cairo;
+                                                من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي
+                                                شخص
+                                                محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في
+                                                تحقيق
+                                                اي
+                                                شئ وجعل المستحيل ممكن
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
                                                 font-size: 30px;
                                                 font-weight: 600;
                                                 line-height: 56px;
@@ -1155,12 +2201,12 @@
                                                 text-align: center;
                                                 color:#222751;
                                                 ">
-                                            طلال بن سلمان
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-center mt-4">
-                                        <p
-                                            style="font-family: Cairo;
+                                                طلال بن سلمان
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
                                                 font-size: 20px;
                                                 font-weight: 500;
                                                 line-height: 37px;
@@ -1169,26 +2215,26 @@
 
                                                 color:#F0A202;
                                                 ">
-                                            مؤسس شركة
-                                        </p>
+                                                مؤسس شركة
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
 
+                                </div>
+                                <div class="d-flex-justify-content-center">
+                                    <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
+                                </div>
                             </div>
-                            <div class="d-flex-justify-content-center">
-                                <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
-                            </div>
-                        </div>
-                        <div class="carousel-item  ">
-                            <div class="card"
-                                style="width: 100%;
+                            <div class="carousel-item  ">
+                                <div class="card"
+                                    style="width: 100%;
                                     height:100%;
                                     border:#F8F8F8;
                                     border-radius: 12px;background-color: #F8F8F8">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-center ">
-                                        <p class=" card-text text-center"
-                                            style="font-family: Poppins;
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-center ">
+                                            <p class=" card-text text-center"
+                                                style="font-family: Poppins;
                                             font-size: 20px;
                                             border:#F8F8F8;
                                             font-weight: 400;
@@ -1197,15 +2243,17 @@
                                             text-align: center;
                                             color:#637381;
                                             ">
-                                            من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي شخص
-                                            محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في تحقيق
-                                            اي
-                                            شئ وجعل المستحيل ممكن
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-center mt-4">
-                                        <p
-                                            style="font-family: Cairo;
+                                                من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي
+                                                شخص
+                                                محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في
+                                                تحقيق
+                                                اي
+                                                شئ وجعل المستحيل ممكن
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
                                                 font-size: 30px;
                                                 font-weight: 600;
                                                 line-height: 56px;
@@ -1213,12 +2261,12 @@
                                                 text-align: center;
                                                 color:#222751;
                                                 ">
-                                            طلال بن سلمان
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-center mt-4">
-                                        <p
-                                            style="font-family: Cairo;
+                                                طلال بن سلمان
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
                                                 font-size: 20px;
                                                 font-weight: 500;
                                                 line-height: 37px;
@@ -1227,32 +2275,244 @@
 
                                                 color:#F0A202;
                                                 ">
-                                            مؤسس شركة
-                                        </p>
+                                                مؤسس شركة
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
 
-                            </div>
-                            <div class="d-flex-justify-content-center">
-                                <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
+                                </div>
+                                <div class="d-flex-justify-content-center">
+                                    <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
+                                </div>
                             </div>
                         </div>
+                        <span class="d-flex justify-content-center mb-4" style="margin-bottom:2rem !important;"
+                            data-target="#carouselExampleIndicators3" data-slide="prev">
+                            <img src="{{ asset('images/left.svg') }}" alt="Previous">
+                        </span>
+
                     </div>
-                    <span class="pl-2" style="margin-top:7rem !important;" data-target="#carouselExampleIndicators3"
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators3" role="button"
+                        data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators3" role="button"
                         data-slide="next">
-                        <img src="{{ asset('images/right.svg') }}" alt="Next" class="next">
-                    </span>
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators3" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators3" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
             </div>
-        </div>
+        @else
+            <div class="row d-flex justify-content-center">
+                <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel" style="height:auto">
+
+                    <div class="pl-5 d-flex justify-content-between" style="padding-left: 5rem !important;">
+                        <span class="d-flex justify-content-center mb-4 pr-2" style="margin-bottom:2rem !important;"
+                            data-target="#carouselExampleIndicators3" data-slide="prev">
+                            <img src="{{ asset('images/left.svg') }}" alt="Previous">
+                        </span>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active ">
+                                <div class="card"
+                                    style="width: 100%;
+                                    height:100%;
+                                    border:#F8F8F8;
+                                    border-radius: 12px;background-color: #F8F8F8">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-center ">
+                                            <p class=" card-text text-center"
+                                                style="font-family: Poppins;
+                                            font-size: 20px;
+                                            border:#F8F8F8;
+                                            font-weight: 400;
+                                            line-height: 32px;
+                                            letter-spacing: 0em;
+                                            text-align: center;
+                                            color:#637381;
+                                            ">
+                                                من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي
+                                                شخص
+                                                محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في
+                                                تحقيق
+                                                اي
+                                                شئ وجعل المستحيل ممكن
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
+                                                font-size: 30px;
+                                                font-weight: 600;
+                                                line-height: 56px;
+                                                letter-spacing: 0em;
+                                                text-align: center;
+                                                color:#222751;
+                                                ">
+                                                طلال بن سلمان
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
+                                                font-size: 20px;
+                                                font-weight: 500;
+                                                line-height: 37px;
+                                                letter-spacing: 0em;
+                                                text-align: center;
+
+                                                color:#F0A202;
+                                                ">
+                                                مؤسس شركة
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="d-flex-justify-content-center">
+                                    <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
+                                </div>
+                            </div>
+                            <div class="carousel-item  ">
+                                <div class="card"
+                                    style="width: 100%;
+                                    height:100%;
+                                    border:#F8F8F8;
+                                    border-radius: 12px;background-color: #F8F8F8">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-center ">
+                                            <p class=" card-text text-center"
+                                                style="font-family: Poppins;
+                                            font-size: 20px;
+                                            border:#F8F8F8;
+                                            font-weight: 400;
+                                            line-height: 32px;
+                                            letter-spacing: 0em;
+                                            text-align: center;
+                                            color:#637381;
+                                            ">
+                                                من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي
+                                                شخص
+                                                محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في
+                                                تحقيق
+                                                اي
+                                                شئ وجعل المستحيل ممكن
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
+                                                font-size: 30px;
+                                                font-weight: 600;
+                                                line-height: 56px;
+                                                letter-spacing: 0em;
+                                                text-align: center;
+                                                color:#222751;
+                                                ">
+                                                طلال بن سلمان
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
+                                                font-size: 20px;
+                                                font-weight: 500;
+                                                line-height: 37px;
+                                                letter-spacing: 0em;
+                                                text-align: center;
+
+                                                color:#F0A202;
+                                                ">
+                                                مؤسس شركة
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="d-flex-justify-content-center">
+                                    <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
+                                </div>
+                            </div>
+                            <div class="carousel-item  ">
+                                <div class="card"
+                                    style="width: 100%;
+                                    height:100%;
+                                    border:#F8F8F8;
+                                    border-radius: 12px;background-color: #F8F8F8">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-center ">
+                                            <p class=" card-text text-center"
+                                                style="font-family: Poppins;
+                                            font-size: 20px;
+                                            border:#F8F8F8;
+                                            font-weight: 400;
+                                            line-height: 32px;
+                                            letter-spacing: 0em;
+                                            text-align: center;
+                                            color:#637381;
+                                            ">
+                                                من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي
+                                                شخص
+                                                محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في
+                                                تحقيق
+                                                اي
+                                                شئ وجعل المستحيل ممكن
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
+                                                font-size: 30px;
+                                                font-weight: 600;
+                                                line-height: 56px;
+                                                letter-spacing: 0em;
+                                                text-align: center;
+                                                color:#222751;
+                                                ">
+                                                طلال بن سلمان
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
+                                                font-size: 20px;
+                                                font-weight: 500;
+                                                line-height: 37px;
+                                                letter-spacing: 0em;
+                                                text-align: center;
+
+                                                color:#F0A202;
+                                                ">
+                                                مؤسس شركة
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="d-flex-justify-content-center">
+                                    <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
+                                </div>
+                            </div>
+                        </div>
+                        <span class="pl-2" style="margin-top:7rem !important;"
+                            data-target="#carouselExampleIndicators3" data-slide="next">
+                            <img src="{{ asset('images/right.svg') }}" alt="Next" class="next">
+                        </span>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators3" role="button"
+                        data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators3" role="button"
+                        data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        @endif
     </section>
 
     <script>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
@@ -19,8 +20,10 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required|string|max:255',
-            'text' => 'required|string',
+            'title.en' => 'required|string|max:255',
+            'title.ar' => 'required|string|max:255',
+            'text.en' => 'required|string',
+            'text.ar' => 'required|string',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
         ]);
 
@@ -37,8 +40,14 @@ class EventController extends Controller
         }
 
         $event = Event::create([
-            'title' => $request->input('title'),
-            'text' => $request->input('text'),
+           'title' => [
+            'en' => $request->input('title.en'),
+            'ar' => $request->input('title.ar'),
+        ],
+        'text' => [
+            'en' => $request->input('description.en'),
+            'ar' => $request->input('description.ar'),
+        ],
         ]);
 
         if ($imagePath) {
@@ -50,4 +59,68 @@ class EventController extends Controller
         return redirect()->route('events.index', $event->id)
             ->with('success', 'Event created successfully');
     }
+    public function edit($id)
+{
+    $event = Event::findOrFail($id);
+    return view('events.edit', compact('event'));
+}
+
+public function update(Request $request, $id)
+{
+    $event = Event::findOrFail($id);
+
+    $validator = Validator::make($request->all(), [
+        'title.en' => 'required|string|max:255',
+        'title.ar' => 'required|string|max:255',
+        'text.en' => 'required|string',
+        'text.ar' => 'required|string',
+        'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->route('events.edit', $event->id)
+            ->withErrors($validator)
+            ->withInput();
+    }
+
+    $event->update([
+        'title' => [
+            'en' => $request->input('title.en'),
+            'ar' => $request->input('title.ar'),
+        ],
+        'text' => [
+            'en' => $request->input('text.en'),
+            'ar' => $request->input('text.ar'),
+        ],
+    ]);
+
+    
+    if ($request->hasFile('image')) {
+        
+        Storage::disk('public')->delete($event->media->file_path);
+
+        // Upload the new image
+        $imagePath = $request->file('image')->store('event_images', 'public');
+
+        // Update the event's media record
+        $event->media()->update([
+            'file_path' => $imagePath,
+        ]);
+    }
+
+    return redirect()->route('events.index')->with('success', 'Event updated successfully.');
+}
+
+public function destroy($id)
+{
+    $event = Event::findOrFail($id);
+
+    
+    Storage::disk('public')->delete($event->media->file_path);
+
+    
+    $event->delete();
+
+    return redirect()->route('events.index')->with('success', 'Event deleted successfully.');
+}
 }
