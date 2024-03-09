@@ -57,7 +57,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                         <label for="image">Event Image <img src="{{ asset('storage/' . $event->media()->first()->file_path) }}" width="40px" height="40px"></label>
+                                         <label for="image">Event Image <img src="{{ asset('app/public/' . $event->media()->first()->file_path) }}" width="40px" height="40px"></label>
                                 <input type="file" name="image" id="image" class="form-control-file" accept="image/*">
                                     </div>
                                 </div>

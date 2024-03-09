@@ -45,7 +45,7 @@
                                         <td>{{ $service->getTranslation('title', 'ar') }}</td>
                                         <td>{{ $service->getTranslation('description', 'en') }}</td>
                                         <td>{{ $service->getTranslation('description', 'ar') }}</td>
-                                        <td><img src="{{ asset('storage/' . $service->media()->first()->file_path) }}"
+                                        <td><img src="{{ asset('app/public/' . $service->media()->first()->file_path) }}"
                                                ></td>
 
                                         <td>

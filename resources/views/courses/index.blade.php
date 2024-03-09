@@ -43,7 +43,7 @@
                         <div class="col-md-4 mt-5">
                             <div class="justify-content-center">
                                 <span class="d-flex justify-content-center mb-2 ">
-                                    <img src="{{ asset('storage/' . $course->media->first()->file_path) }}"
+                                    <img src="{{ asset('app/public/' . $course->media->first()->file_path) }}"
                                         style="width: 100%;height:258px" alt="First Image">
                                 </span>
 
@@ -169,7 +169,7 @@
                         <div class="col-md-4 mt-5">
                             <div class="justify-content-center">
                                 <span class="d-flex justify-content-center mb-2 ">
-                                    <img src="{{ asset('storage/' . $course->media->first()->file_path) }}"
+                                    <img src="{{ asset('app/public/' . $course->media->first()->file_path) }}"
                                         style="width: 100%;height:258px" alt="First Image">
                                 </span>
 

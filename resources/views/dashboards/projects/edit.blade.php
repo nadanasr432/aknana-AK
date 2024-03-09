@@ -42,7 +42,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                         <label for="image">Project Image <img src="{{ asset('storage/' . $project->images()->first()->file_path) }}"
+                                         <label for="image">Project Image <img src="{{ asset('app/public/' . $project->images()->first()->file_path) }}"
                                               width="40px" height="40px"></label>
                                  <input type="file" name="images[]" id="images" class="form-control-file" multiple accept="image/*">
                                     </div>

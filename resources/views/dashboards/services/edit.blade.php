@@ -57,7 +57,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="image">Service Image <img src="{{ asset('storage/' . $service->media()->first()->file_path) }}" width="40px" height="40px"
+                                        <label for="image">Service Image <img src="{{ asset('app/public/' . $service->media()->first()->file_path) }}" width="40px" height="40px"
                                                ></td></label>
                                          <input type="file" name="images[]" id="images" class="form-control-file" multiple accept="image/*">
                                     </div>
