@@ -456,6 +456,7 @@
             <button id="contactButton2" class="btn btn-primary">
                 {{ __('file.contact_us') }}
             </button>
+            {{-- // --}}
 
             <form method="post" action="{{ route('language.switch') }}" id="languageForm">
                 @csrf
