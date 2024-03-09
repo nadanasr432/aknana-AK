@@ -4,9 +4,8 @@
         @if (app()->getLocale() == 'ar')
             <div class="row d-flex justify-content-between">
 
-
                 <div class="col-md-5">
-                    <img src="{{ asset('images/about us.svg') }}" class="img-fluid" alt="About Us Image">
+                    <img src="{{ asset('images/Aknana.svg') }}" class="img-fluid" alt="About Us Image">
                 </div>
                 <div class="col-md-7 align-content-end text-left">
                     <div class="text-left  mt-2"
@@ -88,7 +87,7 @@
                                     @foreach ($availableCourses as $course)
                                         <option value="{{ $course->id }}" data-date="{{ $course->date_of_course }}"
                                             {{ request('course_id') == $course->id ? 'selected' : '' }}>
-                                            {{ $course->name }}</option>
+                                            {{ $course->getTranslation('name','en') }}</option>
                                     @endforeach
 
                                 </select>
@@ -182,19 +181,6 @@
                         text-align: center;
                         width: 100%; height: 70px; padding: 0 12px 0 0; border-radius: 10px; gap: 13px; color:#FFFFFF">@lang('file.Submit')</button>
                     </form>
-                    {{-- <script>
-                    $(document).ready(function() {
-                        // Check if there is a success message and QR code data
-                        @if (session('success') && session('qrCodeData'))
-                            // Open the QR code modal when there is a success message and QR code data
-                            $(document).ready(function() {
-                                $('#myModal1').modal('show');
-                            });
-                        @endif
-                    });
-                </script> --}}
-
-
                 </div>
             </div>
         @else
@@ -202,7 +188,7 @@
 
 
                 <div class="col-md-5">
-                    <img src="{{ asset('images/about us.svg') }}" class="img-fluid" alt="About Us Image">
+                    <img src="{{ asset('images/Aknana.svg') }}" class="img-fluid" alt="About Us Image">
                 </div>
                 <div class="col-md-7 align-content-end text-right">
                     <div class="text-right  mt-2"
@@ -284,7 +270,7 @@
                                     @foreach ($availableCourses as $course)
                                         <option value="{{ $course->id }}" data-date="{{ $course->date_of_course }}"
                                             {{ request('course_id') == $course->id ? 'selected' : '' }}>
-                                            {{ $course->name }}</option>
+                                            {{ $course->getTranslation('name','ar') }}</option>
                                     @endforeach
 
                                 </select>

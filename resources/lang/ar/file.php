@@ -110,6 +110,7 @@ return [
   "Duration"=>"Duration",
   "To contact us"=>"To contact us",
   "About_Us"=>"About Us",
+  "completed"=>"completed"
 
 
 

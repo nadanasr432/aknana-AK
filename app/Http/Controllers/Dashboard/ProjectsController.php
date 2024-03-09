@@ -1,18 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
-class ProjectController extends Controller
+class ProjectsController extends Controller
 {
-     public function create(){
-        return view('project.create ');
-     }
-   public function store(Request $request)
+    public function index()
+    {
+        $projects=Project::all();
+        return view('dashboards.projects.show',compact('projects'));
+    }
+    public function create()
+    {
+        return view('dashboards.projects.create');
+    }
+    public function store(Request $request)
     {
         $request->validate([
             'title.ar' => 'required|string|max:255',
@@ -21,7 +27,7 @@ class ProjectController extends Controller
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-       
+
         $project = Project::create([
             'title' => [
                 'en' => $request->input('title.en'),
@@ -29,7 +35,7 @@ class ProjectController extends Controller
             ],
         ]);
 
-       
+
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $path = $image->store('project_images', 'public');
@@ -40,15 +46,15 @@ class ProjectController extends Controller
             }
         }
 
-        return redirect('/')->with('success', 'Project created successfully');
+        return redirect()->route('dashboard.project.index')->with('success', 'Project created successfully');
     }
     public function edit($id)
-{
-    $project = Project::findOrFail($id);
-    return view('project.edit', compact('project'));
-}
+    {
+        $project = Project::findOrFail($id);
+        return view('dashboards.projects.edit', compact('project'));
+    }
 
-public function update(Request $request, $id)
+    public function update(Request $request, $id)
 {
     $project = Project::findOrFail($id);
 
@@ -66,8 +72,12 @@ public function update(Request $request, $id)
         ],
     ]);
 
-    // Handle image update
+    // Remove existing images
+   
+
+    // Add new images
     if ($request->hasFile('images')) {
+         $project->images()->delete();
         foreach ($request->file('images') as $image) {
             $path = $image->store('project_images', 'public');
 
@@ -77,20 +87,19 @@ public function update(Request $request, $id)
         }
     }
 
-    return redirect('/')->with('success', 'Project updated successfully');
+    return redirect()->route('dashboard.project.index')->with('success', 'Project updated successfully');
 }
 
-public function destroy($id)
-{
-    $project = Project::findOrFail($id);
 
-    // Delete associated images
-    foreach ($project->images as $image) {
-        Storage::disk('public')->delete($image->file_path);
+    public function destroy($id)
+    {
+        $project = Project::findOrFail($id);
+
+       
+            Storage::disk('public')->delete($project->images()->first()->file_path);
+        
+        $project->delete();
+
+        return redirect()->route('dashboard.project.index')->with('success', 'Project deleted successfully');
     }
-    $project->delete();
-
-    return redirect('/')->with('success', 'Project deleted successfully');
-}
-
 }

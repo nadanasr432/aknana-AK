@@ -13,49 +13,23 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Replace the local paths with CDN links -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <style>
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown-toggle::after {
-            content: none;
-        }
-
-        .dropdown-toggle::before {
-            content: "\22EE";
-            display: inline-block;
-            font-size: 1.5em;
-            margin-right: 5px;
-        }
-    </style>
 </head>
 
 <body>
@@ -247,6 +221,7 @@
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_sidebar.html -->
+
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item nav-profile">
@@ -254,7 +229,6 @@
                             <div class="nav-profile-image">
                                 <img src="{{ asset('assets/images/faces/face1.jpg') }}" alt="profile">
                                 <span class="login-status online"></span>
-                                <!--change to offline or busy as needed-->
                             </div>
                             <div class="nav-profile-text d-flex flex-column">
                                 <span class="font-weight-bold mb-2">David Grey. H</span>
@@ -263,140 +237,181 @@
                             <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
                         </a>
                     </li>
-                    <li class="nav-item">
+
+
+                    <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('dashboard') }}">
                             <span class="menu-title">Dashboard</span>
                             <i class="mdi mdi-home menu-icon"></i>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#programs" aria-expanded="false"
-                            aria-controls="programs">
+                    <li class="nav-item {{ Request::is('courses*') ? 'active' : '' }}">
+                        <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('programs')">
                             <span class="menu-title">Programs</span>
                             <i class="menu-arrow"></i>
                             <i class="mdi mdi-library menu-icon"></i>
                         </a>
-                        <div class="collapse" id="programs">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"><a class="nav-link"
-                                        href="{{ route('dashboard.courses.create') }}">Create</a></li>
-                                <li class="nav-item"><a class="nav-link"
-                                        href="{{ route('dashboard.courses.index') }}">All
+                        <div class="sub-menu" id="programs">
+                            <ul class="nav flex-column sub-menu1">
+                                <li class="nav-item {{ Request::is('courses/Create') ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ route('dashboard.courses.create') }}">Create</a>
+                                </li>
+                                <li class="nav-item {{ Request::is('courses/show') ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ route('dashboard.courses.index') }}">All
                                         Programs</a></li>
                             </ul>
                         </div>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#reservations" aria-expanded="false"
-                            aria-controls="reservations">
+                    <li class="nav-item {{ Request::is('reservation*') ? 'active' : '' }}">
+                        <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('reservations')">
                             <span class="menu-title">Reservations</span>
                             <i class="menu-arrow"></i>
                             <i class="mdi mdi-contact-mail menu-icon"></i>
                         </a>
-                        <div class="collapse" id="reservations">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"><a class="nav-link"
-                                        href="pages/ui-features/buttons.html">Create</a></li>
-                                
-                                <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">All
+                        <div class="sub-menu" id="reservations">
+                            <ul class="nav flex-column sub-menu1">
+                                <li class="nav-item {{ Request::is('reservation/Create') ? 'active' : '' }}"><a
+                                        class="nav-link"
+                                        href="{{ route('dashboard.reservation.create') }}">Create</a></li>
+                                <li class="nav-item {{ Request::is('reservation/show') ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ route('dashboard.reservation.index') }}">All
                                         Reservations</a></li>
                             </ul>
                         </div>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#events" aria-expanded="false"
-                            aria-controls="events">
+                    <li class="nav-item {{ Request::is('event*') ? 'active' : '' }}">
+                        <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('events')">
                             <span class="menu-title">Events</span>
                             <i class="menu-arrow"></i>
                             <i class="mdi mdi-calendar-check menu-icon"></i>
                         </a>
-                        <div class="collapse" id="events">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"><a class="nav-link"
-                                        href="pages/ui-features/buttons.html">Create</a></li>
-                                
-                                <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">All
-                                        Events</a></li>
+                        <div class="sub-menu" id="events">
+                            <ul class="nav flex-column sub-menu1">
+                                <li class="nav-item {{ Request::is('event/Create') ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ route('dashboard.event.create') }}">Create</a></li>
+                                <li class="nav-item {{ Request::is('event/show') ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ route('dashboard.event.index') }}">All Events</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#projects" aria-expanded="false"
-                            aria-controls="projects">
+                    <li class="nav-item {{ Request::is('project*') ? 'active' : '' }}">
+                        <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('projects')">
                             <span class="menu-title">Projects</span>
                             <i class="menu-arrow"></i>
                             <i class="mdi  mdi-bulletin-board menu-icon"></i>
                         </a>
-                        <div class="collapse" id="projects">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"><a class="nav-link"
-                                        href="pages/ui-features/buttons.html">Create</a></li>
-                                
-                                <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">All
+                        <div class="sub-menu" id="projects">
+                            <ul class="nav flex-column sub-menu1">
+                                <li class="nav-item {{ Request::is('project/Create') ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ route('dashboard.project.create') }}">Create</a>
+                                </li>
+                                <li class="nav-item {{ Request::is('project/show') ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ route('dashboard.project.index') }}">All
                                         Projects</a></li>
                             </ul>
                         </div>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#services" aria-expanded="false"
-                            aria-controls="services">
+                    <li class="nav-item {{ Request::is('service*') ? 'active' : '' }}">
+                        <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('services')">
                             <span class="menu-title">Services</span>
                             <i class="menu-arrow"></i>
                             <i class="mdi mdi-settings-box menu-icon"></i>
                         </a>
-                        <div class="collapse" id="services">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"><a class="nav-link"
-                                        href="pages/ui-features/buttons.html">Create</a></li>
-                                
-                                <li class="nav-item"><a class="nav-link" href="pages/ui-features/typography.html">All
+                        <div class="sub-menu" id="services">
+                            <ul class="nav flex-column sub-menu1">
+                                <li class="nav-item {{ Request::is('service/Create') ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ route('dashboard.service.create') }}">Create</a>
+                                </li>
+                                <li class="nav-item {{ Request::is('service/show') ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ route('dashboard.service.index') }}">All
                                         Services</a></li>
                             </ul>
                         </div>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/icons/mdi.html">
+                    <li class="nav-item {{ Request::is('contacts*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('dashboard.contacts.show') }}">
                             <span class="menu-title">Contacts</span>
                             <i class="mdi mdi-contacts menu-icon"></i>
                         </a>
                     </li>
                 </ul>
             </nav>
-            <!-- partial -->
+
+            <script>
+                function toggleSubMenu(subMenuId) {
+                    var subMenu = document.getElementById(subMenuId);
+                    subMenu.style.display = subMenu.style.display === 'none' ? 'block' : 'none';
+                }
+            </script>
+
             <div class="main-panel">
-
                 @yield('content')
-                <!-- content-wrapper ends -->
-                <!-- partial:partials/_footer.html -->
-
-                <!-- partial -->
             </div>
-            <!-- main-panel ends -->
         </div>
-        <!-- page-body-wrapper ends -->
+
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
     <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
     <script src="{{ asset('assets/vendors/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('assets/js/misc.js') }}"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     <script src="{{ asset('assets/js/todolist.js') }}"></script>
-    <!-- End custom js for this page -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('[data-bs-toggle="collapse"]').collapse();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#course_id').on('change', function() {
+                var selectedDate = $(this).find(':selected').data('date');
+                $('#inputDateOfCourse').val(selectedDate);
+            });
+            var course_id_from_request = '{{ request('course_id') }}';
+
+            if (course_id_from_request) {
+                $('#course_id').val(course_id_from_request).change();
+            }
+            $('#course_id').on('change', function() {
+                var selectedCourseId = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route('getMaxMaleValue') }}',
+                    data: {
+                        course_id: selectedCourseId
+                    },
+                    success: function(response) {
+                        updateGenderOptions(response.max_male, response.max_female, response
+                            .maleCount, response.femaleCount);
+                    },
+                    error: function(error) {
+                        console.error('Error fetching max values:', error);
+                    }
+                });
+            });
+
+            var course_id_from_request = '{{ request('course_id') }}';
+            if (course_id_from_request) {
+                $('#course_id').val(course_id_from_request).change();
+            }
+        });
+
+        function updateGenderOptions(maxMale, maxFemale, maleCount, femaleCount) {
+            $('#gender').empty();
+            $('#gender').append('<option value="" disabled selected>Gender</option>');
+            if (maleCount < maxMale) {
+                $('#gender').append('<option value="male">Male</option>');
+            }
+            if (femaleCount < maxFemale) {
+                $('#gender').append('<option value="female">Female</option>');
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

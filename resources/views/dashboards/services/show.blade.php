@@ -5,17 +5,18 @@
             <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white me-2">
                     <i class="mdi mdi-library"></i>
-                </span> Programs
+                </span> Services
             </h3>
             <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
 
                     <li class="breadcrumb-item active" aria-current="page">
-                        <a href="{{ route('dashboard.courses.create') }}" class="btn btn-gradient-primary me-2">Create
-                            Course</a>
+                        <a href="{{ route('dashboard.service.create') }}" class="btn btn-gradient-primary me-2">
+                            Create
+                            Service</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        <span></span>All Programs <i class="mdi mdi-library icon-sm text-primary align-middle"></i>
+                        <span></span>All Services <i class="mdi mdi-library icon-sm text-primary align-middle"></i>
                     </li>
                 </ul>
             </nav>
@@ -25,42 +26,28 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body" style="overflow-x: auto ;">
-                        <h4 class="card-title">Programs Table</h4>
+                        <h4 class="card-title">Services Table</h4>
                         </p>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Name Ar</th>
-                                    <th>Name En</th>
-                                    <th>Professor Name Ar</th>
-                                    <th>Professor Name En</th>
-                                    <th>Time Duration Ar</th>
-                                    <th>Time Duration En</th>
-                                    <th>Location En</th>
-                                    <th>Location En</th>
-                                    <th>Max Female Count</th>
-                                    <th>Max Male Count</th>
-                                    <th>Date of Course</th>
-                                    <th>Course Image</th>
-                                    <th>Action</th>
+                                    <th>Title (English)</th>
+                                    <th>Title (Arabic)</th>
+                                    <th>Description (English)</th>
+                                    <th>Description (Arabic)</th>
+                                    <th>service Image</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($courses as $course)
+                                @foreach ($services as $service)
                                     <tr>
-                                        <td>{{ $course->getTranslation('name', 'ar') }}</td>
-                                        <td>{{ $course->getTranslation('name', 'en') }}</td>
-                                        <td>{{ $course->getTranslation('professor_name', 'ar') }}</td>
-                                        <td>{{ $course->getTranslation('professor_name', 'en') }}</td>
-                                        <td>{{ $course->getTranslation('time_duration', 'ar') }}</td>
-                                        <td>{{ $course->getTranslation('time_duration', 'en') }}</td>
-                                        <td>{{ $course->getTranslation('location', 'ar') }}</td>
-                                        <td>{{ $course->getTranslation('location', 'en') }}</td>
-                                        <td>{{ $course->female_count }}</td>
-                                        <td>{{ $course->male_count }}</td>
-                                        <td>{{ $course->date_of_course }}</td>
-                                           <td><img src="{{ asset('storage/' . $course->media()->first()->file_path) }}"
+                                        <td>{{ $service->getTranslation('title', 'en') }}</td>
+                                        <td>{{ $service->getTranslation('title', 'ar') }}</td>
+                                        <td>{{ $service->getTranslation('description', 'en') }}</td>
+                                        <td>{{ $service->getTranslation('description', 'ar') }}</td>
+                                        <td><img src="{{ asset('storage/' . $service->media()->first()->file_path) }}"
                                                ></td>
+
                                         <td>
                                             <div class="dropdown">
                                                 <i class="mdi mdi-dots-vertical" id="dropdownMenuButton"
@@ -68,10 +55,10 @@
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <a class="dropdown-item"
-                                                        href="{{ route('dashboard.courses.edit', $course->id) }}">Edit</a>
+                                                        href="{{ route('dashboard.service.edit', $service->id) }}">Edit</a>
 
                                                     <form id="deleteForm" method="POST"
-                                                        action="{{ route('dashboard.courses.delete', ['id' => $course->id]) }}">
+                                                        action="{{ route('dashboard.service.delete', ['id' => $service->id]) }}">
                                                         @csrf
                                                         @method('DELETE')
 

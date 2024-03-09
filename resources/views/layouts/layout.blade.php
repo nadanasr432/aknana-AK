@@ -13,6 +13,13 @@
     <link rel="icon" href="{{ asset('images/logo 4 (1).png') }}" type="image/png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
+        .small-screen-font {
+            font-size: 20px;
+            line-height: 50px;
+        }
+
+        /* Add more styles for other elements as needed */
+
         #home a {
             color: #FFE4C5;
 
@@ -84,6 +91,7 @@
                     opacity: 1;
                 }
             }
+
 
 
             .service_text2 {
@@ -165,6 +173,7 @@
                 line-height: 15px !important;
 
             }
+
 
 
             .service_text1 {
@@ -259,11 +268,11 @@
                 font-size: 14px;
             }
 
+
             body {
 
                 overflow-x: hidden;
                 width: 100%
-
             }
 
             #home a::after {
@@ -398,6 +407,39 @@
 
         .active-dot {
             background-color: #717171;
+        }
+
+        /* #contactButton {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #contactButton::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: #FFD700;
+            bottom: 0;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #contactButton:hover::before {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        } */
+
+        .btn-primary ,.btn-outline-primary{
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover ,.btn-outline-primary:hover  {
+            box-shadow: 5px 10px 40px #ecd394;
+            background-color: #121743;
+
         }
     </style>
 </head>
@@ -1140,10 +1182,26 @@
         @endif
         <!-- Copyright -->
     </footer>
-    <a id="scrollToTopButton" href="#head" class="btn fixed-bottom ml-3 mb-4 mt-4 rounded-circle"
-        style="width: 60px;height:60px">
+    <!-- Left image -->
+    <a id="scrollToTopButton" href="#head" class="btn fixed-bottom ml-3 mb-3 mt-5 rounded-circle"
+        style="width: 60px;height:60px; position: fixed; left: 10px; bottom: 10px;">
         <img src="{{ asset('images/turn-up.gif') }}" width="35px" height="40x">
     </a>
+
+    @if (app()->getLocale() == 'en')
+        <a href="https://api.whatsapp.com/send?phone=966562354761"
+            class="btn fixed-bottom-left mr-3 mb-3 mt-5 rounded-circle"
+            style="width: 60px; height: 54px; position: fixed; bottom: 10px; right: 10px; z-index: 1000;">
+            <img src="{{ asset('images/whatsappAni.gif') }}" width="35px" height="35px">
+        </a>
+    @else
+        <a href="https://api.whatsapp.com/send?phone=966562354761"
+            class="btn fixed-bottom-left mr-3 mb-3 mt-5 rounded-circle"
+            style="width: 60px; height: 54px; position: fixed; bottom: 10px; left: 10px; z-index: 1000;">
+            <img src="{{ asset('images/whatsappAni.gif') }}" width="35px" height="35px">
+        </a>
+    @endif
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
@@ -1198,6 +1256,23 @@
                     left: scrollPosition,
                     behavior: 'smooth'
                 });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // When clicking on the read-more-button
+            $(".read-more-button").click(function() {
+                // Toggle visibility of short-event and full-event
+                $(this).closest(".event-container").find(".short-event").toggle();
+                $(this).closest(".event-container").find(".full-event").toggle();
+            });
+
+            // When clicking on the show-less-button
+            $(".show-less-button").click(function() {
+                // Toggle visibility of short-event and full-event
+                $(this).closest(".event-container").find(".short-event").toggle();
+                $(this).closest(".event-container").find(".full-event").toggle();
             });
         });
     </script>
@@ -1317,176 +1392,47 @@
         });
     </script>
     <script src="https://unpkg.com/scrollreveal"></script>
- 
+
     @if (app()->getLocale() == 'ar')
-     <script>
-        const scrollReveal = ScrollReveal({
-            reset: true,
-            mobile: true, 
-        });
+        <script>
+            const scrollReveal = ScrollReveal({
+                reset: true,
+                mobile: true,
+            });
 
-        
-        scrollReveal.reveal('.fade-in', {
-            distance: '50%',
-            origin: 'right',
-            duration: 2000,
-            opacity: 0
-        });
 
-        ScrollReveal().reveal('#ServButton', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.animate-fade-up', {
-            distance: '50%',
-            origin: 'right',
-            duration: 2500,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.animate-fade-in', {
-            distance: '50%',
-            origin: 'right',
-            duration: 2500,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.the_range', {
-            distance: '50%',
-            origin: 'bottom',
-            duration: 2000
-        });
-        ScrollReveal().reveal('.content-text2', {
-            distance: '100%',
-            origin: 'top',
-            duration: 1500
-        });
-        ScrollReveal().reveal('.the_range .container', {
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.the_range .mt-5', {
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.content-text1:nth-child(3)', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.content-text1:nth-child(1)', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.content-text1:nth-child(2)', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('#textContent', {
-            delay: 500,
-            duration: 1500,
-            opacity: 0
-        });
-        ScrollReveal().reveal('#contactButton', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('#contactButton2', {
-            delay: 500,
-            duration: 500,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.US', {
-            duration: 500,
-            origin: 'left',
-            opacity: 0
-        });
-        ScrollReveal().reveal('.custom-image-style', {
-            distance: '50%',
-            origin: 'right',
-            duration: 2000
-        });
-        ScrollReveal().reveal('.custom-text-style', {
-            distance: '50%',
-            origin: 'right',
-            duration: 2500
-        });
-        ScrollReveal().reveal('.custom-text_2', {
-            distance: '50%',
-            origin: 'right',
-            duration: 2000
-        });
-        ScrollReveal().reveal('#contactButton3', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('#contactButton4', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.service_text2', {
-            distance: '50%',
-            origin: 'right',
-            duration: 1500
-        });
-        ScrollReveal().reveal('#textd', {
-            distance: '50%',
-            origin: 'right',
-            duration: 2000
-        });
-        ScrollReveal().reveal('.service_text3', {
-            distance: '50%',
-            origin: 'right',
-            duration: 2500,
-        });
-        ScrollReveal().reveal('.he ', {
-            duration: 1500,
-            opacity: 0,
-            delay: 1000
-        });
-
-        ScrollReveal().reveal('.he .col-md-1 img', {
-            duration: 1500,
-            opacity: 1,
-            delay: 1500
-        });
-        const mediaQuery = window.matchMedia('(max-width: 768px)');
-
-        if (mediaQuery.matches) {
-            // Adjust reveal configurations for smaller screens
             scrollReveal.reveal('.fade-in', {
-
+                distance: '50%',
+                origin: 'right',
+                duration: 2000,
+                opacity: 0
             });
 
             ScrollReveal().reveal('#ServButton', {
                 delay: 500,
                 duration: 2000,
                 opacity: 0
-                
             });
             ScrollReveal().reveal('.animate-fade-up', {
-                origin: 'top',
+                distance: '50%',
+                origin: 'right',
                 duration: 2500,
                 opacity: 0
             });
             ScrollReveal().reveal('.animate-fade-in', {
-
-                origin: 'bottom',
+                distance: '50%',
+                origin: 'right',
                 duration: 2500,
                 opacity: 0
             });
             ScrollReveal().reveal('.the_range', {
-
-                origin: 'top',
+                distance: '50%',
+                origin: 'bottom',
                 duration: 2000
             });
             ScrollReveal().reveal('.content-text2', {
-
-                origin: 'bottom',
+                distance: '100%',
+                origin: 'top',
                 duration: 1500
             });
             ScrollReveal().reveal('.the_range .container', {
@@ -1529,22 +1475,22 @@
             });
             ScrollReveal().reveal('.US', {
                 duration: 500,
-                origin: 'top',
+                origin: 'left',
                 opacity: 0
             });
             ScrollReveal().reveal('.custom-image-style', {
-
-                origin: 'bottom',
+                distance: '50%',
+                origin: 'right',
                 duration: 2000
             });
             ScrollReveal().reveal('.custom-text-style', {
-
-                origin: 'bottom',
+                distance: '50%',
+                origin: 'right',
                 duration: 2500
             });
             ScrollReveal().reveal('.custom-text_2', {
-
-                origin: 'bottom',
+                distance: '50%',
+                origin: 'right',
                 duration: 2000
             });
             ScrollReveal().reveal('#contactButton3', {
@@ -1558,24 +1504,24 @@
                 opacity: 0
             });
             ScrollReveal().reveal('.service_text2', {
-
-                origin: 'top',
+                distance: '50%',
+                origin: 'right',
                 duration: 1500
             });
             ScrollReveal().reveal('#textd', {
-
-                origin: 'bottom',
+                distance: '50%',
+                origin: 'right',
                 duration: 2000
             });
             ScrollReveal().reveal('.service_text3', {
-
-                origin: 'top',
+                distance: '50%',
+                origin: 'right',
                 duration: 2500,
             });
             ScrollReveal().reveal('.he ', {
-                duration: 1000,
+                duration: 1500,
                 opacity: 0,
-                delay: 1500
+                delay: 1000
             });
 
             ScrollReveal().reveal('.he .col-md-1 img', {
@@ -1583,177 +1529,177 @@
                 opacity: 1,
                 delay: 1500
             });
-        }
-    </script>
+            const mediaQuery = window.matchMedia('(max-width: 768px)');
+
+            if (mediaQuery.matches) {
+                // Adjust reveal configurations for smaller screens
+                scrollReveal.reveal('.fade-in', {
+
+                });
+
+                ScrollReveal().reveal('#ServButton', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+
+                });
+                ScrollReveal().reveal('.animate-fade-up', {
+                    origin: 'top',
+                    duration: 2500,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.animate-fade-in', {
+
+                    origin: 'bottom',
+                    duration: 2500,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.the_range', {
+
+                    origin: 'top',
+                    duration: 2000
+                });
+                ScrollReveal().reveal('.content-text2', {
+
+                    origin: 'bottom',
+                    duration: 1500
+                });
+                ScrollReveal().reveal('.the_range .container', {
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.the_range .mt-5', {
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.content-text1:nth-child(3)', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.content-text1:nth-child(1)', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.content-text1:nth-child(2)', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('#textContent', {
+                    delay: 500,
+                    duration: 1500,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('#contactButton', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('#contactButton2', {
+                    delay: 500,
+                    duration: 500,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.US', {
+                    duration: 500,
+                    origin: 'top',
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.custom-image-style', {
+
+                    origin: 'bottom',
+                    duration: 2000
+                });
+                ScrollReveal().reveal('.custom-text-style', {
+
+                    origin: 'bottom',
+                    duration: 2500
+                });
+                ScrollReveal().reveal('.custom-text_2', {
+
+                    origin: 'bottom',
+                    duration: 2000
+                });
+                ScrollReveal().reveal('#contactButton3', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('#contactButton4', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.service_text2', {
+
+                    origin: 'top',
+                    duration: 1500
+                });
+                ScrollReveal().reveal('#textd', {
+
+                    origin: 'bottom',
+                    duration: 2000
+                });
+                ScrollReveal().reveal('.service_text3', {
+
+                    origin: 'top',
+                    duration: 2500,
+                });
+                ScrollReveal().reveal('.he ', {
+                    duration: 1000,
+                    opacity: 0,
+                    delay: 1500
+                });
+
+                ScrollReveal().reveal('.he .col-md-1 img', {
+                    duration: 1500,
+                    opacity: 1,
+                    delay: 1500
+                });
+            }
+        </script>
     @else
-       <script>
-        const scrollReveal = ScrollReveal({
-            reset: true,
-            mobile: true, 
-        });
+        <script>
+            const scrollReveal = ScrollReveal({
+                reset: true,
+                mobile: true,
+            });
 
-        
-        scrollReveal.reveal('.fade-in', {
-            distance: '50%',
-            origin: 'left',
-            duration: 2000,
-            opacity: 0
-        });
 
-        ScrollReveal().reveal('#ServButton', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.animate-fade-up', {
-            distance: '50%',
-            origin: 'left',
-            duration: 2500,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.animate-fade-in', {
-            distance: '50%',
-            origin: 'right',
-            duration: 2500,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.the_range', {
-            distance: '50%',
-            origin: 'bottom',
-            duration: 2000
-        });
-        ScrollReveal().reveal('.content-text2', {
-            distance: '100%',
-            origin: 'top',
-            duration: 1500
-        });
-        ScrollReveal().reveal('.the_range .container', {
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.the_range .mt-5', {
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.content-text1:nth-child(3)', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.content-text1:nth-child(1)', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.content-text1:nth-child(2)', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('#textContent', {
-            delay: 500,
-            duration: 1500,
-            opacity: 0
-        });
-        ScrollReveal().reveal('#contactButton', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('#contactButton2', {
-            delay: 500,
-            duration: 500,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.US', {
-            duration: 500,
-            origin: 'right',
-            opacity: 0
-        });
-        ScrollReveal().reveal('.custom-image-style', {
-            distance: '50%',
-            origin: 'right',
-            duration: 2000
-        });
-        ScrollReveal().reveal('.custom-text-style', {
-            distance: '50%',
-            origin: 'right',
-            duration: 2500
-        });
-        ScrollReveal().reveal('.custom-text_2', {
-            distance: '50%',
-            origin: 'left',
-            duration: 2000
-        });
-        ScrollReveal().reveal('#contactButton3', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('#contactButton4', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.service_text2', {
-            distance: '50%',
-            origin: 'left',
-            duration: 1500
-        });
-        ScrollReveal().reveal('#textd', {
-            distance: '50%',
-            origin: 'left',
-            duration: 2000
-        });
-        ScrollReveal().reveal('.service_text3', {
-            distance: '50%',
-            origin: 'right',
-            duration: 2500,
-        });
-        ScrollReveal().reveal('.he ', {
-            duration: 1500,
-            opacity: 0,
-            delay: 1000
-        });
-
-        ScrollReveal().reveal('.he .col-md-1 img', {
-            duration: 1500,
-            opacity: 1,
-            delay: 1500
-        });
-        const mediaQuery = window.matchMedia('(max-width: 768px)');
-
-        if (mediaQuery.matches) {
-            // Adjust reveal configurations for smaller screens
             scrollReveal.reveal('.fade-in', {
-
+                distance: '50%',
+                origin: 'left',
+                duration: 2000,
+                opacity: 0
             });
 
             ScrollReveal().reveal('#ServButton', {
                 delay: 500,
                 duration: 2000,
                 opacity: 0
-                
             });
             ScrollReveal().reveal('.animate-fade-up', {
-                origin: 'top',
+                distance: '50%',
+                origin: 'left',
                 duration: 2500,
                 opacity: 0
             });
             ScrollReveal().reveal('.animate-fade-in', {
-
-                origin: 'bottom',
+                distance: '50%',
+                origin: 'right',
                 duration: 2500,
                 opacity: 0
             });
             ScrollReveal().reveal('.the_range', {
-
-                origin: 'top',
+                distance: '50%',
+                origin: 'bottom',
                 duration: 2000
             });
             ScrollReveal().reveal('.content-text2', {
-
-                origin: 'bottom',
+                distance: '100%',
+                origin: 'top',
                 duration: 1500
             });
             ScrollReveal().reveal('.the_range .container', {
@@ -1796,22 +1742,22 @@
             });
             ScrollReveal().reveal('.US', {
                 duration: 500,
-                origin: 'top',
+                origin: 'right',
                 opacity: 0
             });
             ScrollReveal().reveal('.custom-image-style', {
-
-                origin: 'bottom',
+                distance: '50%',
+                origin: 'right',
                 duration: 2000
             });
             ScrollReveal().reveal('.custom-text-style', {
-
-                origin: 'bottom',
+                distance: '50%',
+                origin: 'right',
                 duration: 2500
             });
             ScrollReveal().reveal('.custom-text_2', {
-
-                origin: 'bottom',
+                distance: '50%',
+                origin: 'left',
                 duration: 2000
             });
             ScrollReveal().reveal('#contactButton3', {
@@ -1825,24 +1771,24 @@
                 opacity: 0
             });
             ScrollReveal().reveal('.service_text2', {
-
-                origin: 'top',
+                distance: '50%',
+                origin: 'left',
                 duration: 1500
             });
             ScrollReveal().reveal('#textd', {
-
-                origin: 'bottom',
+                distance: '50%',
+                origin: 'left',
                 duration: 2000
             });
             ScrollReveal().reveal('.service_text3', {
-
-                origin: 'bottom',
+                distance: '50%',
+                origin: 'right',
                 duration: 2500,
             });
             ScrollReveal().reveal('.he ', {
-                duration: 1000,
+                duration: 1500,
                 opacity: 0,
-                delay: 1500
+                delay: 1000
             });
 
             ScrollReveal().reveal('.he .col-md-1 img', {
@@ -1850,11 +1796,207 @@
                 opacity: 1,
                 delay: 1500
             });
-        }
-    </script>
+            const mediaQuery = window.matchMedia('(max-width: 768px)');
+
+            if (mediaQuery.matches) {
+                // Adjust reveal configurations for smaller screens
+                scrollReveal.reveal('.fade-in', {
+
+                });
+
+                ScrollReveal().reveal('#ServButton', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+
+                });
+                ScrollReveal().reveal('.animate-fade-up', {
+                    origin: 'top',
+                    duration: 2500,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.animate-fade-in', {
+
+                    origin: 'bottom',
+                    duration: 2500,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.the_range', {
+
+                    origin: 'top',
+                    duration: 2000
+                });
+                ScrollReveal().reveal('.content-text2', {
+
+                    origin: 'bottom',
+                    duration: 1500
+                });
+                ScrollReveal().reveal('.the_range .container', {
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.the_range .mt-5', {
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.content-text1:nth-child(3)', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.content-text1:nth-child(1)', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.content-text1:nth-child(2)', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('#textContent', {
+                    delay: 500,
+                    duration: 1500,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('#contactButton', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('#contactButton2', {
+                    delay: 500,
+                    duration: 500,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.US', {
+                    duration: 500,
+                    origin: 'top',
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.custom-image-style', {
+
+                    origin: 'bottom',
+                    duration: 2000
+                });
+                ScrollReveal().reveal('.custom-text-style', {
+
+                    origin: 'bottom',
+                    duration: 2500
+                });
+                ScrollReveal().reveal('.custom-text_2', {
+
+                    origin: 'bottom',
+                    duration: 2000
+                });
+                ScrollReveal().reveal('#contactButton3', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('#contactButton4', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.service_text2', {
+
+                    origin: 'top',
+                    duration: 1500
+                });
+                ScrollReveal().reveal('#textd', {
+
+                    origin: 'bottom',
+                    duration: 2000
+                });
+                ScrollReveal().reveal('.service_text3', {
+
+                    origin: 'bottom',
+                    duration: 2500,
+                });
+                ScrollReveal().reveal('.he ', {
+                    duration: 1000,
+                    opacity: 0,
+                    delay: 1500
+                });
+
+                ScrollReveal().reveal('.he .col-md-1 img', {
+                    duration: 1500,
+                    opacity: 1,
+                    delay: 1500
+                });
+            }
+        </script>
     @endif
 
+    <script>
+        // Function to adjust font size for mobile screens
+        function adjustFontSize(elementIds) {
+            const mediaQuery = window.matchMedia('(max-width: 768px)');
 
+            elementIds.forEach(function(elementId) {
+                var element = document.getElementById(elementId);
+                var element2 = document.getElementById("hepltext2");
+                var element22 = document.getElementById("tex_22");
+                var arrowElement = document.getElementById('arrow');
+
+                if (element) {
+                    if (mediaQuery.matches) {
+                        // Adjust font size for small screens
+                        element.style.fontSize = '30px';
+                        element.style.lineHeight = '50px';
+                        // element2.style.fontSize = '25px';
+                        // element2.style.lineHeight = '50px';
+                        // element22.style.fontSize = '25px';
+                        // element22.style.lineHeight = '50px';
+                        // arrowElement.style.marginTop = '17.5rem';
+                    } else {
+                        // Reset font size for larger screens
+                        element.style.fontSize = '40px';
+                        element.style.lineHeight = '75px';
+                    }
+                }
+                if (element2) {
+                    if (mediaQuery.matches) {
+
+                        element2.style.fontSize = '25px';
+                        element2.style.lineHeight = '50px';
+
+                    } else {
+
+                        element2.style.fontSize = '35px';
+                        element2.style.lineHeight = '75px';
+                    }
+                }
+                if (element22) {
+                    if (mediaQuery.matches) {
+                        element22.style.fontSize = '25px';
+                        element22.style.lineHeight = '50px';
+                    } else {
+                        element22.style.fontSize = '35px';
+                        element22.style.lineHeight = '75px';
+                    }
+                }
+                if (arrowElement) {
+                    if (mediaQuery.matches) {
+                        arrowElement.style.marginTop = '17.5rem';
+                    }
+                }
+            });
+        }
+
+        // Initial adjustment on page load
+        adjustFontSize(['hepltext', 'tex_2', 'programstext', 'programstext1', 'projecttext', 'projecttext1', 'eventtext',
+            'eventtext1'
+        ]);
+
+        // Adjust font size on window resize
+        window.addEventListener('resize', function() {
+            adjustFontSize(['hepltext', 'tex_2', 'programstext', 'programstext1', 'projecttext', 'projecttext1',
+                'eventtext', 'eventtext1'
+            ]);
+        });
+    </script>
 
 
 </body>

@@ -14209,6 +14209,76 @@ dl {
             width: 44px;
             height: 44px;
             border-radius: 100%; }
+                         .sub-menu {
+                           display: none;
+                         }
+            
+                         .nav-item.active .sub-menu {
+                           display: block;
+                         }
+            
+                         .nav-item.active,
+                         .nav-link.active,
+                         .sub-menu .nav-item.active {
+                           background-color: #007bff;
+                           color: #fff;
+                         }
+            
+                         .sidebar .nav:not(.sub-menu)>.nav-item:hover:not(.nav-category):not(.nav-profile)>.nav-link {
+                           color: #29323d;
+                         }
+            
+                         .sidebar .nav.sub-menu1 {
+                           margin-bottom: 20px;
+                           margin-top: 0;
+                           list-style: none;
+                         }
+            
+                         .sidebar .nav.sub-menu1 .nav-item {
+                           padding: 0;
+                         }
+            
+                         .sidebar .nav.sub-menu1 .nav-item .nav-link {
+                           color: #888;
+                           padding: 0.75rem 2rem 0.75rem 2rem;
+                           position: relative;
+                           font-size: 0.8125rem;
+                           line-height: 1;
+                           height: auto;
+                           border-top: 0;
+                         }
+            
+                         .sidebar .nav.sub-menu1 .nav-item .nav-link:before {
+                           content: "\F054";
+                           font-family: "Material Design Icons";
+                           display: block;
+                           position: absolute;
+                           left: 0px;
+                           top: 50%;
+                           -webkit-transform: translateY(-50%);
+                           transform: translateY(-50%);
+                           color: #a2a2a2;
+                           font-size: .75rem;
+                         }
+            
+                         .rtl .sidebar .nav.sub-menu1 .nav-item .nav-link:before {
+                           left: auto;
+                           right: 0;
+                         }
+            
+                         .sidebar .nav.sub-menu1 .nav-item .nav-link.active,
+                         .sidebar .nav.sub-menu1 .nav-item.active .nav-link {
+                           color: #b66dff;
+                           background: transparent;
+                         }
+            
+                         .sidebar .nav.sub-menu1 .nav-item .nav-link:hover {
+                           color: #555555;
+                         }
+            
+                         .sidebar .nav.sub-menu1 .nav-item:hover {
+                           background: transparent;
+                         }
         .sidebar .nav .nav-item.nav-profile .nav-link .nav-profile-text {
           margin-left: 1rem; }
           .rtl .sidebar .nav .nav-item.nav-profile .nav-link .nav-profile-text {

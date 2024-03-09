@@ -87,19 +87,20 @@ public function searchByPhone(Request $request)
             $query->where('phone', $phone);
         });
     }
+    
 
     $filteredCourses = $courses->get();
-
+    $reservation = $filteredCourses->first()->reservations->first();
     if ($filteredCourses->isEmpty()) {
-        return view('courses.search_result')->with('filteredCourses', null);
+        return view('courses.search_result')->with('filteredCourses','reservationData', null);
     }
 
-    return view('courses.search_result', compact('filteredCourses'));
+    return view('courses.search_result', compact('filteredCourses','reservationData'));
 }
 public function edit($id)
 {
     $course = Course::findOrFail($id);
-    return view('courses.edit', compact('course'));
+    return view('dashboards.courses.edit', compact('course'));
 }
 
 public function update(Request $request, $id)
@@ -161,20 +162,16 @@ public function update(Request $request, $id)
         ]);
     }
 
-    return redirect()->route('courses.index')->with('success', 'Course updated successfully.');
+    return redirect()->route('dashboard.courses.index')->with('success', 'Course updated successfully.');
 }
 
 public function destroy($id)
 {
     $course = Course::findOrFail($id);
 
-    // Delete associated media file
-    Storage::disk('public')->delete($course->media->file_path);
-
-    // Delete the course
+    Storage::disk('public')->delete($course->media()->first()->file_path);
     $course->delete();
-
-    return redirect()->route('courses.index')->with('success', 'Course deleted successfully.');
+    return back()->with('success', 'Course deleted successfully.');
 }
 
 }

@@ -18,8 +18,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha384-eDexGCEIa7XZLUEX31FzRvFrCD8v/72G6PO77RFGU5S5sS/gEVMmE2zD3tt1TwTk" crossorigin="anonymous">
     <!-- Scripts -->
+    <script src=
+"https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js">
+    </script>
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <!-- Optional: Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
+        .btn-primary {
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 5px 10px 40px #ecd394;
+            background: #121743;
+
+        }
+
         body {
             overflow: auto;
         }
@@ -407,7 +424,7 @@
                         </span>
                         <ul class="list-unstyled">
                             <li class="mb-2">
-<img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
                                     style="transform: scaleX(-1);">
                                 <a href="#head"
                                     style="font-family: Poppins;
@@ -419,10 +436,10 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.home') </a>
-                                
+
                             </li>
                             <li class="mb-2">
-<img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
                                     style="transform: scaleX(-1);">
                                 <a href="#service"
                                     style="font-family: Poppins;
@@ -434,10 +451,10 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.services') </a>
-                                
+
                             </li>
                             <li class="mb-2">
- <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
                                     style="transform: scaleX(-1);">
                                 <a href="#US"
                                     style="font-family: Poppins;
@@ -449,10 +466,10 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.about_us')</a>
-                               
+
                             </li>
                             <li class="mb-2">
- <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
                                     style="transform: scaleX(-1);">
                                 <a href="#programs"
                                     style="font-family: Poppins;
@@ -464,7 +481,7 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.programs') </a>
-                               
+
                             </li>
                         </ul>
                     </div>
@@ -488,7 +505,7 @@
                         <ul class="list-unstyled">
 
                             <li class="mb-2">
-<img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
                                     style="transform: scaleX(-1);">
                                 <a href="#2030"
                                     style="font-family: Poppins;
@@ -500,10 +517,10 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.2030')</a>
-                                
+
                             </li>
                             <li class="mb-2">
-<img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
                                     style="transform: scaleX(-1);">
                                 <a href="#projects"
                                     style="font-family: Poppins;
@@ -515,10 +532,10 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.projects') </a>
-                                
+
                             </li>
                             <li class="mb-2">
- <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
                                     style="transform: scaleX(-1);">
                                 <a href="#!"
                                     style="font-family: Poppins;
@@ -530,10 +547,10 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.news') </a>
-                               
+
                             </li>
                             <li class="mb-2 ">
- <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
                                     style="transform: scaleX(-1);">
                                 <a href="#reviews"
                                     style="font-family: Poppins;
@@ -545,7 +562,7 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.customer_reviews')</a>
-                               
+
                             </li>
                         </ul>
                     </div>
@@ -560,7 +577,7 @@
                         text-align: left;
                         color: #FFFFFF;
                         ">
-                            
+
                             @lang('file.To contact us')</p>
                         <span class="d-flex justify-content-start mb-2">
                             <img src="{{ asset('images/zigzag.png') }}">
@@ -568,7 +585,7 @@
                         </span>
                         <ul class="list-unstyled ">
                             <li class="mb-2 ">
- <img src="{{ asset('images/home.png') }}">
+                                <img src="{{ asset('images/home.png') }}">
                                 <a href="#!"
                                     style="font-family: Poppins;
                                 font-size: 16px;
@@ -579,10 +596,10 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.address')</a>
-                               
+
                             </li>
                             <li class="mb-2 d-flex justify-content-start" style="gap: 7px;">
-<img src="{{ asset('images/email.png') }}" style="pl-5">
+                                <img src="{{ asset('images/email.png') }}" style="pl-5">
                                 <a href="#!"
                                     style="font-family: Poppins;
                                 font-size: 16px;
@@ -593,10 +610,10 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.email')</a>
-                                
+
                             </li>
                             <li class="mb-2">
-<img src="{{ asset('images/telephone.png') }}">
+                                <img src="{{ asset('images/telephone.png') }}">
                                 <a href="#!"
                                     style="font-family: Poppins;
                                 font-size: 16px;
@@ -607,7 +624,7 @@
                                 color: #FFFFFF;
                                 ">
                                     @lang('file.phone')</a>
-                                
+
                             </li>
                         </ul>
                     </div>
@@ -624,7 +641,7 @@
                 letter-spacing: 0px;
                 color:#FFFFFFCC;
                 ">
-                 {{ now()->year }}{{ __('file.rights_reserved') }}
+                {{ now()->year }}{{ __('file.rights_reserved') }}
                 <span>@</span>
             </div>
         @else

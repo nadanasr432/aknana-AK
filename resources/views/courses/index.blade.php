@@ -114,11 +114,9 @@
                                         @lang('file.join_now')
                                     </a>
                                 @else
-                                    <a type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#courseFullModal" class="btn btn-primary"
-                                        style="width:155px;height:35px;font-family: Cairo; font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">
-                                        @lang('file.join_now')
-                                    </a>
+                                     <span class="btn btn-secondary" style="width:155px;height:35px;font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#808080; border:#808080; color:#FFFFFF;">
+                                                    @lang('file.completed')
+                                                </span>
                                 @endif
                             </div>
                         </div>
@@ -223,11 +221,9 @@
                                         أنضم الان
                                     </a>
                                 @else
-                                    <a type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#courseFullModal" class="btn btn-primary"
-                                        style="width:155px;height:35px;font-family: Cairo; font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">
-                                        أنضم الان
-                                    </a>
+                                    <span class="btn btn-secondary" style="width:155px;height:35px;font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#808080; border:#808080; color:#FFFFFF;">
+                                                    @lang('file.completed')
+                                                </span>
                                 @endif
 
                                 <div class="mt-2  pr-0"

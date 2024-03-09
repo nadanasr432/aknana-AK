@@ -36,42 +36,81 @@
                     @lang('file.aknana_specialized_in_business_incubators')</p>
             </div>
         </div>
+        @if (app()->getLocale() == 'ar')
+            <div class="he row d-flex justify-content-between">
+                @foreach ($services as $key => $service)
+                    <div class="col-md-2 mb-5">
+                        <div class="d-flex justify-content-center align-items-center mt-5 mb-5">
+                            <img src="{{ asset('images/frameserv.svg') }}" alt=""
+                                style="width: 195px; height: 195px; position: absolute;">
+                            <img src="{{ asset('storage/' . $service->media()->first()->file_path) }}" alt="Service Image"
+                                style="width: 183px; height: 183px; border-radius: 50%; z-index: 1;">
+                        </div>
 
-        <div class="he row d-flex justify-content-between">
-            @foreach ($services as $key => $service)
-                <div class="col-md-2 mb-5">
-                    <div class="d-flex justify-content-center align-items-center mb-5">
-                        <img src="{{ asset('storage/' . $service->media()->first()->file_path) }}">
-                    </div>
-                    <p
-                        style="font-family: Cairo; font-size: 24px; font-weight: 600; line-height: 36px; letter-spacing: -0.01em; text-align: center; color: #141414;">
-                        {{ $service->title }}
-                    </p>
-                    <div class="description-container">
-                        <p class="short-description"
-                            style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
-
-                            <a class="ml-0 mr-0 text-muted read-more-button">
-                                {{ \Illuminate\Support\Str::words($service->description, 8, '...') }}</a>
-
+                        <p
+                            style="font-family: Cairo; font-size: 23px; font-weight: 600; line-height: 36px; letter-spacing: -0.01em; text-align: center; color: #141414;">
+                            {{ $service->getTranslation('title', 'en') }}
                         </p>
-                        <p class="full-description"
-                            style="display: none; font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
-                            {{ $service->description }}
+                        <div class="description-container">
+                            <p class="short-description"
+                                style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                <a class="ml-0 mr-0 text-muted read-more-button">
+                                    {{ \Illuminate\Support\Str::words($service->getTranslation('description', 'en'), 8, '...') }}</a>
+                            </p>
+                            <p class="full-description"
+                                style="display: none; font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                {{ $service->getTranslation('description', 'en') }}
+                            </p>
+                            <a class=" show-less-button" style="display: none;color:#121743"> @lang('file.show_less') </a>
+                        </div>
+                    </div>
+
+                    @if ($key < count($services) - 1)
+                        <div class="col-md-1  d-flex justify-content-center " style="margin-bottom: 150px">
+                            <img src="{{ asset('images/Vector f.svg') }}">
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        @else
+            <div class="he row d-flex justify-content-between">
+                @foreach ($services as $key => $service)
+                    <div class="col-md-2 mb-5">
+                        <div class="d-flex justify-content-center align-items-center mt-5 mb-5">
+                            <img src="{{ asset('images/frameserv.svg') }}" alt=""
+                                style="width: 195px; height: 195px; position: absolute;">
+                            <img src="{{ asset('storage/' . $service->media()->first()->file_path) }}" alt="Service Image"
+                                style="width: 183px; height: 183px; border-radius: 50%; z-index: 1;">
+                        </div>
+
+                        <p
+                            style="font-family: Cairo; font-size: 24px; font-weight: 600; line-height: 36px; letter-spacing: -0.01em; text-align: center; color: #141414;">
+                            {{ $service->getTranslation('title', 'ar') }}
                         </p>
+                        <div class="description-container">
+                            <p class="short-description"
+                                style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                <a class="ml-0 mr-0 text-muted read-more-button">
+                                    {{ \Illuminate\Support\Str::words($service->getTranslation('description', 'ar'), 8, '...') }}</a>
+                            </p>
+                            <p class="full-description"
+                                style="display: none; font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                {{ $service->getTranslation('description', 'ar') }}
+                            </p>
 
-                        <a class=" show-less-button" style="display: none;color:#121743"> @lang('file.show_less') </a>
+
+                            <a class=" show-less-button" style="display: none;color:#121743"> @lang('file.show_less') </a>
+                        </div>
                     </div>
-                </div>
 
-                @if ($key < count($services) - 1)
-                    <div class="col-md-1  d-flex justify-content-center " style="margin-bottom: 150px">
-                        <img src="{{ asset('images/Vector f.svg') }}">
-                    </div>
-                @endif
-            @endforeach
-        </div>
-
+                    @if ($key < count($services) - 1)
+                        <div class="col-md-1  d-flex justify-content-center " style="margin-bottom: 150px">
+                            <img src="{{ asset('images/Vector f.svg') }}">
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        @endif
     </section>
 
     <script>
@@ -106,7 +145,7 @@
         @if (app()->getLocale() == 'ar')
             <div class="row d-flex justify-content-between mb-5 custom-row-style">
                 <div class="col-md-6 d-flex justify-content-start">
-                    <img src="{{ asset('images/about us.svg') }}" class="custom-image-style">
+                    <img src="{{ asset('images/Aknana.svg') }}" class="custom-image-style">
                 </div>
                 <div class="col-md-6 ">
                     <p class="center mb-3 custom-text-style "
@@ -170,7 +209,7 @@
         @else
             <div class="row d-flex justify-content-between mb-5 custom-row-style">
                 <div class="col-md-6 d-flex justify-content-start">
-                    <img src="{{ asset('images/about us.svg') }}" class="custom-image-style">
+                    <img src="{{ asset('images/Aknana.svg') }}" class="custom-image-style">
                 </div>
                 <div class="col-md-6 ">
                     <p class="center mb-3 custom-text-style "
@@ -216,21 +255,21 @@
                                 @lang('file.about_us') </p>
                             <img src="{{ asset('images/video.svg') }}" style="margin-right: 10px;">
                         </a>
-                            <button id="contactButton3" class="btn btn-primary"
-                                style="width:193px;height:50px;font-family: Cairo;
+                        <button id="contactButton3" class="btn btn-primary"
+                            style="width:193px;height:50px;font-family: Cairo;
                                 font-size: 22px;
                                 font-weight: 600;
                                 line-height: 30px;
                                 letter-spacing: 0em;
                                 color:#FFFFFF;
                             ">
-                                @lang('file.contact_us')
-                            </button>
-
-                        </div>
+                            @lang('file.contact_us')
+                        </button>
 
                     </div>
+
                 </div>
+            </div>
         @endif
     </section>
 
@@ -238,16 +277,18 @@
         @if (app()->getLocale() == 'ar')
             <div class="row d-flex justify-content-between mb-5">
 
-                <div class="col-md-5  fade-in ">
-                    <p class="center " id="text1"
+                <div class="col-md-5 fade-in ">
+                    <p class="center" id="hepltext2"
                         style="font-family: Cairo;
+                        color:#121743;
                         font-size: 35px;
                         font-weight: 667;
                         line-height: 75px;
                         letter-spacing: -0.01em;
-                        text-align: left;">
+                        text-align: left;
+                        ">
                         <img src="{{ asset('images/Vector (1).svg') }}">
-                        @lang('file.how_we_help')<span id="tex_2"
+                        @lang('file.how_we_help')<span id="tex_22"
                             style="color: #DF8317;
                         font-size: 35px;
                         font-weight: 667;
@@ -423,20 +464,21 @@
 
                 </div>
                 <div class="col-md-6 d-flex justify-content-end">
-                    <img src="{{ asset('images/2030.svg') }}" class="custom-image-style">
+                    <img src="{{ asset('images/GroupUs.svg') }}" class="custom-image-style">
                 </div>
             </div>
         @else
             <div class="row d-flex justify-content-between mb-5">
 
                 <div class="col-md-5  fade-in ">
-                    <p class="center " id="text1"
+                    <p class="center " id="hepltext"
                         style="font-family: Cairo;
                         font-size: 40px;
                         font-weight: 667;
                         line-height: 75px;
                         letter-spacing: -0.01em;
-                        text-align: right;">
+                        text-align: right;
+                        color:#121743">
                         <img src="{{ asset('images/Vector (1).svg') }}">
                         @lang('file.how_we_help')<span id="tex_2"
                             style="color: #DF8317;
@@ -1406,22 +1448,8 @@
             @if (app()->getLocale() == 'ar')
                 <div class="row">
                     <div class="col-md-6">
-
                         <!-- Left and Right Arrow Images -->
-                        <div class="d-flex justify-content-start" style="margin-top: 25px;">
-                            <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators"
-                                data-slide="next">
-                                <img src="{{ asset('images/arrow_left.png') }}" width="43px" height="43px"
-                                    alt="Previous" style="transform: scaleX(-1);">
-                            </span>
-                            <span class="d-flex justify-content-center pr-2" data-target="#carouselExampleIndicators"
-                                data-slide="prev">
-                                <img src="{{ asset('images/arrow_reverse.png') }}" alt="Previous" width="43px"
-                                    height="43px">
-                            </span>
-
-                        </div>
-                        <div class="d-flex justify-content-start mb-4 mt-3">
+                        <div class="d-flex justify-content-start mb-5" style="margin-top: 2rem !important;">
 
 
                             <a class="btn btn-outline-primary" href="{{ route('courses.index') }}"
@@ -1434,10 +1462,24 @@
                                 <img src="{{ asset('images/course.png') }}" style="width: 27px;height;27px">
                                 @lang('file.Programs') </a>
                         </div>
+                        <div class="d-flex justify-content-start mb-5">
+                            <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators"
+                                data-slide="next">
+                                <img src="{{ asset('images/arrow_left.png') }}" width="43px" height="43px"
+                                    alt="Previous" style="transform: scaleX(-1);">
+                            </span>
+                            <span class="d-flex justify-content-center pr-2" data-target="#carouselExampleIndicators"
+                                data-slide="prev">
+                                <img src="{{ asset('images/arrow_reverse.png') }}" alt="Previous" width="43px"
+                                    height="43px">
+                            </span>
+
+                        </div>
+
                         {{-- rounded image serveces --}}
                     </div>
                     <div class="col-md-6">
-                        <div class="center mt-2"
+                        <div class="center mt-2 mb-4" id="programstext"
                             style="font-family: Cairo;
                     font-size: 40px;
                     font-weight: 667;
@@ -1447,7 +1489,7 @@
                     color:#121743;
                     ">
                             <img src="{{ asset('images/Vector (1).svg') }}">
-                            @lang('file.Related programs') <span
+                            @lang('file.Related programs') <span id="programstext1"
                                 style="color: #DF8317;
                         font-family: Cairo;
                         font-size: 40px;
@@ -1493,7 +1535,7 @@
                                     color: rgba(18, 23, 67, 1);
 
                                     ">
-                                                {{ $course->name }}</div>
+                                                {{ $course->getTranslation('name', 'en') }}</div>
                                             <div class="mt-2  pl-1"
                                                 style="font-family: Cairo;
                                         font-size: 16px;
@@ -1505,7 +1547,7 @@
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                                {{ $course->professor_name }}/@lang('file.Eng')
+                                                @lang('file.Eng')/{{ $course->getTranslation('professor_name', 'en') }}
                                                 <img src="{{ asset('images/Vector (6).svg') }}">
                                             </div>
                                             <div class="mt-2  pl-1"
@@ -1519,25 +1561,22 @@
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                                {{ $course->time_duration }}:@lang('file.Duration')
+                                                {{ $course->getTranslation('time_duration', 'en') }}:@lang('file.Duration')
                                                 <img src="{{ asset('images/Vector (5).svg') }}">
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-between align-items-between">
-                                            @if ($isCourseAvailable)
+                                             @if ($isCourseAvailable)
                                                 <a href="{{ route('reservation.create', ['course_id' => $course->id]) }}"
                                                     id="ServButton2" class="btn btn-primary"
-                                                    style="width:155px;height:35px;font-family: Cairo; font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">
+                                                    style="width:155px;height:35px;font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">
                                                     @lang('file.join_now')
                                                 </a>
                                             @else
-                                                <a type="button" class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#courseFullModal" class="btn btn-primary"
-                                                    style="width:155px;height:35px;font-family: Cairo; font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">
-                                                    @lang('file.join_now')
-                                                </a>
+                                                <span class="btn btn-secondary" style="width:155px;height:35px;font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#808080; border:#808080; color:#FFFFFF;">
+                                                    @lang('file.completed')
+                                                </span>
                                             @endif
-
                                             <div class="mt-2  pr-0"
                                                 style="font-family: Cairo;
                                         font-size: 16px;
@@ -1549,7 +1588,7 @@
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                                {{ $course->location }}
+                                                {{ $course->getTranslation('location', 'en') }}
                                                 <img src="{{ asset('images/location1.svg') }}">
                                             </div>
                                         </div>
@@ -1572,18 +1611,7 @@
                 <div class="row">
                     <div class="col-md-6">
 
-                        <!-- Left and Right Arrow Images -->
-                        <div class="d-flex justify-content-start">
-                            <span class="d-flex justify-content-center mb-4 pr-2" data-target="#carouselExampleIndicators"
-                                data-slide="prev">
-                                <img src="{{ asset('images/left.svg') }}" alt="Previous">
-                            </span>
-                            <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators"
-                                data-slide="next">
-                                <img src="{{ asset('images/right.svg') }}" alt="Next">
-                            </span>
-                        </div>
-                        <div class="d-flex justify-content-start mb-4">
+                        <div class="d-flex justify-content-start mt-4 mb-3">
 
 
                             <a class="btn btn-outline-primary" href="{{ route('courses.index') }}"
@@ -1596,6 +1624,17 @@
                                 <img src="{{ asset('images/course.png') }}" style="width: 27px;height;27px">
                                 @lang('file.Programs') </a>
                         </div>
+                        <div class="d-flex justify-content-start">
+                            <span class="d-flex justify-content-center mb-4 pr-2" data-target="#carouselExampleIndicators"
+                                data-slide="prev">
+                                <img src="{{ asset('images/left.svg') }}" alt="Previous">
+                            </span>
+                            <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators"
+                                data-slide="next">
+                                <img src="{{ asset('images/right.svg') }}" alt="Next">
+                            </span>
+                        </div>
+
                         {{-- rounded image serveces --}}
                     </div>
                     <div class="col-md-6">
@@ -1655,7 +1694,7 @@
                                     color: rgba(18, 23, 67, 1);
 
                                     ">
-                                                {{ $course->name }}</div>
+                                                {{ $course->getTranslation('name', 'ar') }}</div>
                                             <div class="mt-2  pr-1"
                                                 style="font-family: Cairo;
                                         font-size: 16px;
@@ -1667,7 +1706,7 @@
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                                م/{{ $course->professor_name }}
+                                                م/{{ $course->getTranslation('professor_name', 'ar') }}
                                                 <img src="{{ asset('images/Vector (6).svg') }}">
                                             </div>
                                             <div class="mt-2  pr-1"
@@ -1681,7 +1720,7 @@
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                                المدة : {{ $course->time_duration }}
+                                                المدة : {{ $course->getTranslation('time_duration', 'ar') }}
                                                 <img src="{{ asset('images/Vector (5).svg') }}">
                                             </div>
                                         </div>
@@ -1693,11 +1732,9 @@
                                                     @lang('file.join_now')
                                                 </a>
                                             @else
-                                                <a type="button" class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#courseFullModal" class="btn btn-primary"
-                                                    style="width:155px;height:35px;font-family: Cairo; font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">
-                                                    @lang('file.join_now')
-                                                </a>
+                                                 <span class="btn btn-secondary" style="width:155px;height:35px;font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#808080; border:#808080; color:#FFFFFF;">
+                                                    @lang('file.completed')
+                                                </span>
                                             @endif
 
                                             <div class="mt-2  pr-0"
@@ -1711,7 +1748,7 @@
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                                {{ $course->location }}
+                                                {{ $course->getTranslation('location', 'ar') }}
                                                 <img src="{{ asset('images/location1.svg') }}">
                                             </div>
                                         </div>
@@ -1754,10 +1791,10 @@
                         </div>
                     </div>
                     <div class="col-md-6" style="margin-bottom: 100px;">
-                        <div class="center mt-2"
+                        <div class="center mt-2 " id="projecttext"
                             style="font-family: Cairo; font-size: 39px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: left; color:#121743;">
                             <img src="{{ asset('images/Vector (1).svg') }}">
-                            @lang('file.Projects we have')<span
+                            @lang('file.projects')<span id="projecttext1"
                                 style="color: #DF8317; font-family: Cairo; font-size: 39px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: left;">
                                 @lang('file.implemented')</span>
                         </div>
@@ -1780,7 +1817,7 @@
                                             text-align: center;
                                             color:#000000;
                                             margin-top: 2.2rem !important;">
-                                            {{ $project->title }}
+                                            {{ $project->getTranslation('title', 'en') }}
                                         </div>
                                     </div>
                                 @endforeach
@@ -1814,10 +1851,10 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="center mt-2"
+                        <div class="center mt-2" id="projecttext"
                             style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right; color:#121743;">
                             <img src="{{ asset('images/Vector (1).svg') }}">
-                            @lang('file.Projects we have')<span
+                            @lang('file.Projects we have')<span id="projecttext1"
                                 style="color: #DF8317; font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right;">
                                 @lang('file.implemented')</span>
                         </div>
@@ -1840,7 +1877,7 @@
                                             text-align: center;
                                             color:#000000;
                                             margin-top: 2.2rem !important;">
-                                            {{ $project->title }}
+                                            {{ $project->getTranslation('title', 'ar') }}
                                         </div>
                                     </div>
                                 @endforeach
@@ -1866,21 +1903,7 @@
             @if (app()->getLocale() == 'ar')
                 <div class="row">
                     <div class="col-md-6">
-                        <!-- Left and Right Arrow Images -->
-                        <div class="d-flex justify-content-start" style="margin-top: 25px;">
-                            <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators2"
-                                data-slide="next">
-                                <img src="{{ asset('images/arrow_left.png') }}" width="43px" height="43px"
-                                    alt="Previous" style="transform: scaleX(-1);">
-                            </span>
-                            <span class="d-flex justify-content-center mb-4 pr-2"
-                                data-target="#carouselExampleIndicators2" data-slide="prev">
-                                <img src="{{ asset('images/left.svg') }}" alt="Previous">
-                            </span>
-
-                        </div>
-                        <div class="d-flex justify-content-start">
-
+                        <div class="d-flex justify-content-start mb-5" style="margin-top: 2rem !important;">
 
                             <a class="btn btn-outline-primary" href="{{ route('events.index') }}"
                                 style="
@@ -1892,13 +1915,26 @@
                                 <img src="{{ asset('images/event6.png') }}" style="width: 27px;height;27px">
                                 @lang('file.events') </a>
                         </div>
+                        <div class="d-flex justify-content-start mb-4">
+                            <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators2"
+                                data-slide="next">
+                                <img src="{{ asset('images/arrow_left.png') }}" width="43px" height="43px"
+                                    alt="Previous" style="transform: scaleX(-1);">
+                            </span>
+                            <span class="d-flex justify-content-center pr-2" data-target="#carouselExampleIndicators2"
+                                data-slide="prev">
+                                <img src="{{ asset('images/left.svg') }}" alt="Previous">
+                            </span>
+
+                        </div>
+
                     </div>
                     <div class="col-md-6">
-                        <div class="center mt-2 "
+                        <div class="center mt-2 " id="eventtext"
                             style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: left; color:#121743;">
 
                             <img src="{{ asset('images/Vector (1).svg') }}">
-                            @lang('file.Recent')<span
+                            @lang('file.Recent')<span id="eventtext1"
                                 style="color: #DF8317; font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: left;">
                                 @lang('file.events')</span>
                         </div>
@@ -1910,17 +1946,30 @@
                         <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
                             <div class="row mb-5 justify-content-between">
                                 @foreach ($events->slice($i * 3, 3) as $event)
-                                    <div class="col-md-4 pr-3 mt-4">
+                                    <div class="col-md-4 pr-3 mt-3">
                                         <img src="{{ asset('storage/' . $event->media->first()->file_path) }}"
                                             style="width: 350px;height:258px" alt="Event Image">
 
                                         <div class="d-flex justify-content-center mt-2"
                                             style="font-family: Cairo; font-size: 18px; font-weight: 600; line-height: 34px; letter-spacing: 0em; text-align: center; color:#000000;">
-                                            {{ $event->title }}
+                                            {{ $event->getTranslation('title', 'en') }}
                                         </div>
-                                        <div class="d-flex justify-content-center pr-1"
-                                            style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 25px; letter-spacing: 0em; text-align: center;">
-                                            {{ $event->text }}
+                                        <div class="event-container">
+                                            <p class="short-event"
+                                                style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                                <a class="ml-0 mr-0 text-muted read-more-button">
+                                                    <div class="d-flex justify-content-center pr-1"
+                                                        style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 25px; letter-spacing: 0em; text-align: center;">
+                                                        {{ \Illuminate\Support\Str::words($event->getTranslation('text', 'en'), 33, '...') }}
+                                                    </div>
+                                                </a>
+                                            </p>
+                                            <p class="full-event"
+                                                style="display: none; font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                                {{ $event->getTranslation('text', 'en') }}
+                                            </p>
+                                            <a class=" show-less-button" style="display: none;color:#121743">
+                                                @lang('file.show_less') </a>
                                         </div>
                                     </div>
                                 @endforeach
@@ -1939,18 +1988,7 @@
             @else
                 <div class="row">
                     <div class="col-md-6">
-                        <!-- Left and Right Arrow Images -->
-                        <div class="d-flex justify-content-start">
-                            <span class="d-flex justify-content-center mb-4 pr-2"
-                                data-target="#carouselExampleIndicators2" data-slide="prev">
-                                <img src="{{ asset('images/left.svg') }}" alt="Previous">
-                            </span>
-                            <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators2"
-                                data-slide="next">
-                                <img src="{{ asset('images/right.svg') }}" alt="Next">
-                            </span>
-                        </div>
-                        <div class="d-flex justify-content-start">
+                        <div class="d-flex justify-content-start mt-3 mb-4">
 
 
                             <a class="btn btn-outline-primary" href="{{ route('events.index') }}"
@@ -1963,15 +2001,26 @@
                                 <img src="{{ asset('images/event6.png') }}" style="width: 27px;height;27px">
                                 @lang('file.events') </a>
                         </div>
+                        <div class="d-flex justify-content-start">
+                            <span class="d-flex justify-content-center mb-4 pr-2"
+                                data-target="#carouselExampleIndicators2" data-slide="prev">
+                                <img src="{{ asset('images/left.svg') }}" alt="Previous">
+                            </span>
+                            <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators2"
+                                data-slide="next">
+                                <img src="{{ asset('images/right.svg') }}" alt="Next">
+                            </span>
+                        </div>
+
                     </div>
                     <div class="col-md-6">
-                        <div class="center mt-2 "
+                        <div class="center mt-2 " id="eventtext"
                             style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right; color:#121743;">
 
                             <img src="{{ asset('images/Vector (1).svg') }}">
-                            @lang('file.Recent')<span
+                            @lang('file.events')<span id="eventtext1"
                                 style="color: #DF8317; font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right;">
-                                @lang('file.events')</span>
+                                @lang('file.Recent')</span>
                         </div>
                     </div>
                 </div>
@@ -1985,13 +2034,22 @@
                                         <img src="{{ asset('storage/' . $event->media->first()->file_path) }}"
                                             style="width: 350px;height:258px" alt="Event Image">
 
-                                        <div class="d-flex justify-content-center mt-2"
-                                            style="font-family: Cairo; font-size: 18px; font-weight: 600; line-height: 34px; letter-spacing: 0em; text-align: center; color:#000000;">
-                                            {{ $event->title }}
-                                        </div>
-                                        <div class="d-flex justify-content-center pr-1"
-                                            style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 25px; letter-spacing: 0em; text-align: center;">
-                                            {{ $event->text }}
+                                       <div class="event-container">
+                                            <p class="short-event"
+                                                style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                                <a class="ml-0 mr-0 text-muted read-more-button">
+                                                    <div class="d-flex justify-content-center pr-1"
+                                                        style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 25px; letter-spacing: 0em; text-align: center;">
+                                                        {{ \Illuminate\Support\Str::words($event->getTranslation('text', 'ar'), 33, '...') }}
+                                                    </div>
+                                                </a>
+                                            </p>
+                                            <p class="full-event"
+                                                style="display: none; font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                                {{ $event->getTranslation('text', 'ar') }}
+                                            </p>
+                                            <a class=" show-less-button" style="display: none;color:#121743">
+                                                @lang('file.show_less') </a>
                                         </div>
                                     </div>
                                 @endforeach
@@ -2041,7 +2099,7 @@
                 <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel" style="height:auto">
 
                     <div class="d-flex justify-content-between">
-                        <span class="d-flex justify-content-center" style="margin-top:9rem !important;"
+                        <span id="arrow" class="d-flex justify-content-center" style="margin-top:9rem !important;"
                             data-target="#carouselExampleIndicators3" data-slide="prev">
                             <img src="{{ asset('images/arrow_left.png') }}" width="43px" height="43px"
                                 alt="Previous" style="transform: scaleX(-1);">

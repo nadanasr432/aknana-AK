@@ -109,7 +109,7 @@ return [
  "Duration"=>"المدة",
  "To contact us"=>"للتواصل معانا"  ,
  "About_Us"=>"من نحن ",
-
+"completed"=>"مكتمل"
 
 
     

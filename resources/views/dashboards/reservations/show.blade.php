@@ -5,17 +5,18 @@
             <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white me-2">
                     <i class="mdi mdi-library"></i>
-                </span> Programs
+                </span> Reservations
             </h3>
             <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
 
                     <li class="breadcrumb-item active" aria-current="page">
-                        <a href="{{ route('dashboard.courses.create') }}" class="btn btn-gradient-primary me-2">Create
-                            Course</a>
+                        <a href="{{ route('dashboard.reservation.create') }}" class="btn btn-gradient-primary me-2">
+                            Create
+                            Reservations</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        <span></span>All Programs <i class="mdi mdi-library icon-sm text-primary align-middle"></i>
+                        <span></span>All Reservations <i class="mdi mdi-library icon-sm text-primary align-middle"></i>
                     </li>
                 </ul>
             </nav>
@@ -30,37 +31,29 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Name Ar</th>
-                                    <th>Name En</th>
-                                    <th>Professor Name Ar</th>
-                                    <th>Professor Name En</th>
-                                    <th>Time Duration Ar</th>
-                                    <th>Time Duration En</th>
-                                    <th>Location En</th>
-                                    <th>Location En</th>
-                                    <th>Max Female Count</th>
-                                    <th>Max Male Count</th>
-                                    <th>Date of Course</th>
-                                    <th>Course Image</th>
+                                    <th>Course</th>
+                                    <th>Course date</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>E-mail</th>
+                                    <th>Entity name</th>
+                                    <th>Gender</th>
+                                    <th>Job title</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($courses as $course)
+                                @foreach ($reservations as $reservation)
                                     <tr>
-                                        <td>{{ $course->getTranslation('name', 'ar') }}</td>
-                                        <td>{{ $course->getTranslation('name', 'en') }}</td>
-                                        <td>{{ $course->getTranslation('professor_name', 'ar') }}</td>
-                                        <td>{{ $course->getTranslation('professor_name', 'en') }}</td>
-                                        <td>{{ $course->getTranslation('time_duration', 'ar') }}</td>
-                                        <td>{{ $course->getTranslation('time_duration', 'en') }}</td>
-                                        <td>{{ $course->getTranslation('location', 'ar') }}</td>
-                                        <td>{{ $course->getTranslation('location', 'en') }}</td>
-                                        <td>{{ $course->female_count }}</td>
-                                        <td>{{ $course->male_count }}</td>
-                                        <td>{{ $course->date_of_course }}</td>
-                                           <td><img src="{{ asset('storage/' . $course->media()->first()->file_path) }}"
-                                               ></td>
+                                        <td>{{ $reservation->course->getTranslation('name', 'en')}}</td>
+                                        <td>{{ $reservation->course->date_of_course }}</td>
+                                        <td>{{ $reservation->name }}</td>
+                                        <td>{{ $reservation->phone }}</td>
+                                        <td>{{ $reservation->email }}</td>
+                                        <td>{{ $reservation->entity_name }}</td>
+                                        <td>{{ $reservation->gender }}</td>
+                                        <td>{{ $reservation->job_title }}</td>
+                                      
                                         <td>
                                             <div class="dropdown">
                                                 <i class="mdi mdi-dots-vertical" id="dropdownMenuButton"
@@ -68,10 +61,10 @@
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <a class="dropdown-item"
-                                                        href="{{ route('dashboard.courses.edit', $course->id) }}">Edit</a>
+                                                        href="{{ route('dashboard.reservation.edit', $reservation->id) }}">Edit</a>
 
                                                     <form id="deleteForm" method="POST"
-                                                        action="{{ route('dashboard.courses.delete', ['id' => $course->id]) }}">
+                                                        action="{{ route('dashboard.reservation.delete', ['id' => $reservation->id]) }}">
                                                         @csrf
                                                         @method('DELETE')
 
