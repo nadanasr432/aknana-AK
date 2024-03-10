@@ -28,9 +28,15 @@
         var printWindow = window.open('', '_blank');
         var qrCodeData = {!! json_encode(session('qrCodeData')) !!};
 
+        // Convert each key-value pair to a string and join them with newline characters
+        var qrCodeContent = Object.entries(qrCodeData)
+            .map(function([key, value]) {
+                return key + ': ' + value;
+            })
+            .join('\n');
+
         printWindow.document.write('<html><head><title>QR Code and Data</title></head><body>');
-        printWindow.document.write('<div id="printContent">' + document.getElementById('printContent').innerHTML +
-            '</div>');
+        printWindow.document.write('<pre id="printContent">' + qrCodeContent + '</pre>');
         printWindow.document.write('</body></html>');
 
         printWindow.document.close();

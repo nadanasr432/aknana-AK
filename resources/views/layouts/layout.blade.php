@@ -120,8 +120,6 @@
                 line-height: 32px;
             }
 
-
-
             .features .col-md-6 {
                 flex: 1;
                 margin-left: 0;
@@ -173,8 +171,6 @@
                 line-height: 15px !important;
 
             }
-
-
 
             .service_text1 {
                 font-size: 18px !important;

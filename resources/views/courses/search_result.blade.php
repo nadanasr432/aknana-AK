@@ -10,7 +10,7 @@
             <div class="col-md-4 mt-5">
                 <div class="qrcode-container">
                     <div class="qrcode-image d-flex justify-content-center mb-3" id="qrcodeImage">
-                        {!! QrCode::size(200)->generate($course->reservations->first()->get()) !!}
+                       {!! QrCode::size(200)->generate("ID: RS0" . $course->reservations->first()->id . "\n" . "Name: " . $course->reservations->first()->name . "\n" . "Phone: " . $course->reservations->first()->phone . "\n" ."Course Name: ".$course->name . "\n" ."Course Date:".$course->date_of_course) !!}
                     </div>
                     <div id="output" style="display: none;"></div>
                     <a class="btn btn-primary mt-3 mb-3" id="downloadLink" style="display: none;">Download QrCode</a>

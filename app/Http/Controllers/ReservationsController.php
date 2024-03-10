@@ -60,12 +60,9 @@ class ReservationsController extends Controller
         'date_of_course' => $course->date_of_course,
       ]);
       $qrCodeData = [
+      'id'=> $reservation->id,
       'name' => $reservation->name,
       'phone' => $reservation->phone,
-      'entity_name' =>  $reservation->entity_name,
-      'email' =>  $reservation->email,
-      'gender' =>  $reservation->gender,
-      'job_title' =>  $reservation->job_title,
       'course'=>$reservation->course->name,
       'date_of_course'=>$reservation->course->date_of_course
     

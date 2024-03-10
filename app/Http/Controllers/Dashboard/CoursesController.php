@@ -87,16 +87,16 @@ public function searchByPhone(Request $request)
             $query->where('phone', $phone);
         });
     }
-    
 
     $filteredCourses = $courses->get();
-    $reservation = $filteredCourses->first()->reservations->first();
+
     if ($filteredCourses->isEmpty()) {
-        return view('courses.search_result')->with('filteredCourses','reservationData', null);
+        return view('courses.search_result')->with('filteredCourses', null);
     }
 
-    return view('courses.search_result', compact('filteredCourses','reservationData'));
+    return view('courses.search_result', compact('filteredCourses'));
 }
+
 public function edit($id)
 {
     $course = Course::findOrFail($id);
