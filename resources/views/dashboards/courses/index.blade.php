@@ -59,7 +59,7 @@
                                         <td>{{ $course->female_count }}</td>
                                         <td>{{ $course->male_count }}</td>
                                         <td>{{ $course->date_of_course }}</td>
-                                           <td><img src="{{ asset('storage/' . $course->media()->first()->file_path) }}"
+                                           <td><img src="{{ asset('app/public/' . $course->media()->first()->file_path) }}"
                                                ></td>
                                         <td>
                                             <div class="dropdown">

@@ -43,7 +43,7 @@
                         <div class="d-flex justify-content-center align-items-center mt-5 mb-5">
                             <img src="{{ asset('images/frameserv.svg') }}" alt=""
                                 style="width: 195px; height: 195px; position: absolute;">
-                            <img src="{{ asset('storage/' . $service->media()->first()->file_path) }}" alt="Service Image"
+                            <img src="{{ asset('app/public/' . $service->media()->first()->file_path) }}" alt="Service Image"
                                 style="width: 183px; height: 183px; border-radius: 50%; z-index: 1;">
                         </div>
 
@@ -79,7 +79,7 @@
                         <div class="d-flex justify-content-center align-items-center mt-5 mb-5">
                             <img src="{{ asset('images/frameserv.svg') }}" alt=""
                                 style="width: 195px; height: 195px; position: absolute;">
-                            <img src="{{ asset('storage/' . $service->media()->first()->file_path) }}" alt="Service Image"
+                            <img src="{{ asset('app/public/' . $service->media()->first()->file_path) }}" alt="Service Image"
                                 style="width: 183px; height: 183px; border-radius: 50%; z-index: 1;">
                         </div>
 
@@ -1521,7 +1521,7 @@
                                     <div class="col-md-4 mt-0">
                                         <div class="justify-content-center">
                                             <span class="d-flex justify-content-center mb-2 ">
-                                                <img src="{{ asset('storage/' . $course->media->first()->file_path) }}"
+                                                <img src="{{ asset('app/public/' . $course->media->first()->file_path) }}"
                                                     style="width: 350px;height:258px" alt="First Image">
                                             </span>
 
@@ -1680,7 +1680,7 @@
                                     <div class="col-md-4 mt-0">
                                         <div class="justify-content-center">
                                             <span class="d-flex justify-content-center mb-2 ">
-                                                <img src="{{ asset('storage/' . $course->media->first()->file_path) }}"
+                                                <img src="{{ asset('app/public/' . $course->media->first()->file_path) }}"
                                                     style="width: 350px;height:258px" alt="First Image">
                                             </span>
 
@@ -1807,7 +1807,7 @@
                             <div class="row mb-5 d-flex justify-content-between">
                                 @foreach ($projects->slice($i * 4, 4) as $project)
                                     <div class="col-md-3">
-                                        <img src="{{ asset('storage/' . $project->images->first()->file_path) }}">
+                                        <img src="{{ asset('app/public/' . $project->images->first()->file_path) }}">
                                         <div class="d-flex justify-content-center pr-1"
                                             style="font-family: Cairo;
                                             font-size: 18px;
@@ -1867,7 +1867,7 @@
                             <div class="row mb-5 d-flex justify-content-between">
                                 @foreach ($projects->slice($i * 4, 4) as $project)
                                     <div class="col-md-3">
-                                        <img src="{{ asset('storage/' . $project->images->first()->file_path) }}">
+                                        <img src="{{ asset('app/public/' . $project->images->first()->file_path) }}">
                                         <div class="d-flex justify-content-center pr-1"
                                             style="font-family: Cairo;
                                             font-size: 18px;
@@ -1947,7 +1947,7 @@
                             <div class="row mb-5 justify-content-between">
                                 @foreach ($events->slice($i * 3, 3) as $event)
                                     <div class="col-md-4 pr-3 mt-3">
-                                        <img src="{{ asset('storage/' . $event->media->first()->file_path) }}"
+                                        <img src="{{ asset('app/public/' . $event->media->first()->file_path) }}"
                                             style="width: 350px;height:258px" alt="Event Image">
 
                                         <div class="d-flex justify-content-center mt-2"
@@ -2031,7 +2031,7 @@
                             <div class="row mb-5 justify-content-between">
                                 @foreach ($events->slice($i * 3, 3) as $event)
                                     <div class="col-md-4 pr-3 mt-4">
-                                        <img src="{{ asset('storage/' . $event->media->first()->file_path) }}"
+                                        <img src="{{ asset('app/public/' . $event->media->first()->file_path) }}"
                                             style="width: 350px;height:258px" alt="Event Image">
 
                                        <div class="event-container">

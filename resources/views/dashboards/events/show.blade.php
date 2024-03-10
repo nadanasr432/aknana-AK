@@ -45,7 +45,7 @@
                                         <td>{{ $event->getTranslation('title', 'ar') }}</td>
                                         <td>{{ $event->getTranslation('text', 'en') }}</td>
                                         <td>{{ $event->getTranslation('text', 'ar') }}</td>
-                                        <td><img src="{{ asset('storage/' . $event->media()->first()->file_path) }}"
+                                        <td><img src="{{ asset('app/public/' . $event->media()->first()->file_path) }}"
                                                ></td>
 
                                         <td>

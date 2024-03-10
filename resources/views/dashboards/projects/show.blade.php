@@ -41,7 +41,7 @@
                                     <tr>
                                         <td>{{ $project->getTranslation('title', 'en') }}</td>
                                         <td>{{ $project->getTranslation('title', 'ar') }}</td>
-                                        <td><img src="{{ asset('storage/' . $project->images()->first()->file_path) }}">
+                                        <td><img src="{{ asset('app/public/' . $project->images()->first()->file_path) }}">
                                         </td>
 
                                         <td>
