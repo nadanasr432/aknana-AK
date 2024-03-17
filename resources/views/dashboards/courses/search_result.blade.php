@@ -1,92 +1,145 @@
-@if ($filteredCourses !== null)
-    @if ($filteredCourses->isEmpty())
-        <div class="col-md-12 mt-5">
-            <p class="text-center" style="font-family: Cairo; font-size: 18px; color: rgba(18, 23, 67, 1);">
-                No courses found.
-            </p>
+@extends('layouts.dashboard')
+@section('content')
+    <div class="content-wrapper">
+        <div class="col-md-6">
+        <form action="{{ route('dashboard.course.search') }}" method="GET">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="@lang('file.Search by course name')">
+                <button type="submit" class="btn btn-gradient-primary me-2">@lang('file.Search')</button>
+            </div>
+        </form>
         </div>
-    @else
-    @foreach ($filteredCourses as $course)
-        <div class="col-md-4 mt-5">
-            <div class="justify-content-center">
-                <span class="d-flex justify-content-center mb-2 ">
-                    <img src="{{ asset('app/public/app/public/' . $course->media->first()->file_path) }}"
-                        style="width:100%;height:258px" alt="First Image">
-                </span>
+        <div class="page-header">
+            <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                    <i class="mdi mdi-library"></i>
+                </span> @lang('file.Programs')
+            </h3>
+            <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
 
-                <div class="d-flex justify-content-end pr-1"
-                    style="font-family: Cairo;
-                                    font-size: 18px;
-                                    font-weight: 667;
-                                    line-height: 34px;
-                                    letter-spacing: 0em;
-                                    text-align: right;
-                                    color: rgba(18, 23, 67, 1);
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <a href="{{ route('dashboard.courses.create') }}" class="btn btn-gradient-primary me-2">
+                            @lang('file.Create Course')</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <span></span>@lang('file.All Programs') <i class="mdi mdi-library icon-sm text-primary align-middle"></i>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row">
 
-                                    ">
-                    {{ $course->name }}</div>
-                <div class="mt-2  pr-1"
-                    style="font-family: Cairo;
-                                        font-size: 16px;
-                                        font-weight: 400;
-                                        line-height: 25px;
-                                        letter-spacing: 0em;
-                                        text-align: right;
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body" style="overflow-x: auto ;">
+                       <h4 class="card-title">@lang('file.Search Results')</h4>
+                        </p>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>@lang('file.Prefix Number')</th>
+                                    <th>@lang('file.Name Ar')</th>
+                                    <th>@lang('file.Name En')</th>
+                                    <th>@lang('file.Professor Name Ar')</th>
+                                    <th>@lang('file.Professor Name En')</th>
+                                    <th>@lang('file.Time Duration Ar')</th>
+                                    <th>@lang('file.Time Duration En')</th>
+                                    <th>@lang('file.Location En')</th>
+                                    <th>@lang('file.Location En')</th>
+                                    <th>@lang('file.Max Female Count')</th>
+                                    <th>@lang('file.Max Male Count')</th>
+                                    <th>@lang('file.Date of Course')</th>
+                                    <th>@lang('file.Course Image')</th>
+                                    <th>@lang('file.Status')</th>
+                                    <th>@lang('file.Action')</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($courses as $course)
+                                    <tr>
+                                        <td>{{ $course->prefix_number }}</td>
+                                        <td>{{ $course->getTranslation('name', 'ar') }}</td>
+                                        <td>{{ $course->getTranslation('name', 'en') }}</td>
+                                        <td>{{ $course->getTranslation('professor_name', 'ar') }}</td>
+                                        <td>{{ $course->getTranslation('professor_name', 'en') }}</td>
+                                        <td>{{ $course->getTranslation('time_duration', 'ar') }}</td>
+                                        <td>{{ $course->getTranslation('time_duration', 'en') }}</td>
+                                        <td>{{ $course->getTranslation('location', 'ar') }}</td>
+                                        <td>{{ $course->getTranslation('location', 'en') }}</td>
+                                        <td>{{ $course->female_count }}</td>
+                                        <td>{{ $course->male_count }}</td>
+                                        <td>{{ $course->date_of_course }}</td>
+                                        <td>
+                                            @if ($course->media()->exists())
+                                                <img src="{{ asset('storage/' . $course->media()->first()->file_path) }}">
+                                            @endif
+                                        </td>
 
-                                    color: rgba(102, 102, 102, 1);
-                                    margin: 0;
-                                    ">
-                    م/{{ $course->professor_name }}
-                    <img src="{{ asset('images/Vector (6).svg') }}">
-                </div>
-                <div class="mt-2  pr-1"
-                    style="font-family: Cairo;
-                                        font-size: 16px;
-                                        font-weight: 400;
-                                        line-height: 25px;
-                                        letter-spacing: 0em;
-                                        text-align: right;
+                                        <td>
+                                            <form class="status-form" data-course-id="{{ $course->id }}">
+                                                @csrf
+                                                @method('PUT')
+                                                <select class="status-select">
 
-                                    color: rgba(102, 102, 102, 1);
-                                    margin: 0;
-                                    ">
-                    المدة : {{ $course->time_duration }}
-                    <img src="{{ asset('images/Vector (5).svg') }}">
+                                                    <option value="approved"
+                                                        {{ $course->status == 'approved' ? 'selected' : '' }}>Approved
+                                                    </option>
+                                                    <option value="pending"
+                                                        {{ $course->status == 'pending' ? 'selected' : '' }}>Pending
+                                                    </option>
+                                                </select>
+                                            </form>
+
+                                            @if ($errors->any())
+                                                <div class="alert alert-danger">
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endif
+
+                                        </td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <i class="mdi mdi-dots-vertical" id="dropdownMenuButton"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('dashboard.courses.show', $course->id) }}">@lang('file.Show')</a>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('dashboard.courses.edit', $course->id) }}">@lang('file.Edit')</a>
+
+                                                    <form id="deleteForm" method="POST"
+                                                        action="{{ route('dashboard.courses.delete', ['id' => $course->id]) }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <!-- Use JavaScript to show a confirmation message -->
+                                                        <button type="submit" class="dropdown-item"
+                                                            onclick="confirmDelete()">@lang('file.Delete')</button>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-between align-items-between">
-                <a href="{{ route('reservation.create') }}" id="ServButton2" class="btn btn-primary"
-                    style="width:155px;height:35px;font-family: Cairo;
-                                font-family: Cairo;
-                                font-size: 15px;
-                                font-weight: 600;
-                                line-height: 28px;
-                                letter-spacing: 0em;
-                                text-align: center;
-                                background:#121743;
-                                border:#121743;
-                                color:#FFFFFF;
-                                ">
-                    أنضم الان
-
-                </a>
-
-                <div class="mt-2  pr-0"
-                    style="font-family: Cairo;
-                                        font-size: 16px;
-                                        font-weight: 400;
-                                        line-height: 25px;
-                                        letter-spacing: 0em;
-                                        text-align:;
-
-                                    color: rgba(102, 102, 102, 1);
-                                    margin: 0;
-                                    ">
-                    {{ $course->location }}
-                    <img src="{{ asset('images/location1.svg') }}">
-                </div>
-            </div>
         </div>
-    @endforeach
-@endif
-@endif
+    </div>
+    <script>
+        function confirmDelete() {
+            var isConfirmed = confirm("Are you sure you want to delete this course?");
+            if (isConfirmed) {
+                document.getElementById('deleteForm').submit();
+            }
+        }
+    </script>
+@endsection

@@ -18,7 +18,7 @@
                 @foreach ($events as $event)
                     <div class="col-md-4 pr-3 mt-4">
 
-                        <img src="{{ asset('app/public/' . $event->media->first()->file_path) }}"
+                        <img src="{{ asset('storage/' . $event->media->first()->file_path) }}"
                             style="width: 100%;height:258px" alt="First Image">
 
                         <div class="d-flex justify-content-center mt-2"
@@ -67,7 +67,7 @@
                 @foreach ($events as $event)
                     <div class="col-md-4 pr-3 mt-4">
 
-                        <img src="{{ asset('app/public/' . $event->media->first()->file_path) }}"
+                        <img src="{{ asset('storage/' . $event->media->first()->file_path) }}"
                             style="width: 100%;height:258px" alt="First Image">
 
                         <div class="d-flex justify-content-center mt-2"
@@ -79,7 +79,7 @@
                             text-align: center;
                             color:#000000;
                             ">
-                            {{ $event->getTranslation('title', 'en') }} </div>
+                            {{ $event->getTranslation('title', 'ar') }} </div>
                         <div class="d-flex
                                 justify-content-center pr-1"
                             style="font-family: Cairo;
@@ -89,7 +89,7 @@
                                 letter-spacing: 0em;
                                 text-align: center;
                                 ">
-                             {{ $event->getTranslation('text', 'en') }}
+                             {{ $event->getTranslation('text', 'ar') }}
                         </div>
                     </div>
                 @endforeach

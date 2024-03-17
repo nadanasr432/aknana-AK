@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
+     public function index(){
+        $Projects=Project::all( );  
+        return view('project.index ',compact( 'Projects')); 
+     }
      public function create(){
         return view('project.create ');
      }

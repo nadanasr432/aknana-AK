@@ -5,18 +5,17 @@
             <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white me-2">
                     <i class="mdi mdi-library"></i>
-                </span> Services
+                </span> @lang('file.Services')
             </h3>
             <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
 
                     <li class="breadcrumb-item active" aria-current="page">
                         <a href="{{ route('dashboard.service.create') }}" class="btn btn-gradient-primary me-2">
-                            Create
-                            Service</a>
+                            @lang('file.Create Service')</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        <span></span>All Services <i class="mdi mdi-library icon-sm text-primary align-middle"></i>
+                        <span></span>@lang('file.All Services') <i class="mdi mdi-library icon-sm text-primary align-middle"></i>
                     </li>
                 </ul>
             </nav>
@@ -26,16 +25,16 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body" style="overflow-x: auto ;">
-                        <h4 class="card-title">Services Table</h4>
+                        <h4 class="card-title">@lang('file.Services Table')</h4>
                         </p>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Title (English)</th>
-                                    <th>Title (Arabic)</th>
-                                    <th>Description (English)</th>
-                                    <th>Description (Arabic)</th>
-                                    <th>service Image</th>
+                                    <th>@lang('file.Title (English)')</th>
+                                    <th>@lang('file.Title (Arabic)')</th>
+                                    <th>@lang('file.Description (English)')</th>
+                                    <th>@lang('file.Description (Arabic)')</th>
+                                    <th>@lang('file.Service Image')</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,8 +44,7 @@
                                         <td>{{ $service->getTranslation('title', 'ar') }}</td>
                                         <td>{{ $service->getTranslation('description', 'en') }}</td>
                                         <td>{{ $service->getTranslation('description', 'ar') }}</td>
-                                        <td><img src="{{ asset('app/public/' . $service->media()->first()->file_path) }}"
-                                               ></td>
+                                        <td><img src="{{ asset('storage/' . $service->media()->first()->file_path) }}"></td>
 
                                         <td>
                                             <div class="dropdown">
@@ -55,17 +53,17 @@
 
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                     <a class="dropdown-item"
-                                                        href="{{ route('dashboard.service.edit', $service->id) }}">Edit</a>
+                                                        href="{{ route('dashboard.service.edit', $service->id) }}">@lang('file.Edit')</a>
 
                                                     <form id="deleteForm" method="POST"
                                                         action="{{ route('dashboard.service.delete', ['id' => $service->id]) }}">
                                                         @csrf
                                                         @method('DELETE')
-
                                                         <!-- Use JavaScript to show a confirmation message -->
-                                                        <button type="button" class="dropdown-item"
-                                                            onclick="confirmDelete()">Delete</button>
+                                                        <button type="submit" class="dropdown-item"
+                                                            onclick="confirmDelete()">@lang('file.Delete')</button>
                                                     </form>
+
                                                 </div>
                                             </div>
                                         </td>

@@ -98,18 +98,20 @@ public function update(Request $request, $id)
     return redirect()->route('dashboard.service.index')->with('success', 'Service updated successfully with images');
 }
 
-public function destroy($id)
-{
-    $service = Service::findOrFail($id);
+    public function destroy($id)
+    {
+        $service = Service::findOrFail($id);
 
-    // Delete associated media files
-   
-        Storage::disk('public')->delete($service->media()->first()->file_path);
+        // Delete associated media files
+        foreach ($service->media as $media) {
+            Storage::disk('public')->delete($media->file_path);
+            $media->delete();
+        }
 
-    // Delete the service
-    $service->delete();
+        // Delete the service
+        $service->delete();
 
-    return redirect()->route('dashboard.service.index')->with('success', 'Service deleted successfully');
-}
+        return redirect()->route('dashboard.service.index')->with('success', 'Service deleted successfully');
+    }
 
 }

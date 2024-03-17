@@ -18,210 +18,208 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha384-eDexGCEIa7XZLUEX31FzRvFrCD8v/72G6PO77RFGU5S5sS/gEVMmE2zD3tt1TwTk" crossorigin="anonymous">
     <!-- Scripts -->
-    <script src=
-"https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js">
-    </script>
-        <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <!-- Optional: Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <style>
-        .btn-primary {
-            transition: box-shadow 0.3s ease-in-out;
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+<style>
+    .btn-primary {
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .btn-primary:hover {
+        box-shadow: 5px 10px 40px #ecd394;
+        background: #121743;
+
+    }
+
+    body {
+        overflow: auto;
+    }
+
+    &::-webkit-scrollbar {
+        width: 1px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #000000;
+    }
+
+    body::-webkit-scrollbar {
+        width: 1px;
+    }
+
+    body::-webkit-scrollbar-thumb {
+        background-color: #000000;
+        width: 1px;
+    }
+
+    footer {
+        background-image: url('{{ asset('storage/' . $header->images()->get()->last()->file_path) }}');
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding-top: 90px;
+        padding-bottom: 50px;
+        bottom: 0;
+        left: 0;
+    }
+
+    nav.navbar {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background: white;
+    }
+
+    ul.navbar-nav li a {
+        font-family: Cairo;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 28px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #121743;
+    }
+
+    ::placeholder {
+        color: #6D6D71;
+        font-family: Cairo;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 50px;
+        letter-spacing: 0em;
+
+
+    }
+
+    .custom-arrow-select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: none;
+        padding-right: 7%;
+        /* Remove any padding added for the default arrow */
+    }
+
+
+    @media (max-width: 768px) {
+        img.responsive-image {
+            display: none;
         }
+    }
 
-        .btn-primary:hover {
-            box-shadow: 5px 10px 40px #ecd394;
-            background: #121743;
+    #home a {
+        color: #FFE4C5;
+        /* Set text color for the active route */
+    }
 
-        }
+    /* Add a small line under the active route */
+    #home a::after {
+        content: '';
+        display: block;
+        height: 2px;
+        width: 75%;
+        margin-left: 15px;
+        background-color: #FFE4C5;
+        margin-top: 3px;
 
-        body {
-            overflow: auto;
-        }
 
-        &::-webkit-scrollbar {
-            width: 1px;
-        }
+    }
 
-        &::-webkit-scrollbar-thumb {
-            background-color: #000000;
-        }
+    #home a:hover {
+        color: #DF8317;
 
-        body::-webkit-scrollbar {
-            width: 1px;
-        }
+    }
 
-        body::-webkit-scrollbar-thumb {
-            background-color: #000000;
-            width: 1px;
-        }
+    .navbar-nav .nav-item.active a:hover {
+        color: #DF8317;
 
-        footer {
-            background-image: url('{{ asset('images/footer.svg') }}');
-            background-size: cover;
-            background-repeat: no-repeat;
-            padding-top: 90px;
-            padding-bottom: 50px;
-            bottom: 0;
-            left: 0;
-        }
+    }
 
-        nav.navbar {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: white;
-        }
 
-        ul.navbar-nav li a {
-            font-family: Cairo;
-            font-size: 18px;
-            font-weight: 600;
-            line-height: 28px;
-            letter-spacing: 0em;
+    #home a:hover::after {
+        background-color: #DF8317;
+
+    }
+
+
+
+
+    .custom-arrow-select2 option:hover {
+        background-color: #ffcc00;
+
+        color: #333333;
+
+    }
+
+
+    .custom-arrow-select2 {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background: none;
+        padding-right: 8%;
+
+    }
+
+    .custom-arrow {
+
+        margin-top: -100px;
+
+    }
+
+    select option:checked,
+    select option:hover {
+        box-shadow: 0 0 10px 100px #000 inset;
+    }
+
+    option:hover {
+        background-color: lime;
+    }
+
+    .custom-arrow2 {
+
+        margin-top: -100px;
+
+
+    }
+
+
+    @media (max-width: 767px) {
+        .navbar-nav {
+            background-color: #FFE4C5;
+            padding: 20px;
+
             text-align: left;
-            color: #121743;
-        }
+            display: inline-block;
 
-        ::placeholder {
-            color: #6D6D71;
-            font-family: Cairo;
-            font-size: 18px;
-            font-weight: 400;
-            line-height: 50px;
-            letter-spacing: 0em;
+            margin-right: 10px;
 
+            font-size: 14px;
+            columns: white;
 
         }
 
-        .custom-arrow-select {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background: none;
-            padding-right: 7%;
-            /* Remove any padding added for the default arrow */
-        }
-
-
-        @media (max-width: 768px) {
-            img.responsive-image {
-                display: none;
-            }
-        }
-
-        #home a {
-            color: #FFE4C5;
-            /* Set text color for the active route */
-        }
-
-        /* Add a small line under the active route */
         #home a::after {
             content: '';
             display: block;
             height: 2px;
-            width: 75%;
-            margin-left: 15px;
-            background-color: #FFE4C5;
+            width: 90%;
+            margin-left: 0px;
+            background-color: #bebebe;
             margin-top: 3px;
-
-
-        }
-
-        #home a:hover {
-            color: #DF8317;
-
         }
 
         .navbar-nav .nav-item.active a:hover {
-            color: #DF8317;
-
+            color: #bebebe;
+            /* Set text color for the hover state */
         }
 
-
-        #home a:hover::after {
-            background-color: #DF8317;
-
-        }
-
-
-
-
-        .custom-arrow-select2 option:hover {
-            background-color: #ffcc00;
-
-            color: #333333;
-
-        }
-
-
-        .custom-arrow-select2 {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            background: none;
-            padding-right: 8%;
-
-        }
-
-        .custom-arrow {
-
-            margin-top: -100px;
-
-        }
-
-        select option:checked,
-        select option:hover {
-            box-shadow: 0 0 10px 100px #000 inset;
-        }
-
-        option:hover {
-            background-color: lime;
-        }
-
-        .custom-arrow2 {
-
-            margin-top: -100px;
-
-
-        }
-
-
-        @media (max-width: 767px) {
-            .navbar-nav {
-                background-color: #FFE4C5;
-                padding: 20px;
-
-                text-align: left;
-                display: inline-block;
-
-                margin-right: 10px;
-
-                font-size: 14px;
-                columns: white;
-
-            }
-
-            #home a::after {
-                content: '';
-                display: block;
-                height: 2px;
-                width: 90%;
-                margin-left: 0px;
-                background-color: #bebebe;
-                margin-top: 3px;
-            }
-
-            .navbar-nav .nav-item.active a:hover {
-                color: #bebebe;
-                /* Set text color for the hover state */
-            }
-
-        }
-    </style>
+    }
+</style>
 </head>
 
 <body>
@@ -537,7 +535,7 @@
                             <li class="mb-2">
                                 <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
                                     style="transform: scaleX(-1);">
-                                <a href="#!"
+                                <a href="{{ route('home') }}#events"
                                     style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -546,7 +544,7 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.news') </a>
+                                    @lang('file.events') </a>
 
                             </li>
                             <li class="mb-2 ">
@@ -758,7 +756,7 @@
                             </li>
                             <li class="mb-2">
 
-                                <a href="#!"
+                                <a href="{{ route('home') }}#events"
                                     style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -767,7 +765,7 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.news') </a>
+                                    @lang('file.events') </a>
                                 <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
                             </li>
                             <li class="mb-2 ">

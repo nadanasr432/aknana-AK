@@ -87,7 +87,7 @@
                                     @foreach ($availableCourses as $course)
                                         <option value="{{ $course->id }}" data-date="{{ $course->date_of_course }}"
                                             {{ request('course_id') == $course->id ? 'selected' : '' }}>
-                                            {{ $course->getTranslation('name','en') }}</option>
+                                            {{ $course->getTranslation('name', 'en') }}</option>
                                     @endforeach
 
                                 </select>
@@ -243,7 +243,15 @@
                         @lang('file.Thank you for contacting us. We will contact you as soon as possible')
                     </div>
                     <x-qrcode-modal />
-
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form id="reservationForm" action="{{ route('reservation.store') }}" method="post">
                         @csrf
                         <div class="form-row">
@@ -268,9 +276,12 @@
                                     <option value="" disabled selected>@lang('file.Select the course') </option>
 
                                     @foreach ($availableCourses as $course)
-                                        <option value="{{ $course->id }}" data-date="{{ $course->date_of_course }}"
-                                            {{ request('course_id') == $course->id ? 'selected' : '' }}>
-                                            {{ $course->getTranslation('name','ar') }}</option>
+                                        @if ($course->status == 'approved')
+                                            <option value="{{ $course->id }}"
+                                                data-date="{{ $course->date_of_course }}"
+                                                {{ request('course_id') == $course->id ? 'selected' : '' }}>
+                                                {{ $course->getTranslation('name', 'ar') }}</option>
+                                        @endif
                                     @endforeach
 
                                 </select>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Course;
+use App\Models\Header;
 use App\Models\Project;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ class HomeController extends Controller
     $courses= Course::latest()->take(9)->get( );
     $services  = Service::all();
     $projects = Project::all();
-    return view('landing.sections', compact('events','courses','services','projects'));
+    $header = Header::first(); 
+    return view('landing.sections', compact('events','courses','services','projects','header'));
 }
 
 }

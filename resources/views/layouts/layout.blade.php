@@ -371,7 +371,7 @@
             width: 100%;
             height: 100%;
             background: #000;
-            background-image: url('{{ asset('images/Mask Group.svg') }}');
+            background-image: url('{{ asset('storage/' . $header->images()->get()->first()->file_path) }}');
             background-size: cover;
             background-repeat: no-repeat;
             border-radius: 0 0 100% 100%/0 0 100% 100%;
@@ -382,7 +382,8 @@
 
 
         footer {
-            background-image: url('{{ asset('images/footer.svg') }}');
+            
+            background-image: url('{{ asset('storage/' . $header->images()->get()->last()->file_path) }}');
             background-size: cover;
             background-repeat: no-repeat;
             padding-top: 90px;
@@ -428,11 +429,13 @@
             transform-origin: bottom left;
         } */
 
-        .btn-primary ,.btn-outline-primary{
+        .btn-primary,
+        .btn-outline-primary {
             transition: box-shadow 0.3s ease-in-out;
         }
 
-        .btn-primary:hover ,.btn-outline-primary:hover  {
+        .btn-primary:hover,
+        .btn-outline-primary:hover {
             box-shadow: 5px 10px 40px #ecd394;
             background-color: #121743;
 
@@ -510,7 +513,20 @@
                 text-align: center;
                 color:#FFFFFF;
                 ">
-                    {{ __('file.start_your_journey') }} </p>
+                    {{ $header->getTranslation('title', 'ar') }} </p>
+                <p id="textContent" class="head-text mb-0 content-text1 "
+                    style="font-family: Cairo;
+                    font-size: 20px;
+                    font-weight: 400;
+                    line-height: 24px;
+                    letter-spacing: 0.02em;
+                    text-align: center;
+                    color:rgba(255, 255, 255, 0.69);
+                    white-space: pre-line; 
+
+                    ">
+                    {{ $header->getTranslation('text', 'ar') }}
+                </p>
             @else
                 <p class="content-text2"
                     style="font-family: Cairo;
@@ -521,9 +537,22 @@
                 text-align: center;
                 color:#FFFFFF;
                 ">
-                    {{ __('file.start_your_journey') }} </p>
+                    {{ $header->getTranslation('title', 'en') }} </p>
+              <p id="textContent" class="head-text mb-0 content-text1"
+                style="font-family: Cairo;
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 24px;
+                letter-spacing: 0.02em;
+                text-align: center;
+                color:rgba(255, 255, 255, 0.69);
+                white-space: pre-line; /* This property preserves whitespace and line breaks */
+                ">
+                {{ $header->getTranslation('text', 'en') }}
+            </p>
+
             @endif
-            <p class="head-text mb-0 content-text1"
+            {{-- <p class="head-text mb-0 content-text1"
                 style="font-family: Cairo;
                     font-size: 20px;
                     font-weight: 400;
@@ -533,8 +562,8 @@
                     color:rgba(255, 255, 255, 0.69);
                     ">
                 {{ __('file.with_aknan') }}
-            </p>
-            <p class="head-text mb-0 content-text1"
+            </p> --}}
+            {{-- <p class="head-text mb-0 content-text1"
                 style="font-family: Cairo;
                     font-size: 20px;
                     font-weight: 400;
@@ -545,22 +574,11 @@
 
                     ">
                 {{ __('file.innovative_solutions') }}
-            </p>
-            <p id="textContent" class="head-text mb-0 content-text1 "
-                style="font-family: Cairo;
-                    font-size: 20px;
-                    font-weight: 400;
-                    line-height: 36px;
-                    letter-spacing: 0.02em;
-                    text-align: center;
-                    color:rgba(255, 255, 255, 0.69);
+            </p> --}}
 
-                    ">
-                {{ __('file.company_overseen') }}
-            </p>
             <div class="d-flex justify-content-center align-items-between mt-5 ">
                 @if (app()->getLocale() == 'en')
-                    <a href="" class="d-flex align-items-center pr-4  " id="contactButton2">
+                    {{-- <a href="" class="d-flex align-items-center pr-4  " id="contactButton2">
                         <p class="pr-2 content-text3"
                             style="font-family: Cairo;
                         font-size: 25px;
@@ -572,9 +590,9 @@
                         ">
                             {{ __('file.about_us') }} </p>
                         <img src="{{ asset('images/video_big.svg') }}" style="margin-right: 10px;">
-                    </a>
+                    </a> --}}
                 @else
-                    <a href="" class="d-flex align-items-center pr-4 pl-4  " id="contactButton2">
+                    {{-- <a href="" class="d-flex align-items-center pr-4 pl-4  " id="contactButton2">
                         <p class="pr-2 content-text3"
                             style="font-family: Cairo;
                         font-size: 25px;
@@ -586,7 +604,7 @@
                         ">
                             {{ __('file.about_us') }} </p>
                         <img src="{{ asset('images/video_big.svg') }}" style="margin-right: 10px;">
-                    </a>
+                    </a> --}}
                 @endif
                 <button id="contactButton" class="btn btn-primary "
                     style="width:193px;height:50px;font-family: Cairo;
@@ -724,7 +742,7 @@
                             </li>
                             <li class="mb-2">
 
-                                <a href="#!"
+                                <a href="{{ route('home') }}#events"
                                     style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
@@ -1010,7 +1028,7 @@
                             </li>
                             <li class="mb-2">
 
-                                <a href="#!"
+                                <a href="{{ route('home') }}#events"
                                     style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;

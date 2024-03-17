@@ -95,9 +95,11 @@ class ProjectsController extends Controller
     {
         $project = Project::findOrFail($id);
 
-       
-            Storage::disk('public')->delete($project->images()->first()->file_path);
-        
+        // Delete associated media files
+        foreach ($project->images as $media) {
+            Storage::disk('public')->delete($media->file_path);
+            $media->delete();
+        }       
         $project->delete();
 
         return redirect()->route('dashboard.project.index')->with('success', 'Project deleted successfully');

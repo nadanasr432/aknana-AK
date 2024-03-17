@@ -7,10 +7,45 @@
         </div>
     @else
         @foreach ($filteredCourses as $course)
+           @if ($course->status == 'approved')
             <div class="col-md-4 mt-5">
                 <div class="qrcode-container">
+                    @php
+
+                        $maleCount = $course
+                            ->reservations()
+                            ->where('gender', 'male')
+                            ->where('id', '<=', $reservation->id)
+                            ->count();
+                        $femaleCount = $course
+                            ->reservations()
+                            ->where('gender', 'female')
+                            ->where('id', '<=', $reservation->id)
+                            ->count();
+                        $genderLetter = $reservation->gender == 'male' ? 'M' : 'F';
+                        $arrangementNumber =
+                            $course->prefix_number .
+                            $genderLetter .
+                            ($reservation->gender == 'male' ? $maleCount : $femaleCount);
+                    @endphp
                     <div class="qrcode-image d-flex justify-content-center mb-3" id="qrcodeImage">
-                       {!! QrCode::size(200)->generate("ID: RS0" . $course->reservations->first()->id . "\n" . "Name: " . $course->reservations->first()->name . "\n" . "Phone: " . $course->reservations->first()->phone . "\n" ."Course Name: ".$course->name . "\n" ."Course Date:".$course->date_of_course) !!}
+                        {!! QrCode::size(200)->generate(
+                            'ID: ' .
+                                $arrangementNumber .
+                                "\n" .
+                                'Name: ' .
+                                $reservation->name .
+                                "\n" .
+                                'Phone: ' .
+                                $reservation->phone .
+                                "\n" .
+                                'Course Name: ' .
+                                $course->name .
+                                "\n" .
+                                'Course Date: ' .
+                                $course->date_of_course,
+                        ) !!}
+
                     </div>
                     <div id="output" style="display: none;"></div>
                     <a class="btn btn-primary mt-3 mb-3" id="downloadLink" style="display: none;">Download QrCode</a>
@@ -21,7 +56,7 @@
                 </div>
                 {{-- <div class="justify-content-center">
                     <span class="d-flex justify-content-center mb-2 ">
-                        <img src="{{ asset('app/public/' . $course->media()->first()->file_path) }}"
+                        <img src="{{ asset('storage/' . $course->media()->first()->file_path) }}"
                             style="width:100%;height:258px" alt="First Image">
                     </span>
 
@@ -98,6 +133,7 @@
                     </div>
                 </div> --}}
             </div>
+            @endif
         @endforeach
 
     @endif

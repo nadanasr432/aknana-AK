@@ -136,6 +136,7 @@ class ComposerStaticInite56462bf57f6e574ecbdf6ec766f090e
             'Laravel\\Sanctum\\' => 16,
             'Laravel\\Sail\\' => 13,
             'Laravel\\Prompts\\' => 16,
+            'Laravel\\Breeze\\' => 15,
         ),
         'I' => 
         array (
@@ -470,6 +471,10 @@ class ComposerStaticInite56462bf57f6e574ecbdf6ec766f090e
         array (
             0 => __DIR__ . '/..' . '/laravel/prompts/src',
         ),
+        'Laravel\\Breeze\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/breeze/src',
+        ),
         'Intervention\\Image\\' => 
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src',
@@ -599,6 +604,13 @@ class ComposerStaticInite56462bf57f6e574ecbdf6ec766f090e
         'App\\Http\\Controllers\\ContactsControllers' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactsControllers.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CoursesController' => __DIR__ . '/../..' . '/app/Http/Controllers/CoursesController.php',
+        'App\\Http\\Controllers\\Dashboard\\ContactUsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/ContactUsController.php',
+        'App\\Http\\Controllers\\Dashboard\\CoursesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/CoursesController.php',
+        'App\\Http\\Controllers\\Dashboard\\EventsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/EventsController.php',
+        'App\\Http\\Controllers\\Dashboard\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/HomeController.php',
+        'App\\Http\\Controllers\\Dashboard\\ProjectsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/ProjectsController.php',
+        'App\\Http\\Controllers\\Dashboard\\ReservationsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/ReservationsController.php',
+        'App\\Http\\Controllers\\Dashboard\\ServicesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard/ServicesController.php',
         'App\\Http\\Controllers\\EventController' => __DIR__ . '/../..' . '/app/Http/Controllers/EventController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\LanguageController' => __DIR__ . '/../..' . '/app/Http/Controllers/LanguageController.php',
@@ -3408,6 +3420,12 @@ class ComposerStaticInite56462bf57f6e574ecbdf6ec766f090e
         'Intervention\\Image\\Typography\\FontFactory' => __DIR__ . '/..' . '/intervention/image/src/Typography/FontFactory.php',
         'Intervention\\Image\\Typography\\Line' => __DIR__ . '/..' . '/intervention/image/src/Typography/Line.php',
         'Intervention\\Image\\Typography\\TextBlock' => __DIR__ . '/..' . '/intervention/image/src/Typography/TextBlock.php',
+        'Laravel\\Breeze\\BreezeServiceProvider' => __DIR__ . '/..' . '/laravel/breeze/src/BreezeServiceProvider.php',
+        'Laravel\\Breeze\\Console\\InstallCommand' => __DIR__ . '/..' . '/laravel/breeze/src/Console/InstallCommand.php',
+        'Laravel\\Breeze\\Console\\InstallsApiStack' => __DIR__ . '/..' . '/laravel/breeze/src/Console/InstallsApiStack.php',
+        'Laravel\\Breeze\\Console\\InstallsBladeStack' => __DIR__ . '/..' . '/laravel/breeze/src/Console/InstallsBladeStack.php',
+        'Laravel\\Breeze\\Console\\InstallsInertiaStacks' => __DIR__ . '/..' . '/laravel/breeze/src/Console/InstallsInertiaStacks.php',
+        'Laravel\\Breeze\\Console\\InstallsLivewireStack' => __DIR__ . '/..' . '/laravel/breeze/src/Console/InstallsLivewireStack.php',
         'Laravel\\Prompts\\Concerns\\Colors' => __DIR__ . '/..' . '/laravel/prompts/src/Concerns/Colors.php',
         'Laravel\\Prompts\\Concerns\\Cursor' => __DIR__ . '/..' . '/laravel/prompts/src/Concerns/Cursor.php',
         'Laravel\\Prompts\\Concerns\\Erase' => __DIR__ . '/..' . '/laravel/prompts/src/Concerns/Erase.php',

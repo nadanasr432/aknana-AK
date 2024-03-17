@@ -115,11 +115,25 @@ public function destroy($id)
     $event = Event::findOrFail($id);
 
     
-    Storage::disk('public')->delete($event->media()->first()->file_path);
-
+        foreach ($event->media as $media) {
+            Storage::disk('public')->delete($media->file_path);
+            $media->delete();
+        }    
     
     $event->delete();
 
     return redirect()->route('dashboard.event.index')->with('success', 'Event deleted successfully.');
 }
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:approved,pending',
+        ]);
+
+        $event = Event::findOrFail($id);
+        $event->status = $request->input('status');
+        $event->save();
+
+        return redirect()->route('dashboard.event.index')->with('success', 'event status updated successfully.');
+    }
 }

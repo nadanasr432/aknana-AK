@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Header;
 use App\Models\ContactUs;
 use Illuminate\Http\Request;
 
 class ContactsControllers extends Controller
 {
-   public function index(){
-        return view('contactUs.create');
-   }
-     public function store(Request $request)
+    public function index()
+    {
+        $header = Header::first();
+        return view('contactUs.create', compact('header'));
+    }
+    public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -20,7 +23,6 @@ class ContactsControllers extends Controller
         ]);
 
         ContactUs::create($request->all());
-        return back( )->with("success", "Your message has been sent successfully");
-
+        return back()->with("success", "Your message has been sent successfully");
     }
 }

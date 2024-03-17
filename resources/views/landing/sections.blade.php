@@ -43,7 +43,7 @@
                         <div class="d-flex justify-content-center align-items-center mt-5 mb-5">
                             <img src="{{ asset('images/frameserv.svg') }}" alt=""
                                 style="width: 195px; height: 195px; position: absolute;">
-                            <img src="{{ asset('app/public/' . $service->media()->first()->file_path) }}" alt="Service Image"
+                            <img src="{{ asset('storage/' . $service->media()->first()->file_path) }}" alt="Service Image"
                                 style="width: 183px; height: 183px; border-radius: 50%; z-index: 1;">
                         </div>
 
@@ -79,7 +79,7 @@
                         <div class="d-flex justify-content-center align-items-center mt-5 mb-5">
                             <img src="{{ asset('images/frameserv.svg') }}" alt=""
                                 style="width: 195px; height: 195px; position: absolute;">
-                            <img src="{{ asset('app/public/' . $service->media()->first()->file_path) }}" alt="Service Image"
+                            <img src="{{ asset('storage/' . $service->media()->first()->file_path) }}" alt="Service Image"
                                 style="width: 183px; height: 183px; border-radius: 50%; z-index: 1;">
                         </div>
 
@@ -178,7 +178,7 @@
                 ">
                         @lang('file.about_aknana')</p>
                     <div class="d-flex justify-content-end align-items-between mt-5 ">
-                        <a id="contactButton4" href="" class="d-flex align-items-center pl-4">
+                        {{-- <a id="contactButton4" href="" class="d-flex align-items-center pl-4">
                             <p class="pr-2"
                                 style="font-family: Cairo;
                         font-size: 25px;
@@ -190,7 +190,7 @@
                         ">
                                 @lang('file.about_us')</p>
                             <img src="{{ asset('images/video.svg') }}" style="margin-right: 10px;">
-                        </a>
+                        </a> --}}
                         <button id="contactButton3" class="btn btn-primary"
                             style="width:193px;height:50px;font-family: Cairo;
                                 font-size: 22px;
@@ -242,7 +242,7 @@
                 ">
                         @lang('file.about_aknana')</p>
                     <div class="d-flex justify-content-end align-items-between mt-5 ">
-                        <a id="contactButton4" href="" class="d-flex align-items-center pr-4">
+                        {{-- <a id="contactButton4" href="" class="d-flex align-items-center pr-4">
                             <p class="pr-2"
                                 style="font-family: Cairo;
                         font-size: 25px;
@@ -254,7 +254,7 @@
                         ">
                                 @lang('file.about_us') </p>
                             <img src="{{ asset('images/video.svg') }}" style="margin-right: 10px;">
-                        </a>
+                        </a> --}}
                         <button id="contactButton3" class="btn btn-primary"
                             style="width:193px;height:50px;font-family: Cairo;
                                 font-size: 22px;
@@ -1509,6 +1509,7 @@
                     @for ($i = 0; $i < ceil(count($courses) / 3); $i++)
                         <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
                             <div class="row mb-5 justify-content-between">
+                                
                                 @foreach ($courses->slice($i * 3, 3) as $course)
                                     @php
                                         $maleCount = $course->reservations()->where('gender', 'male')->count();
@@ -1518,10 +1519,11 @@
                                         $isCourseAvailable =
                                             $maleCount < $maxMaleCount || $femaleCount < $maxFemaleCount;
                                     @endphp
+                                      @if( $course->status == 'approved')
                                     <div class="col-md-4 mt-0">
                                         <div class="justify-content-center">
                                             <span class="d-flex justify-content-center mb-2 ">
-                                                <img src="{{ asset('app/public/' . $course->media->first()->file_path) }}"
+                                                <img src="{{ asset('storage/' . $course->media->first()->file_path) }}"
                                                     style="width: 350px;height:258px" alt="First Image">
                                             </span>
 
@@ -1566,14 +1568,15 @@
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-between align-items-between">
-                                             @if ($isCourseAvailable)
+                                            @if ($isCourseAvailable)
                                                 <a href="{{ route('reservation.create', ['course_id' => $course->id]) }}"
                                                     id="ServButton2" class="btn btn-primary"
                                                     style="width:155px;height:35px;font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">
                                                     @lang('file.join_now')
                                                 </a>
                                             @else
-                                                <span class="btn btn-secondary" style="width:155px;height:35px;font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#808080; border:#808080; color:#FFFFFF;">
+                                                <span class="btn btn-secondary"
+                                                    style="width:155px;height:35px;font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#808080; border:#808080; color:#FFFFFF;">
                                                     @lang('file.completed')
                                                 </span>
                                             @endif
@@ -1593,6 +1596,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
                                 @endforeach
                                 <x-pop_up_course />
                             </div>
@@ -1677,10 +1681,11 @@
                                         $isCourseAvailable =
                                             $maleCount < $maxMaleCount || $femaleCount < $maxFemaleCount;
                                     @endphp
+                                      @if( $course->status == 'approved')
                                     <div class="col-md-4 mt-0">
                                         <div class="justify-content-center">
                                             <span class="d-flex justify-content-center mb-2 ">
-                                                <img src="{{ asset('app/public/' . $course->media->first()->file_path) }}"
+                                                <img src="{{ asset('storage/' . $course->media->first()->file_path) }}"
                                                     style="width: 350px;height:258px" alt="First Image">
                                             </span>
 
@@ -1732,7 +1737,8 @@
                                                     @lang('file.join_now')
                                                 </a>
                                             @else
-                                                 <span class="btn btn-secondary" style="width:155px;height:35px;font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#808080; border:#808080; color:#FFFFFF;">
+                                                <span class="btn btn-secondary"
+                                                    style="width:155px;height:35px;font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#808080; border:#808080; color:#FFFFFF;">
                                                     @lang('file.completed')
                                                 </span>
                                             @endif
@@ -1753,6 +1759,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
                                 @endforeach
                                 <x-pop_up_course />
                             </div>
@@ -1776,6 +1783,19 @@
             @if (app()->getLocale() == 'ar')
                 <div class="row">
                     <div class="col-md-6">
+                        <div class="d-flex justify-content-start mb-5" style="margin-top: 2rem !important;">
+
+
+                            <a class="btn btn-outline-primary" href="{{ route('projects.show') }}"
+                                style="
+                               
+                                border:#121743 1px  solid;
+                                color:white;
+                                background:#121743;
+                                ">
+                                <img src="{{ asset('images/project1.png') }}" style="width: 27px;height;27px">
+                                @lang('file.Projects') </a>
+                        </div>
                         <!-- Left and Right Arrow Images -->
                         <div class="d-flex justify-content-start" style="margin-top: 25px;">
                             <span class="d-flex justify-content-center mb-0" data-target="#carouselExampleIndicators1"
@@ -1807,7 +1827,7 @@
                             <div class="row mb-5 d-flex justify-content-between">
                                 @foreach ($projects->slice($i * 4, 4) as $project)
                                     <div class="col-md-3">
-                                        <img src="{{ asset('app/public/' . $project->images->first()->file_path) }}">
+                                        <img src="{{ asset('storage/' . $project->images->first()->file_path) }}">
                                         <div class="d-flex justify-content-center pr-1"
                                             style="font-family: Cairo;
                                             font-size: 18px;
@@ -1838,6 +1858,19 @@
             @else
                 <div class="row">
                     <div class="col-md-6">
+                        <div class="d-flex justify-content-start mb-5" style="margin-top: 2rem !important;">
+
+
+                            <a class="btn btn-outline-primary" href="{{ route('projects.show') }}"
+                                style="
+                               
+                                border:#121743 1px  solid;
+                                color:white;
+                                background:#121743;
+                                ">
+                                <img src="{{ asset('images/project1.png') }}" style="width: 27px;height;27px">
+                                @lang('file.Projects') </a>
+                        </div>
                         <!-- Left and Right Arrow Images -->
                         <div class="d-flex justify-content-start">
                             <span class="d-flex justify-content-center mb-4 pr-2"
@@ -1867,7 +1900,7 @@
                             <div class="row mb-5 d-flex justify-content-between">
                                 @foreach ($projects->slice($i * 4, 4) as $project)
                                     <div class="col-md-3">
-                                        <img src="{{ asset('app/public/' . $project->images->first()->file_path) }}">
+                                        <img src="{{ asset('storage/' . $project->images->first()->file_path) }}">
                                         <div class="d-flex justify-content-center pr-1"
                                             style="font-family: Cairo;
                                             font-size: 18px;
@@ -1946,8 +1979,9 @@
                         <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
                             <div class="row mb-5 justify-content-between">
                                 @foreach ($events->slice($i * 3, 3) as $event)
+                                @if($event->status =="approved")
                                     <div class="col-md-4 pr-3 mt-3">
-                                        <img src="{{ asset('app/public/' . $event->media->first()->file_path) }}"
+                                        <img src="{{ asset('storage/' . $event->media->first()->file_path) }}"
                                             style="width: 350px;height:258px" alt="Event Image">
 
                                         <div class="d-flex justify-content-center mt-2"
@@ -1972,6 +2006,7 @@
                                                 @lang('file.show_less') </a>
                                         </div>
                                     </div>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>
@@ -2030,11 +2065,12 @@
                         <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
                             <div class="row mb-5 justify-content-between">
                                 @foreach ($events->slice($i * 3, 3) as $event)
+                                   @if($event->status =="approved")
                                     <div class="col-md-4 pr-3 mt-4">
-                                        <img src="{{ asset('app/public/' . $event->media->first()->file_path) }}"
+                                        <img src="{{ asset('storage/' . $event->media->first()->file_path) }}"
                                             style="width: 350px;height:258px" alt="Event Image">
 
-                                       <div class="event-container">
+                                        <div class="event-container">
                                             <p class="short-event"
                                                 style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
                                                 <a class="ml-0 mr-0 text-muted read-more-button">
@@ -2052,6 +2088,7 @@
                                                 @lang('file.show_less') </a>
                                         </div>
                                     </div>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>
