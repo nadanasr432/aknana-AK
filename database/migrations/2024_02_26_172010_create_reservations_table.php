@@ -23,7 +23,10 @@ return new class extends Migration
             $table->date('date_of_course');
             $table->timestamps();
 
-            $table->foreign('course_id')->references('id')->on('courses');
+            $table->foreign('course_id')
+            ->references('id')
+            ->on('courses')
+            ->onDelete('cascade');
         });
     }
 

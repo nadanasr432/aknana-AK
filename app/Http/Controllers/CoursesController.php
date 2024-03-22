@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Header;
+use App\Models\Template;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
@@ -12,7 +15,9 @@ class CoursesController extends Controller
 {
     public function index(){
         $courses = Course::all();
-        return view('courses.index',compact('courses'));
+        $header = Header::first();
+        $temp_program = Template::where('name->en', 'Programs')->get();
+        return view('courses.index',compact('courses', 'header', 'temp_program'));
     }
     
     public function create(){
@@ -76,26 +81,30 @@ class CoursesController extends Controller
     return redirect()->route('courses.index')->with('success', 'Course created successfully.');
 }
 
-public function searchByPhone(Request $request)
-{
-    $courses = Course::with('reservations');
+    public function searchByPhone(Request $request)
+    {
+        $courses = Course::with('reservations');
 
-    if ($request->has('phone')) {
-        $phone = $request->input('phone');
+        if ($request->has('phone')) {
+            $phone = $request->input('phone');
 
-        $courses->whereHas('reservations', function ($query) use ($phone) {
-            $query->where('phone', $phone);
-        });
+            $courses->whereHas('reservations', function ($query) use ($phone) {
+                $query->where('phone', $phone);
+            });
+        }
+
+        $filteredCourses = $courses->get();
+
+        // Fetch the reservation for the phone number
+        $reservation = Reservation::where('phone', $phone)->first();
+
+        if ($filteredCourses->isEmpty()) {
+            return view('courses.search_result')->with(['filteredCourses' => null, 'reservation' => $reservation]);
+        }
+
+        return view('courses.search_result', compact('filteredCourses', 'reservation'));
     }
 
-    $filteredCourses = $courses->get();
-
-    if ($filteredCourses->isEmpty()) {
-        return view('courses.search_result')->with('filteredCourses', null);
-    }
-
-    return view('courses.search_result', compact('filteredCourses'));
-}
 public function edit($id)
 {
     $course = Course::findOrFail($id);

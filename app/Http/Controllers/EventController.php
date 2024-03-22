@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Header;
+use App\Models\Template;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -11,7 +13,9 @@ class EventController extends Controller
 {
     public function index(){
         $events = Event::all();
-        return view('events.index',compact('events'));
+        $header = Header::first();
+        $temp_events = Template::where('name->en', 'Events')->get();
+        return view('events.index',compact('events','header', 'temp_events'));
     }
     public function create()
     {

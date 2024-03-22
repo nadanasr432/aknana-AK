@@ -26,11 +26,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->dropColumn('professor_name');
-            $table->dropColumn('time_duration');
-            $table->dropColumn('location');
-            $table->dropColumn('name');
-            $table->dropColumn('date_of_course');
+          
         });
     }
 };

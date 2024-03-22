@@ -11,7 +11,8 @@ class Project extends Model
 {
     use HasFactory, HasTranslations;
     protected $fillable = [
-        'title'
+        'title',
+        "url"
     ];
     public $translatable = ['title'];
      public function images()

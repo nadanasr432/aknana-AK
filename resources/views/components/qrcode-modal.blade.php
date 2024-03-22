@@ -6,7 +6,7 @@
     }
 </style>
 
-<div id="myModal1" class="modal fade d-flex-justify-content-center" role="dialog" style=" height: 610px; margin-top: 150px">
+<div id="myModal1" class="modal fade d-flex-justify-content-center" role="dialog" style="height: 610px; margin-top: 150px">
     <div class="modal-dialog">
         <!-- Modal content -->
         <div class="modal-content" style="border-radius:30px">
@@ -28,15 +28,10 @@
         var printWindow = window.open('', '_blank');
         var qrCodeData = {!! json_encode(session('qrCodeData')) !!};
 
-        // Convert each key-value pair to a string and join them with newline characters
-        var qrCodeContent = Object.entries(qrCodeData)
-            .map(function([key, value]) {
-                return key + ': ' + value;
-            })
-            .join('\n');
+        var qrCodeImage = document.getElementById('printContent').innerHTML;
 
-        printWindow.document.write('<html><head><title>QR Code and Data</title></head><body>');
-        printWindow.document.write('<pre id="printContent">' + qrCodeContent + '</pre>');
+        printWindow.document.write('<html><head><title>QR Code</title></head><body>');
+        printWindow.document.write('<div id="printContent">' + qrCodeImage + '</div>');
         printWindow.document.write('</body></html>');
 
         printWindow.document.close();
