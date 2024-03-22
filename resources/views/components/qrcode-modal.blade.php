@@ -6,7 +6,7 @@
     }
 </style>
 
-<div id="myModal1" class="modal fade d-flex-justify-content-center" role="dialog" style=" height: 610px; margin-top: 150px">
+<div id="myModal1" class="modal fade d-flex-justify-content-center" role="dialog" style="height: 610px; margin-top: 150px">
     <div class="modal-dialog">
         <!-- Modal content -->
         <div class="modal-content" style="border-radius:30px">
@@ -17,7 +17,7 @@
                 
             </div>
             <div class="d-flex justify-content-center mb-3">
-                <button type="button" class="btn btn-primary " onclick="printQRCode()">Print</button>
+                <button type="button" class="btn btn-primary " onclick="printQRCode()">@lang('file.print')</button>
             </div>
         </div>
     </div>
@@ -28,9 +28,10 @@
         var printWindow = window.open('', '_blank');
         var qrCodeData = {!! json_encode(session('qrCodeData')) !!};
 
-        printWindow.document.write('<html><head><title>QR Code and Data</title></head><body>');
-        printWindow.document.write('<div id="printContent">' + document.getElementById('printContent').innerHTML +
-            '</div>');
+        var qrCodeImage = document.getElementById('printContent').innerHTML;
+
+        printWindow.document.write('<html><head><title>QR Code</title></head><body>');
+        printWindow.document.write('<div id="printContent">' + qrCodeImage + '</div>');
         printWindow.document.write('</body></html>');
 
         printWindow.document.close();

@@ -16,7 +16,7 @@
                                     color: rgba(18, 23, 67, 1);
 
                                     ">
-                        Sorry!</h5>
+                        @lang('file.Sorry')!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -32,11 +32,11 @@
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                    This course is currently full. Please choose another course!!
+                    @lang('file.This course is currently full. Please choose another course!!')
                 </div>
                 <div class="d-flex justify-content-end text-center">
                     <button type="button" class="btn btn-primary text-center" data-dismiss="modal"
-                        style="width:100px;font-family: Cairo; font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 30px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">Close</button>
+                        style="width:100px;font-family: Cairo; font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 30px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">@lang('file.Close')</button>
                 </div>
             </div>
 

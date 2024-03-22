@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}">
 
 <head>
     <meta charset="UTF-8">
@@ -13,6 +13,13 @@
     <link rel="icon" href="{{ asset('images/logo 4 (1).png') }}" type="image/png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
+        .small-screen-font {
+            font-size: 20px;
+            line-height: 50px;
+        }
+
+        /* Add more styles for other elements as needed */
+
         #home a {
             color: #FFE4C5;
 
@@ -24,12 +31,17 @@
             display: block;
             height: 2px;
             width: 75%;
-            margin-left: 15px;
-            background-color: #FFE4C5;
             margin-top: 3px;
+            background-color: #FFE4C5;
 
-
+            @if (app()->getLocale() == 'ar')
+                margin-right: 10px;
+            @else
+                margin-left: 15px;
+            @endif
         }
+
+
 
 
         #home a:hover {
@@ -81,6 +93,7 @@
             }
 
 
+
             .service_text2 {
                 animation: slideFromLeft 1.5s ease-out;
             }
@@ -106,8 +119,6 @@
                 font-size: 18px;
                 line-height: 32px;
             }
-
-
 
             .features .col-md-6 {
                 flex: 1;
@@ -161,7 +172,6 @@
 
             }
 
-
             .service_text1 {
                 font-size: 18px !important;
 
@@ -211,7 +221,13 @@
         body {
             overflow: auto;
             overflow-x: hidden;
-            direction: @if(app()->getLocale() == 'ar') rtl @else ltr @endif;
+
+            direction: @if (app()->getLocale() == 'ar')
+                rtl
+            @else
+                ltr
+            @endif
+            ;
 
         }
 
@@ -248,38 +264,46 @@
                 font-size: 14px;
             }
 
+
             body {
 
                 overflow-x: hidden;
-
+                width: 100%
             }
 
             #home a::after {
                 content: '';
                 display: block;
                 height: 2px;
-                width: 90%;
-                margin-left: 0px;
-                background-color: #FFE4C5;
+                width: 75%;
                 margin-top: 3px;
+                background-color: #FFE4C5;
 
+                @if (app()->getLocale() == 'ar')
+                    margin-right: 10px;
+                @else
+                    margin-left: 15px;
+                @endif
             }
+
+
 
         }
 
         @media (max-width: 767px) {
             section.head {
-            position: relative;
-            width: 100%;
-            height: 60vh;
-            display: flex;
-            justify-content: center;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            margin-top: -10px;
-            margin-bottom: 5%;
-        }
+                position: relative;
+                width: 100%;
+                height: 60vh;
+                display: flex;
+                justify-content: center;
+                display: flex;
+                align-items: center;
+                overflow: hidden;
+                margin-top: -10px;
+                margin-bottom: 5%;
+            }
+
             body {
                 overflow: auto;
                 overflow-x: hidden;
@@ -305,7 +329,7 @@
             .content-text1 {
                 font-size: 12px !important;
 
-                line-height: 20px !important;
+                line-height: 35px !important;
 
             }
 
@@ -313,7 +337,7 @@
                 margin-bottom: 30px;
                 font-size: 25px !important;
 
-                line-height: 20px !important;
+                line-height: 30px !important;
 
             }
 
@@ -335,7 +359,7 @@
                 font-size: 18px !important;
                 line-height: 26px !important;
             }
-            
+
 
         }
 
@@ -347,7 +371,7 @@
             width: 100%;
             height: 100%;
             background: #000;
-            background-image: url('{{ asset('images/Mask Group.svg') }}');
+            background-image: url('{{ asset('storage/' . $header->images()->get()->first()->file_path) }}');
             background-size: cover;
             background-repeat: no-repeat;
             border-radius: 0 0 100% 100%/0 0 100% 100%;
@@ -358,7 +382,8 @@
 
 
         footer {
-            background-image: url('{{ asset('images/footer.svg') }}');
+
+            background-image: url('{{ asset('storage/' . $header->footer_image) }}');
             background-size: cover;
             background-repeat: no-repeat;
             padding-top: 90px;
@@ -380,6 +405,41 @@
         .active-dot {
             background-color: #717171;
         }
+
+        /* #contactButton {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #contactButton::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: #FFD700;
+            bottom: 0;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #contactButton:hover::before {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        } */
+
+        .btn-primary,
+        .btn-outline-primary {
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover,
+        .btn-outline-primary:hover {
+            box-shadow: 5px 10px 40px #ecd394;
+            background-color: #121743;
+
+        }
     </style>
 </head>
 
@@ -393,37 +453,46 @@
 
             </a>
             <button id="contactButton2" class="btn btn-primary">
-                تواصل معنا
+                {{ __('file.contact_us') }}
             </button>
+            {{-- // --}}
 
+            <form method="post" action="{{ route('language.switch') }}" id="languageForm">
+                @csrf
+                <button type="button" onclick="toggleLanguage()" class="btn btn-link text-white">
+                    {{ app()->getLocale() == 'en' ? 'En' : 'Ar' }}
+                    <img src="{{ asset('images/' . (app()->getLocale() == 'en' ? 'united-Kingdom' : 'saudi-arabia') . '.png') }}"
+                        width="20px" height="20px">
+                </button>
+                <input type="hidden" name="locale" id="localeInput" value="{{ app()->getLocale() }}">
+            </form>
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav" style="gap: 30px;">
                     <li class="nav-item active">
-                        <a class="nav-link no-reload" href="#events">فعاليات
-                        </a>
+                        <a class="nav-link no-reload" href="#events">{{ __('file.events') }}</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link no-reload" href="#programs">البرامج</a>
+                        <a class="nav-link no-reload" href="#programs">{{ __('file.programs') }}</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link no-reload" href="#projects">مشاريعنا</a>
+                        <a class="nav-link no-reload" href="#projects">{{ __('file.projects') }}</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link " href="#range">النطاق</a>
+                        <a class="nav-link" href="#range">{{ __('file.range') }}</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#service">خدماتنا <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#service">{{ __('file.services') }} <span
+                                class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#2030"> 2030</a>
+                        <a class="nav-link" href="#2030">{{ __('file.2030') }}</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#US">من نحن</a>
+                        <a class="nav-link" href="#US">{{ __('file.About_Us') }}</a>
                     </li>
                     <li class="nav-item active" id="home">
-                        <a class="nav-link" href="#head">الرئيسية</a>
+                        <a class="nav-link" href="#head">{{ __('file.home') }}</a>
                     </li>
-
                 </ul>
             </div>
 
@@ -431,20 +500,95 @@
             <div class="navbar-brand">
                 <img src="{{ asset('images/logo 4.svg') }}">
             </div>
+
         </nav>
         <div class="content" id="content">
-
-            <p class="content-text2"
-                style="font-family: Cairo;
+            @if (app()->getLocale() == 'en')
+                <p class="content-text2"
+                    style="font-family: Cairo;
                 font-size: 45px;
                 font-weight: 600;
-                line-height: 74px;
+                line-height: 90px;
+                letter-spacing: 0.02em;
+                text-align: center;
+                color:#FFFFFF;
+                
+                ">
+                    {{ $header->getTranslation('title', 'ar') }} </p>
+                <p id="textContent" class="head-text mb-0 content-text1 "
+                    style="font-family: Cairo;
+                    font-size: 20px;
+                    font-weight: 400;
+                    line-height: 50px;
+                    letter-spacing: 0.02em;
+                    text-align: center;
+                    color:rgba(255, 255, 255, 0.69);
+                    white-space: pre-line; 
+
+                    ">
+                    {{ $header->getTranslation('text', 'ar') }}
+                </p>
+                <script>
+                    // Get the element containing the text
+                    const textElement = document.getElementById('textContent');
+
+                    // Get the text content
+                    const text = textElement.textContent.trim();
+
+                    // Calculate the length of each line
+                    const maxLength = Math.ceil(text.length / 3);
+
+                    // Split the text into three lines
+                    const line1 = text.slice(0, maxLength);
+                    const line2 = text.slice(maxLength, 2 * maxLength);
+                    const line3 = text.slice(2 * maxLength);
+
+                    // Update the text content of the element
+                    textElement.textContent = line1 + '\n' + line2 + '\n' + line3;
+                </script>
+            @else
+                <p class="content-text2"
+                    style="font-family: Cairo;
+                font-size: 41px;
+                font-weight: 600;
+                line-height: 90px;
                 letter-spacing: 0.02em;
                 text-align: center;
                 color:#FFFFFF;
                 ">
-                هنا تبدأ رحلتك من الفكرة إلى الريادة</p>
-            <p class="head-text mb-0 content-text1"
+                    {{ $header->getTranslation('title', 'en') }} </p>
+                <p id="textContent" class="head-text mb-0 content-text1"
+                    style="font-family: Cairo;
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 40px;
+                letter-spacing: 0.02em;
+                text-align: center;
+                color:rgba(255, 255, 255, 0.69);
+                white-space: pre-line; 
+                ">
+                    {{ $header->getTranslation('text', 'en') }}
+                </p>
+                <script>
+                    // Get the element containing the text
+                    const textElement = document.getElementById('textContent');
+
+                    // Get the text content
+                    const text = textElement.textContent.trim();
+
+                    // Calculate the length of each line
+                    const maxLength = Math.ceil(text.length / 3);
+
+                    // Split the text into three lines
+                    const line1 = text.slice(0, maxLength);
+                    const line2 = text.slice(maxLength, 2 * maxLength);
+                    const line3 = text.slice(2 * maxLength);
+
+                    // Update the text content of the element
+                    textElement.textContent = line1 + '\n' + line2 + '\n' + line3;
+                </script>
+            @endif
+            {{-- <p class="head-text mb-0 content-text1"
                 style="font-family: Cairo;
                     font-size: 20px;
                     font-weight: 400;
@@ -453,9 +597,9 @@
                     text-align: center;
                     color:rgba(255, 255, 255, 0.69);
                     ">
-                مع أكنانا لريادة و حضانة الاعمال تحقيق الاحلام أصبح ممكن حيث نقدم
-            </p>
-            <p class="head-text mb-0 content-text1"
+                {{ __('file.with_aknan') }}
+            </p> --}}
+            {{-- <p class="head-text mb-0 content-text1"
                 style="font-family: Cairo;
                     font-size: 20px;
                     font-weight: 400;
@@ -465,24 +609,14 @@
                     color:rgba(255, 255, 255, 0.69);
 
                     ">
-                حلول مبتكرة في عالم الأعمال من خلال نخبة من الاستشاريين في
-            </p>
-            <p id="textContent" class="head-text mb-0 content-text1 "
-                style="font-family: Cairo;
-                    font-size: 20px;
-                    font-weight: 400;
-                    line-height: 36px;
-                    letter-spacing: 0.02em;
-                    text-align: center;
-                    color:rgba(255, 255, 255, 0.69);
+                {{ __('file.innovative_solutions') }}
+            </p> --}}
 
-                    ">
-                الأعمال التي تشرف عليها الشركة أو تتولى توثيقها
-            </p>
             <div class="d-flex justify-content-center align-items-between mt-5 ">
-                <a href="" class="d-flex align-items-center pr-4  " id="contactButton2">
-                    <p class="pr-2 content-text3"
-                        style="font-family: Cairo;
+                @if (app()->getLocale() == 'en')
+                    {{-- <a href="" class="d-flex align-items-center pr-4  " id="contactButton2">
+                        <p class="pr-2 content-text3"
+                            style="font-family: Cairo;
                         font-size: 25px;
                         font-weight: 600;
                         line-height: 30px;
@@ -490,9 +624,24 @@
                         color:#FFFFFFB0;
                         margin: 0;
                         ">
-                        نبذة عنا</p>
-                    <img src="{{ asset('images/icon (1).svg') }}" style="margin-right: 10px;">
-                </a>
+                            {{ __('file.about_us') }} </p>
+                        <img src="{{ asset('images/video_big.svg') }}" style="margin-right: 10px;">
+                    </a> --}}
+                @else
+                    {{-- <a href="" class="d-flex align-items-center pr-4 pl-4  " id="contactButton2">
+                        <p class="pr-2 content-text3"
+                            style="font-family: Cairo;
+                        font-size: 25px;
+                        font-weight: 600;
+                        line-height: 30px;
+                        letter-spacing: 0em;
+                        color:#FFFFFFB0;
+                        margin: 0;
+                        ">
+                            {{ __('file.about_us') }} </p>
+                        <img src="{{ asset('images/video_big.svg') }}" style="margin-right: 10px;">
+                    </a> --}}
+                @endif
                 <button id="contactButton" class="btn btn-primary "
                     style="width:193px;height:50px;font-family: Cairo;
                         font-size: 22px;
@@ -501,7 +650,7 @@
                         letter-spacing: 0em;
                         color:#FFFFFF;
                     ">
-                    تواصل معنا
+                    {{ __('file.contact_us') }}
                 </button>
             </div>
 
@@ -513,12 +662,13 @@
     <!-- Footer -->
     <footer class="bg-body-tertiary">
         <!-- Grid container -->
-        <div class="container" style="margin-top:60px">
-            <div class="row" style="gap: 55px">
-                <!--Grid column-->
-                <div class="col-lg-2 col-md-2 mb-4 mb-md-0 text-right">
-                    <p class="text-right mb-2"
-                        style="font-family: Poppins;
+        @if (app()->getLocale() == 'ar')
+            <div class="container" style="margin-top:60px">
+                <div class="row" style="gap: 55px">
+                    <!--Grid column-->
+                    <div class="col-lg-2 col-md-3 mb-4 mb-md-0 text-left">
+                        <p class="text-left mb-2"
+                            style="font-family: Poppins;
                         font-size: 16px;
                         font-weight: 500;
                         line-height: 13px;
@@ -526,17 +676,17 @@
                         text-align: left;
                         color: #FFFFFF;
                         ">
-                        للتواصل
-                        معانا</p>
-                    <span class="d-flex justify-content-end mb-2">
-                        <img src="{{ asset('images/zigzag.png') }}">
-                        <img src="{{ asset('images/zigzag.png') }}">
-                    </span>
-                    <ul class="list-unstyled">
-                        <li class="mb-2">
+                            @lang('file.To contact us')
+                        </p>
+                        <span class="d-flex justify-content-end mb-2">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                        </span>
+                        <ul class="list-unstyled ">
+                            <li class="mb-2 ">
 
-                            <a href="#!" class="pr-2"
-                                style="font-family: Poppins;
+                                <a href="#!"
+                                    style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -544,13 +694,27 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                الرياض-السعودية </a>
-                            <img src="{{ asset('images/home.png') }}">
-                        </li>
-                        <li class="mb-2">
+                                    @lang('file.address')</a>
+                                <img src="{{ asset('images/home.png') }}">
+                            </li>
+                            <li class="mb-2 d-flex justify-content-end" style="gap: 7px;">
 
-                            <a href="#!" class="pr-2"
-                                style="font-family: Poppins;
+                                <a href="#!"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: right;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.email')</a>
+                                <img src="{{ asset('images/email.png') }}" style="pl-5">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#!"
+                                    style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -558,247 +722,537 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                akana@gmail.com </a>
-                            <img src="{{ asset('images/email.png') }}">
-                        </li>
-                        <li class="mb-2">
-
-                            <a href="#!" class="pr-2"
-                                style="font-family: Poppins;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 13px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                color: #FFFFFF;
-                                ">
-                                ‫‪0550915555‬‬ </a>
-                            <img src="{{ asset('images/telephone.png') }}">
-                        </li>
-                    </ul>
-                </div>
-
-                <!--Grid column-->
-                <div class="col-md-2 mb-4 mb-md-0 text-right">
-                    <p class="text-right mb-2"
-                        style="font-family: Poppins;
-                        font-size: 16px;
-                        font-weight: 500;
-                        line-height: 13px;
-                        letter-spacing: 0em;
-                        text-align: left;
-                        color: #FFFFFF;
-                        ">
-                        مسارات
-                        أكنانا</p>
-                    <span class="d-flex justify-content-end pr-3 mb-2">
-                        <img src="{{ asset('images/zigzag.png') }}">
-                        <img src="{{ asset('images/zigzag.png') }}">
-                    </span>
-                    <ul class="list-unstyled">
-
-                        <li class="mb-2">
-
-                            <a href="#2030"
-                                style="font-family: Poppins;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 13px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                color: #FFFFFF;
-                                ">
-                                رؤية 2030 </a>
-                            <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                        </li>
-                        <li class="mb-2">
-
-                            <a href="#projects"
-                                style="font-family: Poppins;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 13px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                color: #FFFFFF;
-                                ">
-                                المشاريع </a>
-                            <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                        </li>
-                        <li class="mb-2">
-
-                            <a href="#!"
-                                style="font-family: Poppins;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 13px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                color: #FFFFFF;
-                                ">
-                                الاخبار </a>
-                            <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                        </li>
-                        <li class="mb-2">
-
-                            <a href="#reviews"
-                                style="font-family: Poppins;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 13px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                color: #FFFFFF;
-                                ">
-                                اراء العملاء </a>
-                            <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                        </li>
-                    </ul>
-                </div>
-
-                <!--Grid column-->
-                <div class="col-md-2 mb-4 mb-md-0 text-right">
-                    <p class="text-right mb-2"
-                        style="font-family: Poppins;
-                        font-size: 16px;
-                        font-weight: 500;
-                        line-height: 13px;
-                        letter-spacing: 0em;
-                        text-align: left;
-                        color: #FFFFFF;
-                        ">
-                        مسارات
-                        أكنانا</p>
-                    <span class="d-flex justify-content-end pr-3 mb-2">
-                        <img src="{{ asset('images/zigzag.png') }}">
-                        <img src="{{ asset('images/zigzag.png') }}">
-                    </span>
-                    <ul class="list-unstyled">
-                        <li class="mb-2">
-
-                            <a href="#head"
-                                style="font-family: Poppins;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 13px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                color: #FFFFFF;
-                                ">
-                                الرئيسية </a>
-                            <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                        </li>
-                        <li class="mb-2">
-
-                            <a href="#service"
-                                style="font-family: Poppins;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 13px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                color: #FFFFFF;
-                                ">
-                                الخدمات </a>
-                            <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                        </li>
-                        <li class="mb-2">
-
-                            <a href="#US"
-                                style="font-family: Poppins;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 13px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                color: #FFFFFF;
-                                ">
-                                من نحن </a>
-                            <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                        </li>
-                        <li class="mb-2">
-
-                            <a href="#programs"
-                                style="font-family: Poppins;
-                                font-size: 16px;
-                                font-weight: 400;
-                                line-height: 13px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                color: #FFFFFF;
-                                ">
-                                البرامج </a>
-                            <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                        </li>
-                    </ul>
-                </div>
-
-                <!--Grid column-->
-                <div class="col-lg-4 col-md-4 mb-4  text-right pl-4">
-                    <div class="d-flex justify-content-end mb-2">
-                        <img src="{{ asset('images/logo 3.png') }}" alt="logo">
-                    </div>
-                    <p class="text-right mb-0"
-                        style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
-                        تحقق الاحلام صار مرة سهل انضم الينا الان
-                    </p>
-
-                    <p class="text-right mb-0"
-                        style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
-                        وبنساعدك في بداية مشوارك المهني لحين
-                    </p>
-                    <p class="text-right"
-                        style="color: #FFFFFFBF; font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px;">
-                        ... نهاية الطريق تواصل معانا
-                    </p>
-                    <div class="row d-flex justify-content-end pr-3" style="gap: 15px">
-
-                        <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
-                            style="width: 35px; height: 35px;">
-                            <img src="{{ asset('images/twitter.png') }}" alt="logo" width="15px"
-                                height="15px">
-                        </div>
-                        <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
-                            style="width: 35px; height: 35px;">
-                            <img src="{{ asset('images/facebook.png') }}" alt="logo" width="15px"
-                                height="15px">
-                        </div>
-                        <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
-                            style="width: 35px; height: 35px;">
-                            <img src="{{ asset('images/instagram2.png') }}" alt="logo" width="15px"
-                                height="15px">
-                        </div>
-                        <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
-                            style="width: 35px; height: 35px;">
-                            <img src="{{ asset('images/youtube.png') }}" alt="logo" width="15px"
-                                height="15px">
-                        </div>
+                                    @lang('file.phone')</a>
+                                <img src="{{ asset('images/telephone.png') }}">
+                            </li>
+                        </ul>
                     </div>
 
-                </div>
+                    <!--Grid column-->
+                    <div class="col=ml-2 col-md-2 mb-4 mb-md-0 text-left">
+                        <p class="text-left mb-2"
+                            style="font-family: Poppins;
+                        font-size: 16px;
+                        font-weight: 500;
+                        line-height: 13px;
+                        letter-spacing: 0em;
+                        text-align: left;
+                        color: #FFFFFF;
+                        ">
+                            @lang('file.paths')</p>
+                        <span class="d-flex justify-content-end pr-3 mb-2">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                        </span>
+                        <ul class="list-unstyled">
 
+                            <li class="mb-2">
+
+                                <a href="#2030"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.2030')</a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                    style="transform: scaleX(-1);">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#projects"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.projects') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                    style="transform: scaleX(-1);">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="{{ route('home') }}#events"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.news') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                    style="transform: scaleX(-1);">
+                            </li>
+                            <li class="mb-2 ">
+
+                                <a href="#reviews"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.customer_reviews')</a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                    style="transform: scaleX(-1);">
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!--Grid column-->
+                    <div class="col-md-2 mb-4 mb-md-0 text-left">
+                        <p class="text-left mb-2"
+                            style="font-family: Poppins;
+                        font-size: 16px;
+                        font-weight: 500;
+                        line-height: 13px;
+                        letter-spacing: 0em;
+                        text-align: left;
+                        color: #FFFFFF;
+                        ">
+                            @lang('file.paths')
+                        </p>
+                        <span class="d-flex justify-content-end pr-3 mb-2">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                        </span>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+
+                                <a href="#head"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.home') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                    style="transform: scaleX(-1);">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#service"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.services') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                    style="transform: scaleX(-1);">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#US"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.about_us')</a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                    style="transform: scaleX(-1);">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#programs"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.programs') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                    style="transform: scaleX(-1);">
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-4 mb-4 text-left pl-4">
+                        <div class="d-flex justify-content-end mb-2">
+                            <img src="{{ asset('images/logo 3.png') }}" alt="logo">
+                        </div>
+                        <p class="text-left mb-0"
+                            style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
+                            @lang('file.dreams_made_easy')
+                        </p>
+
+                        <p class="text-left mb-0"
+                            style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
+                            @lang('file.help_at_beginning')
+                        </p>
+                        <p class="text-left"
+                            style="color: #FFFFFFBF; font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px;">
+                            @lang('file.contact_us_end_of_road')
+                        </p>
+                        <div class="row d-flex justify-content-end pl-3" style="gap: 15px">
+
+                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                                style="width: 35px; height: 35px;">
+                                <img src="{{ asset('images/twitter.png') }}" alt="logo" width="15px"
+                                    height="15px">
+                            </div>
+                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                                style="width: 35px; height: 35px;">
+                                <img src="{{ asset('images/facebook.png') }}" alt="logo" width="15px"
+                                    height="15px">
+                            </div>
+                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                                style="width: 35px; height: 35px;">
+                                <img src="{{ asset('images/instagram2.png') }}" alt="logo" width="15px"
+                                    height="15px">
+                            </div>
+                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                                style="width: 35px; height: 35px;">
+                                <img src="{{ asset('images/youtube.png') }}" alt="logo" width="15px"
+                                    height="15px">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
-        </div>
-        <!-- Grid container -->
+            <!-- Grid container -->
 
-        <!-- Copyright -->
-        <div class="text-center p-3"
-            style="font-family: Tajawal;
+            <!-- Copyright -->
+            <div class="text-center p-3"
+                style="font-family: Tajawal;
                 font-size: 20px;
                 font-weight: 500;
                 line-height: 14px;
                 letter-spacing: 0px;
                 color:#FFFFFFCC;
                 ">
-            جميع الحقوق محفوظة لشركة أكنانا لريادة الاعمال {{ now()->year }}
-            <span>@</span>
-        </div>
+                {{ __('file.rights_reserved') }} {{ now()->year }}
+                <span>@</span>
+            </div>
+        @else
+            <div class="container" style="margin-top:60px">
+                <div class="row" style="gap: 55px">
+                    <!--Grid column-->
+                    <div class="col-lg-2 col-md-2 mb-4 mb-md-0 text-right">
+                        <p class="text-right mb-2"
+                            style="font-family: Poppins;
+                        font-size: 16px;
+                        font-weight: 500;
+                        line-height: 13px;
+                        letter-spacing: 0em;
+                        text-align: left;
+                        color: #FFFFFF;
+                        ">
+                            للتواصل
+                            معانا</p>
+                        <span class="d-flex justify-content-end mb-2">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                        </span>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+
+                                <a href="#!" class="pr-2"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.address')</a>
+                                <img src="{{ asset('images/home.png') }}">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#!" class="pr-2"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.email')</a>
+                                <img src="{{ asset('images/email.png') }}">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#!" class="pr-2"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.phone')</a>
+                                <img src="{{ asset('images/telephone.png') }}">
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!--Grid column-->
+                    <div class="col-md-2 mb-4 mb-md-0 text-right">
+                        <p class="text-right mb-2"
+                            style="font-family: Poppins;
+                        font-size: 16px;
+                        font-weight: 500;
+                        line-height: 13px;
+                        letter-spacing: 0em;
+                        text-align: left;
+                        color: #FFFFFF;
+                        ">
+                            @lang('file.paths')</p>
+                        <span class="d-flex justify-content-end pr-3 mb-2">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                        </span>
+                        <ul class="list-unstyled">
+
+                            <li class="mb-2">
+
+                                <a href="#2030"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.2030')</a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#projects"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.projects') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="{{ route('home') }}#events"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.news') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                            <li class="mb-2 ">
+
+                                <a href="#reviews"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.customer_reviews')</a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!--Grid column-->
+                    <div class="col-md-2 mb-4 mb-md-0 text-right">
+                        <p class="text-right mb-2"
+                            style="font-family: Poppins;
+                        font-size: 16px;
+                        font-weight: 500;
+                        line-height: 13px;
+                        letter-spacing: 0em;
+                        text-align: left;
+                        color: #FFFFFF;
+                        ">
+                            @lang('file.paths')
+                        </p>
+                        <span class="d-flex justify-content-end pr-3 mb-2">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                            <img src="{{ asset('images/zigzag.png') }}">
+                        </span>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+
+                                <a href="#head"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.home') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#service"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.services') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#US"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.about_us')</a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                            <li class="mb-2">
+
+                                <a href="#programs"
+                                    style="font-family: Poppins;
+                                font-size: 16px;
+                                font-weight: 400;
+                                line-height: 13px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                color: #FFFFFF;
+                                ">
+                                    @lang('file.programs') </a>
+                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-4 mb-4  text-right pl-4">
+                        <div class="d-flex justify-content-end mb-2">
+                            <img src="{{ asset('images/logo 3.png') }}" alt="logo">
+                        </div>
+                        <p class="text-right mb-0"
+                            style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
+                            @lang('file.dreams_made_easy')
+                        </p>
+
+                        <p class="text-right mb-0"
+                            style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
+                            @lang('file.help_at_beginning')
+                        </p>
+                        <p class="text-right"
+                            style="color: #FFFFFFBF; font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px;">
+                            @lang('file.contact_us_end_of_road')
+                        </p>
+                        <div class="row d-flex justify-content-end pr-3" style="gap: 15px">
+
+                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                                style="width: 35px; height: 35px;">
+                                <img src="{{ asset('images/twitter.png') }}" alt="logo" width="15px"
+                                    height="15px">
+                            </div>
+                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                                style="width: 35px; height: 35px;">
+                                <img src="{{ asset('images/facebook.png') }}" alt="logo" width="15px"
+                                    height="15px">
+                            </div>
+                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                                style="width: 35px; height: 35px;">
+                                <img src="{{ asset('images/instagram2.png') }}" alt="logo" width="15px"
+                                    height="15px">
+                            </div>
+                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                                style="width: 35px; height: 35px;">
+                                <img src="{{ asset('images/youtube.png') }}" alt="logo" width="15px"
+                                    height="15px">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- Grid container -->
+
+            <!-- Copyright -->
+            <div class="text-center p-3"
+                style="font-family: Tajawal;
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 14px;
+                letter-spacing: 0px;
+                color:#FFFFFFCC;
+                ">
+                {{ __('file.rights_reserved') }} {{ now()->year }}
+                <span>@</span>
+            </div>
+        @endif
         <!-- Copyright -->
     </footer>
-    <a id="scrollToTopButton" href="#head" class="btn fixed-bottom ml-3 mb-4 mt-4 rounded-circle"
-        style="width: 60px;height:60px">
+    <!-- Left image -->
+    <a id="scrollToTopButton" href="#head" class="btn fixed-bottom ml-3 mb-3 mt-5 rounded-circle"
+        style="width: 60px;height:60px; position: fixed; left: 10px; bottom: 10px;">
         <img src="{{ asset('images/turn-up.gif') }}" width="35px" height="40x">
     </a>
+
+    @if (app()->getLocale() == 'en')
+        <a href="https://api.whatsapp.com/send?phone=966562354761"
+            class="btn fixed-bottom-left mr-3 mb-3 mt-5 rounded-circle"
+            style="width: 60px; height: 54px; position: fixed; bottom: 10px; right: 10px; z-index: 1000;">
+            <img src="{{ asset('images/whatsappAni.gif') }}" width="35px" height="35px">
+        </a>
+    @else
+        <a href="https://api.whatsapp.com/send?phone=966562354761"
+            class="btn fixed-bottom-left mr-3 mb-3 mt-5 rounded-circle"
+            style="width: 60px; height: 54px; position: fixed; bottom: 10px; left: 10px; z-index: 1000;">
+            <img src="{{ asset('images/whatsappAni.gif') }}" width="35px" height="35px">
+        </a>
+    @endif
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
@@ -829,7 +1283,15 @@
             });
         });
     </script> --}}
+    <script>
+        function toggleLanguage() {
+            var currentLocale = document.getElementById('localeInput').value;
+            var newLocale = (currentLocale === 'en') ? 'ar' : 'en';
 
+            document.getElementById('localeInput').value = newLocale;
+            document.getElementById('languageForm').submit();
+        }
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var carousel = document.getElementById('carouselExampleIndicators2');
@@ -845,6 +1307,23 @@
                     left: scrollPosition,
                     behavior: 'smooth'
                 });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // When clicking on the read-more-button
+            $(".read-more-button").click(function() {
+                // Toggle visibility of short-event and full-event
+                $(this).closest(".event-container").find(".short-event").toggle();
+                $(this).closest(".event-container").find(".full-event").toggle();
+            });
+
+            // When clicking on the show-less-button
+            $(".show-less-button").click(function() {
+                // Toggle visibility of short-event and full-event
+                $(this).closest(".event-container").find(".short-event").toggle();
+                $(this).closest(".event-container").find(".full-event").toggle();
             });
         });
     </script>
@@ -964,148 +1443,20 @@
         });
     </script>
     <script src="https://unpkg.com/scrollreveal"></script>
-    <script>
-        // Initialize ScrollReveal with the reset option
-        const scrollReveal = ScrollReveal({
-            reset: true,
-            mobile: true, // Enable mobile optimization
-        });
 
-        // Add individual reveal statements for each element
-        scrollReveal.reveal('.fade-in', {
-            distance: '50%',
-            origin: 'left',
-            duration: 2000,
-            opacity: 0
-        });
+    @if (app()->getLocale() == 'ar')
+        <script>
+            const scrollReveal = ScrollReveal({
+                reset: true,
+                mobile: true,
+            });
 
-        ScrollReveal().reveal('#ServButton', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.animate-fade-up', {
-            distance: '50%',
-            origin: 'left',
-            duration: 2500,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.animate-fade-in', {
-            distance: '50%',
-            origin: 'right',
-            duration: 2500,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.the_range', {
-            distance: '50%',
-            origin: 'bottom',
-            duration: 2000
-        });
-        ScrollReveal().reveal('.content-text2', {
-            distance: '100%',
-            origin: 'top',
-            duration: 1500
-        });
-        ScrollReveal().reveal('.the_range .container', {
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.the_range .mt-5', {
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.content-text1:nth-child(3)', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.content-text1:nth-child(1)', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.content-text1:nth-child(2)', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('#textContent', {
-            delay: 500,
-            duration: 1500,
-            opacity: 0
-        });
-        ScrollReveal().reveal('#contactButton', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('#contactButton2', {
-            delay: 500,
-            duration: 500,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.US', {
-            duration: 500,
-            origin: 'right',
-            opacity: 0
-        });
-        ScrollReveal().reveal('.custom-image-style', {
-            distance: '50%',
-            origin: 'right',
-            duration: 2000
-        });
-        ScrollReveal().reveal('.custom-text-style', {
-            distance: '50%',
-            origin: 'right',
-            duration: 2500
-        });
-        ScrollReveal().reveal('.custom-text_2', {
-            distance: '50%',
-            origin: 'left',
-            duration: 2000
-        });
-        ScrollReveal().reveal('#contactButton3', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('#contactButton4', {
-            delay: 500,
-            duration: 2000,
-            opacity: 0
-        });
-        ScrollReveal().reveal('.service_text2', {
-            distance: '50%',
-            origin: 'left',
-            duration: 1500
-        });
-        ScrollReveal().reveal('#textd', {
-            distance: '50%',
-            origin: 'left',
-            duration: 2000
-        });
-        ScrollReveal().reveal('.service_text3', {
-            distance: '50%',
-            origin: 'right',
-            duration: 2500,
-        });
-        ScrollReveal().reveal('.he ', {
-            duration: 1500,
-            opacity: 0,
-            delay: 1000
-        });
 
-        ScrollReveal().reveal('.he .col-md-1 img', {
-            duration: 1500,
-            opacity: 1,
-            delay: 1500
-        });
-        const mediaQuery = window.matchMedia('(max-width: 768px)');
-
-        if (mediaQuery.matches) {
-            // Adjust reveal configurations for smaller screens
             scrollReveal.reveal('.fade-in', {
-                
+                distance: '50%',
+                origin: 'right',
+                duration: 2000,
+                opacity: 0
             });
 
             ScrollReveal().reveal('#ServButton', {
@@ -1114,24 +1465,25 @@
                 opacity: 0
             });
             ScrollReveal().reveal('.animate-fade-up', {
-                origin: 'top',
+                distance: '50%',
+                origin: 'right',
                 duration: 2500,
                 opacity: 0
             });
             ScrollReveal().reveal('.animate-fade-in', {
-                
-                origin: 'bottom',
+                distance: '50%',
+                origin: 'right',
                 duration: 2500,
                 opacity: 0
             });
             ScrollReveal().reveal('.the_range', {
-                
-                origin: 'top',
+                distance: '50%',
+                origin: 'bottom',
                 duration: 2000
             });
             ScrollReveal().reveal('.content-text2', {
-                
-                origin: 'bottom',
+                distance: '100%',
+                origin: 'top',
                 duration: 1500
             });
             ScrollReveal().reveal('.the_range .container', {
@@ -1174,22 +1526,22 @@
             });
             ScrollReveal().reveal('.US', {
                 duration: 500,
-                origin: 'top',
+                origin: 'left',
                 opacity: 0
             });
             ScrollReveal().reveal('.custom-image-style', {
-                
-                origin: 'bottom',
+                distance: '50%',
+                origin: 'right',
                 duration: 2000
             });
             ScrollReveal().reveal('.custom-text-style', {
-                
-                origin: 'bottom',
+                distance: '50%',
+                origin: 'right',
                 duration: 2500
             });
             ScrollReveal().reveal('.custom-text_2', {
-                
-                origin: 'bottom',
+                distance: '50%',
+                origin: 'right',
                 duration: 2000
             });
             ScrollReveal().reveal('#contactButton3', {
@@ -1203,24 +1555,24 @@
                 opacity: 0
             });
             ScrollReveal().reveal('.service_text2', {
-                
-                origin: 'top',
+                distance: '50%',
+                origin: 'right',
                 duration: 1500
             });
             ScrollReveal().reveal('#textd', {
-                
-                origin: 'bottom',
+                distance: '50%',
+                origin: 'right',
                 duration: 2000
             });
             ScrollReveal().reveal('.service_text3', {
-                
-                origin: 'bottom',
+                distance: '50%',
+                origin: 'right',
                 duration: 2500,
             });
             ScrollReveal().reveal('.he ', {
-                duration: 1000,
+                duration: 1500,
                 opacity: 0,
-                delay: 1500
+                delay: 1000
             });
 
             ScrollReveal().reveal('.he .col-md-1 img', {
@@ -1228,10 +1580,474 @@
                 opacity: 1,
                 delay: 1500
             });
+            const mediaQuery = window.matchMedia('(max-width: 768px)');
+
+            if (mediaQuery.matches) {
+                // Adjust reveal configurations for smaller screens
+                scrollReveal.reveal('.fade-in', {
+
+                });
+
+                ScrollReveal().reveal('#ServButton', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+
+                });
+                ScrollReveal().reveal('.animate-fade-up', {
+                    origin: 'top',
+                    duration: 2500,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.animate-fade-in', {
+
+                    origin: 'bottom',
+                    duration: 2500,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.the_range', {
+
+                    origin: 'top',
+                    duration: 2000
+                });
+                ScrollReveal().reveal('.content-text2', {
+
+                    origin: 'bottom',
+                    duration: 1500
+                });
+                ScrollReveal().reveal('.the_range .container', {
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.the_range .mt-5', {
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.content-text1:nth-child(3)', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.content-text1:nth-child(1)', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.content-text1:nth-child(2)', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('#textContent', {
+                    delay: 500,
+                    duration: 1500,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('#contactButton', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('#contactButton2', {
+                    delay: 500,
+                    duration: 500,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.US', {
+                    duration: 500,
+                    origin: 'top',
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.custom-image-style', {
+
+                    origin: 'bottom',
+                    duration: 2000
+                });
+                ScrollReveal().reveal('.custom-text-style', {
+
+                    origin: 'bottom',
+                    duration: 2500
+                });
+                ScrollReveal().reveal('.custom-text_2', {
+
+                    origin: 'bottom',
+                    duration: 2000
+                });
+                ScrollReveal().reveal('#contactButton3', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('#contactButton4', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.service_text2', {
+
+                    origin: 'top',
+                    duration: 1500
+                });
+                ScrollReveal().reveal('#textd', {
+
+                    origin: 'bottom',
+                    duration: 2000
+                });
+                ScrollReveal().reveal('.service_text3', {
+
+                    origin: 'top',
+                    duration: 2500,
+                });
+                ScrollReveal().reveal('.he ', {
+                    duration: 1000,
+                    opacity: 0,
+                    delay: 1500
+                });
+
+                ScrollReveal().reveal('.he .col-md-1 img', {
+                    duration: 1500,
+                    opacity: 1,
+                    delay: 1500
+                });
+            }
+        </script>
+    @else
+        <script>
+            const scrollReveal = ScrollReveal({
+                reset: true,
+                mobile: true,
+            });
+
+
+            scrollReveal.reveal('.fade-in', {
+                distance: '50%',
+                origin: 'left',
+                duration: 2000,
+                opacity: 0
+            });
+
+            ScrollReveal().reveal('#ServButton', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.animate-fade-up', {
+                distance: '50%',
+                origin: 'left',
+                duration: 2500,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.animate-fade-in', {
+                distance: '50%',
+                origin: 'right',
+                duration: 2500,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.the_range', {
+                distance: '50%',
+                origin: 'bottom',
+                duration: 2000
+            });
+            ScrollReveal().reveal('.content-text2', {
+                distance: '100%',
+                origin: 'top',
+                duration: 1500
+            });
+            ScrollReveal().reveal('.the_range .container', {
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.the_range .mt-5', {
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.content-text1:nth-child(3)', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.content-text1:nth-child(1)', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.content-text1:nth-child(2)', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('#textContent', {
+                delay: 500,
+                duration: 1500,
+                opacity: 0
+            });
+            ScrollReveal().reveal('#contactButton', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('#contactButton2', {
+                delay: 500,
+                duration: 500,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.US', {
+                duration: 500,
+                origin: 'right',
+                opacity: 0
+            });
+            ScrollReveal().reveal('.custom-image-style', {
+                distance: '50%',
+                origin: 'right',
+                duration: 2000
+            });
+            ScrollReveal().reveal('.custom-text-style', {
+                distance: '50%',
+                origin: 'right',
+                duration: 2500
+            });
+            ScrollReveal().reveal('.custom-text_2', {
+                distance: '50%',
+                origin: 'left',
+                duration: 2000
+            });
+            ScrollReveal().reveal('#contactButton3', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('#contactButton4', {
+                delay: 500,
+                duration: 2000,
+                opacity: 0
+            });
+            ScrollReveal().reveal('.service_text2', {
+                distance: '50%',
+                origin: 'left',
+                duration: 1500
+            });
+            ScrollReveal().reveal('#textd', {
+                distance: '50%',
+                origin: 'left',
+                duration: 2000
+            });
+            ScrollReveal().reveal('.service_text3', {
+                distance: '50%',
+                origin: 'right',
+                duration: 2500,
+            });
+            ScrollReveal().reveal('.he ', {
+                duration: 1500,
+                opacity: 0,
+                delay: 1000
+            });
+
+            ScrollReveal().reveal('.he .col-md-1 img', {
+                duration: 1500,
+                opacity: 1,
+                delay: 1500
+            });
+            const mediaQuery = window.matchMedia('(max-width: 768px)');
+
+            if (mediaQuery.matches) {
+                // Adjust reveal configurations for smaller screens
+                scrollReveal.reveal('.fade-in', {
+
+                });
+
+                ScrollReveal().reveal('#ServButton', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+
+                });
+                ScrollReveal().reveal('.animate-fade-up', {
+                    origin: 'top',
+                    duration: 2500,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.animate-fade-in', {
+
+                    origin: 'bottom',
+                    duration: 2500,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.the_range', {
+
+                    origin: 'top',
+                    duration: 2000
+                });
+                ScrollReveal().reveal('.content-text2', {
+
+                    origin: 'bottom',
+                    duration: 1500
+                });
+                ScrollReveal().reveal('.the_range .container', {
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.the_range .mt-5', {
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.content-text1:nth-child(3)', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.content-text1:nth-child(1)', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.content-text1:nth-child(2)', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('#textContent', {
+                    delay: 500,
+                    duration: 1500,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('#contactButton', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('#contactButton2', {
+                    delay: 500,
+                    duration: 500,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.US', {
+                    duration: 500,
+                    origin: 'top',
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.custom-image-style', {
+
+                    origin: 'bottom',
+                    duration: 2000
+                });
+                ScrollReveal().reveal('.custom-text-style', {
+
+                    origin: 'bottom',
+                    duration: 2500
+                });
+                ScrollReveal().reveal('.custom-text_2', {
+
+                    origin: 'bottom',
+                    duration: 2000
+                });
+                ScrollReveal().reveal('#contactButton3', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('#contactButton4', {
+                    delay: 500,
+                    duration: 2000,
+                    opacity: 0
+                });
+                ScrollReveal().reveal('.service_text2', {
+
+                    origin: 'top',
+                    duration: 1500
+                });
+                ScrollReveal().reveal('#textd', {
+
+                    origin: 'bottom',
+                    duration: 2000
+                });
+                ScrollReveal().reveal('.service_text3', {
+
+                    origin: 'bottom',
+                    duration: 2500,
+                });
+                ScrollReveal().reveal('.he ', {
+                    duration: 1000,
+                    opacity: 0,
+                    delay: 1500
+                });
+
+                ScrollReveal().reveal('.he .col-md-1 img', {
+                    duration: 1500,
+                    opacity: 1,
+                    delay: 1500
+                });
+            }
+        </script>
+    @endif
+
+    <script>
+        // Function to adjust font size for mobile screens
+        function adjustFontSize(elementIds) {
+            const mediaQuery = window.matchMedia('(max-width: 768px)');
+
+            elementIds.forEach(function(elementId) {
+                var element = document.getElementById(elementId);
+                var element2 = document.getElementById("hepltext2");
+                var element22 = document.getElementById("tex_22");
+                var arrowElement = document.getElementById('arrow');
+
+                if (element) {
+                    if (mediaQuery.matches) {
+                        // Adjust font size for small screens
+                        element.style.fontSize = '30px';
+                        element.style.lineHeight = '50px';
+                        // element2.style.fontSize = '25px';
+                        // element2.style.lineHeight = '50px';
+                        // element22.style.fontSize = '25px';
+                        // element22.style.lineHeight = '50px';
+                        // arrowElement.style.marginTop = '17.5rem';
+                    } else {
+                        // Reset font size for larger screens
+                        element.style.fontSize = '40px';
+                        element.style.lineHeight = '75px';
+                    }
+                }
+                if (element2) {
+                    if (mediaQuery.matches) {
+
+                        element2.style.fontSize = '25px';
+                        element2.style.lineHeight = '50px';
+
+                    } else {
+
+                        element2.style.fontSize = '35px';
+                        element2.style.lineHeight = '75px';
+                    }
+                }
+                if (element22) {
+                    if (mediaQuery.matches) {
+                        element22.style.fontSize = '25px';
+                        element22.style.lineHeight = '50px';
+                    } else {
+                        element22.style.fontSize = '35px';
+                        element22.style.lineHeight = '75px';
+                    }
+                }
+                if (arrowElement) {
+                    if (mediaQuery.matches) {
+                        arrowElement.style.marginTop = '17.5rem';
+                    }
+                }
+            });
         }
+
+        // Initial adjustment on page load
+        adjustFontSize(['hepltext', 'tex_2', 'programstext', 'programstext1', 'projecttext', 'projecttext1', 'eventtext',
+            'eventtext1'
+        ]);
+
+        // Adjust font size on window resize
+        window.addEventListener('resize', function() {
+            adjustFontSize(['hepltext', 'tex_2', 'programstext', 'programstext1', 'projecttext', 'projecttext1',
+                'eventtext', 'eventtext1'
+            ]);
+        });
     </script>
-
-
 
 
 </body>

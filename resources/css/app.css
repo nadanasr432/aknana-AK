@@ -17,7 +17,26 @@
     margin-right: 5px;
     cursor: pointer;
 }
-
+#contactButton:hover {
+    color: #FFFFFF;
+    background-color:#121743;
+    border:#121743;
+}
+#contactButton2:hover {
+    color: #FFFFFF;
+    background-color:#121743;
+    border:#121743;
+}
+#contactButton3:hover {
+    color: #FFFFFF;
+    background-color:#121743;
+    border:#121743;
+}
+#ServButton:hover {
+    color: #FFFFFF;
+    background-color:#121743;
+    border:#121743;
+}
 .carousel-indicators .active {
     background-color: #121743;
     width: 30px;

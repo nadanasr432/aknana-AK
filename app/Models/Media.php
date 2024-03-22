@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Media extends Model
 {
     use HasFactory;
-    protected $fillable = ['file_path'];
+    protected $fillable = ['file_path','type'];
 
     public function mediable()
     {

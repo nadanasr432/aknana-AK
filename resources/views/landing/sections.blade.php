@@ -2,30 +2,34 @@
 @section('content')
 
     <section class="services container mb-5" style="max-width: 1500rem" id="service">
-        <div class=" 1 row d-flex justify-content-center mb-2">
-            <div class="col-md-5 text-center ">
-                <p class="mb-0 service_text2"
-                    style="color:#121743;
+        @if (app()->getLocale() == 'ar')
+            <div class=" 1 row d-flex justify-content-center mb-2">
+                @foreach ($temp_services as $template)
+                    <div class="col-md-5 text-center ">
+                        <p class="mb-0 service_text2"
+                            style="color:#121743;
                 font-family: Cairo;
                 font-size: 35px;
                 font-weight: 667;
                 line-height: 50px;
                 letter-spacing: 0em;
                 text-align: center;">
-                    نقدم لكم العديد من
-                <p class="center service_text3 "
-                    style="color: #DF8317;
+
+                            {{ $template->getTranslation('main_title', 'en') }}
+
+                        <p class="center service_text3 "
+                            style="color: #DF8317;
                     font-size: 35px;
                     font-weight: 667;
                     line-height: 50px;
                     text-align: center;
                         ">
-                    <img src="{{ asset('images/Vector (1).svg') }}">
-                    خدماتنا
-                </p>
-                </p>
-                <p id="textd" class=" service_text1"
-                    style="font-family: Cairo;
+                            <img src="{{ asset('images/Vector (1).svg') }}">
+                            {{ $template->getTranslation('main_sub_title', 'en') }}
+                        </p>
+                        </p>
+                        <p id="textd" class=" service_text1"
+                            style="font-family: Cairo;
                     font-size: 22px;
                     font-weight: 400;
                     line-height: 50px;
@@ -33,45 +37,124 @@
                     
                     color:#7B7B7B;
                     ">
-                    شركة أكنانا متخصصة في حضانات الاعمال في المملكة </p>
+                            {{ $template->getTranslation('main_text', 'en') }}</p>
+                    </div>
+                @endforeach
             </div>
-        </div>
 
-        <div class="he row d-flex justify-content-between">
-            @foreach ($services as $key => $service)
-                <div class="col-md-2 mb-5">
-                    <div class="d-flex justify-content-center align-items-center mb-5">
-                        <img src="{{ asset('storage/' . $service->media()->first()->file_path) }}">
-                    </div>
-                    <p
-                        style="font-family: Cairo; font-size: 24px; font-weight: 600; line-height: 36px; letter-spacing: -0.01em; text-align: center; color: #141414;">
-                        {{ $service->title }}
-                    </p>
-                    <div class="description-container">
-                        <p class="short-description"
-                            style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+            <div class="he row d-flex justify-content-between">
+                @foreach ($services as $key => $service)
+                    <div class="col-md-2 mb-5">
+                        <div class="d-flex justify-content-center align-items-center mt-5 mb-5">
+                            <img src="{{ asset('images/frameserv.svg') }}" alt=""
+                                style="width: 195px; height: 195px; position: absolute;">
+                            <img src="{{ asset('storage/' . $service->media()->first()->file_path) }}" alt="Service Image"
+                                style="width: 183px; height: 183px; border-radius: 50%; z-index: 1;">
+                        </div>
 
-                            <a class="ml-0 mr-0 text-muted read-more-button">
-                                {{ \Illuminate\Support\Str::words($service->description, 8, '...') }}</a>
-
+                        <p
+                            style="font-family: Cairo; font-size: 23px; font-weight: 600; line-height: 36px; letter-spacing: -0.01em; text-align: center; color: #141414;">
+                            {{ $service->getTranslation('title', 'en') }}
                         </p>
-                        <p class="full-description"
-                            style="display: none; font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
-                            {{ $service->description }}
+                        <div class="description-container">
+                            <p class="short-description"
+                                style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                <a class="ml-0 mr-0 text-muted read-more-button">
+                                    {{ \Illuminate\Support\Str::words($service->getTranslation('description', 'en'), 8, '...') }}</a>
+                            </p>
+                            <p class="full-description"
+                                style="display: none; font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                {{ $service->getTranslation('description', 'en') }}
+                            </p>
+                            <a class=" show-less-button" style="display: none;color:#121743"> @lang('file.show_less') </a>
+                        </div>
+                    </div>
+
+                    @if ($key < count($services) - 1)
+                        <div class="col-md-1  d-flex justify-content-center " style="margin-bottom: 150px">
+                            <img src="{{ asset('images/Vector f.svg') }}">
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        @else
+            <div class=" 1 row d-flex justify-content-center mb-2">
+                @foreach ($temp_services as $template)
+                    <div class="col-md-5 text-center ">
+                        <p class="mb-0 service_text2"
+                            style="color:#121743;
+                font-family: Cairo;
+                font-size: 35px;
+                font-weight: 667;
+                line-height: 50px;
+                letter-spacing: 0em;
+                text-align: center;">
+
+                            {{ $template->getTranslation('main_title', 'ar') }}
+
+                        <p class="center service_text3 "
+                            style="color: #DF8317;
+                    font-size: 35px;
+                    font-weight: 667;
+                    line-height: 50px;
+                    text-align: center;
+                        ">
+                            <img src="{{ asset('images/Vector (1).svg') }}">
+                            {{ $template->getTranslation('main_sub_title', 'ar') }}
                         </p>
-
-                        <a class=" show-less-button" style="display: none;color:#121743"> ..عرض القليل</a>
+                        </p>
+                        <p id="textd" class=" service_text1"
+                            style="font-family: Cairo;
+                    font-size: 22px;
+                    font-weight: 400;
+                    line-height: 50px;
+                    letter-spacing: 0em;
+                    
+                    color:#7B7B7B;
+                    ">
+                            {{ $template->getTranslation('main_text', 'ar') }}</p>
                     </div>
-                </div>
+                @endforeach
+            </div>
 
-                @if ($key < count($services) - 1)
-                    <div class="col-md-1  d-flex justify-content-center " style="margin-bottom: 150px">
-                        <img src="{{ asset('images/Vector f.svg') }}">
+            <div class="he row d-flex justify-content-between">
+                @foreach ($services as $key => $service)
+                    <div class="col-md-2 mb-5">
+                        <div class="d-flex justify-content-center align-items-center mt-5 mb-5">
+                            <img src="{{ asset('images/frameserv.svg') }}" alt=""
+                                style="width: 195px; height: 195px; position: absolute;">
+                            <img src="{{ asset('storage/' . $service->media()->first()->file_path) }}" alt="Service Image"
+                                style="width: 183px; height: 183px; border-radius: 50%; z-index: 1;">
+                        </div>
+
+                        <p
+                            style="font-family: Cairo; font-size: 24px; font-weight: 600; line-height: 36px; letter-spacing: -0.01em; text-align: center; color: #141414;">
+                            {{ $service->getTranslation('title', 'ar') }}
+                        </p>
+                        <div class="description-container">
+                            <p class="short-description"
+                                style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                <a class="ml-0 mr-0 text-muted read-more-button">
+                                    {{ \Illuminate\Support\Str::words($service->getTranslation('description', 'ar'), 8, '...') }}</a>
+                            </p>
+                            <p class="full-description"
+                                style="display: none; font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                {{ $service->getTranslation('description', 'ar') }}
+                            </p>
+
+
+                            <a class=" show-less-button" style="display: none;color:#121743"> @lang('file.show_less') </a>
+                        </div>
                     </div>
-                @endif
-            @endforeach
-        </div>
 
+                    @if ($key < count($services) - 1)
+                        <div class="col-md-1  d-flex justify-content-center " style="margin-bottom: 150px">
+                            <img src="{{ asset('images/Vector f.svg') }}">
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        @endif
     </section>
 
     <script>
@@ -103,264 +186,288 @@
 
     <section id="US" class="US container text-center "
         style="max-width: 1400px;margin-top: 10rem !important;margin-bottom: 10rem !important; ">
+        @if (app()->getLocale() == 'ar')
+            <div class="row d-flex justify-content-between mb-5 custom-row-style">
+                @foreach ($temp_US as $template)
+                    <div class="col-md-6 d-flex justify-content-start">
+                        <img src="{{ asset('storage/' . $template->image) }}" width="585px" height="578px"
+                            class="custom-image-style">
+                    </div>
 
-        <div class="row d-flex justify-content-between mb-5 custom-row-style">
-            <div class="col-md-6 d-flex justify-content-start">
-                <img src="{{ asset('images/about us.svg') }}" class="custom-image-style">
-            </div>
-            <div class="col-md-6 ">
-                <p class="center mb-3 custom-text-style "
-                    style="font-family: Cairo;
-                        font-size: 40px;
-                        font-weight: 667;
-                        line-height: 75px;
-                        letter-spacing: -0.01em;
-                        text-align: right;">
-                    <img src="{{ asset('images/Vector (1).svg') }}">
-                    ما هي شركة <span class="custom-text-style"
-                        style="color: #DF8317;
-                        font-size: 40px;
-                        font-weight: 667;
-                        line-height: 75px;
-                        letter-spacing: -0.01em;
-                        text-align: center;
-                    ">أكنانا!؟</span>
-                </p>
-                </p>
-                <p class="custom-text_2"
-                    style="font-family: Cairo;
-                font-size: 22px;
-                font-weight: 400;
-                line-height: 48px;
-                letter-spacing: 0em;
-                text-align: right;
-                ">
-                    أكنانا لحاضنات ومسرعات األعمال شركة سعودية متخصصة في تقديم الخدمات التكاملية المتطورة لمنظومةقطاع
-                    التجزئة االلكترونية والمشاريع الناشئة ومتناهية الصغر والصغيرة وأتمتة االعمال ، تستند على خبرةتراكمية
-                    ألكثر من 15 عام في مجال تطوير المشاريع ، ومن خالل حزمة المشاريع والنظم التي قامت أكنانابتطويرها وتنفيذها
-                    .وعلى ايدي شباب وشابات في مجاالت مختلفة</p>
-                <div class="d-flex justify-content-end align-items-between mt-5 ">
-                    <a id="contactButton4" href="" class="d-flex align-items-center pr-4">
-                        <p class="pr-2"
+                    <div class="col-md-6 ">
+                        <p class="center mb-3 custom-text-style"
                             style="font-family: Cairo;
-                        font-size: 25px;
-                        font-weight: 600;
-                        line-height: 30px;
-                        letter-spacing: 0em;
-                        color:#DF8317;
-                        margin: 0;
-                        ">
-                            نبذة عنا</p>
-                        <img src="{{ asset('images/icon (2).svg') }}" style="margin-right: 10px;">
-                    </a>
-                    <button id="contactButton3" class="btn btn-primary"
-                        style="width:193px;height:50px;font-family: Cairo;
+           font-size: 40px;
+           font-weight: 667;
+           line-height: 75px;
+           letter-spacing: -0.01em;
+           text-align: left;
+           color: #121743;">
+                            <img src="{{ asset('images/Vector (1).svg') }}">
+                            @php
+                                $phrase = $template->getTranslation('main_title', 'en');
+                                $words = explode(' ', $phrase);
+                                $first_word = array_shift($words);
+                                $last_word = array_pop($words);
+                                $last_word_clean = rtrim($last_word, '?!.,;:');
+                                $phrase_without_first_last = implode(' ', $words);
+                            @endphp
+                            <span style="color: #DF8317;">{{ $first_word }}</span>
+                            {!! $phrase_without_first_last !!}
+                            <span style="color: #DF8317;">
+                                {{ $last_word_clean }}
+                            </span>
+                            {!! preg_match('/[?!.,;:]$/', $last_word) ? '' : rtrim($last_word, $last_word_clean) !!}
+                        </p>
+                        <div href="javascript:void(0);"
+                            onclick="openEventModal(' {{ $first_word }} {!! $phrase_without_first_last !!} {{ $last_word_clean }} {!! preg_match('/[?!.,;:]$/', $last_word) ? '' : rtrim($last_word, $last_word_clean) !!}', '{{ $template->getTranslation('main_text', 'en') }}')">
+
+                            <p class="custom-text_2"
+                                style="font-family: Cairo;
+                                font-size: 22px;
+                                font-weight: 400;
+                                line-height: 48px;
+                                letter-spacing: 0em;
+                                text-align: left;
+                                 max-height:350px; overflow: hidden;
+                            color:#121743;
+                                ">
+                                {{ $template->getTranslation('main_text', 'en') }}</p>
+                        </div>
+                        <div class="d-flex justify-content-end align-items-between mt-5 ">
+                            <button id="contactButton3" class="btn btn-primary"
+                                style="width:193px;height:50px;font-family: Cairo;
                                 font-size: 22px;
                                 font-weight: 600;
                                 line-height: 30px;
                                 letter-spacing: 0em;
                                 color:#FFFFFF;
                             ">
-                        تواصل معنا
-                    </button>
-
-                </div>
+                                {{ $template->getTranslation('button_text', 'en') }}
+                            </button>
+                @endforeach
+            </div>
 
             </div>
-        </div>
+            </div>
+        @else
+            <div class="row d-flex justify-content-between mb-5 custom-row-style">
+                @foreach ($temp_US as $template)
+                    <div class="col-md-6 d-flex justify-content-start">
+                        <img src="{{ asset('storage/' . $template->image_ar) }}"width="585px" height="578px"
+                            class="custom-image-style">
+                    </div>
+                    <div class="col-md-6 ">
+                        <p class="center mb-3 custom-text-style "
+                            style="font-family: Cairo;
+                        font-size: 40px;
+                        font-weight: 667;
+                        line-height: 75px;
+                        letter-spacing: -0.01em;
+                        text-align: right;
+                        color:#121743">
+                            <img src="{{ asset('images/Vector (1).svg') }}">
+                            @php
+                                $phrase = $template->getTranslation('main_title', 'ar');
+                                $words = explode(' ', $phrase);
+                                $last_word = array_pop($words);
+                                $penultimate_word = array_pop($words);
+                                $last_word_clean = rtrim($last_word, '?!.,;:');
+                                $penultimate_word_clean = rtrim($penultimate_word, '?!.,;:');
+                                $phrase_without_last_penultimate = implode(' ', $words);
+                            @endphp
+                            {!! $phrase_without_last_penultimate !!}
+                            <span style="color: #DF8317;">{{ $penultimate_word_clean }}</span>
+                            <span style="color: #DF8317;">{{ $last_word_clean }}</span>
+                        </p>
+                        <div href="javascript:void(0);"
+                            onclick="openEventModal(' {!! $phrase_without_last_penultimate !!} {{ $penultimate_word_clean }} {{ $last_word_clean }}', '{{ $template->getTranslation('main_text', 'ar') }}')">
+                            <p class="custom-text_2"
+                                style="font-family: Cairo;
+                            font-size: 22px;
+                            font-weight: 400;
+                            line-height: 48px;
+                            letter-spacing: 0em;
+                            text-align: right;
+                            max-height:350px; overflow: hidden;
+                            color:#121743;
+                            ">
+                                {{ $template->getTranslation('main_text', 'ar') }}
+                            </p>
+                        </div>
+                        <div class="d-flex justify-content-end align-items-between mt-5 ">
+                            <button id="contactButton3" class="btn btn-primary"
+                                style="width:193px;height:50px;font-family: Cairo;
+                                font-size: 22px;
+                                font-weight: 600;
+                                line-height: 30px;
+                                letter-spacing: 0em;
+                                color:#FFFFFF;
+                            ">
+                                {{ $template->getTranslation('button_text', 'ar') }}
+                            </button>
+
+                        </div>
+                @endforeach
+            </div>
+            </div>
+        @endif
     </section>
 
     <section class="2030 container" style="max-width: 1400px;margin-bottom: 10rem !important; " id="2030">
-        <div class="row d-flex justify-content-between mb-5">
+        @if (app()->getLocale() == 'ar')
+            @foreach ($temp_2023 as $template)
+                <div class="row d-flex justify-content-between mb-5">
 
-            <div class="col-md-5  fade-in ">
-                <p class="center " id="text1"
-                    style="font-family: Cairo;
-                        font-size: 40px;
-                        font-weight: 667;
-                        line-height: 75px;
-                        letter-spacing: -0.01em;
-                        text-align: right;">
-                    <img src="{{ asset('images/Vector (1).svg') }}">
-                    كيف نساعد في<span id="tex_2"
-                        style="color: #DF8317;
-                        font-size: 40px;
-                        font-weight: 667;
-                        line-height: 75px;
-                        letter-spacing: -0.01em;
-                        text-align: center;
-                    ">
-                        رؤية 2030 </span>
-                </p>
-                <p
-                    style="font-family: Cairo;
-                    font-size: 22px;
-                    font-weight: 400;
-                    line-height: 48px;
-                    letter-spacing: 0em;
-                    text-align: right;
-                    ">
-                    تعمل شركة أكنانا علي تحقيق أفضل رؤية للمملكة العربية السعودية في 2030 طبقا لمعايير مميزة....
-                </p>
-                <div class="row d-flex justify-content-between align-items-between mt-4 ">
-                    <div class="col-md-5 ">
+                    <div class="col-md-5 fade-in ">
+                        <p class="center" id="hepltext2"
+                            style="font-family: Cairo;
+                                color:#121743;
+                                font-size: 35px;
+                                font-weight: 667;
+                                line-height: 75px;
+                                letter-spacing: -0.01em;
+                                text-align: left;
+                                ">
+                            <img src="{{ asset('images/Vector (1).svg') }}">
+                            @php
+                                $phrase = $template->getTranslation('main_title', 'en');
+                                $words = explode(' ', $phrase);
+                                $last_word = array_pop($words);
+                                $last_word_clean = rtrim($last_word, '?!.,;:');
+                                $phrase_without_last = implode(' ', $words);
+                            @endphp
 
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 30px;
-                            letter-spacing: 0em;
-                            text-align: left;
-                            color: #121743;
-                        ">
-                                المحتوى المحلّي</div>
-                            <img src="{{ asset('images/mark.svg') }}">
-                        </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 30px;
-                            letter-spacing: 0em;
-                            text-align: left;
-                            color: #121743;
-                        ">
-                                تعزيز الهوية الوطنية</div>
-                            <img src="{{ asset('images/mark.svg') }}">
-                        </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 30px;
-                            letter-spacing: 0em;
-                            text-align: left;
-                            color: #121743;
-                        ">
-                                الثقافة والترفيه</div>
-                            <img src="{{ asset('images/mark.svg') }}">
-                        </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 30px;
-                            letter-spacing: 0em;
-                            text-align: left;
-                            color: #121743;
-                        ">
-                                تمكين المرأة</div>
-                            <img src="{{ asset('images/mark.svg') }}">
-                        </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 30px;
-                            letter-spacing: 0em;
-                            text-align: left;
-                            color: #121743;
-                        ">
-                                زيادة فرص العمل</div>
-                            <img src="{{ asset('images/mark.svg') }}">
-                        </div>
+                            {{ $phrase_without_last }}
+                            <span style="color: #DF8317;">{{ $last_word_clean }}</span>
 
-                    </div>
+                        </p>
+                        <p
+                            style="font-family: Cairo;
+                            font-size: 22px;
+                            font-weight: 400;
+                            line-height: 48px;
+                            letter-spacing: 0em;
+                            text-align: left;
+                            ">
+                            {{ $template->getTranslation('main_sub_title', 'en') }}
+                        </p>
+                        <div class="row d-flex justify-content-between align-items-between mt-4 ">
+                            @foreach ($template->getTranslation('items', 'en') as $item)
+                                <div class="col-md-6 ">
 
-                    <div class="col-md-5 ">
+                                    <div class="d-flex justify-content-end text-center mb-4">
+                                        <div
+                                            style="font-family: Cairo;
+                                        font-size: 18px;
+                                        font-weight: 600;
+                                        line-height: 30px;
+                                        letter-spacing: 0em;
+                                        text-align: left;
+                                        color: #121743;
+                                    ">
+                                            {{ $item }}</div>
+                                        <img src="{{ asset('images/mark.svg') }}">
+                                    </div>
 
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 30px;
-                            letter-spacing: 0em;
-                            text-align: left;
-                            color: #121743;
-                        ">
-                                التحوّل الرقمي</div>
-                            <img src="{{ asset('images/mark.svg') }}">
-                        </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 30px;
-                            letter-spacing: 0em;
-                            text-align: left;
-                            color: #121743;
-                        ">
-                                تنويع الموارد</div>
-                            <img src="{{ asset('images/mark.svg') }}">
-                        </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 30px;
-                            letter-spacing: 0em;
-                            text-align: left;
-                            color: #121743;
-                        ">
-                                الادخار والاستثمار</div>
-                            <img src="{{ asset('images/mark.svg') }}">
-                        </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 30px;
-                            letter-spacing: 0em;
-                            text-align: left;
-                            color: #121743;
-                        ">
-                                الاثر الاجتماعي</div>
-                            <img src="{{ asset('images/mark.svg') }}">
-                        </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
-                            <div class="pr-2"
-                                style="font-family: Cairo;
-                            font-size: 18px;
-                            font-weight: 600;
-                            line-height: 30px;
-                            letter-spacing: 0em;
-                            text-align: left;
-                            color: #121743;
-                        ">
-                                التنافسية العالمية</div>
-                            <img src="{{ asset('images/mark.svg') }}">
+                                </div>
+                            @endforeach
+
                         </div>
                         <div class="d-flex justify-content-end text-center mb-4">
                             <button id="ServButton" class="btn btn-primary"
                                 style="width:220px;height:50px;font-family: Cairo;
-                        font-size: 22px;
+                                    font-size: 22px;
+                                    font-weight: 600;
+                                    line-height: 30px;
+                                    letter-spacing: 0em;
+                                    color:#FFFFFF;
+                                    ">
+                                {{ $template->getTranslation('button_text', 'en') }}
+                            </button>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="col-md-6 d-flex justify-content-end">
+                        <img src="{{ asset('storage/' . $template->image) }}"width="585px" height="578px"
+                            class="custom-image-style">
+                    </div>
+                </div>
+            @endforeach
+            </div>
+        @else
+            @foreach ($temp_2023 as $template)
+                <div class="row d-flex justify-content-between mb-5">
+                    <div class="col-md-5 fade-in">
+                        <p class="center" id="hepltext"
+                            style="font-family: Cairo;
+            font-size: 40px;
+            font-weight: 667;
+            line-height: 75px;
+            letter-spacing: -0.01em;
+            text-align: right;
+            color:#121743">
+                            <img src="{{ asset('images/Vector (1).svg') }}">
+                            @php
+                                $phrase = $template->getTranslation('main_title', 'ar');
+                                $words = explode(' ', $phrase);
+                                $last_word = array_pop($words);
+                                $last_word_clean = rtrim($last_word, '?!.,;:');
+                                $phrase_without_last = implode(' ', $words);
+                            @endphp
+                            {{ $phrase_without_last }}
+                            <span style="color: #DF8317;">{{ $last_word_clean }}</span>
+                        </p>
+                        <p
+                            style="font-family: Cairo;
+            font-size: 22px;
+            font-weight: 400;
+            line-height: 48px;
+            letter-spacing: 0em;
+            text-align: right;">
+                            {{ $template->getTranslation('main_sub_title', 'ar') }}
+                        </p>
+                        <div class="row d-flex justify-content-between align-items-between mt-4">
+                            @foreach ($template->getTranslation('items', 'ar') as $item)
+                                <div class="col-md-5">
+                                    <div class="d-flex justify-content-end text-center mb-4">
+                                        <div class="pr-2"
+                                            style="font-family: Cairo;
+                        font-size: 18px;
                         font-weight: 600;
                         line-height: 30px;
                         letter-spacing: 0em;
-                        color:#FFFFFF;
-                        ">
-                                أنضم الان
+                        text-align: left;
+                        color: #121743;">
+                                            {{ $item }}
+                                        </div>
+                                        <img src="{{ asset('images/mark.svg') }}">
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="d-flex justify-content-end text-center mb-4">
+                            <button id="ServButton" class="btn btn-primary"
+                                style="width:220px;height:50px;font-family: Cairo;
+                font-size: 22px;
+                font-weight: 600;
+                line-height: 30px;
+                letter-spacing: 0em;
+                color:#FFFFFF;">
+                                @lang('file.join_now')
                             </button>
                         </div>
                     </div>
-
+                    <div class="col-md-6 d-flex justify-content-end">
+                        <img src="{{ asset('storage/' . $template->image_ar) }}"width="595.25px" height="523px"
+                            class="custom-image-style">
+                    </div>
                 </div>
-
-            </div>
-            <div class="col-md-6 d-flex justify-content-end">
-                <img src="{{ asset('images/2030.svg') }}" class="custom-image-style">
-            </div>
-        </div>
+            @endforeach
+        @endif
     </section>
     <section class="the_range container d-flex justify-content-center "
         style="background-color: #121743;max-width: 100%;height:155px" id="range">
@@ -372,7 +479,7 @@
                 </div>
                 <div
                     style="font-family: Cairo; font-size: 18px; font-weight: 400; line-height: 32px; letter-spacing: 0em; text-align: center; color: #F4F0F0;">
-                    عدد الزيارات</div>
+                    @lang('file.visits_count')</div>
             </div>
             <div class="col-md-3">
                 <div class="mt-5 counter2"
@@ -380,7 +487,7 @@
                 </div>
                 <div
                     style="font-family: Cairo; font-size: 18px; font-weight: 400; line-height: 32px; letter-spacing: 0em; text-align: center; color: #F4F0F0;">
-                    عدد الموظفين</div>
+                    @lang('file.employees_count') </div>
             </div>
             <div class="col-md-3">
                 <div class="mt-5 counter3"
@@ -388,7 +495,7 @@
                 </div>
                 <div
                     style="font-family: Cairo; font-size: 18px; font-weight: 400; line-height: 32px; letter-spacing: 0em; text-align: center; color: #F4F0F0;">
-                    عدد المشاريع</div>
+                    @lang('file.projects_count') </div>
             </div>
             <div class="col-md-3">
                 <div class="mt-5 counter4"
@@ -396,100 +503,43 @@
                 </div>
                 <div
                     style="font-family: Cairo; font-size: 18px; font-weight: 400; line-height: 32px; letter-spacing: 0em; text-align: center; color: #F4F0F0;">
-                    عدد الشركات</div>
+                    @lang('file.companies_count') </div>
             </div>
         </div>
 
         </div>
         </div>
     </section>
+    <x-modal_range :events="$events" :range1="$range1" :range2="$range2" :range3="$range3" :range4="$range4"
+        :range5="$range5" :range6="$range6" :range7="$range7" :range8="$range8" />
     <section class="features container text-center " id="features" style="  margin-bottom: 100px;margin-top: 100px">
+        @if (app()->getLocale() == 'ar')
+            <div class="row justify-content-between mt-10 mb-7">
 
-        <div class="row justify-content-center mt-10 mb-7">
+                <div class="col-md-6  animate-fade-up">
 
-            <div class="col-md-6 d-flex justify-content-end animate-fade-up">
-
-                <div class="row mt-4">
-                    <div class="col-md-12 ">
-                        <div class="d-flex justify-content-between  " style="margin-bottom: 1.8rem !important;">
-                            <!-- Card 4 -->
-                            <!-- Card 3 -->
-                            <div class="card"
-                                style="width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
-                                <div class="card-body text-right">
-                                    <div>
-                                        <img src="{{ asset('images/ligth icon.svg') }}" alt="Icon Image">
-                                    </div>
-                                    <p class="mt-3 "
-                                        style="font-family: Cairo;
-                                    font-size: 18px;
-                                    font-weight: 500;
-                                    line-height: 26px;
-                                    letter-spacing: 0em;
-                                    text-align: right;
-
-                                    color:#121743;
-                                    ">
-                                        التوجيه و الارشاد</p>
-                                    <p class="mt-3 "
-                                        style="font-family: Cairo;
-                                    font-size: 14px;
-                                    font-weight: 400;
-                                    line-height: 25px;
-                                    letter-spacing: 0em;
-                                    text-align: right;
-                                    color:#121743;
-                                    ">
-                                        نعمل في أكنانا على فهم عميق لاحتياجات كل شركة وتحدياتها نقدم حلولًا مخصصة تساعدها
-                                        على
-                                        تحقيق أهدافها بنجاح.
-                                    </p>
-                                    <div class="d-flex justify-content-end align-items-end">
-                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
-                                        <p class="color-DF8317"
-                                            style="font-family: Cairo;
-                                        font-size: 14px;
-                                        font-weight: 400;
-                                        line-height: 20px;
-                                        letter-spacing: 0em;
-                                        text-align: center;
-                                        color:#DF8317;
-                                        margin-bottom: 0;
-                                    ">
-                                            معرفة المزيد</p>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="row mt-4 mb-4">
+                        <div class="col-md-6">
                             <div class="card "
-                                style="margin-left: 30px; width:100%; border-radius: 20px; background: #121743;">
-
-                                <div class="card-body text-right">
+                                style="width:100%; height:100%;height:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                <div class="card-body text-left">
                                     <div>
-                                        <img src="{{ asset('images/dark icon.svg') }}" alt="Icon Image">
+                                        <img src="{{ asset('storage/' . $range1->media()->first()->file_path) }}"
+                                            alt="Icon Image" width="50px" height="50px">
+                                    </div>
+                                    <p class="mt-3"
+                                        style="font-family: Cairo; font-size: 18px; font-weight: 500; line-height: 26px; letter-spacing: 0em; text-align: left; color:#121743;">
+                                        {{ $range1->en_title }}
+                                    </p>
+                                    <div id="range1-text" style="max-height: 100px; overflow: hidden;">
+                                        <p
+                                            style="font-family: Cairo; font-size: 14px; font-weight: 400; line-height: 25px; letter-spacing: 0em; text-align: left; color:#121743;">
+                                            {{ $range1->en_text }}
+                                        </p>
                                     </div>
 
-                                    <p class="mt-3 text-white"
-                                        style="font-family: Cairo;
-                                    font-size: 18px;
-                                    font-weight: 500;
-                                    line-height: 26px;
-                                    letter-spacing: 0em;
-                                    text-align: right;
-                                    ">
-                                        الادارة المساندة</p>
-                                    <p class="mt-3 text-white"
-                                        style="font-family: Cairo;
-                                    font-size: 14px;
-                                    font-weight: 400;
-                                    line-height: 25px;
-                                    letter-spacing: 0em;
-                                    text-align: right;
-                                    ">
-                                        أكنانا تساعد في تعزيز الإرادة المساندة عبر تقديم الدعم والتوجيه للأفراد والشركات،حتي
-                                        يحققوا أهدافهم وتجاوز التحديات بثقة
-                                    </p>
-                                    <div class="d-flex justify-content-end align-items-end">
-                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                    <a class="btn btn-link mt-4 d-flex justify-content-start align-items-end"
+                                        data-toggle="modal" data-target="#range1-full-text-modal">
                                         <p class="color-DF8317"
                                             style="font-family: Cairo;
                                         font-size: 14px;
@@ -500,19 +550,22 @@
                                         color:#DF8317;
                                         margin-bottom: 0;
                                     ">
-                                            معرفة المزيد</p>
-                                    </div>
+                                            @lang('file.know_more') </p>
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                    </a>
 
                                 </div>
                             </div>
 
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <div class="card" style="width:100%; border-radius: 20px; background: #121743;">
+                        <div class="col-md-6">
+                            <div class="card  "
+                                style="margin-left: 30px; width:100%;height:100%; border-radius: 20px; background: #121743;">
 
-                                <div class="card-body text-right">
+                                <div class="card-body text-left">
                                     <div>
-                                        <img src="{{ asset('images/dark icon.svg') }}" alt="Icon Image">
+                                        <img src="{{ asset('storage/' . $range2->media()->first()->file_path) }}"
+                                            alt="Icon Image" width="50px" height="50px">
                                     </div>
 
                                     <p class="mt-3 text-white"
@@ -521,22 +574,24 @@
                                     font-weight: 500;
                                     line-height: 26px;
                                     letter-spacing: 0em;
-                                    text-align: right;
+                                    text-align: left;
                                     ">
-                                        الادارة المساندة</p>
-                                    <p class="mt-3 text-white"
-                                        style="font-family: Cairo;
+                                        {{ $range2->en_title }} </p>
+                                    <div id="range2-text" style="max-height: 100px; overflow: hidden;">
+
+                                        <p class=" text-white"
+                                            style="font-family: Cairo;
                                     font-size: 14px;
                                     font-weight: 400;
                                     line-height: 25px;
                                     letter-spacing: 0em;
-                                    text-align: right;
+                                    text-align: left;
                                     ">
-                                        أكنانا تساعد في تعزيز الإرادة المساندة عبر تقديم الدعم والتوجيه للأفراد والشركات،حتي
-                                        يحققوا أهدافهم وتجاوز التحديات بثقة
-                                    </p>
-                                    <div class="d-flex justify-content-end align-items-end">
-                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                            {{ $range2->en_text }}
+                                        </p>
+                                    </div>
+                                    <a class="btn btn-link mt-4 d-flex justify-content-start align-items-end"
+                                        data-toggle="modal" data-target="#range2-full-text-modal">
                                         <p class="color-DF8317"
                                             style="font-family: Cairo;
                                         font-size: 14px;
@@ -547,17 +602,522 @@
                                         color:#DF8317;
                                         margin-bottom: 0;
                                     ">
-                                            معرفة المزيد</p>
-                                    </div>
+                                            @lang('file.know_more') </p>
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                    </a>
 
                                 </div>
                             </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card " style="width:100%;height:100%; border-radius: 20px; background: #121743;">
+
+                                <div class="card-body text-left">
+                                    <div>
+                                        <img src="{{ asset('storage/' . $range3->media()->first()->file_path) }}"
+                                            alt="Icon Image" width="50px" height="50px">
+                                    </div>
+
+                                    <p class="mt-3 text-white"
+                                        style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: left;
+                                    ">
+                                        {{ $range3->en_title }} </p>
+                                    <div id="range3-text" style="max-height: 100px; overflow: hidden;">
+                                        <p class=" text-white"
+                                            style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: left;
+                                    ">
+                                            {{ $range3->en_text }}
+                                        </p>
+                                    </div>
+                                    <a class="btn btn-link mt-4 d-flex justify-content-start align-items-end"
+                                        data-toggle="modal" data-target="#range3-full-text-modal">
+                                        <p class="color-DF8317"
+                                            style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                            @lang('file.know_more') </p>
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <!-- Card 3 -->
+                            <div class="card "
+                                style="margin-left: 30px; width:100%;height:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                <div class="card-body text-left">
+                                    <div>
+                                        <img src="{{ asset('storage/' . $range4->media()->first()->file_path) }}"
+                                            alt="Icon Image" width="50px" height="50px">
+                                    </div>
+                                    <p class="mt-3 "
+                                        style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: left;
+
+                                    color:#121743;
+                                    ">
+                                        {{ $range4->en_title }}</p>
+                                    <div id="range4-text" style="max-height: 100px; overflow: hidden;">
+                                        <p
+                                            style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: left;
+                                    color:#121743;
+                                    ">
+                                            {{ $range4->en_text }}
+                                        </p>
+                                    </div>
+                                    <a class="btn btn-link mt-4 d-flex justify-content-start align-items-end"
+                                        data-toggle="modal" data-target="#range4-full-text-modal">
+                                        <p class="color-DF8317"
+                                            style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                            @lang('file.know_more') </p>
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 animate-fade-in">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card "
+                                style="margin-top:25px;width:270px;border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                <div class="card-body text-left">
+                                    <div>
+                                        <img src="{{ asset('storage/' . $range5->media()->first()->file_path) }}"
+                                            alt="Icon Image" width="50px" height="50px">
+                                    </div>
+                                    <p class="mt-3 "
+                                        style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: left;
+
+                                    color:#121743;
+                                    ">
+                                        {{ $range5->en_title }}</p>
+                                    <div id="range5-text" style="max-height: 100px; overflow: hidden;">
+                                        <p
+                                            style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: left;
+                                    color:#121743;
+                                    ">
+                                            {{ $range5->en_text }}
+                                        </p>
+                                    </div>
+                                    <a class="btn btn-link mt-4 d-flex justify-content-start align-items-end"
+                                        data-toggle="modal" data-target="#range5-full-text-modal">
+                                        <p class="color-DF8317"
+                                            style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                            @lang('file.know_more') </p>
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="center pr-0 text-left" style="margin-top: 25px ">
+                                <img src="{{ asset('images/Vector (1).svg') }}">
+                                <span
+                                    style="font-family: Cairo;color: #091157; font-size: 16px; font-weight: 667; line-height: 45px; letter-spacing: -0.01em; text-align: end;">
+                                    @lang('file.Why choose Aknana over')
+                                    <span class="responsive-text1"
+                                        style="color: #DF8317; font-weight: 760">@lang('file.others?')</span>
+                                </span>
+                            </div>
+
+                            <div class="center pr-0 text-left mt-2 mb-5 text-left">
+                                <a class="responsive-text text-left" id="range8-text"data-toggle="modal"
+                                    data-target="#range8-full-text-modal"
+                                    style="max-height:185px; overflow: hidden;font-size: 14px">
+                                    {{ $range8->en_text }}
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6">
+                            <div class="card " style="width:100%;height:100%; border-radius: 20px; background: #121743;">
+
+                                <div class="card-body text-left">
+                                    <div>
+                                        <img src="{{ asset('storage/' . $range6->media()->first()->file_path) }}"
+                                            alt="Icon Image" width="50px" height="50px">
+                                    </div>
+
+                                    <p class="mt-3 text-white"
+                                        style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: left;
+                                    ">
+                                        {{ $range6->en_title }}</p>
+                                    <div id="range6-text" style="max-height: 100px; overflow: hidden;">
+                                        <p class=" text-white"
+                                            style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: left;
+                                    ">
+                                            {{ $range6->en_text }}
+                                        </p>
+                                    </div>
+                                    <a class="btn btn-link mt-4 d-flex justify-content-start align-items-end"
+                                        data-toggle="modal" data-target="#range6-full-text-modal">
+                                        <p class="color-DF8317"
+                                            style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                            @lang('file.know_more') </p>
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card "
+                                style=" width:100%;height:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                <div class="card-body text-left">
+                                    <div>
+                                        <img src="{{ asset('storage/' . $range7->media()->first()->file_path) }}"
+                                            alt="Icon Image" width="50px" height="50px">
+                                    </div>
+                                    <p class="mt-3 "
+                                        style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: left;
+
+                                    color:#121743;
+                                    ">
+                                        {{ $range7->en_title }}</p>
+                                    <div id="range7-text" style="max-height: 100px; overflow: hidden;">
+                                        <p
+                                            style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: left;
+                                    color:#121743;
+                                    ">
+                                            {{ $range7->en_text }}
+                                        </p>
+                                    </div>
+                                    <a class="btn btn-link mt-4 d-flex justify-content-start align-items-end"
+                                        data-toggle="modal" data-target="#range7-full-text-modal">
+                                        <p class="color-DF8317"
+                                            style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                            @lang('file.know_more') </p>
+                                        <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        @else
+            <div class="row justify-content-center mt-10 mb-7">
+
+                <div class="col-md-6 d-flex justify-content-end animate-fade-up">
+
+                    <div class="row mt-4">
+                        <div class="col-md-12 ">
+                            <div class="d-flex justify-content-between  " style="margin-bottom: 1.8rem !important;">
+
+                                <!-- Card 3 -->
+                                <div class="card"
+                                    style="width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                    <div class="card-body text-right">
+                                        <div>
+                                            <img src="{{ asset('storage/' . $range1->media()->first()->file_path) }}"
+                                                alt="Icon Image" width="50px" height="50px">
+                                        </div>
+                                        <p class="mt-3 "
+                                            style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+
+                                    color:#121743;
+                                    ">
+                                            {{ $range1->ar_title }}</p>
+                                        <div id="range1-text" style="max-height: 100px; overflow: hidden;">
+                                            <p
+                                                style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    color:#121743;
+                                    ">
+                                                {{ $range1->ar_text }}
+                                            </p>
+                                        </div>
+                                        <a class="btn btn-link mt-4 d-flex justify-content-end align-items-end"
+                                            data-toggle="modal" data-target="#range1-full-text-modal">
+                                            <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                            <p class="color-DF8317"
+                                                style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                                @lang('file.know_more') </p>
+
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="card "
+                                    style="margin-left: 30px; width:100%; border-radius: 20px; background: #121743;">
+
+                                    <div class="card-body text-right">
+                                        <div>
+                                            <img src="{{ asset('storage/' . $range2->media()->first()->file_path) }}"
+                                                alt="Icon Image" width="50px" height="50px">
+                                        </div>
+
+                                        <p class="mt-3 text-white"
+                                            style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    ">
+                                            {{ $range2->ar_title }} </p>
+                                        <div id="range2-text" style="max-height: 100px; overflow: hidden;">
+                                            <p class="text-white"
+                                                style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    ">
+                                                {{ $range2->ar_text }}
+                                            </p>
+                                        </div>
+                                        <a class="btn btn-link mt-4 d-flex justify-content-end align-items-end"
+                                            data-toggle="modal" data-target="#range2-full-text-modal">
+                                            <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                            <p class="color-DF8317"
+                                                style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                                @lang('file.know_more') </p>
+
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div class="card"
+                                    style="width:100%;height:100%; border-radius: 20px; background: #121743;">
+
+                                    <div class="card-body text-right">
+                                        <div>
+                                            <img src="{{ asset('storage/' . $range3->media()->first()->file_path) }}"
+                                                alt="Icon Image" width="50px" height="50px">
+                                        </div>
+
+                                        <p class="mt-3 text-white"
+                                            style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    ">
+                                            {{ $range3->ar_title }}</p>
+                                        <div id="range3-text" style="max-height: 100px; overflow: hidden;">
+                                            <p class="text-white"
+                                                style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    ">
+                                                {{ $range3->ar_text }}
+                                            </p>
+                                        </div>
+                                        <a class="btn btn-link mt-4 d-flex justify-content-end align-items-end"
+                                            data-toggle="modal" data-target="#range3-full-text-modal">
+                                            <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                            <p class="color-DF8317"
+                                                style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                                @lang('file.know_more') </p>
+
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <!-- Card 3 -->
+                                <div class="card"
+                                    style="margin-left: 30px; width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                    <div class="card-body text-right">
+                                        <div>
+                                            <img src="{{ asset('storage/' . $range4->media()->first()->file_path) }}"
+                                                alt="Icon Image" width="50px" height="50px">
+                                        </div>
+                                        <p class="mt-3 "
+                                            style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                    line-height: 26px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+
+                                    color:#121743;
+                                    ">
+                                            {{ $range4->ar_title }}</p>
+                                        <div id="range4-text" style="max-height: 100px; overflow: hidden;">
+                                            <p
+                                                style="font-family: Cairo;
+                                    font-size: 14px;
+                                    font-weight: 400;
+                                    line-height: 25px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    color:#121743;
+                                    ">
+                                                {{ $range4->ar_text }}
+                                            </p>
+                                        </div>
+                                        <a class="btn btn-link mt-4 d-flex justify-content-end align-items-end"
+                                            data-toggle="modal" data-target="#range4-full-text-modal">
+                                            <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                            <p class="color-DF8317"
+                                                style="font-family: Cairo;
+                                        font-size: 14px;
+                                        font-weight: 400;
+                                        line-height: 20px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
+                                        color:#DF8317;
+                                        margin-bottom: 0;
+                                    ">
+                                                @lang('file.know_more') </p>
+
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 animate-fade-in">
+                    <div class="row">
+                        <div class="col-md-6">
                             <div class="card"
-                                style="margin-left: 30px; width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                style="margin-top:25px;width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
                                 <div class="card-body text-right">
                                     <div>
-                                        <img src="{{ asset('images/ligth icon.svg') }}" alt="Icon Image">
+                                        <img src="{{ asset('storage/' . $range5->media()->first()->file_path) }}"
+                                            alt="Icon Image" width="50px" height="50px">
                                     </div>
                                     <p class="mt-3 "
                                         style="font-family: Cairo;
@@ -569,9 +1129,10 @@
 
                                     color:#121743;
                                     ">
-                                        التوجيه و الارشاد</p>
-                                    <p class="mt-3 "
-                                        style="font-family: Cairo;
+                                        {{ $range5->ar_title }}</p>
+                                    <div id="range5-text" style="max-height: 100px; overflow: hidden;">
+                                        <p
+                                            style="font-family: Cairo;
                                     font-size: 14px;
                                     font-weight: 400;
                                     line-height: 25px;
@@ -579,11 +1140,11 @@
                                     text-align: right;
                                     color:#121743;
                                     ">
-                                        نعمل في أكنانا على فهم عميق لاحتياجات كل شركة وتحدياتها نقدم حلولًا مخصصة تساعدها
-                                        على
-                                        تحقيق أهدافها بنجاح.
-                                    </p>
-                                    <div class="d-flex justify-content-end align-items-end">
+                                            {{ $range5->ar_text }}
+                                        </p>
+                                    </div>
+                                    <a class="btn btn-link mt-4 d-flex justify-content-end align-items-end"
+                                        data-toggle="modal" data-target="#range5-full-text-modal">
                                         <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
                                         <p class="color-DF8317"
                                             style="font-family: Cairo;
@@ -595,70 +1156,70 @@
                                         color:#DF8317;
                                         margin-bottom: 0;
                                     ">
-                                            معرفة المزيد</p>
-                                    </div>
+                                            @lang('file.know_more') </p>
+
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-6 animate-fade-in">
-
-                <div class="center pr-0 text-right" style="margin-top: 30px ">
-                    <img src="{{ asset('images/Vector (1).svg') }}">
-                    <span
-                        style="font-family: Cairo;color: #091157; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: end;">
-                        لماذا تختار أكنانا عن
-                        <span class="responsive-text1" style="color: #DF8317;">غيرها</span>
-                    </span>
-                </div>
-
-                <div class="mt-2 mb-5 text-right">
-                    <div class="responsive-text">تعمل شركة أكنانا لريادة الاعمال على توسيع نطاق العمل</div>
-                    <div class="responsive-text">الخاص بها على أكمل وجه كما تأكد من أن نطاق العمل</div>
-                    <div class="responsive-text">
-                        يتماشى مع الموارد والجدول الزمني والميزانية المتاحة
-                        <div class="text-right responsive-text">...لعملائها حتي تضمن نجاح العمل</div>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-end " style="gap: 30px">
-                    <!-- Card 4 -->
-                    <div class="card" style=" margin-top:25px;width:100%; border-radius: 20px; background: #121743;">
-
-                        <div class="card-body text-right">
-                            <div>
-                                <img src="{{ asset('images/dark icon.svg') }}" alt="Icon Image">
+                        <div class="col-md-6">
+                            <div class="center pr-0 text-right" style="margin-top: 30px ">
+                                <img src="{{ asset('images/Vector (1).svg') }}">
+                                <span
+                                    style="font-family: Cairo;color: #091157; font-size: 16px; font-weight: 667; line-height: 45px; letter-spacing: -0.01em; text-align: end;">
+                                    @lang('file.Why choose Aknana over')
+                                    <span class="responsive-text1"
+                                        style="color: #DF8317; font-weight: 760">@lang('file.others?')</span>
+                                </span>
                             </div>
 
-                            <p class="mt-3 text-white"
-                                style="font-family: Cairo;
+                            <div class="center pr-0 text-right mt-2 mb-5 text-right ">
+                                <a class="responsive-text text-right" id="range8-text"data-toggle="modal"
+                                    data-target="#range8-full-text-modal"
+                                    style="max-height: 185px; overflow: hidden;font-size: 14px">
+                                    {{ $range8->ar_text }}
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="d-flex justify-content-end " style="gap: 30px">
+                        <!-- Card 4 -->
+                        <div class="card"
+                            style=" margin-top:25px;width:100%; border-radius: 20px; background: #121743;">
+
+                            <div class="card-body text-right">
+                                <div>
+                                    <img src="{{ asset('storage/' . $range6->media()->first()->file_path) }}"
+                                        alt="Icon Image" width="50px" height="50px">
+                                </div>
+
+                                <p class="mt-3 text-white"
+                                    style="font-family: Cairo;
                                     font-size: 18px;
                                     font-weight: 500;
                                     line-height: 26px;
                                     letter-spacing: 0em;
                                     text-align: right;
                                     ">
-                                الادارة المساندة</p>
-                            <p class="mt-3 text-white"
-                                style="font-family: Cairo;
+                                    {{ $range6->ar_title }}</p>
+                                <div id="range6-text" style="max-height: 100px; overflow: hidden;">
+                                    <p class=" text-white"
+                                        style="font-family: Cairo;
                                     font-size: 14px;
                                     font-weight: 400;
                                     line-height: 25px;
                                     letter-spacing: 0em;
                                     text-align: right;
                                     ">
-                                أكنانا تساعد في تعزيز الإرادة المساندة عبر تقديم الدعم والتوجيه للأفراد والشركات،حتي
-                                يحققوا أهدافهم وتجاوز التحديات بثقة
-                            </p>
-                            <div class="d-flex justify-content-end align-items-end">
-                                <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
-                                <p class="color-DF8317"
-                                    style="font-family: Cairo;
+                                        {{ $range6->ar_text }}
+                                    </p>
+                                </div>
+                                <a class="btn btn-link mt-4 d-flex justify-content-end align-items-end"
+                                    data-toggle="modal" data-target="#range6-full-text-modal">
+                                    <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                    <p class="color-DF8317"
+                                        style="font-family: Cairo;
                                         font-size: 14px;
                                         font-weight: 400;
                                         line-height: 20px;
@@ -667,20 +1228,22 @@
                                         color:#DF8317;
                                         margin-bottom: 0;
                                     ">
-                                    معرفة المزيد</p>
-                            </div>
+                                        @lang('file.know_more') </p>
 
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="card"
-                        style="margin-top:25px;width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
-                        <div class="card-body text-right">
-                            <div>
-                                <img src="{{ asset('images/ligth icon.svg') }}" alt="Icon Image">
+                                </a>
+
                             </div>
-                            <p class="mt-3 "
-                                style="font-family: Cairo;
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="card"
+                            style="margin-top:25px;width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                            <div class="card-body text-right">
+                                <div>
+                                    <img src="{{ asset('storage/' . $range7->media()->first()->file_path) }}"
+                                        alt="Icon Image" width="50px" height="50px">
+                                </div>
+                                <p class="mt-3 "
+                                    style="font-family: Cairo;
                                     font-size: 18px;
                                     font-weight: 500;
                                     line-height: 26px;
@@ -689,9 +1252,10 @@
 
                                     color:#121743;
                                     ">
-                                التوجيه و الارشاد</p>
-                            <p class="mt-3 "
-                                style="font-family: Cairo;
+                                    {{ $range7->ar_title }}</p>
+                                <div id="range7-text" style="max-height: 100px; overflow: hidden;">
+                                    <p
+                                        style="font-family: Cairo;
                                     font-size: 14px;
                                     font-weight: 400;
                                     line-height: 25px;
@@ -699,13 +1263,14 @@
                                     text-align: right;
                                     color:#121743;
                                     ">
-                                نعمل في أكنانا على فهم عميق لاحتياجات كل شركة وتحدياتها نقدم حلولًا مخصصة تساعدها على
-                                تحقيق أهدافها بنجاح.
-                            </p>
-                            <div class="d-flex justify-content-end align-items-end">
-                                <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
-                                <p class="color-DF8317"
-                                    style="font-family: Cairo;
+                                        {{ $range7->ar_text }}
+                                    </p>
+                                </div>
+                                <a class="btn btn-link mt-4 d-flex justify-content-end align-items-end"
+                                    data-toggle="modal" data-target="#range7-full-text-modal">
+                                    <img src="{{ asset('images/ArrowRight.svg') }}" class="mr-2">
+                                    <p class="color-DF8317"
+                                        style="font-family: Cairo;
                                         font-size: 14px;
                                         font-weight: 400;
                                         line-height: 20px;
@@ -714,152 +1279,161 @@
                                         color:#DF8317;
                                         margin-bottom: 0;
                                     ">
-                                    معرفة المزيد</p>
+                                        @lang('file.know_more') </p>
+
+                                </a>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>
-
-        </div>
-
+        @endif
     </section>
 
     <section class="container text-center mb-5" id="programs">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <div class="row">
-                <div class="col-md-6">
+            @if (app()->getLocale() == 'ar')
+                <div class="row">
+                    @foreach ($temp_program as $template)
+                        <div class="col-md-6">
+                            <!-- Left and Right Arrow Images -->
 
-                    <!-- Left and Right Arrow Images -->
-                    <div class="d-flex justify-content-start">
-                        <span class="d-flex justify-content-center mb-4 pr-2" data-target="#carouselExampleIndicators"
-                            data-slide="prev">
-                            <img src="{{ asset('images/left.svg') }}" alt="Previous">
-                        </span>
-                        <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators"
-                            data-slide="next">
-                            <img src="{{ asset('images/right.svg') }}" alt="Next">
-                        </span>
-                    </div>
-                    <div class="d-flex justify-content-start mb-4">
+                            <div class="d-flex justify-content-start mb-5" style="margin-top: 2rem !important;">
 
 
-                        <a class="btn btn-outline-primary" href="{{ route('courses.index') }}"
-                            style="
+                                <a class="btn btn-outline-primary" href="{{ route('courses.index') }}"
+                                    style="
                                
                                 border:#121743 1px  solid;
                                 color:white;
                                 background:#121743;
                                 ">
-                            <img src="{{ asset('images/course.png') }}" style="width: 27px;height;27px">
-                            البرامج </a>
-                    </div>
-                    {{-- rounded image serveces --}}
-                </div>
-                <div class="col-md-6">
-                    <div class="center mt-2"
-                        style="font-family: Cairo;
+                                    <img src="{{ asset('images/course.png') }}" style="width: 27px;height;27px">
+                                    {{ $template->getTranslation('button_text', 'en') }} </a>
+                            </div>
+
+                            <div class="d-flex justify-content-start mb-5">
+                                <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators"
+                                    data-slide="next">
+                                    <img src="{{ asset('images/arrow_left.png') }}" width="43px" height="43px"
+                                        alt="Previous" style="transform: scaleX(-1);">
+                                </span>
+                                <span class="d-flex justify-content-center pr-2" data-target="#carouselExampleIndicators"
+                                    data-slide="prev">
+                                    <img src="{{ asset('images/arrow_reverse.png') }}" alt="Previous" width="43px"
+                                        height="43px">
+                                </span>
+
+                            </div>
+
+                            {{-- rounded image serveces --}}
+                        </div>
+                        <div class="col-md-6">
+                            <div class="center mt-2 mb-4" id="programstext"
+                                style="font-family: Cairo;
                     font-size: 40px;
                     font-weight: 667;
                     line-height: 75px;
                     letter-spacing: -0.01em;
-                    text-align: right;
+                    text-align: left;
                     color:#121743;
                     ">
-                        <img src="{{ asset('images/Vector (1).svg') }}">
-                        البرامج ذات<span
-                            style="color: #DF8317;
-                        font-family: Cairo;
-                        font-size: 40px;
-                        font-weight: 667;
-                        line-height: 75px;
-                        letter-spacing: -0.01em;
-                        text-align: right;
-
-                    ">
-                            صلة</span>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="carousel-inner">
-                @for ($i = 0; $i < ceil(count($courses) / 3); $i++)
-                    <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
-                        <div class="row mb-5 justify-content-between">
-                            @foreach ($courses->slice($i * 3, 3) as $course)
+                                <img src="{{ asset('images/Vector (1).svg') }}">
                                 @php
-                                    $maleCount = $course->reservations()->where('gender', 'male')->count();
-                                    $femaleCount = $course->reservations()->where('gender', 'female')->count();
-                                    $maxMaleCount = $course->male_count;
-                                    $maxFemaleCount = $course->female_count;
-                                    $isCourseAvailable = $maleCount < $maxMaleCount || $femaleCount < $maxFemaleCount;
+                                    $phrase = $template->getTranslation('main_title', 'en');
+                                    $words = explode(' ', $phrase);
+                                    $last_word = array_pop($words);
+                                    $last_word_clean = rtrim($last_word, '?!.,;:');
+                                    $phrase_without_last = implode(' ', $words);
                                 @endphp
-                                <div class="col-md-4 mt-0">
-                                    <div class="justify-content-center">
-                                        <span class="d-flex justify-content-center mb-2 ">
-                                            <img src="{{ asset('storage/' . $course->media->first()->file_path) }}"
-                                                style="width: 350px;height:258px" alt="First Image">
-                                        </span>
 
-                                        <div class="d-flex justify-content-end pr-1"
-                                            style="font-family: Cairo;
+                                {{ $phrase_without_last }}
+                                <span style="color: #DF8317;">{{ $last_word_clean }}</span>
+                            </div>
+
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="carousel-inner">
+                    @for ($i = 0; $i < ceil(count($courses) / 3); $i++)
+                        <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                            <div class="row mb-5 justify-content-between">
+
+                                @foreach ($courses->slice($i * 3, 3) as $course)
+                                    @php
+                                        $maleCount = $course->reservations()->where('gender', 'male')->count();
+                                        $femaleCount = $course->reservations()->where('gender', 'female')->count();
+                                        $maxMaleCount = $course->male_count;
+                                        $maxFemaleCount = $course->female_count;
+                                        $isCourseAvailable =
+                                            $maleCount < $maxMaleCount || $femaleCount < $maxFemaleCount;
+                                    @endphp
+                                    @if ($course->status == 'approved')
+                                        <div class="col-md-4 mt-0">
+                                            <div class="justify-content-center">
+                                                <span class="d-flex justify-content-center mb-2 ">
+                                                    <img src="{{ asset('storage/' . $course->media->first()->file_path) }}"
+                                                        style="width: 350px;height:258px" alt="First Image">
+                                                </span>
+
+                                                <div class="d-flex justify-content-end pr-1"
+                                                    style="font-family: Cairo;
                                     font-size: 18px;
                                     font-weight: 667;
                                     line-height: 34px;
                                     letter-spacing: 0em;
-                                    text-align: right;
+                                    text-align: left;
                                     color: rgba(18, 23, 67, 1);
 
                                     ">
-                                            {{ $course->name }}</div>
-                                        <div class="mt-2  pr-1"
-                                            style="font-family: Cairo;
+                                                    {{ $course->getTranslation('name', 'en') }}</div>
+                                                <div class="mt-2  pl-1"
+                                                    style="font-family: Cairo;
                                         font-size: 16px;
                                         font-weight: 400;
                                         line-height: 25px;
                                         letter-spacing: 0em;
-                                        text-align: right;
+                                        text-align: left;
 
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                            م/{{ $course->professor_name }}
-                                            <img src="{{ asset('images/Vector (6).svg') }}">
-                                        </div>
-                                        <div class="mt-2  pr-1"
-                                            style="font-family: Cairo;
+                                                    @lang('file.Eng')/{{ $course->getTranslation('professor_name', 'en') }}
+                                                    <img src="{{ asset('images/Vector (6).svg') }}">
+                                                </div>
+                                                <div class="mt-2  pl-1"
+                                                    style="font-family: Cairo;
                                         font-size: 16px;
                                         font-weight: 400;
                                         line-height: 25px;
                                         letter-spacing: 0em;
-                                        text-align: right;
+                                        text-align: left;
 
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                            المدة : {{ $course->time_duration }}
-                                            <img src="{{ asset('images/Vector (5).svg') }}">
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-between">
-                                        @if ($isCourseAvailable)
-                                            <a href="{{ route('reservation.create', ['course_id' => $course->id]) }}"
-                                                id="ServButton2" class="btn btn-primary"
-                                                style="width:155px;height:35px;font-family: Cairo; font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">
-                                                أنضم الان
-                                            </a>
-                                        @else
-                                            <a type="button" class="btn btn-primary" data-toggle="modal"
-                                                data-target="#courseFullModal" class="btn btn-primary"
-                                                style="width:155px;height:35px;font-family: Cairo; font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">
-                                                أنضم الان
-                                            </a>
-                                        @endif
-
-                                        <div class="mt-2  pr-0"
-                                            style="font-family: Cairo;
+                                                    {{ $course->getTranslation('time_duration', 'en') }}:@lang('file.Duration')
+                                                    <img src="{{ asset('images/Vector (5).svg') }}">
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-between">
+                                                @if ($isCourseAvailable)
+                                                    <a href="{{ route('reservation.create', ['course_id' => $course->id]) }}"
+                                                        id="ServButton2" class="btn btn-primary"
+                                                        style="width:155px;height:35px;font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">
+                                                        @lang('file.join_now')
+                                                    </a>
+                                                @else
+                                                    <span class="btn btn-secondary"
+                                                        style="width:155px;height:35px;font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#808080; border:#808080; color:#FFFFFF;">
+                                                        @lang('file.completed')
+                                                    </span>
+                                                @endif
+                                                <div class="mt-2  pr-0"
+                                                    style="font-family: Cairo;
                                         font-size: 16px;
                                         font-weight: 400;
                                         line-height: 25px;
@@ -869,163 +1443,551 @@
                                     color: rgba(102, 102, 102, 1);
                                     margin: 0;
                                     ">
-                                            {{ $course->location }}
-                                            <img src="{{ asset('images/location1.svg') }}">
+                                                    {{ $course->getTranslation('location', 'en') }}
+                                                    <img src="{{ asset('images/location1.svg') }}">
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                            <x-pop_up_course />
+                                    @endif
+                                @endforeach
+                                <x-pop_up_course />
+                            </div>
                         </div>
-                    </div>
-                @endfor
-            </div>
-
-            <!-- Carousel Indicators -->
-            <div class="carousel-indicators mt-5">
-                @for ($i = 0; $i < ceil(count($courses) / 3); $i++)
-                    <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
-                        class="{{ $i === 0 ? 'active' : '' }}"></li>
-                @endfor
-            </div>
-        </div>
-    </section>
-
-    <section class="container text-center mt-5 mb-5" id='projects'>
-        <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
-            <div class="row">
-                <div class="col-md-6">
-                    <!-- Left and Right Arrow Images -->
-                    <div class="d-flex justify-content-start">
-                        <span class="d-flex justify-content-center mb-4 pr-2" data-target="#carouselExampleIndicators1"
-                            data-slide="prev">
-                            <img src="{{ asset('images/left.svg') }}" alt="Previous">
-                        </span>
-                        <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators1"
-                            data-slide="next">
-                            <img src="{{ asset('images/right.svg') }}" alt="Next">
-                        </span>
-                    </div>
+                    @endfor
                 </div>
-                <div class="col-md-6">
-                    <div class="center mt-2"
-                        style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right; color:#121743;">
-                        <img src="{{ asset('images/Vector (1).svg') }}">
-                        مشاريع قمنا<span
-                            style="color: #DF8317; font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right;">
-                            بتنفيذها </span>
-                    </div>
+
+                <!-- Carousel Indicators -->
+                <div class="carousel-indicators mt-5">
+                    @for ($i = 0; $i < ceil(count($courses) / 3); $i++)
+                        <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
+                            class="{{ $i === 0 ? 'active' : '' }}"></li>
+                    @endfor
                 </div>
-            </div>
+            @else
+                <div class="row">
+                    @foreach ($temp_program as $template)
+                        <div class="col-md-6">
 
-            <div class="carousel-inner">
-                @for ($i = 0; $i < ceil(count($projects) / 4); $i++)
-                    <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
-                        <div class="row mb-5 d-flex justify-content-between">
-                            @foreach ($projects->slice($i * 4, 4) as $project)
-                                <div class="col-md-3">
-                                    <img src="{{ asset('storage/' . $project->images->first()->file_path) }}">
-                                    <div class="d-flex justify-content-center pr-1"
-                                        style="font-family: Cairo;
-                                            font-size: 18px;
-                                            font-weight: 600;
-                                            line-height: 34px;
-                                            letter-spacing: 0em;
-                                            text-align: center;
-                                            color:#000000;
-                                            margin-top: 2.2rem !important;">
-                                        {{ $project->title }}
-                                    </div>
-                                </div>
-                            @endforeach
-
-                        </div>
-
-                    </div>
-                @endfor
-
-            </div>
-
-            <div class="carousel-indicators mt-5">
-                @for ($i = 0; $i < ceil(count($projects) / 4); $i++)
-                    <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
-                        class="{{ $i === 0 ? 'active' : '' }}"></li>
-                @endfor
-            </div>
-        </div>
-    </section>
-    <section class="container text-center mt-5 mb-5" id='events'>
-        <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
-            <div class="row">
-                <div class="col-md-6">
-                    <!-- Left and Right Arrow Images -->
-                    <div class="d-flex justify-content-start">
-                        <span class="d-flex justify-content-center mb-4 pr-2" data-target="#carouselExampleIndicators2"
-                            data-slide="prev">
-                            <img src="{{ asset('images/left.svg') }}" alt="Previous">
-                        </span>
-                        <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators2"
-                            data-slide="next">
-                            <img src="{{ asset('images/right.svg') }}" alt="Next">
-                        </span>
-                    </div>
-                    <div class="d-flex justify-content-start">
+                            <div class="d-flex justify-content-start mt-4 mb-3">
 
 
-                        <a class="btn btn-outline-primary" href="{{ route('events.index') }}"
-                            style="
+                                <a class="btn btn-outline-primary" href="{{ route('courses.index') }}"
+                                    style="
                                
                                 border:#121743 1px  solid;
                                 color:white;
                                 background:#121743;
                                 ">
-                            <img src="{{ asset('images/event6.png') }}" style="width: 27px;height;27px">
-                            الفعاليات </a>
-                    </div>
+                                    <img src="{{ asset('images/course.png') }}" style="width: 27px;height;27px">
+                                    {{ $template->getTranslation('button_text', 'ar') }}</a>
+                            </div>
+                            <div class="d-flex justify-content-start">
+                                <span class="d-flex justify-content-center mb-4 pr-2"
+                                    data-target="#carouselExampleIndicators" data-slide="prev">
+                                    <img src="{{ asset('images/left.svg') }}" alt="Previous">
+                                </span>
+                                <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators"
+                                    data-slide="next">
+                                    <img src="{{ asset('images/right.svg') }}" alt="Next">
+                                </span>
+                            </div>
+
+                            {{-- rounded image serveces --}}
+                        </div>
+                        <div class="col-md-6">
+                            <div class="center mt-2"
+                                style="font-family: Cairo;
+                    font-size: 40px;
+                    font-weight: 667;
+                    line-height: 75px;
+                    letter-spacing: -0.01em;
+                    text-align: right;
+                    color:#121743;
+                    ">
+                                <img src="{{ asset('images/Vector (1).svg') }}">
+                                @php
+                                    $phrase = $template->getTranslation('main_title', 'ar');
+                                    $words = explode(' ', $phrase);
+                                    $last_word = array_pop($words);
+                                    $last_word_clean = rtrim($last_word, '?!.,;:');
+                                    $phrase_without_last = implode(' ', $words);
+                                @endphp
+
+                                {{ $phrase_without_last }}
+                                <span style="color: #DF8317;">{{ $last_word_clean }}</span>
+                            </div>
+
+                        </div>
+                    @endforeach
                 </div>
-                <div class="col-md-6">
-                    <div class="center mt-2 "
-                        style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right; color:#121743;">
 
-                        <img src="{{ asset('images/Vector (1).svg') }}">
-                        الفعاليات<span
-                            style="color: #DF8317; font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right;">
-                            الاخيرة</span>
-                    </div>
+                <div class="carousel-inner">
+                    @for ($i = 0; $i < ceil(count($courses) / 3); $i++)
+                        <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                            <div class="row mb-5 justify-content-between">
+                                @foreach ($courses->slice($i * 3, 3) as $course)
+                                    @php
+                                        $maleCount = $course->reservations()->where('gender', 'male')->count();
+                                        $femaleCount = $course->reservations()->where('gender', 'female')->count();
+                                        $maxMaleCount = $course->male_count;
+                                        $maxFemaleCount = $course->female_count;
+                                        $isCourseAvailable =
+                                            $maleCount < $maxMaleCount || $femaleCount < $maxFemaleCount;
+                                    @endphp
+                                    @if ($course->status == 'approved')
+                                        <div class="col-md-4 mt-0">
+                                            <div class="justify-content-center">
+                                                <span class="d-flex justify-content-center mb-2 ">
+                                                    <img src="{{ asset('storage/' . $course->media->first()->file_path) }}"
+                                                        style="width: 350px;height:258px" alt="First Image">
+                                                </span>
+
+                                                <div class="d-flex justify-content-end pr-1"
+                                                    style="font-family: Cairo;
+                                    font-size: 18px;
+                                    font-weight: 667;
+                                    line-height: 34px;
+                                    letter-spacing: 0em;
+                                    text-align: right;
+                                    color: rgba(18, 23, 67, 1);
+
+                                    ">
+                                                    {{ $course->getTranslation('name', 'ar') }}</div>
+                                                <div class="mt-2  pr-1"
+                                                    style="font-family: Cairo;
+                                        font-size: 16px;
+                                        font-weight: 400;
+                                        line-height: 25px;
+                                        letter-spacing: 0em;
+                                        text-align: right;
+
+                                    color: rgba(102, 102, 102, 1);
+                                    margin: 0;
+                                    ">
+                                                    م/{{ $course->getTranslation('professor_name', 'ar') }}
+                                                    <img src="{{ asset('images/Vector (6).svg') }}">
+                                                </div>
+                                                <div class="mt-2  pr-1"
+                                                    style="font-family: Cairo;
+                                        font-size: 16px;
+                                        font-weight: 400;
+                                        line-height: 25px;
+                                        letter-spacing: 0em;
+                                        text-align: right;
+
+                                    color: rgba(102, 102, 102, 1);
+                                    margin: 0;
+                                    ">
+                                                    المدة : {{ $course->getTranslation('time_duration', 'ar') }}
+                                                    <img src="{{ asset('images/Vector (5).svg') }}">
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-between">
+                                                @if ($isCourseAvailable)
+                                                    <a href="{{ route('reservation.create', ['course_id' => $course->id]) }}"
+                                                        id="ServButton2" class="btn btn-primary"
+                                                        style="width:155px;height:35px;font-family: Cairo; font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#121743; border:#121743; color:#FFFFFF;">
+                                                        @lang('file.join_now')
+                                                    </a>
+                                                @else
+                                                    <span class="btn btn-secondary"
+                                                        style="width:155px;height:35px;font-family: Cairo; font-size: 15px; font-weight: 600; line-height: 28px; letter-spacing: 0em; text-align: center; background:#808080; border:#808080; color:#FFFFFF;">
+                                                        @lang('file.completed')
+                                                    </span>
+                                                @endif
+
+                                                <div class="mt-2  pr-0"
+                                                    style="font-family: Cairo;
+                                        font-size: 16px;
+                                        font-weight: 400;
+                                        line-height: 25px;
+                                        letter-spacing: 0em;
+                                        text-align:;
+
+                                    color: rgba(102, 102, 102, 1);
+                                    margin: 0;
+                                    ">
+                                                    {{ $course->getTranslation('location', 'ar') }}
+                                                    <img src="{{ asset('images/location1.svg') }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                                <x-pop_up_course />
+                            </div>
+                        </div>
+                    @endfor
                 </div>
-            </div>
 
-            <div class="carousel-inner">
-                @for ($i = 0; $i < ceil(count($events) / 3); $i++)
-                    <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
-                        <div class="row mb-5 justify-content-between">
-                            @foreach ($events->slice($i * 3, 3) as $event)
-                                <div class="col-md-4 pr-3 mt-4">
-                                    <img src="{{ asset('storage/' . $event->media->first()->file_path) }}"
-                                        style="width: 350px;height:258px" alt="Event Image">
+                <!-- Carousel Indicators -->
+                <div class="carousel-indicators mt-5">
+                    @for ($i = 0; $i < ceil(count($courses) / 3); $i++)
+                        <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
+                            class="{{ $i === 0 ? 'active' : '' }}"></li>
+                    @endfor
+                </div>
+            @endif
+        </div>
+    </section>
 
-                                    <div class="d-flex justify-content-center mt-2"
-                                        style="font-family: Cairo; font-size: 18px; font-weight: 600; line-height: 34px; letter-spacing: 0em; text-align: center; color:#000000;">
-                                        {{ $event->title }}
-                                    </div>
-                                    <div class="d-flex justify-content-center pr-1"
-                                        style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 25px; letter-spacing: 0em; text-align: center;">
-                                        {{ $event->text }}
-                                    </div>
-                                </div>
-                            @endforeach
+    <section class="container text-center mt-5 mb-5" id='projects'>
+        <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
+            @if (app()->getLocale() == 'ar')
+                @foreach ($temp_projects as $template)
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-flex justify-content-start mb-5" style="margin-top: 2rem !important;">
+                                <a class="btn btn-outline-primary" href="{{ route('projects.show') }}"
+                                    style="
+                               
+                                border:#121743 1px  solid;
+                                color:white;
+                                background:#121743;
+                                ">
+                                    <img src="{{ asset('images/project1.png') }}" style="width: 27px;height;27px">
+                                    {{ $template->getTranslation('button_text', 'en') }}</a>
+                            </div>
+                            <!-- Left and Right Arrow Images -->
+                            <div class="d-flex justify-content-start" style="margin-top: 25px;">
+                                <span class="d-flex justify-content-center mb-0" data-target="#carouselExampleIndicators1"
+                                    data-slide="next">
+                                    <img src="{{ asset('images/arrow_left.png') }}" width="43px" height="43px"
+                                        alt="Previous" style="transform: scaleX(-1);">
+                                </span>
+                                <span class="d-flex justify-content-center mb-0 pr-2"
+                                    data-target="#carouselExampleIndicators1" data-slide="prev">
+                                    <img src="{{ asset('images/left.svg') }}" alt="Previous">
+                                </span>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="margin-bottom: 100px;">
+                            <div class="center mt-2 " id="projecttext"
+                                style="font-family: Cairo; font-size: 39px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: left; color:#121743;">
+                                <img src="{{ asset('images/Vector (1).svg') }}">
+                                @php
+                                    $phrase = $template->getTranslation('main_title', 'en');
+                                    $words = explode(' ', $phrase);
+                                    $last_word = array_pop($words);
+                                    $last_word_clean = rtrim($last_word, '?!.,;:');
+                                    $phrase_without_last = implode(' ', $words);
+                                @endphp
+
+                                {{ $phrase_without_last }}
+                                <span style="color: #DF8317;">{{ $last_word_clean }}</span>
+                            </div>
                         </div>
                     </div>
-                @endfor
-            </div>
+                @endforeach
 
-            <!-- Carousel Indicators -->
-            <div class="carousel-indicators mt-5">
-                @for ($i = 0; $i < ceil(count($events) / 3); $i++)
-                    <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
-                        class="{{ $i === 0 ? 'active' : '' }}"></li>
-                @endfor
-            </div>
+                <div class="carousel-inner">
+                    @for ($i = 0; $i < ceil(count($projects) / 4); $i++)
+                        <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                            <div class="row mb-5 d-flex justify-content-between">
+                                @foreach ($projects->slice($i * 4, 4) as $project)
+                                    <div class="col-md-3">
+                                        <img src="{{ asset('storage/' . $project->images->first()->file_path) }}">
+                                        <a href="{{ $project->url }}" id="url"
+                                            class="d-flex justify-content-center pr-1"
+                                            style="font-family: Cairo;
+                                            font-size: 18px;
+                                            font-weight: 600;
+                                            line-height: 34px;
+                                            letter-spacing: 0em;
+                                            text-align: center;
+                                           
+                                            margin-top: 2.2rem !important;">
+                                            {{ $project->getTranslation('title', 'en') }}
+                                        </a>
+                                    </div>
+                                @endforeach
+
+                            </div>
+
+                        </div>
+                    @endfor
+
+                </div>
+
+                <div class="carousel-indicators mt-5">
+                    @for ($i = 0; $i < ceil(count($projects) / 4); $i++)
+                        <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
+                            class="{{ $i === 0 ? 'active' : '' }}"></li>
+                    @endfor
+                </div>
+            @else
+                @foreach ($temp_projects as $template)
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-flex justify-content-start mb-5" style="margin-top: 2rem !important;">
+
+
+                                <a class="btn btn-outline-primary" href="{{ route('projects.show') }}"
+                                    style="
+                               
+                                border:#121743 1px  solid;
+                                color:white;
+                                background:#121743;
+                                ">
+                                    <img src="{{ asset('images/project1.png') }}" style="width: 27px;height;27px">
+                                    {{ $template->getTranslation('button_text', 'ar') }}</a>
+                            </div>
+                            <!-- Left and Right Arrow Images -->
+                            <div class="d-flex justify-content-start">
+                                <span class="d-flex justify-content-center mb-4 pr-2"
+                                    data-target="#carouselExampleIndicators1" data-slide="prev">
+                                    <img src="{{ asset('images/left.svg') }}" alt="Previous">
+                                </span>
+                                <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators1"
+                                    data-slide="next">
+                                    <img src="{{ asset('images/right.svg') }}" alt="Next">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="center mt-2" id="projecttext"
+                                style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right; color:#121743;">
+                                <img src="{{ asset('images/Vector (1).svg') }}">
+                                @php
+                                    $phrase = $template->getTranslation('main_title', 'ar');
+                                    $words = explode(' ', $phrase);
+                                    $last_word = array_pop($words);
+                                    $last_word_clean = rtrim($last_word, '?!.,;:');
+                                    $phrase_without_last = implode(' ', $words);
+                                @endphp
+
+                                {{ $phrase_without_last }}
+                                <span style="color: #DF8317;">{{ $last_word_clean }}</span>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                <div class="carousel-inner">
+                    @for ($i = 0; $i < ceil(count($projects) / 4); $i++)
+                        <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                            <div class="row mb-5 d-flex justify-content-between">
+                                @foreach ($projects->slice($i * 4, 4) as $project)
+                                    <div class="col-md-3">
+                                        <img src="{{ asset('storage/' . $project->images->first()->file_path) }}">
+                                        <a href="{{ $project->url }}" class="d-flex justify-content-center pr-1"
+                                            style="font-family: Cairo;
+                                            font-size: 18px;
+                                            font-weight: 600;
+                                            line-height: 34px;
+                                            letter-spacing: 0em;
+                                            text-align: center;
+                                            
+                                            margin-top: 2.2rem !important;">
+                                            {{ $project->getTranslation('title', 'ar') }}
+                                        </a>
+                                    </div>
+                                @endforeach
+
+                            </div>
+
+                        </div>
+                    @endfor
+
+                </div>
+
+                <div class="carousel-indicators mt-5">
+                    @for ($i = 0; $i < ceil(count($projects) / 4); $i++)
+                        <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
+                            class="{{ $i === 0 ? 'active' : '' }}"></li>
+                    @endfor
+                </div>
+            @endif
+        </div>
+    </section>
+    <section class="container text-center mt-5 mb-5" id='events'>
+        <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+            @if (app()->getLocale() == 'ar')
+                @foreach ($temp_events as $template)
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-flex justify-content-start mb-5" style="margin-top: 2rem !important;">
+
+                                <a class="btn btn-outline-primary" href="{{ route('events.index') }}"
+                                    style="
+                               
+                                border:#121743 1px  solid;
+                                color:white;
+                                background:#121743;
+                                ">
+                                    <img src="{{ asset('images/event6.png') }}" style="width: 27px;height;27px">
+                                    {{ $template->getTranslation('button_text', 'en') }} </a>
+                            </div>
+                            <div class="d-flex justify-content-start mb-4">
+                                <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators2"
+                                    data-slide="next">
+                                    <img src="{{ asset('images/arrow_left.png') }}" width="43px" height="43px"
+                                        alt="Previous" style="transform: scaleX(-1);">
+                                </span>
+                                <span class="d-flex justify-content-center pr-2" data-target="#carouselExampleIndicators2"
+                                    data-slide="prev">
+                                    <img src="{{ asset('images/left.svg') }}" alt="Previous">
+                                </span>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="center mt-2 " id="eventtext"
+                                style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: left; color:#121743;">
+
+                                <img src="{{ asset('images/Vector (1).svg') }}">
+                                @php
+                                    $phrase = $template->getTranslation('main_title', 'en');
+                                    $words = explode(' ', $phrase);
+                                    $last_word = array_pop($words);
+                                    $last_word_clean = rtrim($last_word, '?!.,;:');
+                                    $phrase_without_last = implode(' ', $words);
+                                @endphp
+
+                                {{ $phrase_without_last }}
+                                <span style="color: #DF8317;">{{ $last_word_clean }}</span>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                <div class="carousel-inner">
+                    @for ($i = 0; $i < ceil(count($events) / 3); $i++)
+                        <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                            <div class="row mb-5 justify-content-between">
+                                @foreach ($events->slice($i * 3, 3) as $event)
+                                    @if ($event->status == 'approved')
+                                        <div class="col-md-4 pr-3 mt-3">
+                                            <img src="{{ asset('storage/' . $event->media->first()->file_path) }}"
+                                                style="width: 350px;height:258px" alt="Event Image">
+
+                                            <div class="d-flex justify-content-center mt-2"
+                                                style="font-family: Cairo; font-size: 18px; font-weight: 600; line-height: 34px; letter-spacing: 0em; text-align: center; color:#000000;">
+                                                {{ $event->getTranslation('title', 'en') }}
+                                            </div>
+                                            <div class="event-container">
+                                                <p class="short-event"
+                                                    style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                                    <a class="ml-0 mr-0 text-muted" href="javascript:void(0);"
+                                                        onclick="openEventModal('{{ $event->getTranslation('title', 'en') }}', '{{ $event->getTranslation('text', 'en') }}')">
+                                                        <div class="d-flex justify-content-center pr-1"
+                                                            style="max-height:80px; overflow: hidden;font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 25px; letter-spacing: 0em; text-align: center;">
+                                                            {{ $event->getTranslation('text', 'en') }}
+                                                        </div>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    @endfor
+                </div>
+
+                <!-- Carousel Indicators -->
+                <div class="carousel-indicators mt-5">
+                    @for ($i = 0; $i < ceil(count($events) / 3); $i++)
+                        <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
+                            class="{{ $i === 0 ? 'active' : '' }}"></li>
+                    @endfor
+                </div>
+            @else
+                @foreach ($temp_events as $template)
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-flex justify-content-start mt-3 mb-4">
+
+
+                                <a class="btn btn-outline-primary" href="{{ route('events.index') }}"
+                                    style="
+                               
+                                border:#121743 1px  solid;
+                                color:white;
+                                background:#121743;
+                                ">
+                                    <img src="{{ asset('images/event6.png') }}" style="width: 27px;height;27px">
+                                    {{ $template->getTranslation('button_text', 'ar') }}</a>
+                            </div>
+                            <div class="d-flex justify-content-start">
+                                <span class="d-flex justify-content-center mb-4 pr-2"
+                                    data-target="#carouselExampleIndicators2" data-slide="prev">
+                                    <img src="{{ asset('images/left.svg') }}" alt="Previous">
+                                </span>
+                                <span class="d-flex justify-content-center pr-0" data-target="#carouselExampleIndicators2"
+                                    data-slide="next">
+                                    <img src="{{ asset('images/right.svg') }}" alt="Next">
+                                </span>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="center mt-2 " id="eventtext"
+                                style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right; color:#121743;">
+
+                                <img src="{{ asset('images/Vector (1).svg') }}">
+                                @php
+                                    $phrase = $template->getTranslation('main_title', 'ar');
+                                    $words = explode(' ', $phrase);
+                                    $last_word = array_pop($words);
+                                    $last_word_clean = rtrim($last_word, '?!.,;:');
+                                    $phrase_without_last = implode(' ', $words);
+                                @endphp
+
+                                {{ $phrase_without_last }}
+                                <span style="color: #DF8317;">{{ $last_word_clean }}</span>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                <div class="carousel-inner">
+                    @for ($i = 0; $i < ceil(count($events) / 3); $i++)
+                        <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                            <div class="row mb-5 justify-content-between">
+                                @foreach ($events->slice($i * 3, 3) as $event)
+                                    @if ($event->status == 'approved')
+                                        <div class="col-md-4 pr-3 mt-4">
+                                            <img src="{{ asset('storage/' . $event->media->first()->file_path) }}"
+                                                style="width: 350px;height:258px" alt="Event Image">
+                                            <div class="d-flex justify-content-center mt-2"
+                                                style="font-family: Cairo;
+                                                    font-size: 18px;
+                                                    font-weight: 600;
+                                                    line-height: 34px;
+                                                    letter-spacing: 0em;
+                                                    text-align: center;
+                                                    color:#000000;
+                                                    ">
+                                                {{ $event->getTranslation('title', 'ar') }} </div>
+                                            <div class="event-container">
+                                                <p class="short-event"
+                                                    style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 26px; letter-spacing: 0em; text-align: center; color:rgba(20, 20, 20, 0.75);">
+                                                    <a class="ml-0 mr-0 text-muted" href="javascript:void(0);"
+                                                        onclick="openEventModal('{{ $event->getTranslation('title', 'ar') }}', '{{ $event->getTranslation('text', 'ar') }}')">
+                                                        <div class="d-flex justify-content-center pr-1"
+                                                            style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 25px; letter-spacing: 0em; text-align: center; max-height:80px; overflow: hidden;">
+                                                            {{ $event->getTranslation('text', 'ar') }}
+                                                        </div>
+                                                    </a>
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    @endfor
+                </div>
+
+                <!-- Carousel Indicators -->
+                <div class="carousel-indicators mt-5">
+                    @for ($i = 0; $i < ceil(count($events) / 3); $i++)
+                        <li data-target="#carouselExampleIndicators2" data-slide-to="{{ $i }}"
+                            class="{{ $i === 0 ? 'active' : '' }}"></li>
+                    @endfor
+                </div>
+            @endif
         </div>
     </section>
 
@@ -1042,7 +2004,7 @@
                             text-align: center;
                             color:#121743;">
                 <img src="{{ asset('images/Vector (1).svg') }}">
-                تعرف علي رأي<span
+                @lang('file.Find out what')<span
                     style="color: #DF8317;font-family: Cairo;
                                 font-size: 35px;
                                 font-weight: 667;
@@ -1050,29 +2012,31 @@
                                 letter-spacing: 0em;
                                 text-align: center;
                                 ">
-                    عملاءنا</span>
+                    @lang('file.our customers think')</span>
             </div>
         </div>
 
+        @if (app()->getLocale() == 'ar')
+            <div class="row d-flex justify-content-center">
+                <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel" style="height:auto">
 
-        <div class="row d-flex justify-content-center">
-            <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel" style="height:auto">
-                <div class="pl-5 d-flex justify-content-between" style="padding-left: 5rem !important;">
-                    <span class="d-flex justify-content-center mb-4 pr-2" style="margin-bottom:2rem !important;"
-                        data-target="#carouselExampleIndicators3" data-slide="prev">
-                        <img src="{{ asset('images/left.svg') }}" alt="Previous">
-                    </span>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active ">
-                            <div class="card"
-                                style="width: 100%;
+                    <div class="d-flex justify-content-between">
+                        <span id="arrow" class="d-flex justify-content-center" style="margin-top:9rem !important;"
+                            data-target="#carouselExampleIndicators3" data-slide="prev">
+                            <img src="{{ asset('images/arrow_left.png') }}" width="43px" height="43px"
+                                alt="Previous" style="transform: scaleX(-1);">
+                        </span>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active ">
+                                <div class="card"
+                                    style="width: 100%;
                                     height:100%;
                                     border:#F8F8F8;
                                     border-radius: 12px;background-color: #F8F8F8">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-center ">
-                                        <p class=" card-text text-center"
-                                            style="font-family: Poppins;
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-center ">
+                                            <p class=" card-text text-center"
+                                                style="font-family: Poppins;
                                             font-size: 20px;
                                             border:#F8F8F8;
                                             font-weight: 400;
@@ -1081,15 +2045,17 @@
                                             text-align: center;
                                             color:#637381;
                                             ">
-                                            من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي شخص
-                                            محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في تحقيق
-                                            اي
-                                            شئ وجعل المستحيل ممكن
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-center mt-4">
-                                        <p
-                                            style="font-family: Cairo;
+                                                من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي
+                                                شخص
+                                                محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في
+                                                تحقيق
+                                                اي
+                                                شئ وجعل المستحيل ممكن
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
                                                 font-size: 30px;
                                                 font-weight: 600;
                                                 line-height: 56px;
@@ -1097,12 +2063,12 @@
                                                 text-align: center;
                                                 color:#222751;
                                                 ">
-                                            طلال بن سلمان
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-center mt-4">
-                                        <p
-                                            style="font-family: Cairo;
+                                                طلال بن سلمان
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
                                                 font-size: 20px;
                                                 font-weight: 500;
                                                 line-height: 37px;
@@ -1111,26 +2077,26 @@
 
                                                 color:#F0A202;
                                                 ">
-                                            مؤسس شركة
-                                        </p>
+                                                مؤسس شركة
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
 
+                                </div>
+                                <div class="d-flex-justify-content-center">
+                                    <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
+                                </div>
                             </div>
-                            <div class="d-flex-justify-content-center">
-                                <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
-                            </div>
-                        </div>
-                        <div class="carousel-item  ">
-                            <div class="card"
-                                style="width: 100%;
+                            {{-- <div class="carousel-item  ">
+                                <div class="card"
+                                    style="width: 100%;
                                     height:100%;
                                     border:#F8F8F8;
                                     border-radius: 12px;background-color: #F8F8F8">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-center ">
-                                        <p class=" card-text text-center"
-                                            style="font-family: Poppins;
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-center ">
+                                            <p class=" card-text text-center"
+                                                style="font-family: Poppins;
                                             font-size: 20px;
                                             border:#F8F8F8;
                                             font-weight: 400;
@@ -1139,15 +2105,17 @@
                                             text-align: center;
                                             color:#637381;
                                             ">
-                                            من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي شخص
-                                            محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في تحقيق
-                                            اي
-                                            شئ وجعل المستحيل ممكن
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-center mt-4">
-                                        <p
-                                            style="font-family: Cairo;
+                                                من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي
+                                                شخص
+                                                محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في
+                                                تحقيق
+                                                اي
+                                                شئ وجعل المستحيل ممكن
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
                                                 font-size: 30px;
                                                 font-weight: 600;
                                                 line-height: 56px;
@@ -1155,12 +2123,12 @@
                                                 text-align: center;
                                                 color:#222751;
                                                 ">
-                                            طلال بن سلمان
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-center mt-4">
-                                        <p
-                                            style="font-family: Cairo;
+                                                طلال بن سلمان
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
                                                 font-size: 20px;
                                                 font-weight: 500;
                                                 line-height: 37px;
@@ -1169,26 +2137,26 @@
 
                                                 color:#F0A202;
                                                 ">
-                                            مؤسس شركة
-                                        </p>
+                                                مؤسس شركة
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
 
+                                </div>
+                                <div class="d-flex-justify-content-center">
+                                    <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
+                                </div>
                             </div>
-                            <div class="d-flex-justify-content-center">
-                                <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
-                            </div>
-                        </div>
-                        <div class="carousel-item  ">
-                            <div class="card"
-                                style="width: 100%;
+                            <div class="carousel-item  ">
+                                <div class="card"
+                                    style="width: 100%;
                                     height:100%;
                                     border:#F8F8F8;
                                     border-radius: 12px;background-color: #F8F8F8">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-center ">
-                                        <p class=" card-text text-center"
-                                            style="font-family: Poppins;
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-center ">
+                                            <p class=" card-text text-center"
+                                                style="font-family: Poppins;
                                             font-size: 20px;
                                             border:#F8F8F8;
                                             font-weight: 400;
@@ -1197,15 +2165,17 @@
                                             text-align: center;
                                             color:#637381;
                                             ">
-                                            من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي شخص
-                                            محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في تحقيق
-                                            اي
-                                            شئ وجعل المستحيل ممكن
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-center mt-4">
-                                        <p
-                                            style="font-family: Cairo;
+                                                من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي
+                                                شخص
+                                                محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في
+                                                تحقيق
+                                                اي
+                                                شئ وجعل المستحيل ممكن
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
                                                 font-size: 30px;
                                                 font-weight: 600;
                                                 line-height: 56px;
@@ -1213,12 +2183,12 @@
                                                 text-align: center;
                                                 color:#222751;
                                                 ">
-                                            طلال بن سلمان
-                                        </p>
-                                    </div>
-                                    <div class="d-flex justify-content-center mt-4">
-                                        <p
-                                            style="font-family: Cairo;
+                                                طلال بن سلمان
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
                                                 font-size: 20px;
                                                 font-weight: 500;
                                                 line-height: 37px;
@@ -1227,32 +2197,244 @@
 
                                                 color:#F0A202;
                                                 ">
-                                            مؤسس شركة
-                                        </p>
+                                                مؤسس شركة
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
 
-                            </div>
-                            <div class="d-flex-justify-content-center">
-                                <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
-                            </div>
+                                </div>
+                                <div class="d-flex-justify-content-center">
+                                    <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
+                                </div>
+                            </div> --}}
                         </div>
+                        <span class="d-flex justify-content-center mb-4" style="margin-bottom:2rem !important;"
+                            data-target="#carouselExampleIndicators3" data-slide="prev">
+                            <img src="{{ asset('images/left.svg') }}" alt="Previous">
+                        </span>
+
                     </div>
-                    <span class="pl-2" style="margin-top:7rem !important;" data-target="#carouselExampleIndicators3"
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators3" role="button"
+                        data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators3" role="button"
                         data-slide="next">
-                        <img src="{{ asset('images/right.svg') }}" alt="Next" class="next">
-                    </span>
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators3" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators3" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
             </div>
-        </div>
+        @else
+            <div class="row d-flex justify-content-center">
+                <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel" style="height:auto">
+
+                    <div class="pl-5 d-flex justify-content-between" style="padding-left: 5rem !important;">
+                        <span class="d-flex justify-content-center mb-4 pr-2" style="margin-bottom:2rem !important;"
+                            data-target="#carouselExampleIndicators3" data-slide="prev">
+                            <img src="{{ asset('images/left.svg') }}" alt="Previous">
+                        </span>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active ">
+                                <div class="card"
+                                    style="width: 100%;
+                                    height:100%;
+                                    border:#F8F8F8;
+                                    border-radius: 12px;background-color: #F8F8F8">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-center ">
+                                            <p class=" card-text text-center"
+                                                style="font-family: Poppins;
+                                            font-size: 20px;
+                                            border:#F8F8F8;
+                                            font-weight: 400;
+                                            line-height: 32px;
+                                            letter-spacing: 0em;
+                                            text-align: center;
+                                            color:#637381;
+                                            ">
+                                                من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي
+                                                شخص
+                                                محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في
+                                                تحقيق
+                                                اي
+                                                شئ وجعل المستحيل ممكن
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
+                                                font-size: 30px;
+                                                font-weight: 600;
+                                                line-height: 56px;
+                                                letter-spacing: 0em;
+                                                text-align: center;
+                                                color:#222751;
+                                                ">
+                                                طلال بن سلمان
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
+                                                font-size: 20px;
+                                                font-weight: 500;
+                                                line-height: 37px;
+                                                letter-spacing: 0em;
+                                                text-align: center;
+
+                                                color:#F0A202;
+                                                ">
+                                                مؤسس شركة
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="d-flex-justify-content-center">
+                                    <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
+                                </div>
+                            </div>
+                            <div class="carousel-item  ">
+                                <div class="card"
+                                    style="width: 100%;
+                                    height:100%;
+                                    border:#F8F8F8;
+                                    border-radius: 12px;background-color: #F8F8F8">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-center ">
+                                            <p class=" card-text text-center"
+                                                style="font-family: Poppins;
+                                            font-size: 20px;
+                                            border:#F8F8F8;
+                                            font-weight: 400;
+                                            line-height: 32px;
+                                            letter-spacing: 0em;
+                                            text-align: center;
+                                            color:#637381;
+                                            ">
+                                                من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي
+                                                شخص
+                                                محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في
+                                                تحقيق
+                                                اي
+                                                شئ وجعل المستحيل ممكن
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
+                                                font-size: 30px;
+                                                font-weight: 600;
+                                                line-height: 56px;
+                                                letter-spacing: 0em;
+                                                text-align: center;
+                                                color:#222751;
+                                                ">
+                                                طلال بن سلمان
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
+                                                font-size: 20px;
+                                                font-weight: 500;
+                                                line-height: 37px;
+                                                letter-spacing: 0em;
+                                                text-align: center;
+
+                                                color:#F0A202;
+                                                ">
+                                                مؤسس شركة
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="d-flex-justify-content-center">
+                                    <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
+                                </div>
+                            </div>
+                            <div class="carousel-item  ">
+                                <div class="card"
+                                    style="width: 100%;
+                                    height:100%;
+                                    border:#F8F8F8;
+                                    border-radius: 12px;background-color: #F8F8F8">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-center ">
+                                            <p class=" card-text text-center"
+                                                style="font-family: Poppins;
+                                            font-size: 20px;
+                                            border:#F8F8F8;
+                                            font-weight: 400;
+                                            line-height: 32px;
+                                            letter-spacing: 0em;
+                                            text-align: center;
+                                            color:#637381;
+                                            ">
+                                                من أفضل الشركات اللي اتعملت معاهم قمة في الانضباط والتمييز والمتابعة انصح اي
+                                                شخص
+                                                محتاج يبدأ في شركته الخاصة وما عنده خطة موضحة يتواصل معاهم وهما بيساعده في
+                                                تحقيق
+                                                اي
+                                                شئ وجعل المستحيل ممكن
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
+                                                font-size: 30px;
+                                                font-weight: 600;
+                                                line-height: 56px;
+                                                letter-spacing: 0em;
+                                                text-align: center;
+                                                color:#222751;
+                                                ">
+                                                طلال بن سلمان
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-4">
+                                            <p
+                                                style="font-family: Cairo;
+                                                font-size: 20px;
+                                                font-weight: 500;
+                                                line-height: 37px;
+                                                letter-spacing: 0em;
+                                                text-align: center;
+
+                                                color:#F0A202;
+                                                ">
+                                                مؤسس شركة
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="d-flex-justify-content-center">
+                                    <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
+                                </div>
+                            </div>
+                        </div>
+                        <span class="pl-2" style="margin-top:7rem !important;"
+                            data-target="#carouselExampleIndicators3" data-slide="next">
+                            <img src="{{ asset('images/right.svg') }}" alt="Next" class="next">
+                        </span>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators3" role="button"
+                        data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators3" role="button"
+                        data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        @endif
     </section>
 
     <script>
@@ -1291,6 +2473,15 @@
             scrollbar-color: #f9f8f8 transparent;
             max-width: 150%;
 
+        }
+
+        .col-md-3 a:hover {
+            color: blue;
+        }
+
+        .col-md-3 a {
+            color: #000000;
+            ;
         }
     </style>
 
