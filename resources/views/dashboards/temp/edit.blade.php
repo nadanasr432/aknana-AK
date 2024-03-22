@@ -174,46 +174,55 @@
                                 </div>
                             @endif
 
-                            <!-- Repeatable field for additional items -->
-                            <div id="additional_items">
-                                @foreach (old('items.en', $template->getTranslation('items', 'en')) as $index => $itemEn)
-                                    @if ($itemEn)
-                                        <div class="form-group row">
+                            @if (is_array(old('items.en')) ||
+                                    is_object(old('items.en')) ||
+                                    is_array($template->getTranslation('items', 'en')) ||
+                                    is_object($template->getTranslation('items', 'en')))
+                                <div id="additional_items">
+                                     <div class="form-group row">
+                                    @foreach (old('items.en', $template->getTranslation('items', 'en')) as $index => $itemEn)
+                                        @if ($itemEn)
+                                           
 
-                                            <div class="col-md-6">
-                                                <label for="item_en_{{ $index }}"
-                                                    class="form-label">@lang('file.Item (English)')</label>
-                                                <input type="text" class="form-control"
-                                                    value="{{ old('items.en.' . $index, $itemEn) }}" name="items[en][]">
-                                            </div>
-                                        </div>
-                                    @endif
-                                @endforeach
+                                                <div class="col-md-6">
+                                                    <label for="item_en_{{ $index }}"
+                                                        class="form-label text-md-left">@lang('file.Item (English)')</label>
+                                                    <input type="text" class="form-control"
+                                                        value="{{ old('items.en.' . $index, $itemEn) }}"
+                                                        name="items[en][]">
+                                                </div>
+                                          
+                                        @endif
+                                    @endforeach
 
-                                @foreach (old('items.ar', $template->getTranslation('items', 'ar')) as $index => $itemAr)
-                             
-                                        <div class="form-group row">
-                                            <div class="col-md-6">
-                                                <label for="item_ar_{{ $index }}"
-                                                    class="form-label">@lang('file.Item (Arabic)')</label>
-                                                <input type="text" value="{{ old('items.ar.' . $index, $itemAr) }}"
-                                                    class="form-control" name="items[ar][]">
-                                            </div>
+                                    @foreach (old('items.ar', $template->getTranslation('items', 'ar')) as $index => $itemAr)
+                                        @if ($itemAr)
+                                         
 
-                                        </div>
-                                
-                                @endforeach
-                            </div>
-
-                            <!-- Button to add additional items -->
-                            <div class="form-group row mb-3">
-                                <div class="col-md-6">
-                                    <button type="button" class="btn btn-gradient-primary me-2"
-                                        onclick="addAdditionalItem()">
-                                        {{ __('Add Additional Item') }}
-                                    </button>
+                                                <div class="col-md-6">
+                                                    <label for="item_ar_{{ $index }}"
+                                                        class="form-label text-md-left">@lang('file.Item (Arabic)')</label>
+                                                    <input type="text"
+                                                        value="{{ old('items.ar.' . $index, $itemAr) }}"
+                                                        class="form-control" name="items[ar][]">
+                                                </div>
+                                         
+                                        @endif
+                                    @endforeach
+                                      </div>
                                 </div>
-                            </div>
+
+                                <!-- Button to add additional items -->
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-6 offset-md-4">
+                                        <button type="button" class="btn btn-gradient-primary me-2"
+                                            onclick="addAdditionalItem()">
+                                            {{ __('Add Additional Item') }}
+                                        </button>
+                                    </div>
+                                </div>
+                            @endif
+
                             <!-- Image upload -->
                             @if ($template->image && $template->image_ar)
                                 <div class="form-group">

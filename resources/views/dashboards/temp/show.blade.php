@@ -56,20 +56,27 @@
                                         <td>{{ $template->getTranslation('button_text', 'en') }}</td>
                                         <td>{{ $template->getTranslation('button_text', 'ar') }}</td>
                                         <td>
-                                            @foreach ($template->getTranslation('items', 'en') as $item)
-                                                {{ $item }} <br>
-                                            @endforeach
+                                            @if (is_array($template->getTranslation('items', 'en')))
+                                                @foreach ($template->getTranslation('items', 'en') as $item)
+                                                    {{ $item }} <br>
+                                                @endforeach
+                                            @endif
                                         </td>
                                         <td>
-                                            @foreach ($template->getTranslation('items', 'ar') as $item)
-                                                {{ $item }} <br>
-                                            @endforeach
+                                            @if (is_array($template->getTranslation('items', 'ar')))
+                                                @foreach ($template->getTranslation('items', 'ar') as $item)
+                                                    {{ $item }} <br>
+                                                @endforeach
+                                            @endif
                                         </td>
 
-                                       
 
-                                        <td><img src="{{  asset('storage/'. $template->image )}}"></td>
-                                    <td><img src="{{ asset('storage/'.  $template->image_ar )}}">
+
+
+
+
+                                        <td><img src="{{ asset('storage/' . $template->image) }}"></td>
+                                        <td><img src="{{ asset('storage/' . $template->image_ar) }}">
                                         </td>
 
                                         <td>

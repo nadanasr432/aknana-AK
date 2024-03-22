@@ -18,7 +18,7 @@
                             {{ $template->getTranslation('main_title', 'en') }}
 
                         <p class="center service_text3 "
-                            style="color: #DF8317;
+                            style="color: #DF8317; font-family: Cairo;
                     font-size: 35px;
                     font-weight: 667;
                     line-height: 50px;
@@ -93,7 +93,7 @@
                             {{ $template->getTranslation('main_title', 'ar') }}
 
                         <p class="center service_text3 "
-                            style="color: #DF8317;
+                            style="color: #DF8317; font-family: Cairo;
                     font-size: 35px;
                     font-weight: 667;
                     line-height: 50px;
@@ -183,7 +183,7 @@
             });
         });
     </script>
-
+    <x-modal_events :events="$events" />
     <section id="US" class="US container text-center "
         style="max-width: 1400px;margin-top: 10rem !important;margin-bottom: 10rem !important; ">
         @if (app()->getLocale() == 'ar')
@@ -212,28 +212,43 @@
                                 $last_word_clean = rtrim($last_word, '?!.,;:');
                                 $phrase_without_first_last = implode(' ', $words);
                             @endphp
-                            <span style="color: #DF8317;">{{ $first_word }}</span>
+                            <span style="color: #DF8317; font-family: Cairo;">{{ $first_word }}</span>
                             {!! $phrase_without_first_last !!}
-                            <span style="color: #DF8317;">
+                            <span style="color: #DF8317; font-family: Cairo;">
                                 {{ $last_word_clean }}
                             </span>
                             {!! preg_match('/[?!.,;:]$/', $last_word) ? '' : rtrim($last_word, $last_word_clean) !!}
                         </p>
                         <div href="javascript:void(0);"
-                            onclick="openEventModal(' {{ $first_word }} {!! $phrase_without_first_last !!} {{ $last_word_clean }} {!! preg_match('/[?!.,;:]$/', $last_word) ? '' : rtrim($last_word, $last_word_clean) !!}', '{{ $template->getTranslation('main_text', 'en') }}')">
-
+                            onclick="openEventModal('{{ $first_word }} {!! $phrase_without_first_last !!} {{ $last_word_clean }}', '{{ $template->getTranslation('main_text', 'en') }}')">
                             <p class="custom-text_2"
                                 style="font-family: Cairo;
-                                font-size: 22px;
-                                font-weight: 400;
-                                line-height: 48px;
-                                letter-spacing: 0em;
-                                text-align: left;
-                                 max-height:350px; overflow: hidden;
-                            color:#121743;
-                                ">
-                                {{ $template->getTranslation('main_text', 'en') }}</p>
+              font-size: 22px;
+              font-weight: 400;
+              line-height: 48px;
+              letter-spacing: 0em;
+              text-align: left;
+              max-height:350px; 
+              overflow: hidden;
+              color:#121743;">
+                                {{ $template->getTranslation('main_text', 'en') }}
+                            </p>
+
+                            <script>
+                                // Get the <p> element
+                                var pElement = document.querySelector('.custom-text_2');
+
+                                // Check if the text exceeds the maximum height
+                                if (pElement.scrollHeight > pElement.clientHeight) {
+                                    // If it does, show the "know more" button
+                                    document.write(
+                                        '<p class="d-flex justify-content-end"><a class="btn-link show-more-btn" style="color: #DF8317; font-family: Cairo;" onclick="openEventModal(\'{{ $first_word }} {!! $phrase_without_first_last !!} {{ $last_word_clean }}\', \'{{ $template->getTranslation('main_text', 'en') }}\')">...@lang('file.know_more')</a></p>'
+                                    );
+                                }
+                            </script>
                         </div>
+
+
                         <div class="d-flex justify-content-end align-items-between mt-5 ">
                             <button id="contactButton3" class="btn btn-primary"
                                 style="width:193px;height:50px;font-family: Cairo;
@@ -277,24 +292,56 @@
                                 $phrase_without_last_penultimate = implode(' ', $words);
                             @endphp
                             {!! $phrase_without_last_penultimate !!}
-                            <span style="color: #DF8317;">{{ $penultimate_word_clean }}</span>
-                            <span style="color: #DF8317;">{{ $last_word_clean }}</span>
+                            <span style="color: #DF8317; font-family: Cairo;">{{ $penultimate_word_clean }}</span>
+                            <span style="color: #DF8317; font-family: Cairo;">{{ $last_word_clean }}</span>
                         </p>
-                        <div href="javascript:void(0);"
-                            onclick="openEventModal(' {!! $phrase_without_last_penultimate !!} {{ $penultimate_word_clean }} {{ $last_word_clean }}', '{{ $template->getTranslation('main_text', 'ar') }}')">
-                            <p class="custom-text_2"
-                                style="font-family: Cairo;
-                            font-size: 22px;
-                            font-weight: 400;
-                            line-height: 48px;
-                            letter-spacing: 0em;
-                            text-align: right;
-                            max-height:350px; overflow: hidden;
-                            color:#121743;
-                            ">
-                                {{ $template->getTranslation('main_text', 'ar') }}
+
+                        <p class="custom-text_2"
+                            style="font-family: Cairo;
+                                font-size: 22px;
+                                font-weight: 400;
+                                line-height: 48px;
+                                letter-spacing: 0em;
+                                text-align: right;
+                                max-height:340px; 
+                                        overflow: hidden;
+                                color:#121743;
+                                ">
+                            {{ $template->getTranslation('main_text', 'ar') }}
+                        </p>
+
+                        @if (strlen($template->getTranslation('main_text', 'ar')) > 350)
+                            <p class="d-flex justify-content-end">
+                                <a type="button" data-toggle="modal" data-target="#fullTextModal"
+                                    class="btn-link show-more-btn" style="color: #DF8317; font-family: Cairo;">
+                                    ...@lang('file.know_more')
+                                </a>
                             </p>
-                        </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="fullTextModal" tabindex="-1" role="dialog"
+                                aria-labelledby="fullTextModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="center pr-0 text-right">
+                                                <img src="{{ asset('images/Vector (1).svg') }}">
+                                                <span
+                                                    style="font-family: Cairo;color: #091157; font-size: 16px; font-weight: 667; line-height: 45px; letter-spacing: -0.01em; text-align: start;">
+                                                    {{ $template->getTranslation('main_title', 'ar') }}
+                                                </span>
+                                            </div>
+                                            <p id="event-full-text" class="mt-3"
+                                                style="font-family: Cairo; font-size: 14px; font-weight: 400; line-height: 25px; letter-spacing: 0em; text-align: right; color:#121743;">
+                                                {{ $template->getTranslation('main_text', 'ar') }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+
                         <div class="d-flex justify-content-end align-items-between mt-5 ">
                             <button id="contactButton3" class="btn btn-primary"
                                 style="width:193px;height:50px;font-family: Cairo;
@@ -313,7 +360,7 @@
             </div>
         @endif
     </section>
-
+    <x-2030modal :template="$template" />
     <section class="2030 container" style="max-width: 1400px;margin-bottom: 10rem !important; " id="2030">
         @if (app()->getLocale() == 'ar')
             @foreach ($temp_2023 as $template)
@@ -339,7 +386,7 @@
                             @endphp
 
                             {{ $phrase_without_last }}
-                            <span style="color: #DF8317;">{{ $last_word_clean }}</span>
+                            <span style="color: #DF8317; font-family: Cairo;">{{ $last_word_clean }}</span>
 
                         </p>
                         <p
@@ -352,29 +399,33 @@
                             ">
                             {{ $template->getTranslation('main_sub_title', 'en') }}
                         </p>
-                        <div class="row d-flex justify-content-between align-items-between mt-4 ">
-                            @foreach ($template->getTranslation('items', 'en') as $item)
-                                <div class="col-md-6 ">
+                        <div class="row d-flex justify-content-between align-items-between mt-4"
+                            style="max-height: 250px; overflow: hidden;">
+                            @php
+                                $itemCount = count($template->getTranslation('items', 'en'));
+                            @endphp
 
+                            @foreach ($template->getTranslation('items', 'en') as $item)
+                                <div class="col-md-6">
                                     <div class="d-flex justify-content-end text-center mb-4">
                                         <div
-                                            style="font-family: Cairo;
-                                        font-size: 18px;
-                                        font-weight: 600;
-                                        line-height: 30px;
-                                        letter-spacing: 0em;
-                                        text-align: left;
-                                        color: #121743;
-                                    ">
-                                            {{ $item }}</div>
+                                            style="font-family: Cairo; font-size: 18px; font-weight: 600; line-height: 30px; letter-spacing: 0em; text-align: left; color: #121743;">
+                                            {{ $item }}
+                                        </div>
                                         <img src="{{ asset('images/mark.svg') }}">
                                     </div>
-
                                 </div>
                             @endforeach
 
+
                         </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
+                        @if ($itemCount > 10)
+                            <p class="d-flex justify-content-end">
+                                <a class="btn show-more2-btn" style="display:block;color: #DF8317;"
+                                    onclick="open2030Modal()">...@lang('file.know_more')</a>
+                            </p>
+                        @endif
+                        <div class="d-flex justify-content-end text-center mt-4 mb-4">
                             <button id="ServButton" class="btn btn-primary"
                                 style="width:220px;height:50px;font-family: Cairo;
                                     font-size: 22px;
@@ -386,12 +437,8 @@
                                 {{ $template->getTranslation('button_text', 'en') }}
                             </button>
                         </div>
-
-
                     </div>
-
-
-                    <div class="col-md-6 d-flex justify-content-end">
+                    <div class="col-md-6 d-flex justify-content-end ">
                         <img src="{{ asset('storage/' . $template->image) }}"width="585px" height="578px"
                             class="custom-image-style">
                     </div>
@@ -419,7 +466,7 @@
                                 $phrase_without_last = implode(' ', $words);
                             @endphp
                             {{ $phrase_without_last }}
-                            <span style="color: #DF8317;">{{ $last_word_clean }}</span>
+                            <span style="color: #DF8317; font-family: Cairo;">{{ $last_word_clean }}</span>
                         </p>
                         <p
                             style="font-family: Cairo;
@@ -430,7 +477,11 @@
             text-align: right;">
                             {{ $template->getTranslation('main_sub_title', 'ar') }}
                         </p>
-                        <div class="row d-flex justify-content-between align-items-between mt-4">
+                        @php
+                            $itemCount = count($template->getTranslation('items', 'en'));
+                        @endphp
+                        <div class="row d-flex justify-content-between align-items-between mt-4"
+                            style="max-height: 250px; overflow: hidden;">
                             @foreach ($template->getTranslation('items', 'ar') as $item)
                                 <div class="col-md-5">
                                     <div class="d-flex justify-content-end text-center mb-4">
@@ -449,7 +500,14 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="d-flex justify-content-end text-center mb-4">
+                        @if ($itemCount > 10)
+                            <p class="d-flex justify-content-end">
+                                <a class="btn show-more2-btn" style="display:block;color: #DF8317;"
+                                    onclick="open2030Modal()">...@lang('file.know_more')</a>
+                            </p>
+                        @endif
+
+                        <div class="d-flex justify-content-end text-center mb-4 mt-4">
                             <button id="ServButton" class="btn btn-primary"
                                 style="width:220px;height:50px;font-family: Cairo;
                 font-size: 22px;
@@ -461,7 +519,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="col-md-6 d-flex justify-content-end">
+                    <div class="col-md-6 d-flex justify-content-end mt-4">
                         <img src="{{ asset('storage/' . $template->image_ar) }}"width="595.25px" height="523px"
                             class="custom-image-style">
                     </div>
@@ -469,6 +527,71 @@
             @endforeach
         @endif
     </section>
+    @if (app()->getLocale() == 'ar')
+        <div id="2030-full-text-modal" class="modal" tabindex="-1" role="dialog"
+            aria-labelledby="event-full-text-modal-label">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row d-flex justify-content-between align-items-between mt-4 ">
+                            @if (is_array($template->getTranslation('items', 'en')) && count($template->getTranslation('items', 'en')) > 0)
+                                <!-- Your code for English translation -->
+                                @foreach ($template->getTranslation('items', 'en') as $item)
+                                    <div class="col-md-6">
+                                        <div class="d-flex justify-content-end text-center mb-4">
+                                            <div id="event-full-text-title"
+                                                style="font-family: Cairo; font-size: 18px; font-weight: 600; line-height: 30px; letter-spacing: 0em; text-align: left; color: #121743;">
+                                                {{ $item }}
+                                            </div>
+                                            <img src="{{ asset('images/mark.svg') }}">
+                                        </div>
+
+                                    </div>
+                                @endforeach
+                            @endif
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @else
+        <div id="2030-full-text-modal" class="modal" tabindex="-1" role="dialog"
+            aria-labelledby="event-full-text-modal-label">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row d-flex justify-content-between align-items-between mt-4 ">
+                            @if (is_array($template->getTranslation('items', 'ar')) && count($template->getTranslation('items', 'ar')) > 0)
+                                <!-- Your code for Arabic translation -->
+                                @foreach ($template->getTranslation('items', 'ar') as $item)
+                                    <div class="col-md-6">
+                                        <div class="d-flex justify-content-end text-center mb-4">
+                                            <div
+                                                style="font-family: Cairo; font-size: 18px; font-weight: 600; line-height: 30px; letter-spacing: 0em; text-align: left; color: #121743;">
+                                                {{ $item }}
+                                            </div>
+                                            <img src="{{ asset('images/mark.svg') }}">
+                                        </div>
+
+                                    </div>
+                                @endforeach
+                            @endif
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    @endif
+    <script>
+        function open2030Modal() {
+
+            $('#2030-full-text-modal').modal('show');
+        }
+    </script>
+
     <section class="the_range container d-flex justify-content-center "
         style="background-color: #121743;max-width: 100%;height:155px" id="range">
 
@@ -516,7 +639,7 @@
         @if (app()->getLocale() == 'ar')
             <div class="row justify-content-between mt-10 mb-7">
 
-                <div class="col-md-6  animate-fade-up">
+                <div class="col-md-6 order-1 order-md-0  animate-fade-up">
 
                     <div class="row mt-4 mb-4">
                         <div class="col-md-6">
@@ -716,7 +839,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 animate-fade-in">
+                <div class="col-md-6 order-0 order-md-1 animate-fade-in">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card "
@@ -773,10 +896,18 @@
                                 <img src="{{ asset('images/Vector (1).svg') }}">
                                 <span
                                     style="font-family: Cairo;color: #091157; font-size: 16px; font-weight: 667; line-height: 45px; letter-spacing: -0.01em; text-align: end;">
-                                    @lang('file.Why choose Aknana over')
-                                    <span class="responsive-text1"
-                                        style="color: #DF8317; font-weight: 760">@lang('file.others?')</span>
+                                    @php
+                                        $phrase = $range8->en_title;
+                                        $words = explode(' ', $phrase);
+                                        $last_word = array_pop($words);
+                                        $last_word_clean = rtrim($last_word, '?!.,;:');
+                                        $phrase_without_last = implode(' ', $words);
+                                    @endphp
+
+                                    {{ $phrase_without_last }}
+                                    <span style="color: #DF8317; font-family: Cairo;">{{ $last_word_clean }}</span>
                                 </span>
+
                             </div>
 
                             <div class="center pr-0 text-left mt-2 mb-5 text-left">
@@ -785,6 +916,14 @@
                                     style="max-height:185px; overflow: hidden;font-size: 14px">
                                     {{ $range8->en_text }}
                                 </a>
+                                @if (strlen($range8->en_text) > 185)
+                                    <p class="d-flex justify-content-end">
+                                        <a class="show-more-btn text-end"
+                                            style="color: #DF8317; font-family: Cairo;font-size:14px;"
+                                            id="range8-text"data-toggle="modal"
+                                            data-target="#range8-full-text-modal">...@lang('file.know_more')</a>
+                                    </p>
+                                @endif
                             </div>
                         </div>
 
@@ -896,7 +1035,7 @@
         @else
             <div class="row justify-content-center mt-10 mb-7">
 
-                <div class="col-md-6 d-flex justify-content-end animate-fade-up">
+                <div class="col-md-6 order-1 order-md-0 d-flex justify-content-end animate-fade-up">
 
                     <div class="row mt-4">
                         <div class="col-md-12 ">
@@ -1109,7 +1248,7 @@
 
                 </div>
 
-                <div class="col-md-6 animate-fade-in">
+                <div class="col-md-6 order-0 order-md-1 animate-fade-in">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card"
@@ -1167,9 +1306,16 @@
                                 <img src="{{ asset('images/Vector (1).svg') }}">
                                 <span
                                     style="font-family: Cairo;color: #091157; font-size: 16px; font-weight: 667; line-height: 45px; letter-spacing: -0.01em; text-align: end;">
-                                    @lang('file.Why choose Aknana over')
-                                    <span class="responsive-text1"
-                                        style="color: #DF8317; font-weight: 760">@lang('file.others?')</span>
+                                    @php
+                                        $phrase = $range8->ar_title;
+                                        $words = explode(' ', $phrase);
+                                        $last_word = array_pop($words);
+                                        $last_word_clean = rtrim($last_word, '?!.,;:');
+                                        $phrase_without_last = implode(' ', $words);
+                                    @endphp
+
+                                    {{ $phrase_without_last }}
+                                    <span style="color: #DF8317; font-family: Cairo;">{{ $last_word_clean }}</span>
                                 </span>
                             </div>
 
@@ -1179,6 +1325,14 @@
                                     style="max-height: 185px; overflow: hidden;font-size: 14px">
                                     {{ $range8->ar_text }}
                                 </a>
+                                @if (strlen($range8->ar_text) > 185)
+                                    <p class="d-flex justify-content-end">
+                                        <a class="show-more-btn text-end"
+                                            style="color: #DF8317; font-family: Cairo;font-size:14px;"
+                                            id="range8-text"data-toggle="modal"
+                                            data-target="#range8-full-text-modal">...@lang('file.know_more')</a>
+                                    </p>
+                                @endif
                             </div>
                         </div>
 
@@ -1350,7 +1504,7 @@
                                 @endphp
 
                                 {{ $phrase_without_last }}
-                                <span style="color: #DF8317;">{{ $last_word_clean }}</span>
+                                <span style="color: #DF8317; font-family: Cairo;">{{ $last_word_clean }}</span>
                             </div>
 
                         </div>
@@ -1514,7 +1668,7 @@
                                 @endphp
 
                                 {{ $phrase_without_last }}
-                                <span style="color: #DF8317;">{{ $last_word_clean }}</span>
+                                <span style="color: #DF8317; font-family: Cairo;">{{ $last_word_clean }}</span>
                             </div>
 
                         </div>
@@ -1675,7 +1829,7 @@
                                 @endphp
 
                                 {{ $phrase_without_last }}
-                                <span style="color: #DF8317;">{{ $last_word_clean }}</span>
+                                <span style="color: #DF8317; font-family: Cairo;">{{ $last_word_clean }}</span>
                             </div>
                         </div>
                     </div>
@@ -1758,7 +1912,7 @@
                                 @endphp
 
                                 {{ $phrase_without_last }}
-                                <span style="color: #DF8317;">{{ $last_word_clean }}</span>
+                                <span style="color: #DF8317; font-family: Cairo;">{{ $last_word_clean }}</span>
                             </div>
                         </div>
                     </div>
@@ -1846,7 +2000,7 @@
                                 @endphp
 
                                 {{ $phrase_without_last }}
-                                <span style="color: #DF8317;">{{ $last_word_clean }}</span>
+                                <span style="color: #DF8317; font-family: Cairo;">{{ $last_word_clean }}</span>
                             </div>
                         </div>
                     </div>
@@ -1874,6 +2028,13 @@
                                                             style="max-height:80px; overflow: hidden;font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 25px; letter-spacing: 0em; text-align: center;">
                                                             {{ $event->getTranslation('text', 'en') }}
                                                         </div>
+                                                        @if (strlen($event->getTranslation('text', 'en')) > 80)
+                                                            <p class="d-flex justify-content-end">
+                                                                <a class="btn show-more-btn"
+                                                                    style="font-size:14px;color: #DF8317; font-family: Cairo;"
+                                                                    onclick="openEventModal('{{ $event->getTranslation('title', 'en') }}','{{ $event->getTranslation('text', 'en') }}')">...@lang('file.know_more')</a>
+                                                            </p>
+                                                        @endif
                                                     </a>
                                                 </p>
                                             </div>
@@ -1935,7 +2096,7 @@
                                 @endphp
 
                                 {{ $phrase_without_last }}
-                                <span style="color: #DF8317;">{{ $last_word_clean }}</span>
+                                <span style="color: #DF8317; font-family: Cairo;">{{ $last_word_clean }}</span>
                             </div>
                         </div>
                     </div>
@@ -1968,6 +2129,13 @@
                                                             style="font-family: Cairo; font-size: 16px; font-weight: 400; line-height: 25px; letter-spacing: 0em; text-align: center; max-height:80px; overflow: hidden;">
                                                             {{ $event->getTranslation('text', 'ar') }}
                                                         </div>
+                                                        @if (strlen($event->getTranslation('text', 'ar')) > 80)
+                                                            <p class="d-flex justify-content-end">
+                                                                <a class="btn show-more-btn"
+                                                                    style="font-size:14px;color: #DF8317; font-family: Cairo;"
+                                                                    onclick="openEventModal('{{ $event->getTranslation('title', 'ar') }}','{{ $event->getTranslation('text', 'ar') }}')">...@lang('file.know_more')</a>
+                                                            </p>
+                                                        @endif
                                                     </a>
                                                 </p>
 
@@ -2005,7 +2173,7 @@
                             color:#121743;">
                 <img src="{{ asset('images/Vector (1).svg') }}">
                 @lang('file.Find out what')<span
-                    style="color: #DF8317;font-family: Cairo;
+                    style="color: #DF8317; font-family: Cairo;font-family: Cairo;
                                 font-size: 35px;
                                 font-weight: 667;
                                 line-height: 50px;

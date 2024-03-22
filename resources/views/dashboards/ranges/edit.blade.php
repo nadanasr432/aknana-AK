@@ -87,20 +87,21 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Image -->
-                            <div class="form-group">
-                                <label for="image">@lang('file.Image for Item')</label>
-                                <input id="image" type="file" class="form-control-file" name="image"
-                                    accept="image/*">
-                                @error('image')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                                <img src="{{ asset('storage/' . $range->media()->first()->file_path) }}" width="40px"
-                                    height="40px" alt="Range Image">
-                            </div>
+                            @if ($range->media()->exists() && $range->media()->first()->file_path)
+                                <!-- Image -->
+                                <div class="form-group">
+                                    <label for="image">@lang('file.Image for Item')</label>
+                                    <input id="image" type="file" class="form-control-file" name="image"
+                                        accept="image/*">
+                                    @error('image')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                    <img src="{{ asset('storage/' . $range->media()->first()->file_path) }}" width="40px"
+                                        height="40px" alt="Range Image">
+                                </div>
+                            @endif
 
                             <button type="submit" class="btn btn-gradient-primary me-2">{{ __('Submit') }}</button>
                         </form>
