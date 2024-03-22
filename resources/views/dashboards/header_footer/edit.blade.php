@@ -74,28 +74,24 @@
                                         @else
                                             No image available
                                         @endif
-
-
-                                        <input type="file" id="header_image" name="header_image"
-                                            class="form-control-file" accept="image/*">
+                                        <input type="file" name="images[]" id="images" class="form-control-file"
+                                            multiple accept="image/*">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="footer_image"> @lang('file.Footer Image')</label>
-
-
-
-                                        @if ($header->images()->exists())
-                                            <img src="{{ asset('storage/' . $header->images()->get()->last()->file_path) }}"
-                                                width="40px" height="40px">
+                                        <label for="footer_image">@lang('file.Footer Image')</label>
+                                        @if ($header->footer_image)
+                                            <img src="{{ asset('storage/' . $header->footer_image) }}" width="40px"
+                                                height="40px">
                                         @else
                                             No image available
                                         @endif
-                                        <input type="file" id="footer_image" name="footer_image"
+                                        <input type="file" name="footer_image" id="footer_image"
                                             class="form-control-file" accept="image/*">
                                     </div>
                                 </div>
+
                             </div>
                             <div class="row">
                                 <div class="col-md-6">

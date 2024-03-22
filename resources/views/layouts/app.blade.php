@@ -57,7 +57,7 @@
     }
 
     footer {
-        background-image: url('{{ asset('storage/' . $header->images()->get()->last()->file_path) }}');
+        background-image: url('{{ asset('storage/' . $header->footer_image) }}');
         background-size: cover;
         background-repeat: no-repeat;
         padding-top: 90px;
@@ -187,6 +187,11 @@
 
     }
 
+    #actionButton:hover {
+        color: #FFFFFF;
+        background-color: #121743;
+        border: #121743;
+    }
 
     @media (max-width: 767px) {
         .navbar-nav {
@@ -216,6 +221,12 @@
         .navbar-nav .nav-item.active a:hover {
             color: #bebebe;
             /* Set text color for the hover state */
+        }
+
+        #actionButton:hover {
+            color: #FFFFFF;
+            background-color: #121743;
+            border: #121743;
         }
 
     }

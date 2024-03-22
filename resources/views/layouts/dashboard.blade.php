@@ -6,13 +6,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Aknana Admin</title>
+    <link rel="icon" href="{{ asset('images/logo 4 (1).png') }}" type="image/png">
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href='{{ asset('assets/vendors/css/vendor.bundle.base.css') }}'>
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}" />
+   
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -189,74 +190,18 @@
                             <i class="mdi mdi-home menu-icon"></i>
                         </a>
                     </li>
-                    <li class="nav-item {{ Request::is('admin/courses*') ? 'active' : '' }}">
-                        <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('programs')">
-                            <span class="menu-title">@lang('file.Programs')</span>
+                     <li class="nav-item {{ Request::is('admin/header*') ? 'active' : '' }}">
+                        <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('header')">
+                            <span class="menu-title">@lang('file.Header and Footer')</span>
                             <i class="menu-arrow"></i>
-                            <i class="mdi mdi-library menu-icon"></i>
+                            <i class="mdi mdi-settings-box menu-icon"></i>
                         </a>
-                        <div class="sub-menu" id="programs">
+                        <div class="sub-menu" id="header">
                             <ul class="nav flex-column sub-menu1">
-                                <li class="nav-item {{ Request::is('admin/courses/Create') ? 'active' : '' }}"><a
-                                        class="nav-link"
-                                        href="{{ route('dashboard.courses.create') }}">@lang('file.Create')</a>
-                                </li>
-                                <li class="nav-item {{ Request::is('admin/courses/show') ? 'active' : '' }}"><a
-                                        class="nav-link" href="{{ route('dashboard.courses.index') }}">
-                                        @lang('file.All Programs')</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item {{ Request::is('admin/reservation*') ? 'active' : '' }}">
-                        <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('reservations')">
-                            <span class="menu-title">@lang('file.Reservations')</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-contact-mail menu-icon"></i>
-                        </a>
-                        <div class="sub-menu" id="reservations">
-                            <ul class="nav flex-column sub-menu1">
-                                <li class="nav-item {{ Request::is('admin/reservation/Create') ? 'active' : '' }}"><a
-                                        class="nav-link"
-                                        href="{{ route('dashboard.reservation.create') }}">@lang('file.Create')</a></li>
-                                <li class="nav-item {{ Request::is('admin/reservation/show') ? 'active' : '' }}"><a
-                                        class="nav-link" href="{{ route('dashboard.reservation.index') }}">
-                                        @lang('file.All Reservations')</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item {{ Request::is('admin/event*') ? 'active' : '' }}">
-                        <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('events')">
-                            <span class="menu-title">@lang('file.Events')</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-calendar-check menu-icon"></i>
-                        </a>
-                        <div class="sub-menu" id="events">
-                            <ul class="nav flex-column sub-menu1">
-                                <li class="nav-item {{ Request::is('admin/event/Create') ? 'active' : '' }}"><a
-                                        class="nav-link"
-                                        href="{{ route('dashboard.event.create') }}">@lang('file.Create')</a></li>
-                                <li class="nav-item {{ Request::is('admin/event/show') ? 'active' : '' }}"><a
-                                        class="nav-link"
-                                        href="{{ route('dashboard.event.index') }}">@lang('file.All Events')</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item {{ Request::is('admin/project*') ? 'active' : '' }}">
-                        <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('projects')">
-                            <span class="menu-title">@lang('file.Projects')</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi  mdi-bulletin-board menu-icon"></i>
-                        </a>
-                        <div class="sub-menu" id="projects">
-                            <ul class="nav flex-column sub-menu1">
-                                <li class="nav-item {{ Request::is('admin/project/Create') ? 'active' : '' }}"><a
-                                        class="nav-link"
-                                        href="{{ route('dashboard.project.create') }}">@lang('file.Create')</a>
-                                </li>
-                                <li class="nav-item {{ Request::is('admin/project/show') ? 'active' : '' }}"><a
-                                        class="nav-link" href="{{ route('dashboard.project.index') }}">
-                                        @lang('file.All Projects')</a></li>
+
+                                <li class="nav-item {{ Request::is('admin/header/show') ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ route('dashboard.header.index') }}">
+                                        @lang('file.Details')</a></li>
                             </ul>
                         </div>
                     </li>
@@ -278,6 +223,7 @@
                             </ul>
                         </div>
                     </li>
+                     
                     <li class="nav-item {{ Request::is('admin/ranges*') ? 'active' : '' }}">
                         <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('ranges')">
                             <span class="menu-title">@lang('file.Ranges')</span>
@@ -296,18 +242,89 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="nav-item {{ Request::is('admin/header*') ? 'active' : '' }}">
-                        <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('header')">
-                            <span class="menu-title">@lang('file.Header and Footer')</span>
+                     <li class="nav-item {{ Request::is('admin/project*') ? 'active' : '' }}">
+                        <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('projects')">
+                            <span class="menu-title">@lang('file.Projects')</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi  mdi-bulletin-board menu-icon"></i>
+                        </a>
+                        <div class="sub-menu" id="projects">
+                            <ul class="nav flex-column sub-menu1">
+                                <li class="nav-item {{ Request::is('admin/project/Create') ? 'active' : '' }}"><a
+                                        class="nav-link"
+                                        href="{{ route('dashboard.project.create') }}">@lang('file.Create')</a>
+                                </li>
+                                <li class="nav-item {{ Request::is('admin/project/show') ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ route('dashboard.project.index') }}">
+                                        @lang('file.All Projects')</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item {{ Request::is('admin/courses*') ? 'active' : '' }}">
+                        <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('programs')">
+                            <span class="menu-title">@lang('file.Programs')</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-library menu-icon"></i>
+                        </a>
+                        <div class="sub-menu" id="programs">
+                            <ul class="nav flex-column sub-menu1">
+                                <li class="nav-item {{ Request::is('admin/courses/Create') ? 'active' : '' }}"><a
+                                        class="nav-link"
+                                        href="{{ route('dashboard.courses.create') }}">@lang('file.Create')</a>
+                                </li>
+                                <li class="nav-item {{ Request::is('admin/courses/show') ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ route('dashboard.courses.index') }}">
+                                        @lang('file.All Programs')</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item {{ Request::is('admin/event*') ? 'active' : '' }}">
+                        <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('events')">
+                            <span class="menu-title">@lang('file.Events')</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-calendar-check menu-icon"></i>
+                        </a>
+                        <div class="sub-menu" id="events">
+                            <ul class="nav flex-column sub-menu1">
+                                <li class="nav-item {{ Request::is('admin/event/Create') ? 'active' : '' }}"><a
+                                        class="nav-link"
+                                        href="{{ route('dashboard.event.create') }}">@lang('file.Create')</a></li>
+                                <li class="nav-item {{ Request::is('admin/event/show') ? 'active' : '' }}"><a
+                                        class="nav-link"
+                                        href="{{ route('dashboard.event.index') }}">@lang('file.All Events')</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item {{ Request::is('admin/reservation*') ? 'active' : '' }}">
+                        <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('reservations')">
+                            <span class="menu-title">@lang('file.Reservations')</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-contact-mail menu-icon"></i>
+                        </a>
+                        <div class="sub-menu" id="reservations">
+                            <ul class="nav flex-column sub-menu1">
+                                <li class="nav-item {{ Request::is('admin/reservation/Create') ? 'active' : '' }}"><a
+                                        class="nav-link"
+                                        href="{{ route('dashboard.reservation.create') }}">@lang('file.Create')</a></li>
+                                <li class="nav-item {{ Request::is('admin/reservation/show') ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ route('dashboard.reservation.index') }}">
+                                        @lang('file.All Reservations')</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item {{ Request::is('admin/templates*') ? 'active' : '' }}">
+                        <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('templates')">
+                            <span class="menu-title">@lang('file.Templates')</span>
                             <i class="menu-arrow"></i>
                             <i class="mdi mdi-settings-box menu-icon"></i>
                         </a>
-                        <div class="sub-menu" id="header">
+                        <div class="sub-menu" id="templates">
                             <ul class="nav flex-column sub-menu1">
 
-                                <li class="nav-item {{ Request::is('admin/header/show') ? 'active' : '' }}"><a
-                                        class="nav-link" href="{{ route('dashboard.header.index') }}">
-                                        @lang('file.Details')</a></li>
+                                <li class="nav-item {{ Request::is('admin/templates/show') ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ route('templates.index') }}">
+                                        @lang('file.All Templates')</a></li>
                             </ul>
                         </div>
                     </li>

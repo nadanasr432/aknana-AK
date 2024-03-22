@@ -218,6 +218,29 @@ return [
   "Edit Items"=> "Edit Items",
   "All ranges"=> "All ranges",
   "Range Image"=> "Range Image",
+  "URL"=> "URL",
+  "Template"=> "Title",
+  "Templates Table"=> "Titles Table",
+  "Name (English)"=> "Name (English)",
+  "Name(Arabic)"=> "Name(Arabic)",
+  "Main Title (Arabic)"=> "Main Title (Arabic)",
+  "Main Title (English)"=> "Main Title (English)",
+  "Main Sub Title (English)"=> "Main Sub Title (English)",
+  "Main Sub Title (Arabic)"=> "Main Sub Title (Arabic)",
+  "Main Text (English)"=> "Main Text (English)",
+  "Main Text (Arabic)"=> "Main Text (Arabic)",
+  "Button Text (English)"=> "Button Text (English)",
+  "Button Text (Arabic)"=> "Button Text (Arabic)",
+  "Item (English)"=> "Item (English)",
+  "Item (Arabic)"=> "Item (Arabic)",
+  "Image En"=> "Image En",
+  "Image Ar"=> "Image Ar",
+  "Templates"=> "Templates",
+  "All Templates"=> "All Titles",
+  "Edit Templates" => "Edit Title"
+
+
+
 
 
 

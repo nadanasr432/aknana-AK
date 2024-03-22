@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Media;
 use App\Models\Course;
 use App\Models\Header;
-use App\Models\Reservation;
+use App\Models\Template;
 
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -19,6 +20,7 @@ class ReservationsController extends Controller
     public function index()
     {
         $courses = Course::all();
+        $temp_reservations = Template::where('name->en', 'Aknana Reservations')->get();
 
         $availableCourses = $courses->filter(function ($course) {
             $maleCount = $course->reservations()->where('gender', 'male')->count();
@@ -33,7 +35,7 @@ class ReservationsController extends Controller
         //  dd($selectedCourse);
         $header = Header::first();
 
-        return view('reservations.create', compact('availableCourses', 'selectedCourse', 'header'));
+        return view('reservations.create', compact('availableCourses', 'temp_reservations' ,'selectedCourse', 'header'));
     }
 
     public function store(Request $request)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\Course;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -136,7 +137,10 @@ class CoursesController extends Controller
             'male_count' => 'required|integer',
             'female_count' => 'required|integer',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'prefix_number' => 'required|unique:courses,prefix_number',
+            'prefix_number' => [
+                'required',
+                Rule::unique('courses')->ignore($id),
+            ],
         ]);
         $prefixNumber = $request->input('prefix_number', Str::uuid()->toString());
         $course->update([

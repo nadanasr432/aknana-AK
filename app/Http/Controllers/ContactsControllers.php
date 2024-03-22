@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Header;
+use App\Models\Template;
 use App\Models\ContactUs;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,8 @@ class ContactsControllers extends Controller
     public function index()
     {
         $header = Header::first();
-        return view('contactUs.create', compact('header'));
+        $temp_contactUs = Template::where('name->en', 'Contact Us')->get();
+        return view('contactUs.create', compact('header', 'temp_contactUs'));
     }
     public function store(Request $request)
     {

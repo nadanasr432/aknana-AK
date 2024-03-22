@@ -18,15 +18,22 @@
 
 
             <div class="d-flex justify-content-start text-left mt-5 mb-2">
-                <div class="center mt-5 "
+                @foreach ($temp_program as $template)
+                <div class="text mt-2 mb-5"
                     style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align:left; color:#121743;">
+                    @php
+                    $phrase = $template->getTranslation('main_title', 'en');
+                    $words = explode(' ', $phrase);
+                    $last_word = array_pop($words);
+                    $last_word_clean = rtrim($last_word, '?!.,;:');
+                    $phrase_without_last = implode(' ', $words);
+                @endphp
 
+                {{ $phrase_without_last }}
+                <span style="color: #DF8317;">{{ $last_word_clean }}</span>
                     <img src="{{ asset('images/Vector (1).svg') }}">
-                    <span
-                        style="color: #DF8317; font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: left;">
-                        @lang('file.Programs')
-                    </span>
                 </div>
+                @endforeach
 
             </div>
             <div>
@@ -147,15 +154,23 @@
 
 
             <div class="d-flex justify-content-end text-right mt-5 mb-2">
-                <div class="center mt-5 "
-                    style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right; color:#121743;">
+                 @foreach ($temp_program as $template)
+            <div class="center mt-2 mb-5"
+                style="font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right; color:#121743;">
 
-                    <img src="{{ asset('images/Vector (1).svg') }}">
-                    <span
-                        style="color: #DF8317; font-family: Cairo; font-size: 40px; font-weight: 667; line-height: 75px; letter-spacing: -0.01em; text-align: right;">
-                        @lang('file.Programs')
-                    </span>
-                </div>
+                <img src="{{ asset('images/Vector (1).svg') }}">
+                @php
+                    $phrase = $template->getTranslation('main_title', 'ar');
+                    $words = explode(' ', $phrase);
+                    $last_word = array_pop($words);
+                    $last_word_clean = rtrim($last_word, '?!.,;:');
+                    $phrase_without_last = implode(' ', $words);
+                @endphp
+
+                {{ $phrase_without_last }}
+                <span style="color: #DF8317;">{{ $last_word_clean }}</span>
+            </div>
+        @endforeach
 
             </div>
             <div>

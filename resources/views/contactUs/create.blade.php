@@ -19,63 +19,58 @@
 
                     <form action="{{ route('contactUs.store') }}" method="POST">
                         @csrf
+                        @foreach ($temp_contactUs as $template)
                         <div class="form-row justify-content-center mt-3">
                             <div class="form-group mb-4 col-md-10 text-left">
 
                                 <div class="text-left  mt-2"
                                     style="font-family: Cairo;
-                        font-size: 25px;
-                        font-weight: 667;
-                        line-height: 50px;
-                        letter-spacing: 0em;
-                        text-align: center;
-                        color:#DF8317;
-                    ">
+                                            font-size: 25px;
+                                            font-weight: 667;
+                                            line-height: 50px;
+                                            letter-spacing: 0em;
+                                            text-align: center;
+                                            color:#DF8317;
+                                        ">
 
-                                    @lang('file.Contact Us')
+                                  {{ $template->getTranslation('main_title', 'en') }}
                                     <img src="{{ asset('images/Vector (1).svg') }}">
                                 </div>
                                 <div id="contact-text" class="text-left  mt-3"
                                     style="font-family: Cairo;
-                    font-size: 40px;
-                    font-weight: 400;
-                    line-height: 50px;
-                    letter-spacing: 0em;
-                    text-align: center;
+                                        font-size: 40px;
+                                        font-weight: 400;
+                                        line-height: 50px;
+                                        letter-spacing: 0em;
+                                        text-align: center;
 
-                    color:#121743;
-                    ">
-                                    @lang('file.Aknana is always fully ')<span id="contact-text2"
-                                        style="color: #DF8317;
-                        font-family: Cairo;
-                        font-size: 40px;
-                        font-weight: 600;
-                        line-height: 50px;
-                        letter-spacing: 0em;
-                        text-align: center;
+                                        color:#121743;
+                                        ">
+                                    @php
+                                    $phrase = $template->getTranslation('main_sub_title', 'en');
+                                    $words = explode(' ', $phrase);
+                                    $last_word = array_pop($words);
+                                    $last_word_clean = rtrim($last_word, '?!.,;:');
+                                    $phrase_without_last = implode(' ', $words);
+                                @endphp
 
-                        font-family: Cairo;
-                        font-size: 40px;
-                        font-weight: 400;
-                        line-height: 50px;
-                        letter-spacing: 0em;
-                        text-align: center;
-                    ">
-                                        @lang('file.prepared')</span>
+                                {{ $phrase_without_last }}
+                                <span style="color: #DF8317;">{{ $last_word_clean }}</span>
                                 </div>
                                 <div class="text-left  mt-4 mb-2"
                                     style="font-family: Almarai;
-                    font-size: 25px;
-                    font-weight: 400;
-                    line-height: 50px;
-                    letter-spacing: 0em;
-                    text-align: left;
-                    color:#7B7B7B;
-                    ">
-                                    @lang('file.Thank you for contacting us. We will contact you as soon as possible')
+                                        font-size: 25px;
+                                        font-weight: 400;
+                                        line-height: 50px;
+                                        letter-spacing: 0em;
+                                        text-align: left;
+                                        color:#7B7B7B;
+                                        ">
+                                    {{ $template->getTranslation('main_text', 'en') }}
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                         <!-- First line with one input field -->
                         <div class="form-row justify-content-center">
                             <div class="form-group mb-4 col-md-10 text-left">
@@ -139,6 +134,7 @@
 
                     <form action="{{ route('contactUs.store') }}" method="POST">
                         @csrf
+                        @foreach ($temp_contactUs as $template)
                         <div class="form-row justify-content-center mt-3">
                             <div class="form-group mb-4 col-md-10 text-right">
 
@@ -152,7 +148,7 @@
                         color:#DF8317;
                     ">
                                     <img src="{{ asset('images/Vector (1).svg') }}">
-                                    @lang('file.Contact Us')
+                                    {{ $template->getTranslation('main_title', 'ar') }}
                                 </div>
                                 <div id="contact-text" class="text-right  mt-3"
                                     style="font-family: Cairo;
@@ -164,23 +160,16 @@
 
                     color:#121743;
                     ">
-                                    @lang('file.Aknana is always fully ')<span id="contact-text2"
-                                        style="color: #DF8317;
-                        font-family: Cairo;
-                        font-size: 40px;
-                        font-weight: 600;
-                        line-height: 50px;
-                        letter-spacing: 0em;
-                        text-align: center;
+                                    @php
+                                    $phrase = $template->getTranslation('main_sub_title', 'ar');
+                                    $words = explode(' ', $phrase);
+                                    $last_word = array_pop($words);
+                                    $last_word_clean = rtrim($last_word, '?!.,;:');
+                                    $phrase_without_last = implode(' ', $words);
+                                @endphp
 
-                        font-family: Cairo;
-                        font-size: 40px;
-                        font-weight: 400;
-                        line-height: 50px;
-                        letter-spacing: 0em;
-                        text-align: center;
-                    ">
-                                        @lang('file.prepared')</span>
+                                {{ $phrase_without_last }}
+                                <span style="color: #DF8317;">{{ $last_word_clean }}</span>
                                 </div>
                                 <div class="text-right  mt-4 mb-2"
                                     style="font-family: Almarai;
@@ -191,10 +180,11 @@
                     text-align: right;
                     color:#7B7B7B;
                     ">
-                                    @lang('file.Thank you for contacting us. We will contact you as soon as possible')
+                                   {{ $template->getTranslation('main_text', 'ar') }}
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                         <!-- First line with one input field -->
                         <div class="form-row justify-content-center">
                             <div class="form-group mb-4 col-md-10 text-right">

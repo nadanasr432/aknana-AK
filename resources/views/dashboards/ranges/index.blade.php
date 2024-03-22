@@ -9,7 +9,7 @@
             </h3>
             <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
-{{-- 
+                    {{-- 
                     <li class="breadcrumb-item active" aria-current="page">
                         <a href="{{ route('ranges.create') }}" class="btn btn-gradient-primary me-2">
                             @lang('file.Create range')</a>
@@ -45,7 +45,15 @@
                                         <td>{{ $range->ar_title }}</td>
                                         <td>{{ $range->en_text }}</td>
                                         <td>{{ $range->ar_text }}</td>
-                                        <td><img src="{{ asset('storage/' . $range->media()->first()->file_path) }}"></td>
+                                        <td>
+                                            @if ($range->media()->exists())
+                                                <img src="{{ asset('storage/' . $range->media()->first()->file_path) }}">
+                                            @else
+                                                <!-- Handle case where there are no associated media files -->
+                                                No media available
+                                            @endif
+                                        </td>
+
                                         <td>
                                             <div class="dropdown">
                                                 <i class="mdi mdi-dots-vertical" id="dropdownMenuButton"
