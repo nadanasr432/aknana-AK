@@ -51,6 +51,13 @@
 
                             <div class="row">
                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="url"> @lang('file.URL')</label>
+                                        <input type="text" name="url" id="url" class="form-control" required
+                                            value="{{ old('url') }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="image"> @lang('file.Project Image')</label>
                                         <input type="file" name="images[]" id="images" class="form-control-file"

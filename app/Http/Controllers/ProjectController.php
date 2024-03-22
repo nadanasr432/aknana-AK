@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Header;
 use App\Models\Project;
+use App\Models\Template;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -10,8 +12,10 @@ use Illuminate\Support\Facades\Storage;
 class ProjectController extends Controller
 {
      public function index(){
-        $Projects=Project::all( );  
-        return view('project.index ',compact( 'Projects')); 
+        $Projects=Project::all( );
+        $header = Header::first();
+        $temp_projects = Template::where('name->en', 'Projects')->get();
+        return view('project.index ',compact( 'Projects', 'header', 'temp_projects')); 
      }
      public function create(){
         return view('project.create ');

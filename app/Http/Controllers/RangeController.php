@@ -78,7 +78,7 @@ class RangeController extends Controller
             $imagePath = $request->file('image')->store('range_images', 'public');
             $range->media()->delete(); // Remove previous image
             $media = new Media();
-            $media->path = $imagePath;
+            $media->file_path = $imagePath;
             $range->media()->save($media);
         }
 
@@ -86,4 +86,5 @@ class RangeController extends Controller
 
         return redirect()->route('ranges.index')->with('success', 'Range updated successfully');
     }
+
 }

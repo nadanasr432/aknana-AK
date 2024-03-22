@@ -32,6 +32,7 @@
                                 <tr>
                                     <th>@lang('file.Title (English)')</th>
                                     <th>@lang('file.Title (Arabic)')</th>
+                                    <th>@lang('file.URL')</th>
                                     <th> @lang('file.Project Image')</th>
                                 </tr>
                             </thead>
@@ -40,6 +41,7 @@
                                     <tr>
                                         <td>{{ $project->getTranslation('title', 'en') }}</td>
                                         <td>{{ $project->getTranslation('title', 'ar') }}</td>
+                                        <td><a href="{{ $project->url }}" >{{ $project->url }}</a></td>
                                         <td><img src="{{ asset('storage/' . $project->images()->first()->file_path) }}">
                                         </td>
 

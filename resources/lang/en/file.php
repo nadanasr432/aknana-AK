@@ -189,9 +189,9 @@ return [
   "Service Image" => "صورة الخدمة",
   "Contacts Table" => "جدول جهات الاتصال",
   "Text" => "النص",
-  "All Contacts"=> "كل الاتصالات",
+  "All Contacts" => "كل الاتصالات",
   "Status" => "الحالة",
-  "Prefix Number"=>"ID",
+  "Prefix Number" => "ID",
   "Show" => "عرض",
   "Search Results" => "نتائج البحث",
   "Search by course name" => "البحث بأسم الدورة",
@@ -215,7 +215,27 @@ return [
   "Edit Items" => "تحرير العناصر",
   "All ranges" => "كل النطاقات",
   "Range Image" => " صورة النطاق",
-  
+  "URL" => "اللينك",
+  "Template" => "العنوان",
+  "Templates Table" => "جدول العناوين",
+  "Name (English)" => "الاسم (إنجليزي)",
+  "Name(Arabic)" => "الاسم (عربي)",
+  "Main Title (Arabic)" => "العنوان الرئيسي (العربية)",
+  "Main Title (English)" => "العنوان الرئيسي (الإنجليزية)",
+  "Main Sub Title (English)" => "العنوان الفرعي الرئيسي (الإنجليزية)",
+  "Main Sub Title (Arabic)" => "العنوان الفرعي الرئيسي (العربية)",
+  "Main Text (English)" => "النص الرئيسي (الإنجليزية)",
+  "Main Text (Arabic)" => "النص الرئيسي (عربي)",
+  "Button Text (English)" => "نص الزر (الإنجليزية)",
+  "Button Text (Arabic)" => "نص الزر (عربي)",
+  "Item (English)" => "العنصر (الإنجليزية)",
+  "Item (Arabic)" => "العنصر (عربي)",
+  "Image En" => "صورة En",
+  "Image Ar" => "صورة AR",
+  "Templates" => " العناوين",
+  "All Templates" => "جميع العناوين",
+  "Edit Template" => "تعديل العناوين"
+
 
 
 

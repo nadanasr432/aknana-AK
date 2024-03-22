@@ -182,7 +182,7 @@
                                     @foreach ($course->reservations->where('gender', 'male') as $reservation)
                                         <tr>
                                             <td>
-                                                @php
+                                                 @php
                                                     // Get the male and female counts up to the current reservation
                                                     $maleCount = $reservation->course
                                                         ->reservations()
@@ -206,7 +206,6 @@
                                                 @endphp
                                                 {{ $arrangementNumber }}
                                             </td>
-
                                             <td>{{ $reservation->course->getTranslation('name', 'en') }}</td>
                                             <td>{{ $reservation->course->date_of_course }}</td>
                                             <td>{{ $reservation->name }}</td>
@@ -243,35 +242,29 @@
                                         <tr>
                                             <td>
                                                 @php
+                                                    // Get the male and female counts up to the current reservation
                                                     $maleCount = $reservation->course
                                                         ->reservations()
                                                         ->where('gender', 'male')
+                                                        ->where('id', '<=', $reservation->id)
                                                         ->count();
                                                     $femaleCount = $reservation->course
                                                         ->reservations()
                                                         ->where('gender', 'female')
+                                                        ->where('id', '<=', $reservation->id)
                                                         ->count();
-
-                                                    // Increment the count for the current reservation based on gender
-                                                    if ($reservation->gender == 'male') {
-                                                        $reservationCount = $maleCount;
-                                                        ++$maleCount; // Increment male count for the next reservation
-                                                    } else {
-                                                        $reservationCount = $femaleCount;
-                                                        ++$femaleCount; // Increment female count for the next reservation
-                                                    }
 
                                                     // Determine the gender letter ('M' for male, 'F' for female)
                                                     $genderLetter = $reservation->gender == 'male' ? 'M' : 'F';
 
-                                                    // Concatenate the prefix number, gender letter, and reservation count to get the final arrangement number
-                                                    $prefixNumber = $reservation->course->prefix_number;
+                                                    // Determine the arrangement number based on the gender count
                                                     $arrangementNumber =
-                                                        $prefixNumber . $genderLetter . $reservationCount;
+                                                        $reservation->course->prefix_number .
+                                                        $genderLetter .
+                                                        ($reservation->gender == 'male' ? $maleCount : $femaleCount);
                                                 @endphp
                                                 {{ $arrangementNumber }}
                                             </td>
-
 
                                             <td>{{ $reservation->course->getTranslation('name', 'ar') }}</td>
                                             <td>{{ $reservation->course->date_of_course }}</td>
@@ -401,35 +394,29 @@
                                         <tr>
                                             <td>
                                                 @php
+                                                   
                                                     $maleCount = $reservation->course
                                                         ->reservations()
                                                         ->where('gender', 'male')
+                                                        ->where('id', '<=', $reservation->id)
                                                         ->count();
                                                     $femaleCount = $reservation->course
                                                         ->reservations()
                                                         ->where('gender', 'female')
+                                                        ->where('id', '<=', $reservation->id)
                                                         ->count();
-
-                                                    // Increment the count for the current reservation based on gender
-                                                    if ($reservation->gender == 'male') {
-                                                        $reservationCount = $maleCount;
-                                                        ++$maleCount; // Increment male count for the next reservation
-                                                    } else {
-                                                        $reservationCount = $femaleCount;
-                                                        ++$femaleCount; // Increment female count for the next reservation
-                                                    }
 
                                                     // Determine the gender letter ('M' for male, 'F' for female)
                                                     $genderLetter = $reservation->gender == 'male' ? 'M' : 'F';
 
-                                                    // Concatenate the prefix number, gender letter, and reservation count to get the final arrangement number
-                                                    $prefixNumber = $reservation->course->prefix_number;
+                                                    // Determine the arrangement number based on the gender count
                                                     $arrangementNumber =
-                                                        $prefixNumber . $genderLetter . $reservationCount;
+                                                        $reservation->course->prefix_number .
+                                                        $genderLetter .
+                                                        ($reservation->gender == 'male' ? $maleCount : $femaleCount);
                                                 @endphp
                                                 {{ $arrangementNumber }}
                                             </td>
-
 
                                             <td>{{ $reservation->course->getTranslation('name', 'ar') }}</td>
                                             <td>{{ $reservation->course->date_of_course }}</td>

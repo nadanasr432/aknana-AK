@@ -49,7 +49,7 @@ class HeaderController extends Controller
         $header->images()->create(['file_path' => $headerImage]);
 
         $footerImage = $request->file('footer_image')->store('footer_image', 'public');
-       
+        
         $header->images()->create(['file_path' => $footerImage]);
 
         return redirect()->back()->with('success', 'Header content stored successfully.');
@@ -60,7 +60,7 @@ class HeaderController extends Controller
         return view('dashboards.header_footer.edit', compact('header'));
     }
 
-  
+
 
     public function update(Request $request, Header $header)
     {
@@ -69,8 +69,9 @@ class HeaderController extends Controller
             'title.ar' => 'required|string|max:255',
             'text.en' => 'required|string',
             'text.ar' => 'required|string',
-            'header_image' => 'image',
-            'footer_image' => 'image',
+            'images' => 'array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'footer_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validation for footer_image
         ]);
 
         $data = [
@@ -83,33 +84,23 @@ class HeaderController extends Controller
                 'ar' => $request->input('text.ar'),
             ],
         ];
-
-        // Handle header image
-        if ($request->hasFile('header_image')) {
-            // Delete existing header image
-            if ($header->images()->where('type', 'header')->exists()) {
-                $existingHeaderImage = $header->images()->where('type', 'header')->first();
-                Storage::disk('public')->delete($existingHeaderImage->file_path);
-                $existingHeaderImage->delete();
+        if ($request->hasFile('images')) { 
+            $header->images()->delete();
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('header_images', 'public');
+                $header->images()->create([
+                    'file_path' => $path,
+                ]);
             }
-
-            // Store new header image
-            $headerImage = $request->file('header_image')->store('header_images', 'public');
-            $header->images()->create(['type' => 'header', 'file_path' => $headerImage]);
         }
 
-        // Handle footer image
-        if ($request->hasFile('footer_image')) {
-            // Delete existing footer image
-            if ($header->images()->where('type', 'footer')->exists()) {
-                $existingFooterImage = $header->images()->where('type', 'footer')->first();
-                Storage::disk('public')->delete($existingFooterImage->file_path);
-                $existingFooterImage->delete();
-            }
 
-            // Store new footer image
-            $footerImage = $request->file('footer_image')->store('footer_images', 'public');
-            $header->images()->create(['type' => 'footer', 'file_path' => $footerImage]);
+        if ($request->hasFile('footer_image')) {
+            $path = $request->file('footer_image')->store('footer_images', 'public');
+            if ($header->footer_image) {
+                Storage::disk('public')->delete($header->footer_image);
+            }
+            $header->footer_image = $path;
         }
 
         $header->update($data);

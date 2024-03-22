@@ -23,18 +23,18 @@ class ProjectsController extends Controller
         $request->validate([
             'title.ar' => 'required|string|max:255',
             'title.en' => 'required|string|max:255',
+            'url' => 'required|url|max:255',
             'images' => 'array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
 
         $project = Project::create([
             'title' => [
                 'en' => $request->input('title.en'),
                 'ar' => $request->input('title.ar'),
             ],
+            'url' => $request->input('url'),
         ]);
-
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
@@ -55,40 +55,41 @@ class ProjectsController extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    $project = Project::findOrFail($id);
+    {
+        $project = Project::findOrFail($id);
 
-    $request->validate([
-        'title.ar' => 'required|string|max:255',
-        'title.en' => 'required|string|max:255',
-        'images' => 'array',
-        'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    ]);
+        $request->validate([
+            'title.ar' => 'required|string|max:255',
+            'title.en' => 'required|string|max:255',
+            'url' => 'required|url|max:255',
+            'images' => 'array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
-    $project->update([
-        'title' => [
-            'en' => $request->input('title.en'),
-            'ar' => $request->input('title.ar'),
-        ],
-    ]);
+        $project->update([
+            'title' => [
+                'en' => $request->input('title.en'),
+                'ar' => $request->input('title.ar'),
+            ],
+            'url' => $request->input('url'),
+        ]);
 
-    // Remove existing images
-   
+       
 
-    // Add new images
-    if ($request->hasFile('images')) {
-         $project->images()->delete();
-        foreach ($request->file('images') as $image) {
-            $path = $image->store('project_images', 'public');
+        // Add new images
+        if ($request->hasFile('images')) {
+            $project->images()->delete();
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('project_images', 'public');
 
-            $project->images()->create([
-                'file_path' => $path,
-            ]);
+                $project->images()->create([
+                    'file_path' => $path,
+                ]);
+            }
         }
-    }
 
-    return redirect()->route('dashboard.project.index')->with('success', 'Project updated successfully');
-}
+        return redirect()->route('dashboard.project.index')->with('success', 'Project updated successfully');
+    }
 
 
     public function destroy($id)

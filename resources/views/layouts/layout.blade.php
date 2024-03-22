@@ -329,7 +329,7 @@
             .content-text1 {
                 font-size: 12px !important;
 
-                line-height: 20px !important;
+                line-height: 35px !important;
 
             }
 
@@ -337,7 +337,7 @@
                 margin-bottom: 30px;
                 font-size: 25px !important;
 
-                line-height: 20px !important;
+                line-height: 30px !important;
 
             }
 
@@ -382,8 +382,8 @@
 
 
         footer {
-            
-            background-image: url('{{ asset('storage/' . $header->images()->get()->last()->file_path) }}');
+
+            background-image: url('{{ asset('storage/' . $header->footer_image) }}');
             background-size: cover;
             background-repeat: no-repeat;
             padding-top: 90px;
@@ -508,17 +508,18 @@
                     style="font-family: Cairo;
                 font-size: 45px;
                 font-weight: 600;
-                line-height: 74px;
+                line-height: 90px;
                 letter-spacing: 0.02em;
                 text-align: center;
                 color:#FFFFFF;
+                
                 ">
                     {{ $header->getTranslation('title', 'ar') }} </p>
                 <p id="textContent" class="head-text mb-0 content-text1 "
                     style="font-family: Cairo;
                     font-size: 20px;
                     font-weight: 400;
-                    line-height: 24px;
+                    line-height: 50px;
                     letter-spacing: 0.02em;
                     text-align: center;
                     color:rgba(255, 255, 255, 0.69);
@@ -527,30 +528,65 @@
                     ">
                     {{ $header->getTranslation('text', 'ar') }}
                 </p>
+                <script>
+                    // Get the element containing the text
+                    const textElement = document.getElementById('textContent');
+
+                    // Get the text content
+                    const text = textElement.textContent.trim();
+
+                    // Calculate the length of each line
+                    const maxLength = Math.ceil(text.length / 3);
+
+                    // Split the text into three lines
+                    const line1 = text.slice(0, maxLength);
+                    const line2 = text.slice(maxLength, 2 * maxLength);
+                    const line3 = text.slice(2 * maxLength);
+
+                    // Update the text content of the element
+                    textElement.textContent = line1 + '\n' + line2 + '\n' + line3;
+                </script>
             @else
                 <p class="content-text2"
                     style="font-family: Cairo;
                 font-size: 41px;
                 font-weight: 600;
-                line-height: 74px;
+                line-height: 90px;
                 letter-spacing: 0.02em;
                 text-align: center;
                 color:#FFFFFF;
                 ">
                     {{ $header->getTranslation('title', 'en') }} </p>
-              <p id="textContent" class="head-text mb-0 content-text1"
-                style="font-family: Cairo;
+                <p id="textContent" class="head-text mb-0 content-text1"
+                    style="font-family: Cairo;
                 font-size: 20px;
                 font-weight: 400;
-                line-height: 24px;
+                line-height: 40px;
                 letter-spacing: 0.02em;
                 text-align: center;
                 color:rgba(255, 255, 255, 0.69);
-                white-space: pre-line; /* This property preserves whitespace and line breaks */
+                white-space: pre-line; 
                 ">
-                {{ $header->getTranslation('text', 'en') }}
-            </p>
+                    {{ $header->getTranslation('text', 'en') }}
+                </p>
+                <script>
+                    // Get the element containing the text
+                    const textElement = document.getElementById('textContent');
 
+                    // Get the text content
+                    const text = textElement.textContent.trim();
+
+                    // Calculate the length of each line
+                    const maxLength = Math.ceil(text.length / 3);
+
+                    // Split the text into three lines
+                    const line1 = text.slice(0, maxLength);
+                    const line2 = text.slice(maxLength, 2 * maxLength);
+                    const line3 = text.slice(2 * maxLength);
+
+                    // Update the text content of the element
+                    textElement.textContent = line1 + '\n' + line2 + '\n' + line3;
+                </script>
             @endif
             {{-- <p class="head-text mb-0 content-text1"
                 style="font-family: Cairo;

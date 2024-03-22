@@ -2,10 +2,11 @@
 @section('content')
     <div class="container" style="max-width: 1440px;">
         @if (app()->getLocale() == 'ar')
+          @foreach ($temp_reservations as $template)
             <div class="row d-flex justify-content-between">
 
                 <div class="col-md-5">
-                    <img src="{{ asset('images/Aknana.svg') }}" class="img-fluid" alt="About Us Image">
+                    <img src="{{  asset('storage/'. $template->image )}}"width="585px" height="578px" class="img-fluid" alt="About Us Image">
                 </div>
                 <div class="col-md-7 align-content-end text-left">
                     <div class="text-left  mt-2"
@@ -18,7 +19,7 @@
                         color:#DF8317;
                     ">
 
-                        @lang('file.Aknana Reservations ')
+                       {{ $template->getTranslation('main_title', 'en') }}
                         <img src="{{ asset('images/Vector (1).svg') }}">
                     </div>
                     <div class="text-left  mt-3"
@@ -31,23 +32,16 @@
 
                     color:#121743;
                     ">
-                        @lang('file.Aknana is always fully ')<span
-                            style="color: #DF8317;
-                        font-family: Cairo;
-                        font-size: 40px;
-                        font-weight: 600;
-                        line-height: 50px;
-                        letter-spacing: 0em;
-                        text-align: center;
+                        @php
+                                    $phrase = $template->getTranslation('main_sub_title', 'en');
+                                    $words = explode(' ', $phrase);
+                                    $last_word = array_pop($words);
+                                    $last_word_clean = rtrim($last_word, '?!.,;:');
+                                    $phrase_without_last = implode(' ', $words);
+                                @endphp
 
-                        font-family: Cairo;
-                        font-size: 40px;
-                        font-weight: 400;
-                        line-height: 50px;
-                        letter-spacing: 0em;
-                        text-align: center;
-                    ">
-                            @lang('file.prepared')</span>
+                                {{ $phrase_without_last }}
+                                <span style="color: #DF8317;">{{ $last_word_clean }}</span>
                     </div>
                     <div class="text-left  mt-3 mb-3"
                         style="font-family: Almarai;
@@ -58,7 +52,7 @@
                     text-align: left;
                     color:#7B7B7B;
                     ">
-                        @lang('file.Thank you for contacting us. We will contact you as soon as possible')
+                         {{ $template->getTranslation('main_text', 'en') }}
                     </div>
                     <x-qrcode-modal />
 
@@ -183,12 +177,14 @@
                     </form>
                 </div>
             </div>
+            @endforeach
         @else
+           @foreach ($temp_reservations as $template)
             <div class="row d-flex justify-content-between">
 
 
                 <div class="col-md-5">
-                    <img src="{{ asset('images/Aknana.svg') }}" class="img-fluid" alt="About Us Image">
+                    <img src="{{ asset('storage/'.  $template->image_ar )}}"width="585px" height="578px" class="img-fluid" alt="About Us Image">
                 </div>
                 <div class="col-md-7 align-content-end text-right">
                     <div class="text-right  mt-2"
@@ -201,7 +197,7 @@
                         color:#DF8317;
                     ">
                         <img src="{{ asset('images/Vector (1).svg') }}">
-                        @lang('file.Aknana Reservations ')
+                       {{ $template->getTranslation('main_title', 'ar') }}
                     </div>
                     <div class="text-right  mt-3"
                         style="font-family: Cairo;
@@ -213,23 +209,16 @@
 
                     color:#121743;
                     ">
-                        @lang('file.Aknana is always fully ')<span
-                            style="color: #DF8317;
-                        font-family: Cairo;
-                        font-size: 40px;
-                        font-weight: 600;
-                        line-height: 50px;
-                        letter-spacing: 0em;
-                        text-align: center;
+                         @php
+                                    $phrase = $template->getTranslation('main_sub_title', 'ar');
+                                    $words = explode(' ', $phrase);
+                                    $last_word = array_pop($words);
+                                    $last_word_clean = rtrim($last_word, '?!.,;:');
+                                    $phrase_without_last = implode(' ', $words);
+                                @endphp
 
-                        font-family: Cairo;
-                        font-size: 40px;
-                        font-weight: 400;
-                        line-height: 50px;
-                        letter-spacing: 0em;
-                        text-align: center;
-                    ">
-                            @lang('file.prepared')</span>
+                                {{ $phrase_without_last }}
+                                <span style="color: #DF8317;">{{ $last_word_clean }}</span>
                     </div>
                     <div class="text-right  mt-3 mb-3"
                         style="font-family: Almarai;
@@ -240,7 +229,7 @@
                     text-align: right;
                     color:#7B7B7B;
                     ">
-                        @lang('file.Thank you for contacting us. We will contact you as soon as possible')
+                         {{ $template->getTranslation('main_text', 'ar') }}
                     </div>
                     <x-qrcode-modal />
                     @if ($errors->any())
@@ -389,6 +378,7 @@
 
                 </div>
             </div>
+            @endforeach
         @endif
     </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

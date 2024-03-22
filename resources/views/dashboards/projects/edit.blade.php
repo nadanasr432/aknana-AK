@@ -51,6 +51,13 @@
                             </div>
 
                             <div class="row">
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="url"> @lang('file.URL')</label>
+                                        <input type="text" name="url" id="url" class="form-control" required
+                                            value="{{$project->url }}">
+                                    </div>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="image">@lang('file.Project Image') <img

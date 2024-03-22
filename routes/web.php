@@ -13,6 +13,7 @@ use App\Http\Controllers\ContactsControllers;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\Dashboard\AdminController;
+use App\Http\Controllers\Dashboard\TemplateController;
 use App\Http\Controllers\Dashboard\HomeController as DashboardHomeController;
 
 
@@ -115,4 +116,9 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::post('/ranges/store', [RangeController::class, 'store'])->name('ranges.store');
     Route::get('/ranges/{id}/edit', [RangeController::class, 'edit'])->name('ranges.edit');
     Route::put('/ranges/{id}', [RangeController::class, 'update'])->name('ranges.update');
+    Route::get('/templates/show', [TemplateController::class, 'index'])->name('templates.index');
+    Route::get('/templates/create', [TemplateController::class, 'create'])->name('templates.create');
+    Route::post('/templates', [TemplateController::class, 'store'])->name('templates.store');
+    Route::get('/templates/{id}/edit', [TemplateController::class, 'edit'])->name('templates.edit');
+    Route::put('/template/{template}', [TemplateController::class, 'update'])->name('templates.update');
 });
