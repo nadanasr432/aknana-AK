@@ -644,7 +644,7 @@
                     <div class="row mt-4 mb-4">
                         <div class="col-md-6">
                             <div class="card "
-                                style="width:100%; height:100%;height:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                style="max-height: 300px;width:100%; height:100%;height:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
                                 <div class="card-body text-left">
                                     <div>
                                         <img src="{{ asset('storage/' . $range1->media()->first()->file_path) }}"
@@ -654,7 +654,7 @@
                                         style="font-family: Cairo; font-size: 18px; font-weight: 500; line-height: 26px; letter-spacing: 0em; text-align: left; color:#121743;">
                                         {{ $range1->en_title }}
                                     </p>
-                                    <div id="range1-text" style="max-height: 100px; overflow: hidden;">
+                                    <div id="range1-text" style="max-height: 50px; overflow: hidden;">
                                         <p
                                             style="font-family: Cairo; font-size: 14px; font-weight: 400; line-height: 25px; letter-spacing: 0em; text-align: left; color:#121743;">
                                             {{ $range1->en_text }}
@@ -683,7 +683,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="card  "
-                                style="margin-left: 30px; width:100%;height:100%; border-radius: 20px; background: #121743;">
+                                style="max-height: 300px;margin-left: 30px; width:100%;height:100%; border-radius: 20px; background: #121743;">
 
                                 <div class="card-body text-left">
                                     <div>
@@ -700,7 +700,7 @@
                                     text-align: left;
                                     ">
                                         {{ $range2->en_title }} </p>
-                                    <div id="range2-text" style="max-height: 100px; overflow: hidden;">
+                                    <div id="range2-text" style="max-height: 50px; overflow: hidden;">
 
                                         <p class=" text-white"
                                             style="font-family: Cairo;
@@ -737,7 +737,8 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="card " style="width:100%;height:100%; border-radius: 20px; background: #121743;">
+                            <div class="card "
+                                style="max-height: 300px;height:100%; border-radius: 20px; background: #121743;">
 
                                 <div class="card-body text-left">
                                     <div>
@@ -754,7 +755,7 @@
                                     text-align: left;
                                     ">
                                         {{ $range3->en_title }} </p>
-                                    <div id="range3-text" style="max-height: 100px; overflow: hidden;">
+                                    <div id="range3-text" style="max-height: 50px; overflow: hidden;">
                                         <p class=" text-white"
                                             style="font-family: Cairo;
                                     font-size: 14px;
@@ -788,7 +789,7 @@
                         <div class="col-md-6">
                             <!-- Card 3 -->
                             <div class="card "
-                                style="margin-left: 30px; width:100%;height:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                style="max-height: 300px;margin-left: 30px; width:100%;height:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
                                 <div class="card-body text-left">
                                     <div>
                                         <img src="{{ asset('storage/' . $range4->media()->first()->file_path) }}"
@@ -805,7 +806,7 @@
                                     color:#121743;
                                     ">
                                         {{ $range4->en_title }}</p>
-                                    <div id="range4-text" style="max-height: 100px; overflow: hidden;">
+                                    <div id="range4-text" style="max-height: 50px; overflow: hidden;">
                                         <p
                                             style="font-family: Cairo;
                                     font-size: 14px;
@@ -840,10 +841,10 @@
                 </div>
 
                 <div class="col-md-6 order-0 order-md-1 animate-fade-in">
-                    <div class="row">
+                    <div class="row" style="margin-bottom: 20px;">
                         <div class="col-md-6">
                             <div class="card "
-                                style="margin-top:25px;width:270px;border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                style="max-height: 300px;margin-top:25px;width:270px;border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
                                 <div class="card-body text-left">
                                     <div>
                                         <img src="{{ asset('storage/' . $range5->media()->first()->file_path) }}"
@@ -860,7 +861,7 @@
                                     color:#121743;
                                     ">
                                         {{ $range5->en_title }}</p>
-                                    <div id="range5-text" style="max-height: 100px; overflow: hidden;">
+                                    <div id="range5-text" style="max-height: 50px; overflow: hidden;">
                                         <p
                                             style="font-family: Cairo;
                                     font-size: 14px;
@@ -892,7 +893,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="center pr-0 text-left" style="margin-top: 25px ">
+                            <div class="center pr-0 mb-2 text-left" style="margin-top: 15px;max-height:215px; overflow: hidden; ">
                                 <img src="{{ asset('images/Vector (1).svg') }}">
                                 <span
                                     style="font-family: Cairo;color: #091157; font-size: 16px; font-weight: 667; line-height: 45px; letter-spacing: -0.01em; text-align: end;">
@@ -910,27 +911,28 @@
 
                             </div>
 
-                            <div class="center pr-0 text-left mt-2 mb-5 text-left">
+                            <div class="center pr-0 text-left text-left" style="max-height:215px; overflow: hidden;">
                                 <a class="responsive-text text-left" id="range8-text"data-toggle="modal"
-                                    data-target="#range8-full-text-modal"
-                                    style="max-height:185px; overflow: hidden;font-size: 14px">
+                                    data-target="#range8-full-text-modal" style="font-size: 14px;line-height: 30px;">
                                     {{ $range8->en_text }}
                                 </a>
-                                @if (strlen($range8->en_text) > 185)
-                                    <p class="d-flex justify-content-end">
-                                        <a class="show-more-btn text-end"
-                                            style="color: #DF8317; font-family: Cairo;font-size:14px;"
-                                            id="range8-text"data-toggle="modal"
-                                            data-target="#range8-full-text-modal">...@lang('file.know_more')</a>
-                                    </p>
-                                @endif
+
                             </div>
+                            @if (strlen($range8->en_text) > 150)
+                                <div class="d-flex justify-content-end">
+                                    <a class="show-more-btn text-end"
+                                        style="color: #DF8317; font-family: Cairo;font-size:12px;"
+                                        id="range8-text"data-toggle="modal"
+                                        data-target="#range8-full-text-modal">...@lang('file.know_more')</a>
+                                </div>
+                            @endif
                         </div>
 
                     </div>
                     <div class="row ">
                         <div class="col-md-6">
-                            <div class="card " style="width:100%;height:100%; border-radius: 20px; background: #121743;">
+                            <div class="card "
+                                style="max-height: 300px;width:100%;border-radius: 20px; background: #121743;">
 
                                 <div class="card-body text-left">
                                     <div>
@@ -947,7 +949,7 @@
                                     text-align: left;
                                     ">
                                         {{ $range6->en_title }}</p>
-                                    <div id="range6-text" style="max-height: 100px; overflow: hidden;">
+                                    <div id="range6-text" style="max-height: 50px; overflow: hidden;">
                                         <p class=" text-white"
                                             style="font-family: Cairo;
                                     font-size: 14px;
@@ -979,7 +981,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="card "
-                                style=" width:100%;height:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                style=" width:100%;max-height: 300px; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
                                 <div class="card-body text-left">
                                     <div>
                                         <img src="{{ asset('storage/' . $range7->media()->first()->file_path) }}"
@@ -996,7 +998,7 @@
                                     color:#121743;
                                     ">
                                         {{ $range7->en_title }}</p>
-                                    <div id="range7-text" style="max-height: 100px; overflow: hidden;">
+                                    <div id="range7-text" style="max-height: 50px; overflow: hidden;">
                                         <p
                                             style="font-family: Cairo;
                                     font-size: 14px;
@@ -1043,7 +1045,7 @@
 
                                 <!-- Card 3 -->
                                 <div class="card"
-                                    style="width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                    style="width:100%;max-height: 300px; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
                                     <div class="card-body text-right">
                                         <div>
                                             <img src="{{ asset('storage/' . $range1->media()->first()->file_path) }}"
@@ -1060,7 +1062,7 @@
                                     color:#121743;
                                     ">
                                             {{ $range1->ar_title }}</p>
-                                        <div id="range1-text" style="max-height: 100px; overflow: hidden;">
+                                        <div id="range1-text" style="max-height: 50px; overflow: hidden;">
                                             <p
                                                 style="font-family: Cairo;
                                     font-size: 14px;
@@ -1092,7 +1094,7 @@
                                     </div>
                                 </div>
                                 <div class="card "
-                                    style="margin-left: 30px; width:100%; border-radius: 20px; background: #121743;">
+                                    style="max-height: 300px;margin-left: 30px; width:100%; border-radius: 20px; background: #121743;">
 
                                     <div class="card-body text-right">
                                         <div>
@@ -1109,7 +1111,7 @@
                                     text-align: right;
                                     ">
                                             {{ $range2->ar_title }} </p>
-                                        <div id="range2-text" style="max-height: 100px; overflow: hidden;">
+                                        <div id="range2-text" style="max-height: 50px; overflow: hidden;">
                                             <p class="text-white"
                                                 style="font-family: Cairo;
                                     font-size: 14px;
@@ -1143,7 +1145,7 @@
                             </div>
                             <div class="d-flex justify-content-between">
                                 <div class="card"
-                                    style="width:100%;height:100%; border-radius: 20px; background: #121743;">
+                                    style="width:100%;max-height: 300px; border-radius: 20px; background: #121743;">
 
                                     <div class="card-body text-right">
                                         <div>
@@ -1160,7 +1162,7 @@
                                     text-align: right;
                                     ">
                                             {{ $range3->ar_title }}</p>
-                                        <div id="range3-text" style="max-height: 100px; overflow: hidden;">
+                                        <div id="range3-text" style="max-height: 50px; overflow: hidden;">
                                             <p class="text-white"
                                                 style="font-family: Cairo;
                                     font-size: 14px;
@@ -1210,7 +1212,7 @@
                                     color:#121743;
                                     ">
                                             {{ $range4->ar_title }}</p>
-                                        <div id="range4-text" style="max-height: 100px; overflow: hidden;">
+                                        <div id="range4-text" style="max-height: 50px; overflow: hidden;">
                                             <p
                                                 style="font-family: Cairo;
                                     font-size: 14px;
@@ -1252,7 +1254,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card"
-                                style="margin-top:25px;width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                                style="margin-top:25px;width:100%;max-height: 300px; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
                                 <div class="card-body text-right">
                                     <div>
                                         <img src="{{ asset('storage/' . $range5->media()->first()->file_path) }}"
@@ -1269,7 +1271,7 @@
                                     color:#121743;
                                     ">
                                         {{ $range5->ar_title }}</p>
-                                    <div id="range5-text" style="max-height: 100px; overflow: hidden;">
+                                    <div id="range5-text" style="max-height: 50px; overflow: hidden;">
                                         <p
                                             style="font-family: Cairo;
                                     font-size: 14px;
@@ -1337,10 +1339,11 @@
                         </div>
 
                     </div>
-                    <div class="d-flex justify-content-end " style="gap: 30px">
+                    <div class="d-flex justify-content-end " style="gap: 30px;margin-top: -70px;
+}">
                         <!-- Card 4 -->
                         <div class="card"
-                            style=" margin-top:25px;width:100%; border-radius: 20px; background: #121743;">
+                            style=" margin-top:25px;width:100%;max-height: 300px; border-radius: 20px; background: #121743;">
 
                             <div class="card-body text-right">
                                 <div>
@@ -1357,7 +1360,7 @@
                                     text-align: right;
                                     ">
                                     {{ $range6->ar_title }}</p>
-                                <div id="range6-text" style="max-height: 100px; overflow: hidden;">
+                                <div id="range6-text" style="max-height: 50px; overflow: hidden;">
                                     <p class=" text-white"
                                         style="font-family: Cairo;
                                     font-size: 14px;
@@ -1390,7 +1393,7 @@
                         </div>
                         <!-- Card 3 -->
                         <div class="card"
-                            style="margin-top:25px;width:100%; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
+                            style="margin-top:25px;width:100%;max-height: 300px; border-radius: 20px; border: #E6E6E6 1px solid; background: #FFFFFF;">
                             <div class="card-body text-right">
                                 <div>
                                     <img src="{{ asset('storage/' . $range7->media()->first()->file_path) }}"
@@ -1407,7 +1410,7 @@
                                     color:#121743;
                                     ">
                                     {{ $range7->ar_title }}</p>
-                                <div id="range7-text" style="max-height: 100px; overflow: hidden;">
+                                <div id="range7-text" style="max-height: 50px; overflow: hidden;">
                                     <p
                                         style="font-family: Cairo;
                                     font-size: 14px;
@@ -2581,7 +2584,8 @@
 
                                 </div>
                                 <div class="d-flex-justify-content-center">
-                                    <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
+                                    <img src="{{ asset('images/Group 1.svg') }}" alt="Previous"
+                                        style="width: 200px">
                                 </div>
                             </div>
                         </div>
