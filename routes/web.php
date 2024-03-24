@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\RangeController;
+use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HeaderController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\ProjectController;
@@ -121,4 +122,9 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::post('/templates', [TemplateController::class, 'store'])->name('templates.store');
     Route::get('/templates/{id}/edit', [TemplateController::class, 'edit'])->name('templates.edit');
     Route::put('/template/{template}', [TemplateController::class, 'update'])->name('templates.update');
+    Route::get('/footer/show', [FooterController::class, 'index'])->name('footer.index');
+    Route::get('/footer/create', [FooterController::class, 'create'])->name('footer.create');
+    Route::post('/footer/store', [FooterController::class, 'store'])->name('footer.store');
+    Route::get('/footer/{id}/edit', [FooterController::class, 'edit'])->name('footer.edit');
+    Route::put('/footer/{id}', [FooterController::class, 'update'])->name('footer.update');
 });

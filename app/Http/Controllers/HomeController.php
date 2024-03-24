@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Range;
 use App\Models\Course;
+use App\Models\Footer;
 use App\Models\Header;
 use App\Models\Project;
 use App\Models\Service;
@@ -36,6 +37,7 @@ class HomeController extends Controller
         $temp_events = Template::where('name->en', 'Events')->get();
         $temp_contactUs = Template::where('name->en', 'Contact Us')->get();
         $temp_reservations = Template::where('name->en', 'Aknana Reservations')->get();
+        $footer = Footer::first();
         return view('landing.sections', compact(
             "temp_services",
             "temp_events",
@@ -57,7 +59,8 @@ class HomeController extends Controller
             "range5",
             "range6",
             "range7",
-            "range8"
+            "range8",
+            "footer"
 
         ));
     }

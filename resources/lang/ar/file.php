@@ -24,7 +24,7 @@ return [
   'customer_reviews' => 'Reviews',
   'join_us' => 'Join Us Now',
   'dreams_easy' => 'Achieving dreams made easy. Join us now and let us help you at the beginning of your professional journey until the end of the road. Contact us.',
-  'rights_reserved' => 'All rights reserved to Aknana Entrepreneurship Company',
+  'rights_reserved' => "All rights reserved to Aknana Company for Business Incubators and Accelerators",
   'dreams_made_easy' => '! Achieving dreams has become easier, Join us now ',
   'help_at_beginning' => 'We will help you at the beginning of your professional journey',
   'contact_us_end_of_road' => 'Contact us... until the end of the road',
@@ -237,7 +237,12 @@ return [
   "Image Ar"=> "Image Ar",
   "Templates"=> "Templates",
   "All Templates"=> "All Titles",
-  "Edit Templates" => "Edit Title"
+  "Edit Templates" => "Edit Title",
+  "Location (Arabic)"=> "Location (Arabic) ",
+  "Email"=> "Email",
+  "Footers Table"=> "Footers Table" ,
+  "Footer"=> "Footer",
+  "Edit Footer" => "Edit Footer"
 
 
 

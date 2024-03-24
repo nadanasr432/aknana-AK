@@ -399,8 +399,7 @@
                             ">
                             {{ $template->getTranslation('main_sub_title', 'en') }}
                         </p>
-                        <div class="row d-flex justify-content-between align-items-between mt-4"
-                            style="max-height: 250px; overflow: hidden;">
+                        <div class="row d-flex justify-content-between align-items-between mt-4">
                             @php
                                 $itemCount = count($template->getTranslation('items', 'en'));
                             @endphp
@@ -480,8 +479,7 @@
                         @php
                             $itemCount = count($template->getTranslation('items', 'en'));
                         @endphp
-                        <div class="row d-flex justify-content-between align-items-between mt-4"
-                            style="max-height: 250px; overflow: hidden;">
+                        <div class="row d-flex justify-content-between align-items-between mt-4">
                             @foreach ($template->getTranslation('items', 'ar') as $item)
                                 <div class="col-md-5">
                                     <div class="d-flex justify-content-end text-center mb-4">
@@ -893,7 +891,8 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="center pr-0 mb-2 text-left" style="margin-top: 15px;max-height:215px; overflow: hidden; ">
+                            <div class="center pr-0 mb-2 text-left"
+                                style="margin-top: 15px;max-height:215px; overflow: hidden; ">
                                 <img src="{{ asset('images/Vector (1).svg') }}">
                                 <span
                                     style="font-family: Cairo;color: #091157; font-size: 16px; font-weight: 667; line-height: 45px; letter-spacing: -0.01em; text-align: end;">
@@ -2584,8 +2583,7 @@
 
                                 </div>
                                 <div class="d-flex-justify-content-center">
-                                    <img src="{{ asset('images/Group 1.svg') }}" alt="Previous"
-                                        style="width: 200px">
+                                    <img src="{{ asset('images/Group 1.svg') }}" alt="Previous" style="width: 200px">
                                 </div>
                             </div>
                         </div>

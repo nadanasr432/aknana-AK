@@ -33,7 +33,7 @@
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <div class="form-group row">
+                            {{-- <div class="form-group row">
 
                                 <div class="col-md-6">
                                     <label for="name_en" class="form-label">@lang('file.Name (English)')</label>
@@ -57,7 +57,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> --}}
 
 
 

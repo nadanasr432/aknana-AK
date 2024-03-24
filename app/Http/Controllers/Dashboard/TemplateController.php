@@ -28,8 +28,8 @@ class TemplateController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name.en' => 'required',
-            'name.ar' => 'required',
+            // 'name.en' => 'required',
+            // 'name.ar' => 'required',
             'main_title.en' => 'nullable',
             'main_title.ar' => 'nullable',
             'main_sub_title.en' => 'nullable',
@@ -65,10 +65,10 @@ class TemplateController extends Controller
             'en' => $request->input('items.en'),
             'ar' => $request->input('items.ar')
         ];
-        $template->name = [
-            'en' => $request->input('name.en'),
-            'ar' => $request->input('name.ar')
-        ];
+        // $template->name = [
+        //     'en' => $request->input('name.en'),
+        //     'ar' => $request->input('name.ar')
+        // ];
 
 
         if ($request->hasFile('image')) {
@@ -97,8 +97,8 @@ class TemplateController extends Controller
     {
 // dd($request->all( ));
         $request->validate([
-            'name.en' => 'required',
-            'name.ar' => 'required',
+            // 'name.en' => 'required',
+            // 'name.ar' => 'required',
             'main_title.en' => 'nullable',
             'main_title.ar' => 'nullable',
             'main_sub_title.en' => 'nullable',
@@ -134,10 +134,10 @@ class TemplateController extends Controller
                 'en' => $request->input('items.en'),
                 'ar' => $request->input('items.ar')
             ],
-            "name" => [
-                'en' => $request->input('name.en'),
-                'ar' => $request->input('name.ar')
-            ],
+            // "name" => [
+            //     'en' => $request->input('name.en'),
+            //     'ar' => $request->input('name.ar')
+            // ],
         ]);
 
         // Delete old English image if a new one is provided

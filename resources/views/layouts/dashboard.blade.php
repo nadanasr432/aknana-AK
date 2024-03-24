@@ -205,6 +205,21 @@
                             </ul>
                         </div>
                     </li>
+                     <li class="nav-item {{ Request::is('admin/footer*') ? 'active' : '' }}">
+                        <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('footer')">
+                            <span class="menu-title">@lang('file.Footer')</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-settings-box menu-icon"></i>
+                        </a>
+                        <div class="sub-menu" id="footer">
+                            <ul class="nav flex-column sub-menu1">
+
+                                <li class="nav-item {{ Request::is('admin/footer/show') ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ route('footer.index') }}">
+                                        @lang('file.Details')</a></li>
+                            </ul>
+                        </div>
+                    </li>
                     <li class="nav-item {{ Request::is('admin/service*') ? 'active' : '' }}">
                         <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('services')">
                             <span class="menu-title">@lang('file.Services')</span>

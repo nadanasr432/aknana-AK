@@ -694,7 +694,7 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.address')</a>
+                                    {{ $footer->getTranslation('location', 'en') }}</a>
                                 <img src="{{ asset('images/home.png') }}">
                             </li>
                             <li class="mb-2 d-flex justify-content-end" style="gap: 7px;">
@@ -708,7 +708,7 @@
                                 text-align: right;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.email')</a>
+                                    {{ $footer->email }}</a>
                                 <img src="{{ asset('images/email.png') }}" style="pl-5">
                             </li>
                             <li class="mb-2">
@@ -722,7 +722,7 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.phone')</a>
+                                    {{ $footer->phone }}</a>
                                 <img src="{{ asset('images/telephone.png') }}">
                             </li>
                         </ul>
@@ -787,7 +787,7 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.news') </a>
+                                    @lang('file.Events') </a>
                                 <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
                                     style="transform: scaleX(-1);">
                             </li>
@@ -897,17 +897,10 @@
                         </div>
                         <p class="text-left mb-0"
                             style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
-                            @lang('file.dreams_made_easy')
+                            {{ $footer->getTranslation('text', 'en') }}
                         </p>
 
-                        <p class="text-left mb-0"
-                            style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
-                            @lang('file.help_at_beginning')
-                        </p>
-                        <p class="text-left"
-                            style="color: #FFFFFFBF; font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px;">
-                            @lang('file.contact_us_end_of_road')
-                        </p>
+                     
                         <div class="row d-flex justify-content-end pl-3" style="gap: 15px">
 
                             <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
@@ -982,7 +975,7 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.address')</a>
+                                    {{ $footer->getTranslation('location', 'ar') }}</a>
                                 <img src="{{ asset('images/home.png') }}">
                             </li>
                             <li class="mb-2">
@@ -996,7 +989,7 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.email')</a>
+                                    {{ $footer->email }}</a>
                                 <img src="{{ asset('images/email.png') }}">
                             </li>
                             <li class="mb-2">
@@ -1010,7 +1003,7 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.phone')</a>
+                                    {{ $footer->phone }}</a>
                                 <img src="{{ asset('images/telephone.png') }}">
                             </li>
                         </ul>
@@ -1175,19 +1168,11 @@
                         <div class="d-flex justify-content-end mb-2">
                             <img src="{{ asset('images/logo 3.png') }}" alt="logo">
                         </div>
-                        <p class="text-right mb-0"
-                            style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
-                            @lang('file.dreams_made_easy')
+                        <p class="text-right mb-3"
+                            style="color: #FFFFFFBF; font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 15px; letter-spacing: 0em; white-space: pre-line; word-wrap: break-word;">
+                            {{ $footer->getTranslation('text', 'ar') }}
                         </p>
 
-                        <p class="text-right mb-0"
-                            style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
-                            @lang('file.help_at_beginning')
-                        </p>
-                        <p class="text-right"
-                            style="color: #FFFFFFBF; font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px;">
-                            @lang('file.contact_us_end_of_road')
-                        </p>
                         <div class="row d-flex justify-content-end pr-3" style="gap: 15px">
 
                             <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
