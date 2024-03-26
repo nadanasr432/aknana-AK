@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Footer extends Model
 {
     use HasFactory, HasTranslations;
-
-    public $translatable = ['text', 'location'];
+  
+           
+    public $translatable = ['text', 'location', 'rights'];
     protected $table = 'footer';
 
-    protected $fillable = ['phone', 'email', 'text', 'location'];
+    protected $fillable = ['phone', 'email', 'text', 'location', 'rights','facebook','twitter','instagram','youtube'];
 }

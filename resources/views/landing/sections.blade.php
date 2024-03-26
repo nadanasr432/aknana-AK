@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('content')
 
-    <section class="services container mb-5" style="max-width: 1500rem" id="service">
+    <section class="services container" style="max-width: 1500rem" id="service">
         @if (app()->getLocale() == 'ar')
             <div class=" 1 row d-flex justify-content-center mb-2">
                 @foreach ($temp_services as $template)
@@ -185,7 +185,7 @@
     </script>
     <x-modal_events :events="$events" />
     <section id="US" class="US container text-center "
-        style="max-width: 1400px;margin-top: 10rem !important;margin-bottom: 10rem !important; ">
+        style="max-width: 1400px;margin-top: 8rem !important;">
         @if (app()->getLocale() == 'ar')
             <div class="row d-flex justify-content-between mb-5 custom-row-style">
                 @foreach ($temp_US as $template)

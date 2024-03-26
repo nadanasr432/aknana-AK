@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Media;
 use App\Models\Course;
+use App\Models\Footer;
 use App\Models\Header;
-use App\Models\Template;
 
+use App\Models\Template;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -34,8 +35,8 @@ class ReservationsController extends Controller
         $selectedCourse = $availableCourses->first();
         //  dd($selectedCourse);
         $header = Header::first();
-
-        return view('reservations.create', compact('availableCourses', 'temp_reservations' ,'selectedCourse', 'header'));
+        $footer = Footer::first();
+        return view('reservations.create', compact('footer','availableCourses', 'temp_reservations' ,'selectedCourse', 'header'));
     }
 
     public function store(Request $request)

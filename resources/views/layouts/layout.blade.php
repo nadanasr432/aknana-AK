@@ -452,7 +452,7 @@
                 <img src="{{ asset('images/list.png') }}" width="25px" height="25px">
 
             </a>
-            <button id="contactButton2" class="btn btn-primary">
+            <button id="contactButton2" class="btn btn-primary d-none d-md-inline">
                 {{ __('file.contact_us') }}
             </button>
             {{-- // --}}
@@ -461,7 +461,7 @@
                 @csrf
                 <button type="button" onclick="toggleLanguage()" class="btn btn-link text-white">
                     {{ app()->getLocale() == 'en' ? 'En' : 'Ar' }}
-                    <img src="{{ asset('images/' . (app()->getLocale() == 'en' ? 'united-Kingdom' : 'saudi-arabia') . '.png') }}"
+                    <img src="{{ asset('images/' . (app()->getLocale() == 'en' ? 'united_Kingdom' : 'saudi-arabia') . '.png') }}"
                         width="20px" height="20px">
                 </button>
                 <input type="hidden" name="locale" id="localeInput" value="{{ app()->getLocale() }}">
@@ -660,7 +660,7 @@
         @yield('content')
     </div>
     <!-- Footer -->
-    <footer class="bg-body-tertiary">
+     <footer class="bg-body-tertiary">
         <!-- Grid container -->
         @if (app()->getLocale() == 'ar')
             <div class="container" style="margin-top:60px">
@@ -903,26 +903,26 @@
                      
                         <div class="row d-flex justify-content-end pl-3" style="gap: 15px">
 
-                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                            <a href="{{ $footer->twitter }}" class="rounded-circle bg-white d-flex justify-content-center align-items-center"
                                 style="width: 35px; height: 35px;">
                                 <img src="{{ asset('images/twitter.png') }}" alt="logo" width="15px"
                                     height="15px">
-                            </div>
-                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                            </a>
+                            <a href="{{ $footer->facebook }}" class="rounded-circle bg-white d-flex justify-content-center align-items-center"
                                 style="width: 35px; height: 35px;">
                                 <img src="{{ asset('images/facebook.png') }}" alt="logo" width="15px"
                                     height="15px">
-                            </div>
-                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                            </a>
+                           <a href="{{ $footer->instagram }}" class="rounded-circle bg-white d-flex justify-content-center align-items-center"
                                 style="width: 35px; height: 35px;">
                                 <img src="{{ asset('images/instagram2.png') }}" alt="logo" width="15px"
                                     height="15px">
-                            </div>
-                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                            </a>
+                             <a href="{{ $footer->youtube }}"  class="rounded-circle bg-white d-flex justify-content-center align-items-center"
                                 style="width: 35px; height: 35px;">
                                 <img src="{{ asset('images/youtube.png') }}" alt="logo" width="15px"
                                     height="15px">
-                            </div>
+                            </a>
                         </div>
 
                     </div>
@@ -940,7 +940,7 @@
                 letter-spacing: 0px;
                 color:#FFFFFFCC;
                 ">
-                {{ __('file.rights_reserved') }} {{ now()->year }}
+                {{ $footer->getTranslation('rights', 'en') }} {{ now()->year }}
                 <span>@</span>
             </div>
         @else
@@ -1066,7 +1066,7 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.news') </a>
+                                    @lang('file.Events') </a>
                                 <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
                             </li>
                             <li class="mb-2 ">
@@ -1175,26 +1175,26 @@
 
                         <div class="row d-flex justify-content-end pr-3" style="gap: 15px">
 
-                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                            <a href="{{ $footer->twitter }}" class="rounded-circle bg-white d-flex justify-content-center align-items-center"
                                 style="width: 35px; height: 35px;">
                                 <img src="{{ asset('images/twitter.png') }}" alt="logo" width="15px"
                                     height="15px">
-                            </div>
-                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                            </a>
+                           <a href="{{ $footer->facebook }}" class="rounded-circle bg-white d-flex justify-content-center align-items-center"
                                 style="width: 35px; height: 35px;">
                                 <img src="{{ asset('images/facebook.png') }}" alt="logo" width="15px"
                                     height="15px">
-                            </div>
-                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                            </a>
+                            <a href="{{ $footer->instagram }}"class="rounded-circle bg-white d-flex justify-content-center align-items-center"
                                 style="width: 35px; height: 35px;">
                                 <img src="{{ asset('images/instagram2.png') }}" alt="logo" width="15px"
                                     height="15px">
-                            </div>
-                            <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"
+                            </a>
+                            <a href="{{ $footer->youtube }}" class="rounded-circle bg-white d-flex justify-content-center align-items-center"
                                 style="width: 35px; height: 35px;">
                                 <img src="{{ asset('images/youtube.png') }}" alt="logo" width="15px"
                                     height="15px">
-                            </div>
+                            </a>
                         </div>
 
                     </div>
@@ -1212,7 +1212,7 @@
                 letter-spacing: 0px;
                 color:#FFFFFFCC;
                 ">
-                {{ __('file.rights_reserved') }} {{ now()->year }}
+                {{ $footer->getTranslation('rights', 'ar') }} {{ now()->year }}
                 <span>@</span>
             </div>
         @endif
@@ -1225,13 +1225,13 @@
     </a>
 
     @if (app()->getLocale() == 'en')
-        <a href="https://api.whatsapp.com/send?phone=966562354761"
+        <a href="https://api.whatsapp.com/send?phone=966{{ $footer->phone }}"
             class="btn fixed-bottom-left mr-3 mb-3 mt-5 rounded-circle"
             style="width: 60px; height: 54px; position: fixed; bottom: 10px; right: 10px; z-index: 1000;">
             <img src="{{ asset('images/whatsappAni.gif') }}" width="35px" height="35px">
         </a>
     @else
-        <a href="https://api.whatsapp.com/send?phone=966562354761"
+        <a href="https://api.whatsapp.com/send?phone=966{{ $footer->phone }}"
             class="btn fixed-bottom-left mr-3 mb-3 mt-5 rounded-circle"
             style="width: 60px; height: 54px; position: fixed; bottom: 10px; left: 10px; z-index: 1000;">
             <img src="{{ asset('images/whatsappAni.gif') }}" width="35px" height="35px">

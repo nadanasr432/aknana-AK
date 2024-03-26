@@ -239,7 +239,13 @@ return [
   "Email" => "البريد الإلكتروني",
   "Footers Table" => "جدول التذييل",
   "Footer" => "التذييل",
-  "Edit Footer"=> "تعديل التذييل"
+  "Edit Footer" => "تعديل التذييل",
+  "Rights (English)" => "الحقوق (الإنجليزية)",
+  "Rights (Arabic)" => "الحقوق (عربي)",
+  "Facebook" => "فيسبوك",
+  "Twitter" => "تويتر",
+  "Instagram" => "انستغرام",
+  "Youtube" => "يوتيوب",
 
 
 

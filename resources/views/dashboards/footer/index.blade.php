@@ -21,7 +21,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body" style="overflow-x: auto ;">
-                        <h4 class="card-title"> @lang('file.footers Table')</h4>
+                        <h4 class="card-title"> @lang('file.Footers Table')</h4>
                         </p>
                         <table class="table table-hover">
                             <thead>
@@ -32,6 +32,12 @@
                                     <th> @lang('file.Text (Arabic)')</th>
                                     <th>@lang('file.Location (English)')</th>
                                     <th>@lang('file.Location (Arabic)')</th>
+                                    <th> @lang('file.Rights (English)')</th>
+                                    <th>@lang('file.Rights (Arabic)')</th>
+                                    <th>@lang('file.Facebook')</th>
+                                    <th> @lang('file.Twitter')</th>
+                                    <th>@lang('file.Instagram')</th>
+                                    <th>@lang('file.Youtube')</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,6 +49,29 @@
                                     <td>{{ $footer->getTranslation('text', 'ar') }}</td>
                                     <td>{{ $footer->getTranslation('location', 'en') }}</td>
                                     <td>{{ $footer->getTranslation('location', 'ar') }}</td>
+                                    <td>{{ $footer->getTranslation('rights', 'en') }}</td>
+                                    <td>{{ $footer->getTranslation('rights', 'ar') }}</td>
+                                    <td>
+                                        @if ($footer->facebook)
+                                            <a href="{{ $footer->facebook }}">{{ __('Facebook') }}</a>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($footer->twitter)
+                                            <a href="{{ $footer->twitter }}">{{ __('Twitter') }}</a>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($footer->instagram)
+                                            <a href="{{ $footer->instagram }}">{{ __('Instagram') }}</a>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($footer->youtube)
+                                            <a href="{{ $footer->youtube }}">{{ __('Youtube') }}</a>
+                                        @endif
+                                    </td>
+
                                     <td>
                                         <div class="dropdown">
                                             <i class="mdi mdi-dots-vertical" id="dropdownMenuButton" data-toggle="dropdown"
@@ -62,6 +91,4 @@
             </div>
         </div>
     </div>
-
-
 @endsection

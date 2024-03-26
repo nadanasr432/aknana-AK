@@ -32,7 +32,7 @@
                         <form method="POST" action="{{ route('footer.update', $footer->id) }}"
                             enctype="multipart/form-data">
                             @csrf
-                            @method('PUT') 
+                            @method('PUT')
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -113,6 +113,94 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="rights_en">@lang('file.Rights (English)')</label>
+                                        <input type="text" id="rights_en" name="rights[en]"
+                                            value="{{ old('rights.en', $footer->getTranslation('rights', 'en')) }}"
+                                            required class="form-control" autofocus>
+                                        @error('rights_en')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="rights_ar">@lang('file.Rights (Arabic)')</label>
+                                        <input type="text" id="rights_ar" name="rights[ar]"
+                                            value="{{ old('rights.ar', $footer->getTranslation('rights', 'ar')) }}"
+                                            required class="form-control" autofocus>
+                                        @error('rights_ar')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="facebook">@lang('file.Facebook')</label>
+                                        <input type="url" id="facebook" name="facebook"
+                                            value="{{ old('facebook', $footer->facebook) }}" class="form-control"
+                                            autofocus>
+                                        @error('facebook')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                   <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="twitter">@lang('file.Twitter')</label>
+                                        <input type="url" id="twitter" name="twitter"
+                                            value="{{ old('twitter', $footer->twitter) }}" class="form-control"
+                                            autofocus>
+                                        @error('twitter')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="instagram">@lang('file.Instagram')</label>
+                                        <input type="url" id="instagram" name="instagram"
+                                            value="{{ old('instagram', $footer->instagram) }}" class="form-control"
+                                            autofocus>
+                                        @error('instagram')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="youtube">@lang('file.Youtube')</label>
+                                        <input type="url" id="youtube" name="youtube"
+                                            value="{{ old('youtube', $footer->youtube) }}" class="form-control"
+                                            autofocus>
+                                        @error('youtube')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
                             <button type="submit" class="btn btn-gradient-primary me-2">{{ __('Submit') }}</button>
                         </form>
 

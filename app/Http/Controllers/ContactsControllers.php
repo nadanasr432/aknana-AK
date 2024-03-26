@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Footer;
 use App\Models\Header;
 use App\Models\Template;
 use App\Models\ContactUs;
@@ -13,7 +14,8 @@ class ContactsControllers extends Controller
     {
         $header = Header::first();
         $temp_contactUs = Template::where('name->en', 'Contact Us')->get();
-        return view('contactUs.create', compact('header', 'temp_contactUs'));
+        $footer = Footer::first();
+        return view('contactUs.create', compact('header', 'temp_contactUs','footer'));
     }
     public function store(Request $request)
     {
