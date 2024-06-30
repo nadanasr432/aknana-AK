@@ -747,7 +747,7 @@
 
             <div class="d-flex justify-content-center align-items-between mt-5 ">
                 @if (app()->getLocale() == 'en')
-                    {{-- <a href="" class="d-flex align-items-center pr-4  " id="contactButton2">
+                    <a href="" class="d-flex align-items-center pr-4  " >
                         <p class="pr-2 content-text3"
                             style="font-family: Cairo;
                         font-size: 25px;
@@ -759,9 +759,9 @@
                         ">
                             {{ __('file.about_us') }} </p>
                         <img src="{{ asset('images/video_big.svg') }}" style="margin-right: 10px;">
-                    </a> --}}
+                    </a>
                 @else
-                    {{-- <a href="" class="d-flex align-items-center pr-4 pl-4  " id="contactButton2">
+                    <a href="" class="d-flex align-items-center pr-4 pl-4  " >
                         <p class="pr-2 content-text3"
                             style="font-family: Cairo;
                         font-size: 25px;
@@ -773,7 +773,7 @@
                         ">
                             {{ __('file.about_us') }} </p>
                         <img src="{{ asset('images/video_big.svg') }}" style="margin-right: 10px;">
-                    </a> --}}
+                    </a>
                 @endif
                 <button id="contactButton" class="btn btn-primary "
                     style="width:193px;height:50px;font-family: Cairo;
