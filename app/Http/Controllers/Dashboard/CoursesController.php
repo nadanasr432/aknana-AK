@@ -217,16 +217,22 @@ class CoursesController extends Controller
 
     public function search(Request $request)
     {
-       
         $searchQuery = $request->input('search');
 
-        // Query courses based on the search query
+        // Query courses based on the search query including name, professor name, date of course, location, and prefix number
         $courses = Course::query()
             ->where('name->en', 'LIKE', "%{$searchQuery}%")
             ->orWhere('name->ar', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('professor_name->en', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('professor_name->ar', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('prefix_number', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('date_of_course', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('location->en', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('location->ar', 'LIKE', "%{$searchQuery}%")
             ->get();
 
-        // Return the view with the search results
         return view('dashboards.courses.search_result', compact('courses'));
     }
+
+
 }

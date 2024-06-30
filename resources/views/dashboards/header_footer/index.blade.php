@@ -33,6 +33,8 @@
                                     <th>@lang('file.Title (Arabic)')</th>
                                     <th>@lang('file.Text (English)')</th>
                                     <th> @lang('file.Text (Arabic)')</th>
+                                    <th> @lang('file.Routes')En</th>
+                                    <th> @lang('file.Routes')Ar</th>
                                     <th>@lang('file.Header Image')</th>
                                     <th>@lang('file.Footer Image')</th>
                                     <th>@lang('file.Action')</th>
@@ -46,6 +48,21 @@
                                     <td>{{ $header->getTranslation('title', 'ar') }}</td>
                                     <td>{{ $header->getTranslation('text', 'en') }}</td>
                                     <td>{{ $header->getTranslation('text', 'ar') }}</td>
+                                    <td>
+                                            @if (is_array($header->getTranslation('routes', 'en')))
+                                                @foreach ($header->getTranslation('routes', 'en') as $route)
+                                                    {{ $route }} <br>
+                                                @endforeach
+                                            @endif
+                                    </td>
+                                    <td>
+                                            @if (is_array($header->getTranslation('routes', 'ar')))
+                                                @foreach ($header->getTranslation('routes', 'ar') as $route)
+                                                    {{ $route }} <br>
+                                                @endforeach
+                                            @endif
+                                    </td>
+
 
                                     <td><img src="{{ asset('storage/' . $header->images()->first()->file_path) }}"></td>
                                     <td><img src="{{ asset('storage/' . $header->images()->get()->last()->file_path) }}">

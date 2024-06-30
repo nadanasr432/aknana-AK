@@ -91,6 +91,29 @@
                                             class="form-control-file" accept="image/*">
                                     </div>
                                 </div>
+                                <div class="row">
+                                    @foreach (old('routes.en', $header->getTranslation('routes', 'en')) as $index => $routeEn)
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="route{{ $index + 1 }}_en">@lang('file.Route') {{ $index + 1 }}
+                                                    (English)</label>
+                                                <input type="text" name="routes[en][]" id="route{{ $index + 1 }}_en"
+                                                    class="form-control" required value="{{ $routeEn }}">
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+                                    @foreach (old('routes.ar', $header->getTranslation('routes', 'ar')) as $index => $routeAr)
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="route{{ $index + 1 }}_ar">@lang('file.Route') {{ $index + 1 }}
+                                                    (Arabic)</label>
+                                                <input type="text" name="routes[ar][]" id="route{{ $index + 1 }}_ar"
+                                                    class="form-control" required value="{{ $routeAr }}">
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
 
                             </div>
                             <div class="row">

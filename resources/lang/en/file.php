@@ -246,6 +246,8 @@ return [
   "Twitter" => "تويتر",
   "Instagram" => "انستغرام",
   "Youtube" => "يوتيوب",
+  "Route" => "المسار",
+  "Routes" => "المسارات",
 
 
 

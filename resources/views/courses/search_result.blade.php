@@ -29,7 +29,7 @@
                             ($reservation->gender == 'male' ? $maleCount : $femaleCount);
                     @endphp
                     <div class="qrcode-image d-flex justify-content-center mb-3" id="qrcodeImage">
-                        {!! QrCode::size(200)->generate(
+                        {!! QrCode::encoding('UTF-8')->size(200)->generate(
                             'ID: ' .
                                 $arrangementNumber .
                                 "\n" .

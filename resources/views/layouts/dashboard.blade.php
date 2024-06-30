@@ -10,7 +10,7 @@
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href='{{ asset('assets/vendors/css/vendor.bundle.base.css') }}'>
-
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- End layout styles -->
    
@@ -447,9 +447,6 @@
             }
         }
     </script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
     <script>
         $(document).ready(function() {
 
@@ -629,6 +626,20 @@
             });
         });
     </script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#main_text_ar' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+
+    ClassicEditor
+        .create( document.querySelector( '#main_text_en' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
 
 </body>
 

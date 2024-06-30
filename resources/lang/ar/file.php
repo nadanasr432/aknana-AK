@@ -249,6 +249,8 @@ return [
   "Twitter" => "Twitter",
   "Instagram" => "Instagram",
   "Youtube" => "YouTube",
+  "Route"=> "Route",
+  "Routes"=> "Routes",
 
 
 

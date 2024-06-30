@@ -248,38 +248,86 @@
                     </div>
 
 
+                    @if (is_array($header->getTranslation('routes', 'en')))
+                        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                            <ul class="navbar-nav" style="gap: 30px;">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ route('home') }}#" id="home">
+                                        @foreach ($header->getTranslation('routes', 'en') as $index => $route)
+                                            @if ($index == 1)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ route('home') }}#US">
+                                        @foreach ($header->getTranslation('routes', 'en') as $index => $route)
+                                            @if ($index == 2)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ route('home') }}#2030">
+                                        @foreach ($header->getTranslation('routes', 'en') as $index => $route)
+                                            @if ($index == 3)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ route('home') }}#service">
+                                        @foreach ($header->getTranslation('routes', 'en') as $index => $route)
+                                            @if ($index == 4)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ route('home') }}#range">
+                                        @foreach ($header->getTranslation('routes', 'en') as $index => $route)
+                                            @if ($index == 5)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ route('home') }}#projects">
+                                        @foreach ($header->getTranslation('routes', 'en') as $index => $route)
+                                            @if ($index == 6)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ route('home') }}#programs">
+                                        @foreach ($header->getTranslation('routes', 'en') as $index => $route)
+                                            @if ($index == 7)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ route('home') }}#events">
+                                        @foreach ($header->getTranslation('routes', 'en') as $index => $route)
+                                            @if ($index == 8)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                </li>
 
-                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                        <ul class="navbar-nav" style="gap: 30px;">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('home') }}#" id="home">{{ __('file.home') }}</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('home') }}#features">{{ __('file.about_us') }} </a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('home') }}#2030">{{ __('file.2030') }}</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('home') }}#service">{{ __('file.services') }} <span
-                                        class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('home') }}#range">{{ __('file.range') }}</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('home') }}#projects">{{ __('file.projects') }}</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('home') }}#programs">{{ __('file.programs') }}</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('home') }}#events">{{ __('file.events') }}
-                                </a>
-                            </li>
-
-                        </ul>
-                    </div>
+                            </ul>
+                        </div>
+                    @endif
                     <button id="actionButton" class="btn btn-primary"
                         style="font-family: Cairo;
                     font-size: 16px;
@@ -318,40 +366,86 @@
                     ">
                         @lang('file.contact_us')
                     </button>
+                    @if (is_array($header->getTranslation('routes', 'ar')))
+                        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                            <ul class="navbar-nav" style="gap: 30px;">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ route('home') }}#events">
+                                        @foreach ($header->getTranslation('routes', 'ar') as $index => $route)
+                                            @if ($index == 8)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ route('home') }}#programs">
+                                        @foreach ($header->getTranslation('routes', 'ar') as $index => $route)
+                                            @if ($index == 7)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ route('home') }}#projects">
+                                        @foreach ($header->getTranslation('routes', 'ar') as $index => $route)
+                                            @if ($index == 6)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ route('home') }}#range">
+                                        @foreach ($header->getTranslation('routes', 'ar') as $index => $route)
+                                            @if ($index == 5)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ route('home') }}#service">
+                                        @foreach ($header->getTranslation('routes', 'ar') as $index => $route)
+                                            @if ($index == 4)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ route('home') }}#2030">
+                                        @foreach ($header->getTranslation('routes', 'ar') as $index => $route)
+                                            @if ($index == 3)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ route('home') }}#US">
+                                        @foreach ($header->getTranslation('routes', 'ar') as $index => $route)
+                                            @if ($index == 2)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ route('home') }}#" id="home">
+                                        @foreach ($header->getTranslation('routes', 'ar') as $index => $route)
+                                            @if ($index == 1)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                </li>
 
-                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                        <ul class="navbar-nav" style="gap: 30px;">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('home') }}#events">{{ __('file.events') }}
-                                </a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('home') }}#programs">{{ __('file.programs') }}</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('home') }}#projects">{{ __('file.projects') }}</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('home') }}#range">{{ __('file.range') }}</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('home') }}#service">{{ __('file.services') }}
-                                    <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('home') }}#2030">{{ __('file.2030') }}</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('home') }}#features">{{ __('file.About_Us') }}
-                                </a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('home') }}#"
-                                    id="home">{{ __('file.home') }}</a>
-                            </li>
-
-                        </ul>
-                    </div>
+                            </ul>
+                        </div>
+                    @endif
                     <!-- Logo at the end -->
                     <div class="navbar-brand">
                         <img src="{{ asset('images/logo 4.svg') }}">
@@ -376,7 +470,7 @@
                         <div class="d-flex justify-content-start mb-2">
                             <img src="{{ asset('images/logo 3.png') }}" alt="logo">
                         </div>
-                       <p class="text-left mb-0"
+                        <p class="text-left mb-0"
                             style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
                             {{ $footer->getTranslation('text', 'en') }}
                         </p>
@@ -405,10 +499,11 @@
                         </div>
 
                     </div>
-                    <!--Grid column-->
-                    <div class="col-md-2 mb-4 mb-md-0 text-left">
-                        <p class="text-left mb-2"
-                            style="font-family: Poppins;
+                    @if (is_array($header->getTranslation('routes', 'en')))
+                        <!--Grid column-->
+                        <div class="col-md-2 mb-4 mb-md-0 text-left">
+                            <p class="text-left mb-2"
+                                style="font-family: Poppins;
                         font-size: 16px;
                         font-weight: 500;
                         line-height: 13px;
@@ -416,18 +511,22 @@
                         text-align: left;
                         color: #FFFFFF;
                         ">
-                            @lang('file.paths')
-                        </p>
-                        <span class="d-flex justify-content-start pr-3 mb-2">
-                            <img src="{{ asset('images/zigzag.png') }}">
-                            <img src="{{ asset('images/zigzag.png') }}">
-                        </span>
-                        <ul class="list-unstyled">
-                            <li class="mb-2">
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
-                                    style="transform: scaleX(-1);">
-                                <a href="#head"
-                                    style="font-family: Poppins;
+                                @foreach ($header->getTranslation('routes', 'en') as $index => $route)
+                                    @if ($index == 0)
+                                        {{ $route }}
+                                    @endif
+                                @endforeach
+                            </p>
+                            <span class="d-flex justify-content-start pr-3 mb-2">
+                                <img src="{{ asset('images/zigzag.png') }}">
+                                <img src="{{ asset('images/zigzag.png') }}">
+                            </span>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                        style="transform: scaleX(-1);">
+                                    <a href="{{ route('home') }}#head"
+                                        style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -435,14 +534,19 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.home') </a>
+                                        @foreach ($header->getTranslation('routes', 'en') as $index => $route)
+                                            @if ($index == 1)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
 
-                            </li>
-                            <li class="mb-2">
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
-                                    style="transform: scaleX(-1);">
-                                <a href="#service"
-                                    style="font-family: Poppins;
+                                </li>
+                                <li class="mb-2">
+                                    <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                        style="transform: scaleX(-1);">
+                                    <a href="{{ route('home') }}#service"
+                                        style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -450,14 +554,19 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.services') </a>
+                                        @foreach ($header->getTranslation('routes', 'en') as $index => $route)
+                                            @if ($index == 4)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
 
-                            </li>
-                            <li class="mb-2">
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
-                                    style="transform: scaleX(-1);">
-                                <a href="#US"
-                                    style="font-family: Poppins;
+                                </li>
+                                <li class="mb-2">
+                                    <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                        style="transform: scaleX(-1);">
+                                    <a href="{{ route('home') }}#US"
+                                        style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -465,14 +574,18 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.about_us')</a>
-
-                            </li>
-                            <li class="mb-2">
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
-                                    style="transform: scaleX(-1);">
-                                <a href="#programs"
-                                    style="font-family: Poppins;
+                                        @foreach ($header->getTranslation('routes', 'en') as $index => $route)
+                                            @if ($index == 2)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                </li>
+                                <li class="mb-2">
+                                    <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                        style="transform: scaleX(-1);">
+                                    <a href="{{ route('home') }}#programs"
+                                        style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -480,16 +593,21 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.programs') </a>
+                                        @foreach ($header->getTranslation('routes', 'en') as $index => $route)
+                                            @if ($index == 7)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
 
-                            </li>
-                        </ul>
-                    </div>
+                                </li>
+                            </ul>
+                        </div>
 
-                    <!--Grid column-->
-                    <div class="col=ml-2 col-md-2 mb-4 mb-md-0 text-left">
-                        <p class="text-left mb-2"
-                            style="font-family: Poppins;
+                        <!--Grid column-->
+                        <div class="col=ml-2 col-md-2 mb-4 mb-md-0 text-left">
+                            <p class="text-left mb-2"
+                                style="font-family: Poppins;
                         font-size: 16px;
                         font-weight: 500;
                         line-height: 13px;
@@ -497,18 +615,23 @@
                         text-align: left;
                         color: #FFFFFF;
                         ">
-                            @lang('file.paths')</p>
-                        <span class="d-flex justify-content-start pr-3 mb-2">
-                            <img src="{{ asset('images/zigzag.png') }}">
-                            <img src="{{ asset('images/zigzag.png') }}">
-                        </span>
-                        <ul class="list-unstyled">
+                                @foreach ($header->getTranslation('routes', 'en') as $index => $route)
+                                    @if ($index == 0)
+                                        {{ $route }}
+                                    @endif
+                                @endforeach
+                            </p>
+                            <span class="d-flex justify-content-start pr-3 mb-2">
+                                <img src="{{ asset('images/zigzag.png') }}">
+                                <img src="{{ asset('images/zigzag.png') }}">
+                            </span>
+                            <ul class="list-unstyled">
 
-                            <li class="mb-2">
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
-                                    style="transform: scaleX(-1);">
-                                <a href="#2030"
-                                    style="font-family: Poppins;
+                                <li class="mb-2">
+                                    <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                        style="transform: scaleX(-1);">
+                                    <a href="{{ route('home') }}#2030"
+                                        style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -516,14 +639,18 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.2030')</a>
-
-                            </li>
-                            <li class="mb-2">
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
-                                    style="transform: scaleX(-1);">
-                                <a href="#projects"
-                                    style="font-family: Poppins;
+                                        @foreach ($header->getTranslation('routes', 'en') as $index => $route)
+                                            @if ($index == 3)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                </li>
+                                <li class="mb-2">
+                                    <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                        style="transform: scaleX(-1);">
+                                    <a href="{{ route('home') }}#projects"
+                                        style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -531,14 +658,19 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.projects') </a>
+                                        @foreach ($header->getTranslation('routes', 'en') as $index => $route)
+                                            @if ($index == 6)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
 
-                            </li>
-                            <li class="mb-2">
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
-                                    style="transform: scaleX(-1);">
-                                <a href="{{ route('home') }}#events"
-                                    style="font-family: Poppins;
+                                </li>
+                                <li class="mb-2">
+                                    <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                        style="transform: scaleX(-1);">
+                                    <a href="{{ route('home') }}#events"
+                                        style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -546,14 +678,19 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.events') </a>
+                                        @foreach ($header->getTranslation('routes', 'en') as $index => $route)
+                                            @if ($index == 8)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
 
-                            </li>
-                            <li class="mb-2 ">
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
-                                    style="transform: scaleX(-1);">
-                                <a href="#reviews"
-                                    style="font-family: Poppins;
+                                </li>
+                                {{-- <li class="mb-2 ">
+                                    <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px"
+                                        style="transform: scaleX(-1);">
+                                    <a href="#reviews"
+                                        style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -561,11 +698,12 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.customer_reviews')</a>
+                                        @lang('file.customer_reviews')</a>
 
-                            </li>
-                        </ul>
-                    </div>
+                                </li> --}}
+                            </ul>
+                        </div>
+                    @endif
                     <!--Grid column-->
                     <div class="col-lg-2 col-md-3 mb-4 mb-md-0 text-left">
                         <p class="text-left mb-2"
@@ -609,7 +747,7 @@
                                 text-align: right;
                                 color: #FFFFFF;
                                 ">
-                                   {{ $footer->email }}</a>
+                                    {{ $footer->email }}</a>
 
                             </li>
                             <li class="mb-2">
@@ -623,7 +761,7 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                   {{ $footer->phone }}</a>
+                                    {{ $footer->phone }}</a>
 
                             </li>
                         </ul>
@@ -676,7 +814,7 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                   {{ $footer->getTranslation('location', 'ar') }}</a>
+                                    {{ $footer->getTranslation('location', 'ar') }}</a>
                                 <img src="{{ asset('images/home.png') }}">
                             </li>
                             <li class="mb-2">
@@ -690,7 +828,7 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                   {{ $footer->email }}</a>
+                                    {{ $footer->email }}</a>
                                 <img src="{{ asset('images/email.png') }}">
                             </li>
                             <li class="mb-2">
@@ -709,29 +847,34 @@
                             </li>
                         </ul>
                     </div>
+                    @if (is_array($header->getTranslation('routes', 'ar')))
+                        <!--Grid column-->
+                        <div class="col-md-2 mb-4 mb-md-0 text-right">
+                            <p class="text-right mb-2"
+                                style="font-family: Poppins;
+                            font-size: 16px;
+                            font-weight: 500;
+                            line-height: 13px;
+                            letter-spacing: 0em;
+                            text-align: left;
+                            color: #FFFFFF;
+                            ">
+                                @foreach ($header->getTranslation('routes', 'ar') as $index => $route)
+                                    @if ($index == 0)
+                                        {{ $route }}
+                                    @endif
+                                @endforeach
+                            </p>
+                            <span class="d-flex justify-content-end pr-3 mb-2">
+                                <img src="{{ asset('images/zigzag.png') }}">
+                                <img src="{{ asset('images/zigzag.png') }}">
+                            </span>
+                            <ul class="list-unstyled">
 
-                    <!--Grid column-->
-                    <div class="col-md-2 mb-4 mb-md-0 text-right">
-                        <p class="text-right mb-2"
-                            style="font-family: Poppins;
-                        font-size: 16px;
-                        font-weight: 500;
-                        line-height: 13px;
-                        letter-spacing: 0em;
-                        text-align: left;
-                        color: #FFFFFF;
-                        ">
-                            @lang('file.paths')</p>
-                        <span class="d-flex justify-content-end pr-3 mb-2">
-                            <img src="{{ asset('images/zigzag.png') }}">
-                            <img src="{{ asset('images/zigzag.png') }}">
-                        </span>
-                        <ul class="list-unstyled">
+                                <li class="mb-2">
 
-                            <li class="mb-2">
-
-                                <a href="#2030"
-                                    style="font-family: Poppins;
+                                    <a href="{{ route('home') }}#2030"
+                                        style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -739,13 +882,18 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.2030')</a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                            </li>
-                            <li class="mb-2">
+                                        @foreach ($header->getTranslation('routes', 'ar') as $index => $route)
+                                            @if ($index == 3)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                    <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                                </li>
+                                <li class="mb-2">
 
-                                <a href="#projects"
-                                    style="font-family: Poppins;
+                                    <a href="{{ route('home') }}#projects"
+                                        style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -753,13 +901,18 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.projects') </a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                            </li>
-                            <li class="mb-2">
+                                        @foreach ($header->getTranslation('routes', 'ar') as $index => $route)
+                                            @if ($index == 6)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                    <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                                </li>
+                                <li class="mb-2">
 
-                                <a href="{{ route('home') }}#events"
-                                    style="font-family: Poppins;
+                                    <a href="{{ route('home') }}#events"
+                                        style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -767,10 +920,15 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.events') </a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                            </li>
-                            <li class="mb-2 ">
+                                        @foreach ($header->getTranslation('routes', 'ar') as $index => $route)
+                                            @if ($index == 8)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                    <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                                </li>
+                                {{-- <li class="mb-2 ">
 
                                 <a href="#reviews"
                                     style="font-family: Poppins;
@@ -783,32 +941,36 @@
                                 ">
                                     @lang('file.customer_reviews')</a>
                                 <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                            </li>
-                        </ul>
-                    </div>
+                            </li> --}}
+                            </ul>
+                        </div>
 
-                    <!--Grid column-->
-                    <div class="col-md-2 mb-4 mb-md-0 text-right">
-                        <p class="text-right mb-2"
-                            style="font-family: Poppins;
-                        font-size: 16px;
-                        font-weight: 500;
-                        line-height: 13px;
-                        letter-spacing: 0em;
-                        text-align: left;
-                        color: #FFFFFF;
-                        ">
-                            @lang('file.paths')
-                        </p>
-                        <span class="d-flex justify-content-end pr-3 mb-2">
-                            <img src="{{ asset('images/zigzag.png') }}">
-                            <img src="{{ asset('images/zigzag.png') }}">
-                        </span>
-                        <ul class="list-unstyled">
-                            <li class="mb-2">
+                        <!--Grid column-->
+                        <div class="col-md-2 mb-4 mb-md-0 text-right">
+                            <p class="text-right mb-2"
+                                style="font-family: Poppins;
+                            font-size: 16px;
+                            font-weight: 500;
+                            line-height: 13px;
+                            letter-spacing: 0em;
+                            text-align: left;
+                            color: #FFFFFF;
+                            ">
+                                @foreach ($header->getTranslation('routes', 'ar') as $index => $route)
+                                    @if ($index == 0)
+                                        {{ $route }}
+                                    @endif
+                                @endforeach
+                            </p>
+                            <span class="d-flex justify-content-end pr-3 mb-2">
+                                <img src="{{ asset('images/zigzag.png') }}">
+                                <img src="{{ asset('images/zigzag.png') }}">
+                            </span>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
 
-                                <a href="#head"
-                                    style="font-family: Poppins;
+                                    <a href="{{ route('home') }}#head"
+                                        style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -816,13 +978,18 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.home') </a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                            </li>
-                            <li class="mb-2">
+                                        @foreach ($header->getTranslation('routes', 'ar') as $index => $route)
+                                            @if ($index == 1)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                    <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                                </li>
+                                <li class="mb-2">
 
-                                <a href="#service"
-                                    style="font-family: Poppins;
+                                    <a href="{{ route('home') }}#service"
+                                        style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -830,13 +997,18 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.services') </a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                            </li>
-                            <li class="mb-2">
+                                        @foreach ($header->getTranslation('routes', 'ar') as $index => $route)
+                                            @if ($index == 4)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                    <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                                </li>
+                                <li class="mb-2">
 
-                                <a href="#US"
-                                    style="font-family: Poppins;
+                                    <a href="{{ route('home') }}#US"
+                                        style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -844,13 +1016,18 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.about_us')</a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                            </li>
-                            <li class="mb-2">
+                                        @foreach ($header->getTranslation('routes', 'ar') as $index => $route)
+                                            @if ($index == 2)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                    <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                                </li>
+                                <li class="mb-2">
 
-                                <a href="#programs"
-                                    style="font-family: Poppins;
+                                    <a href="{{ route('home') }}#programs"
+                                        style="font-family: Poppins;
                                 font-size: 16px;
                                 font-weight: 400;
                                 line-height: 13px;
@@ -858,12 +1035,17 @@
                                 text-align: left;
                                 color: #FFFFFF;
                                 ">
-                                    @lang('file.programs') </a>
-                                <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
-                            </li>
-                        </ul>
-                    </div>
-
+                                        @foreach ($header->getTranslation('routes', 'ar') as $index => $route)
+                                            @if ($index == 7)
+                                                {{ $route }}
+                                            @endif
+                                        @endforeach
+                                    </a>
+                                    <img src="{{ asset('images/left-arrow.png') }}" width="13px" height="13px">
+                                </li>
+                            </ul>
+                        </div>
+                    @endif
                     <!--Grid column-->
                     <div class="col-lg-4 col-md-4 mb-4  text-right pl-4">
                         <div class="d-flex justify-content-end mb-2">
@@ -874,7 +1056,7 @@
                             {{ $footer->getTranslation('text', 'ar') }}
                         </p>
 
-                       
+
                         <div class="row d-flex justify-content-end pr-3" style="gap: 15px">
 
                             <div class="rounded-circle bg-white d-flex justify-content-center align-items-center"

@@ -11,8 +11,8 @@ class Header extends Model
 {
     use HasFactory, HasTranslations;
 
-    protected $fillable = ['title', 'text', 'footer_image'];
-    public $translatable = ['title', 'text'];
+    protected $fillable = ['title', 'text','footer_image', 'routes'];
+    public $translatable = ['title','text', 'routes'];
 
     public function images(): MorphMany
     {
