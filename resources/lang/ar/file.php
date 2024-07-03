@@ -264,6 +264,7 @@ return [
   'Client Name' => 'Client Name',
   'Company Login' => 'Company Login',
   'degree' => 'degree',
+  'International Academy' => 'International Academy',
 
 
 

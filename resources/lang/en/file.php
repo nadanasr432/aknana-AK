@@ -261,6 +261,8 @@ return [
   'degree' => 'الدرجة العلمية',
   'Client Name' => 'اسم العميل',
   'Company Login' => 'تسجيل دخول الشركة',
+  'International Academy' => 'الاكاديمية الدولية',
+  
 
 
 

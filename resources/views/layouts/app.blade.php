@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>AKNANA</title>
+    <title>@lang('file.Dashboard')</title>
     <link rel="icon" href="{{ asset('images/logo 4 (1).png') }}" type="image/png">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
