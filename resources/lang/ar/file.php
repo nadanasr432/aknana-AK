@@ -251,6 +251,19 @@ return [
   "Youtube" => "YouTube",
   "Route"=> "Route",
   "Routes"=> "Routes",
+  'Company Registration' => 'Company Registration',
+  'Company Name' => 'Company Name',
+  'Address' => 'Address',
+  'Type of Company' => 'Type of Company',
+  'Password' => 'Password',
+  'Confirm Password' => 'Confirm Password',
+  'Register' => 'Register',
+  'Client Login' => 'Client Login',
+  'login' => 'Login',
+  'Client Registration' => 'Client Registration',
+  'Client Name' => 'Client Name',
+  'Company Login' => 'Company Login',
+  'degree' => 'degree',
 
 
 

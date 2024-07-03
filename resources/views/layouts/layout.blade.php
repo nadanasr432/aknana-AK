@@ -459,13 +459,26 @@
 
             <form method="post" action="{{ route('language.switch') }}" id="languageForm">
                 @csrf
-                <button type="button" onclick="toggleLanguage()" class="btn btn-link text-white">
+                <a type="button" onclick="toggleLanguage()" class="btn btn-link text-white">
                     {{ app()->getLocale() == 'en' ? 'En' : 'Ar' }}
                     <img src="{{ asset('images/' . (app()->getLocale() == 'en' ? 'united_Kingdom' : 'saudi-arabia') . '.png') }}"
-                        width="40px" height="40px">
-                </button>
+                        width="30px" height="30px">
+                </a>
                 <input type="hidden" name="locale" id="localeInput" value="{{ app()->getLocale() }}">
             </form>
+            <div class="dropdown">
+                <button class="btn btn-success dropdown-toggle" type="button" id="loginDropdown" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" style="font-family: Cairo;background-color:#DF8317;border:#DF8317">
+                    @lang('file.login')
+                </button>
+                <div class="dropdown-menu" aria-labelledby="loginDropdown">
+                    <a class="dropdown-item"  style="font-family: Cairo;" href="{{ route('client.login') }}">@lang('file.Client Login')</a>
+                    <a class="dropdown-item" style="font-family: Cairo;" href="{{ route('company.login') }}">@lang('file.Company Login')</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" style="font-family: Cairo;" href="{{ route('client.register') }}">@lang('file.Client Registration')</a>
+                    <a class="dropdown-item" style="font-family: Cairo;" href="{{ route('company.register') }}">@lang('file.Company Registration')</a>
+                </div>
+            </div>
 
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 @if (app()->getLocale() == 'en')
@@ -747,7 +760,7 @@
 
             <div class="d-flex justify-content-center align-items-between mt-5 ">
                 @if (app()->getLocale() == 'en')
-                    <a href="" class="d-flex align-items-center pr-4  " >
+                    <a href="" class="d-flex align-items-center pr-4  ">
                         <p class="pr-2 content-text3"
                             style="font-family: Cairo;
                         font-size: 25px;
@@ -761,7 +774,7 @@
                         <img src="{{ asset('images/video_big.svg') }}" style="margin-right: 10px;">
                     </a>
                 @else
-                    <a href="" class="d-flex align-items-center pr-4 pl-4  " >
+                    <a href="" class="d-flex align-items-center pr-4 pl-4  ">
                         <p class="pr-2 content-text3"
                             style="font-family: Cairo;
                         font-size: 25px;
@@ -1472,13 +1485,13 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" crossorigin="anonymous">
+    </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
 
     {{-- <script>
         $(document).ready(function() {

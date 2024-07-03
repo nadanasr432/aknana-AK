@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha384-eDexGCEIa7XZLUEX31FzRvFrCD8v/72G6PO77RFGU5S5sS/gEVMmE2zD3tt1TwTk" crossorigin="anonymous">
     <!-- Scripts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <!-- Optional: Include jQuery -->
@@ -248,6 +250,7 @@
                     </div>
 
 
+
                     @if (is_array($header->getTranslation('routes', 'en')))
                         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                             <ul class="navbar-nav" style="gap: 30px;">
@@ -328,6 +331,37 @@
                             </ul>
                         </div>
                     @endif
+                    <div class="dropdown">
+                        <button class="btn btn-success dropdown-toggle" type="button" id="loginDropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            style="font-family: Cairo;background-color:#DF8317;border:#DF8317">
+                            @lang('file.login')
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="loginDropdown">
+                            <a class="dropdown-item" style="font-family: Cairo;"
+                                href="{{ route('client.login') }}">@lang('file.Client Login')</a>
+                            <a class="dropdown-item" style="font-family: Cairo;"
+                                href="{{ route('company.login') }}">@lang('file.Company Login')</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" style="font-family: Cairo;"
+                                href="{{ route('client.register') }}">@lang('file.Client Registration')</a>
+                            <a class="dropdown-item" style="font-family: Cairo;"
+                                href="{{ route('company.register') }}">@lang('file.Company Registration')</a>
+                        </div>
+                    </div>
+                    <form method="post" action="{{ route('language.switch') }}" id="languageForm" class="pl-4 pr-4">
+                        @csrf
+                        <a type="button" onclick="toggleLanguage()" class="btn btn-link"
+                            style="color: #121743;font-family: Cairo; font-size:18px;
+                                            font-weight: 667;
+                                            line-height: 50px;">
+
+                            <img src="{{ asset('images/' . (app()->getLocale() == 'en' ? 'united_Kingdom' : 'saudi-arabia') . '.png') }}"
+                                width="30px" height="30px">
+                            {{ app()->getLocale() == 'en' ? 'En' : 'Ar' }}
+                        </a>
+                        <input type="hidden" name="locale" id="localeInput" value="{{ app()->getLocale() }}">
+                    </form>
                     <button id="actionButton" class="btn btn-primary"
                         style="font-family: Cairo;
                     font-size: 16px;
@@ -350,6 +384,7 @@
         <div id="app">
             <div class="head">
                 <nav class="navbar navbar-expand-lg d-flex justify-content-between">
+
                     <a class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <img src="{{ asset('images/list2.png') }}" width="25px" height="25px">
@@ -366,6 +401,37 @@
                     ">
                         @lang('file.contact_us')
                     </button>
+                    <form method="post" action="{{ route('language.switch') }}" id="languageForm"
+                        class="pl-4 pr-4">
+                        @csrf
+                        <a type="button" onclick="toggleLanguage()" class="btn btn-link"
+                            style="color: #121743;font-family: Cairo; font-size: 18px;
+                                            font-weight: 667;
+                                            line-height: 50px;">
+                            {{ app()->getLocale() == 'en' ? 'En' : 'Ar' }}
+                            <img src="{{ asset('images/' . (app()->getLocale() == 'en' ? 'united_Kingdom' : 'saudi-arabia') . '.png') }}"
+                                width="30px" height="30px">
+                        </a>
+                        <input type="hidden" name="locale" id="localeInput" value="{{ app()->getLocale() }}">
+                    </form>
+                    <div class="dropdown">
+                        <button class="btn btn-success dropdown-toggle" type="button" id="loginDropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            style="font-family: Cairo;background-color:#DF8317;border:#DF8317">
+                            @lang('file.login')
+                        </button>
+                        <div class="dropdown-menu  text-end" aria-labelledby="loginDropdown">
+                            <a class="dropdown-item text-right" style="font-family: Cairo;"
+                                href="{{ route('client.login') }}">@lang('file.Client Login')</a>
+                            <a class="dropdown-item  text-right" style="font-family: Cairo;"
+                                href="{{ route('company.login') }}">@lang('file.Company Login')</a>
+                            <div class="dropdown-divider  text-right"></div>
+                            <a class="dropdown-item  text-right" style="font-family: Cairo;"
+                                href="{{ route('client.register') }}">@lang('file.Client Registration')</a>
+                            <a class="dropdown-item  text-right" style="font-family: Cairo;"
+                                href="{{ route('company.register') }}">@lang('file.Company Registration')</a>
+                        </div>
+                    </div>
                     @if (is_array($header->getTranslation('routes', 'ar')))
                         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                             <ul class="navbar-nav" style="gap: 30px;">
@@ -446,6 +512,7 @@
                             </ul>
                         </div>
                     @endif
+
                     <!-- Logo at the end -->
                     <div class="navbar-brand">
                         <img src="{{ asset('images/logo 4.svg') }}">
@@ -1106,6 +1173,33 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function toggleLanguage() {
+            var currentLocale = document.getElementById('localeInput').value;
+            var newLocale = (currentLocale === 'en') ? 'ar' : 'en';
+
+            document.getElementById('localeInput').value = newLocale;
+            document.getElementById('languageForm').submit();
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const togglePassword = document.querySelector('#togglePassword');
+            const password = document.querySelector('#password');
+            const passwordConfirmation = document.querySelector('#password_confirmation');
+
+            togglePassword.addEventListener('click', function(e) {
+                // Toggle the type attribute for both password fields
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                passwordConfirmation.setAttribute('type', type);
+                // Toggle the eye icon
+                this.querySelector('i').classList.toggle('fa-eye');
+                this.querySelector('i').classList.toggle('fa-eye-slash');
+            });
+        });
+    </script>
+
     <script>
         $(document).ready(function() {
             var defaultButtonText = '@lang('file.contact_us')';

@@ -395,8 +395,8 @@ class ComposerStaticInite56462bf57f6e574ecbdf6ec766f090e
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -614,6 +614,12 @@ class ComposerStaticInite56462bf57f6e574ecbdf6ec766f090e
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Factories\\ConfigurationFactory' => __DIR__ . '/..' . '/laravel/pint/app/Factories/ConfigurationFactory.php',
         'App\\Factories\\ConfigurationResolverFactory' => __DIR__ . '/..' . '/laravel/pint/app/Factories/ConfigurationResolverFactory.php',
+        'App\\Http\\Controllers\\Auth\\ClientLoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ClientLoginController.php',
+        'App\\Http\\Controllers\\Auth\\ClientRegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ClientRegisterController.php',
+        'App\\Http\\Controllers\\Auth\\CompanyLoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/CompanyLoginController.php',
+        'App\\Http\\Controllers\\Auth\\CompanyRegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/CompanyRegisterController.php',
+        'App\\Http\\Controllers\\ClientController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClientController.php',
+        'App\\Http\\Controllers\\CompanyController' => __DIR__ . '/../..' . '/app/Http/Controllers/CompanyController.php',
         'App\\Http\\Controllers\\ContactsControllers' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactsControllers.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CoursesController' => __DIR__ . '/../..' . '/app/Http/Controllers/CoursesController.php',
@@ -641,6 +647,8 @@ class ComposerStaticInite56462bf57f6e574ecbdf6ec766f090e
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => __DIR__ . '/../..' . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
+        'App\\Http\\Middleware\\RedirectIfNotClient' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfNotClient.php',
+        'App\\Http\\Middleware\\RedirectIfNotCompany' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfNotCompany.php',
         'App\\Http\\Middleware\\RtlMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/RtlMiddleware.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
@@ -648,6 +656,8 @@ class ComposerStaticInite56462bf57f6e574ecbdf6ec766f090e
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Kernel' => __DIR__ . '/..' . '/laravel/pint/app/Kernel.php',
+        'App\\Models\\Client' => __DIR__ . '/../..' . '/app/Models/Client.php',
+        'App\\Models\\Company' => __DIR__ . '/../..' . '/app/Models/Company.php',
         'App\\Models\\ContactUs' => __DIR__ . '/../..' . '/app/Models/ContactUs.php',
         'App\\Models\\Course' => __DIR__ . '/../..' . '/app/Models/Course.php',
         'App\\Models\\Event' => __DIR__ . '/../..' . '/app/Models/Event.php',

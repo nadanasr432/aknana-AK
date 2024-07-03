@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\RangeController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HeaderController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
@@ -14,7 +16,15 @@ use App\Http\Controllers\ContactsControllers;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\Dashboard\AdminController;
+use App\Http\Controllers\Auth\ClientLoginController;
+use App\Http\Controllers\Dashboard\EventsController;
+use App\Http\Controllers\Auth\CompanyLoginController;
+use App\Http\Controllers\Dashboard\ProjectsController;
+use App\Http\Controllers\Dashboard\ServicesController;
 use App\Http\Controllers\Dashboard\TemplateController;
+use App\Http\Controllers\Auth\ClientRegisterController;
+use App\Http\Controllers\Dashboard\ContactUsController;
+use App\Http\Controllers\Auth\CompanyRegisterController;
 use App\Http\Controllers\Dashboard\HomeController as DashboardHomeController;
 
 
@@ -53,6 +63,22 @@ Route::post('/projects', [ProjectController::class, 'store'])->name('projects.st
 Route::get('/download-pdf', [ReservationsController::class, 'downloadPdf'])->name('download.pdf');
 Route::get('/get-max-male-value', [ReservationsController::class, 'getMaxMaleValue'])->name('getMaxMaleValue');
 Route::post('language/switch', [LanguageController::class, 'switch'])->name('language.switch');
+// Client Routes
+Route::prefix('client')->group(function () {
+    Route::get('register', [ClientRegisterController::class, 'showRegistrationForm'])->name('client.register');
+    Route::post('register', [ClientRegisterController::class, 'register'])->name('client.store');
+    Route::get('login', [ClientLoginController::class, 'showLoginForm'])->name('client.login');
+    Route::post('login', [ClientLoginController::class, 'login'])->name('client.store.login');
+    Route::post('logout', [ClientLoginController::class, 'logout'])->name('client.logout');
+});
+
+Route::prefix('company')->group(function () {
+    Route::get('register', [CompanyRegisterController::class, 'showRegistrationForm'])->name('company.register');
+    Route::post('register', [CompanyRegisterController::class, 'register'])->name('company.store');
+    Route::get('login', [CompanyLoginController::class, 'showLoginForm'])->name('company.login');
+    Route::post('login', [CompanyLoginController::class, 'login'])->name('company.store.login');
+    Route::post('logout', [CompanyLoginController::class, 'logout'])->name('company.logout');
+});
 // routes/web.php
 Route::get('/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/login', [AdminController::class, 'login']);
@@ -127,4 +153,5 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::post('/footer/store', [FooterController::class, 'store'])->name('footer.store');
     Route::get('/footer/{id}/edit', [FooterController::class, 'edit'])->name('footer.edit');
     Route::put('/footer/{id}', [FooterController::class, 'update'])->name('footer.update');
+
 });

@@ -248,6 +248,19 @@ return [
   "Youtube" => "يوتيوب",
   "Route" => "المسار",
   "Routes" => "المسارات",
+  'Company Registration' => 'تسجيل الشركة',
+  'Company Name' => 'اسم الشركة',
+  'Address' => 'العنوان',
+  'Type of Company' => 'نوع الشركة',
+  'Password' => 'كلمة المرور',
+  'Confirm Password' => 'تأكيد كلمة المرور',
+  'Register' => 'تسجيل',
+  'Client Login' => 'تسجيل دخول العميل',
+  'login' => 'تسجيل الدخول',
+  'Client Registration' => 'تسجيل العميل',
+  'degree' => 'الدرجة العلمية',
+  'Client Name' => 'اسم العميل',
+  'Company Login' => 'تسجيل دخول الشركة',
 
 
 
