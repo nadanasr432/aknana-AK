@@ -5,7 +5,7 @@
             <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white me-2">
                     <i class="mdi mdi-library"></i>
-                </span> @lang('file.Header , Footer Details')
+                </span> @lang('file.Header, Footer Details')
             </h3>
             <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
@@ -29,7 +29,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <form method="POST"action="{{ route('dashboard.header.update', $header->id) }}"
+                        <form method="POST" action="{{ route('dashboard.header.update', $header->id) }}"
                             enctype="multipart/form-data" class="forms-sample">
                             @method('PUT')
                             @csrf
@@ -59,15 +59,16 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="text_ar"> @lang('file.Text (Arabic)')</label>
+                                        <label for="text_ar">@lang('file.Text (Arabic)')</label>
                                         <textarea name="text[ar]" id="text_ar" class="form-control" required>{{ $header->getTranslation('text', 'ar') }}</textarea>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="header_image"> @lang('file.Header Image')</label>
+                                        <label for="header_image">@lang('file.Header Image')</label>
                                         @if ($header->images()->exists())
                                             <img src="{{ asset('storage/' . $header->images()->first()->file_path) }}"
                                                 width="40px" height="40px">
@@ -91,36 +92,54 @@
                                             class="form-control-file" accept="image/*">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    @foreach (old('routes.en', $header->getTranslation('routes', 'en')) as $index => $routeEn)
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="route{{ $index + 1 }}_en">@lang('file.Route') {{ $index + 1 }}
-                                                    (English)</label>
-                                                <input type="text" name="routes[en][]" id="route{{ $index + 1 }}_en"
-                                                    class="form-control" required value="{{ $routeEn }}">
-                                            </div>
-                                        </div>
-                                    @endforeach
+                            </div>
 
-                                    @foreach (old('routes.ar', $header->getTranslation('routes', 'ar')) as $index => $routeAr)
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="route{{ $index + 1 }}_ar">@lang('file.Route') {{ $index + 1 }}
-                                                    (Arabic)</label>
-                                                <input type="text" name="routes[ar][]" id="route{{ $index + 1 }}_ar"
-                                                    class="form-control" required value="{{ $routeAr }}">
-                                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="logo">@lang('file.App Logo')</label>
+                                        @if ($header->images()->where('type', 'logo')->exists())
+                                            <img src="{{ asset('storage/' . $header->images()->where('type', 'logo')->first()->file_path) }}"
+                                                width="40px" height="40px" class="mb-2">
+                                        @else
+                                            <p>No logo available</p>
+                                        @endif
+                                        <input type="file" name="logo" id="logo" class="form-control-file"
+                                            accept="image/*">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @foreach (old('routes.en', $header->getTranslation('routes', 'en')) as $index => $routeEn)
+                                        <div class="form-group">
+                                            <label for="route{{ $index + 1 }}_en">@lang('file.Route') {{ $index + 1 }}
+                                                (English)</label>
+                                            <input type="text" name="routes[en][]" id="route{{ $index + 1 }}_en"
+                                                class="form-control" required value="{{ $routeEn }}">
                                         </div>
                                     @endforeach
                                 </div>
 
+                                <div class="col-md-6">
+                                    @foreach (old('routes.ar', $header->getTranslation('routes', 'ar')) as $index => $routeAr)
+                                        <div class="form-group">
+                                            <label for="route{{ $index + 1 }}_ar">@lang('file.Route')
+                                                {{ $index + 1 }} (Arabic)</label>
+                                            <input type="text" name="routes[ar][]" id="route{{ $index + 1 }}_ar"
+                                                class="form-control" required value="{{ $routeAr }}">
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button type="submit" class="btn btn-gradient-primary me-2">
-                                        @lang('file.Submit')</button>
-                                    <button class="btn btn-light"> @lang('file.Cancel')</button>
+                                    <button type="submit"
+                                        class="btn btn-gradient-primary me-2">@lang('file.Submit')</button>
+                                    <button class="btn btn-light">@lang('file.Cancel')</button>
                                 </div>
                             </div>
                         </form>
@@ -129,6 +148,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 @endsection

@@ -10,7 +10,11 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyOB4Ml3r6DIj5e7n9O3PjUbo+qDFFUw" crossorigin="anonymous">
 
     <title>@lang('file.International Academy')</title>
-    <link rel="icon" href="{{ asset('images/logo 4 (1).png') }}" type="image/png">
+    @if ($header->images()->where('type', 'logo')->exists())
+        <link rel="icon"
+            href="{{ asset('storage/' . $header->images()->where('type', 'logo')->first()->file_path) }}"
+            type="image/png">
+    @endif
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         .small-screen-font {
@@ -467,56 +471,53 @@
                 <input type="hidden" name="locale" id="localeInput" value="{{ app()->getLocale() }}">
             </form>
             <div>
-               @auth('client')
-                            <div class="dropdown">
-                                <button class="btn btn-success dropdown-toggle" type="button" id="clientAccountDropdown"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                    style="font-family: Cairo; background-color: #DF8317; border: #DF8317;">
-                                    <i class="fas fa-user"></i> @lang('file.Account')
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="clientAccountDropdown">
-                                    <a class="dropdown-item" style="font-family: Cairo;"
-                                        href="{{ route('client.profile') }}">
-                                        @lang('file.Profile')
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('client.logout') }}"
-                                        onclick="event.preventDefault(); document.getElementById('client-logout-form').submit();"
-                                        style="font-family: Cairo;">
-                                        @lang('file.Logout')
-                                    </a>
-                                    <form id="client-logout-form" action="{{ route('client.logout') }}" method="POST"
-                                        style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </div>
-                        @endauth
+                @auth('client')
+                    <div class="dropdown">
+                        <button class="btn btn-success dropdown-toggle" type="button" id="clientAccountDropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            style="font-family: Cairo; background-color: #DF8317; border: #DF8317;">
+                            <i class="fas fa-user"></i> @lang('file.Account')
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="clientAccountDropdown">
+                            <a class="dropdown-item" style="font-family: Cairo;" href="{{ route('client.profile') }}">
+                                @lang('file.Profile')
+                            </a>
+                            <a class="dropdown-item" href="{{ route('client.logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('client-logout-form').submit();"
+                                style="font-family: Cairo;">
+                                @lang('file.Logout')
+                            </a>
+                            <form id="client-logout-form" action="{{ route('client.logout') }}" method="POST"
+                                style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </div>
+                @endauth
 
-                        @auth('company')
-                            <div class="dropdown">
-                                <button class="btn btn-success dropdown-toggle" type="button"
-                                    id="companyAccountDropdown" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"
-                                    style="font-family: Cairo; background-color: #DF8317; border: #DF8317;">
-                                    <i class="fas fa-user"></i> @lang('file.Account')
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="companyAccountDropdown">
-                                    <a class="dropdown-item" style="font-family: Cairo;"
-                                        href="{{ route('company.profile') }}">
-                                        @lang('file.Profile')
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('company.logout') }}"
-                                        onclick="event.preventDefault(); document.getElementById('company-logout-form').submit();"
-                                        style="font-family: Cairo;">
-                                        @lang('file.Logout')
-                                    </a>
-                                    <form id="company-logout-form" action="{{ route('company.logout') }}" method="POST"
-                                        style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </div>
-                        @endauth
+                @auth('company')
+                    <div class="dropdown">
+                        <button class="btn btn-success dropdown-toggle" type="button" id="companyAccountDropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            style="font-family: Cairo; background-color: #DF8317; border: #DF8317;">
+                            <i class="fas fa-user"></i> @lang('file.Account')
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="companyAccountDropdown">
+                            <a class="dropdown-item" style="font-family: Cairo;" href="{{ route('company.profile') }}">
+                                @lang('file.Profile')
+                            </a>
+                            <a class="dropdown-item" href="{{ route('company.logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('company-logout-form').submit();"
+                                style="font-family: Cairo;">
+                                @lang('file.Logout')
+                            </a>
+                            <form id="company-logout-form" action="{{ route('company.logout') }}" method="POST"
+                                style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </div>
+                @endauth
 
                 @guest('client')
                     @guest('company')
@@ -703,11 +704,13 @@
                     @endif
                 @endif
             </div>
-
-            <!-- Logo at the end -->
-            <div class="navbar-brand">
-                <img src="{{ asset('images/logo 4.svg') }}">
-            </div>
+            @if ($header->images()->where('type', 'logo')->exists())
+                <!-- Logo at the end -->
+                <div class="navbar-brand">
+                    <img src="{{ asset('storage/' . $header->images()->where('type', 'logo')->first()->file_path) }}"
+                        width="60px" height="60px">
+                </div>
+            @endif
 
         </nav>
         <div class="content" id="content">
@@ -1144,9 +1147,12 @@
                     @endif
                     <!--Grid column-->
                     <div class="col-lg-4 col-md-4 mb-4 text-left pl-4">
-                        <div class="d-flex justify-content-end mb-2">
-                            <img src="{{ asset('images/logo 3.png') }}" alt="logo">
-                        </div>
+                          @if ($header->images()->where('type', 'logo')->exists())
+                            <div class="d-flex justify-content-end mb-2">
+                                <img src="{{ asset('storage/' . $header->images()->where('type', 'logo')->first()->file_path) }}"
+                                    alt="logo" width="100px" height="100px">
+                            </div>
+                        @endif
                         <p class="text-left mb-0"
                             style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
                             {{ $footer->getTranslation('text', 'en') }}
@@ -1466,9 +1472,12 @@
                     @endif
                     <!--Grid column-->
                     <div class="col-lg-4 col-md-4 mb-4  text-right pl-4">
-                        <div class="d-flex justify-content-end mb-2">
-                            <img src="{{ asset('images/logo 3.png') }}" alt="logo">
-                        </div>
+                         @if ($header->images()->where('type', 'logo')->exists())
+                            <div class="d-flex justify-content-end mb-2">
+                                <img src="{{ asset('storage/' . $header->images()->where('type', 'logo')->first()->file_path) }}"
+                                    alt="logo" width="100px" height="100px">
+                            </div>
+                        @endif
                         <p class="text-right mb-3"
                             style="color: #FFFFFFBF; font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 15px; letter-spacing: 0em; white-space: pre-line; word-wrap: break-word;">
                             {{ $footer->getTranslation('text', 'ar') }}

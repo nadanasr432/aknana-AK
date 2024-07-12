@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use index;
 use App\Models\Header;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -30,6 +29,7 @@ class HeaderController extends Controller
             'text.ar' => 'required|string',
             'header_image' => 'required|image',
             'footer_image' => 'required|image',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'routes.en' => 'required|array',
             'routes.ar' => 'required|array',
             'routes.en.*' => 'string|max:255',
@@ -57,6 +57,11 @@ class HeaderController extends Controller
         $footerImage = $request->file('footer_image')->store('footer_image', 'public');
         $header->images()->create(['file_path' => $footerImage]);
 
+        // Store the logo
+        $logoPath = $request->file('logo')->store('logos', 'public');
+        $header->logo = $logoPath;
+        $header->save();
+
         return redirect()->back()->with('success', 'Header content stored successfully.');
     }
 
@@ -64,8 +69,6 @@ class HeaderController extends Controller
     {
         return view('dashboards.header_footer.edit', compact('header'));
     }
-
-
 
     public function update(Request $request, Header $header)
     {
@@ -77,6 +80,7 @@ class HeaderController extends Controller
             'images' => 'array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'footer_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'routes.en' => 'required|array',
             'routes.ar' => 'required|array',
             'routes.en.*' => 'string|max:255',
@@ -102,9 +106,7 @@ class HeaderController extends Controller
             $header->images()->delete();
             foreach ($request->file('images') as $image) {
                 $path = $image->store('header_images', 'public');
-                $header->images()->create([
-                    'file_path' => $path,
-                ]);
+                $header->images()->create(['file_path' => $path]);
             }
         }
 
@@ -115,22 +117,25 @@ class HeaderController extends Controller
             }
             $header->footer_image = $path;
         }
+        if ($request->hasFile('logo')) {
+            $logoPath = $request->file('logo')->store('logos', 'public');
+            $header->images()->updateOrCreate(
+                ['type' => 'logo'],
+                ['file_path' => $logoPath]
+            );
+        }
 
         $header->update($data);
 
         return redirect()->back()->with('success', 'Header content updated successfully.');
     }
 
-
     public function destroy(Header $header)
     {
-       
         $header->images()->delete();
-
-     
+        Storage::disk('public')->delete($header->logo);
         $header->delete();
 
         return redirect()->back()->with('success', 'Header content and associated images deleted successfully.');
     }
-
 }

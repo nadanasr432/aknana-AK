@@ -9,8 +9,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@lang('file.Dashboard')</title>
-    <link rel="icon" href="{{ asset('images/logo 4 (1).png') }}" type="image/png">
-    <!-- Fonts -->
+    @if ($header->images()->where('type', 'logo')->exists())
+        <link rel="icon" href="{{ asset('storage/' . $header->images()->where('type', 'logo')->first()->file_path) }}"
+            type="image/png">
+    @endif <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -245,9 +247,13 @@
                         <img src="{{ asset('images/list2.png') }}" width="25px" height="25px">
 
                     </a>
-                    <div class="navbar-brand">
-                        <img src="{{ asset('images/logo 4.svg') }}">
-                    </div>
+                    @if ($header->images()->where('type', 'logo')->exists())
+                        <!-- Logo at the end -->
+                        <div class="navbar-brand">
+                            <img src="{{ asset('storage/' . $header->images()->where('type', 'logo')->first()->file_path) }}"
+                                width="60px" height="60px">
+                        </div>
+                    @endif
 
 
 
@@ -359,9 +365,8 @@
 
                         @auth('company')
                             <div class="dropdown">
-                                <button class="btn btn-success dropdown-toggle" type="button"
-                                    id="companyAccountDropdown" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false"
+                                <button class="btn btn-success dropdown-toggle" type="button" id="companyAccountDropdown"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                     style="font-family: Cairo; background-color: #DF8317; border: #DF8317;">
                                     <i class="fas fa-user"></i> @lang('file.Account')
                                 </button>
@@ -629,9 +634,13 @@
                     @endif
 
                     <!-- Logo at the end -->
-                    <div class="navbar-brand">
-                        <img src="{{ asset('images/logo 4.svg') }}">
-                    </div>
+                    @if ($header->images()->where('type', 'logo')->exists())
+                        <!-- Logo at the end -->
+                        <div class="navbar-brand">
+                            <img src="{{ asset('storage/' . $header->images()->where('type', 'logo')->first()->file_path) }}"
+                                width="60px" height="60px">
+                        </div>
+                    @endif
 
 
                 </nav>
@@ -649,9 +658,12 @@
                 <div class="row" style="gap: 55px">
                     <!--Grid column-->
                     <div class="col-lg-4 col-md-4 mb-4 text-left pl-4">
-                        <div class="d-flex justify-content-start mb-2">
-                            <img src="{{ asset('images/logo 3.png') }}" alt="logo">
-                        </div>
+                        @if ($header->images()->where('type', 'logo')->exists())
+                            <div class="d-flex justify-content-start mb-2">
+                                <img src="{{ asset('storage/' . $header->images()->where('type', 'logo')->first()->file_path) }}"
+                                    alt="logo" width="100px" height="100px">
+                            </div>
+                        @endif
                         <p class="text-left mb-0"
                             style="color: #FFFFFFBF;font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 30px; letter-spacing: 0em;">
                             {{ $footer->getTranslation('text', 'en') }}
@@ -1230,9 +1242,13 @@
                     @endif
                     <!--Grid column-->
                     <div class="col-lg-4 col-md-4 mb-4  text-right pl-4">
-                        <div class="d-flex justify-content-end mb-2">
-                            <img src="{{ asset('images/logo 3.png') }}" alt="logo">
-                        </div>
+                        @if ($header->images()->where('type', 'logo')->exists())
+                            <div class="d-flex justify-content-end mb-2">
+                                <img src="{{ asset('storage/' . $header->images()->where('type', 'logo')->first()->file_path) }}"
+                                    alt="logo" width="100px" height="100px">
+                            </div>
+                        @endif
+
                         <p class="text-right mb-3"
                             style="color: #FFFFFFBF; font-family: 'Cairo', sans-serif; font-size: 16px; font-weight: 400; line-height: 15px; letter-spacing: 0em; white-space: pre-line; word-wrap: break-word;">
                             {{ $footer->getTranslation('text', 'ar') }}

@@ -37,6 +37,7 @@
                                     <th> @lang('file.Routes')Ar</th>
                                     <th>@lang('file.Header Image')</th>
                                     <th>@lang('file.Footer Image')</th>
+                                    <th>@lang('file.logo')</th>
                                     <th>@lang('file.Action')</th>
 
                                 </tr>

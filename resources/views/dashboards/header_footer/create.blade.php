@@ -5,7 +5,7 @@
             <h3 class="page-title">
                 <span class="page-title-icon bg-gradient-primary text-white me-2">
                     <i class="mdi mdi-library"></i>
-                </span> @lang('file. Header , Footer Details')
+                </span> @lang('file.Header, Footer Details')
             </h3>
             <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
@@ -19,7 +19,7 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title mb-5"> @lang('file.update Header and Footer')</h4>
+                        <h4 class="card-title mb-5"> @lang('file.Update Header and Footer')</h4>
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -29,7 +29,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <form method="POST"action="{{ route('header.store') }}" enctype="multipart/form-data"
+                        <form method="POST" action="{{ route('header.store') }}" enctype="multipart/form-data"
                             class="forms-sample">
                             @csrf
                             <div class="row">
@@ -63,19 +63,30 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="header_image"> @lang('file.Header Image')</label>
                                         <input type="file" id="header_image" name="header_image" class="form-control-file"
-                                            accept="image/*">
+                                            accept="image/*" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="footer_image"> @lang('file.Footer Image')</label>
                                         <input type="file" id="footer_image" name="footer_image" class="form-control-file"
-                                            accept="image/*">
+                                            accept="image/*" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="logo"> @lang('file.App Logo')</label>
+                                        <input type="file" id="logo" name="logo" class="form-control-file"
+                                            accept="image/*" required>
                                     </div>
                                 </div>
                             </div>
@@ -92,6 +103,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 @endsection

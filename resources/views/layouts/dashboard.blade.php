@@ -6,8 +6,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@lang('file.International Academy')</title>
-    <link rel="icon" href="{{ asset('images/logo 4 (1).png') }}" type="image/png">
-    <!-- plugins:css -->
+    @if ($header->images()->where('type', 'logo')->exists())
+        <link rel="icon" href="{{ asset('storage/' . $header->images()->where('type', 'logo')->first()->file_path) }}"
+            type="image/png">
+    @endif <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href='{{ asset('assets/vendors/css/vendor.bundle.base.css') }}'>
     <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
