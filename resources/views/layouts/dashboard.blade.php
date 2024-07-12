@@ -13,7 +13,7 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- End layout styles -->
-   
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -190,7 +190,22 @@
                             <i class="mdi mdi-home menu-icon"></i>
                         </a>
                     </li>
-                     <li class="nav-item {{ Request::is('admin/header*') ? 'active' : '' }}">
+                    <li class="nav-item {{ Request::is('admin/certificates*') ? 'active' : '' }}">
+                        <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('certificates')">
+                            <span class="menu-title">@lang('file.certificates')</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-settings-box menu-icon"></i>
+                        </a>
+                        <div class="sub-menu" id="certificates">
+                            <ul class="nav flex-column sub-menu1">
+
+                                <li class="nav-item {{ Request::is('admin/certificates') ? 'active' : '' }}"><a
+                                        class="nav-link" href="{{ route('certificate.index') }}">
+                                        @lang('file.Details')</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item {{ Request::is('admin/header*') ? 'active' : '' }}">
                         <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('header')">
                             <span class="menu-title">@lang('file.Header and Footer')</span>
                             <i class="menu-arrow"></i>
@@ -205,7 +220,7 @@
                             </ul>
                         </div>
                     </li>
-                     <li class="nav-item {{ Request::is('admin/footer*') ? 'active' : '' }}">
+                    <li class="nav-item {{ Request::is('admin/footer*') ? 'active' : '' }}">
                         <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('footer')">
                             <span class="menu-title">@lang('file.Footer')</span>
                             <i class="menu-arrow"></i>
@@ -238,7 +253,7 @@
                             </ul>
                         </div>
                     </li>
-                     
+
                     <li class="nav-item {{ Request::is('admin/ranges*') ? 'active' : '' }}">
                         <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('ranges')">
                             <span class="menu-title">@lang('file.Ranges')</span>
@@ -257,7 +272,7 @@
                             </ul>
                         </div>
                     </li>
-                     <li class="nav-item {{ Request::is('admin/project*') ? 'active' : '' }}">
+                    <li class="nav-item {{ Request::is('admin/project*') ? 'active' : '' }}">
                         <a class="nav-link" href="javascript:void(0);" onclick="toggleSubMenu('projects')">
                             <span class="menu-title">@lang('file.Projects')</span>
                             <i class="menu-arrow"></i>
@@ -626,19 +641,19 @@
             });
         });
     </script>
-<script>
-    ClassicEditor
-        .create( document.querySelector( '#main_text_ar' ) )
-        .catch( error => {
-            console.error( error );
-        } );
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#main_text_ar'))
+            .catch(error => {
+                console.error(error);
+            });
 
-    ClassicEditor
-        .create( document.querySelector( '#main_text_en' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-</script>
+        ClassicEditor
+            .create(document.querySelector('#main_text_en'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 
 
 </body>

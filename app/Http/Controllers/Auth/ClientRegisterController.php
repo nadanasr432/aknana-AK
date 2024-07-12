@@ -30,7 +30,7 @@ class ClientRegisterController extends Controller
 
         Auth::guard('client')->login($client);
 
-        return redirect()->intended('/client/dashboard');
+        return redirect()->intended('/client/profile');
     }
 
     protected function validator(array $data)
@@ -39,6 +39,7 @@ class ClientRegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:clients'],
             'phone' => ['required', 'string', 'max:15'],
+            'country' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'degree' => ['required', 'string', 'max:255'],
         ]);
@@ -50,8 +51,10 @@ class ClientRegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
+            'country' => $data['country'],
             'password' => Hash::make($data['password']),
             'degree' => $data['degree'],
+            'serial_id' => $data['serial_id'],
         ]);
     }
 }

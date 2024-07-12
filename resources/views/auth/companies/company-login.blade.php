@@ -74,7 +74,7 @@
                                             letter-spacing: 0em;"><img src="{{ asset('images/Vector (1).svg') }}">
                                     @lang('file.Company Login') </h2>
                             </div>
-                            <form action="{{ route('company.store') }}" method="POST">
+                            <form action="{{ route('company.store.login') }}" method="POST">
                                 @csrf
                                 <div class="form-row d-flex justify-content-end">
                                     <div class="form-group col-md-12 text-right">

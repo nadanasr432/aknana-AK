@@ -1,11 +1,13 @@
 <?php
+// App\Models\Client.php
 
 namespace App\Models;
 
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 class Client extends Authenticatable
 {
     use HasApiTokens, HasFactory;
@@ -16,9 +18,16 @@ class Client extends Authenticatable
         'phone',
         'password',
         'degree',
+        'country',
+        'serial_id', 
     ];
 
     protected $hidden = [
         'password',
     ];
+
+    public function certificate()
+    {
+        return $this->belongsTo(Certificate::class, 'serial_id', 'certificate_No');
+    }
 }

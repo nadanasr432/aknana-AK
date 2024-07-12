@@ -29,7 +29,7 @@ class CompanyLoginController extends Controller
 
         if (Auth::guard('company')->attempt($request->only('email', 'password'))) {
             $request->session()->regenerate();
-            return redirect('/');
+            return redirect('company/profile');
         }
 
         throw ValidationException::withMessages([
@@ -42,7 +42,6 @@ class CompanyLoginController extends Controller
         Auth::guard('company')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
-        return redirect('/');
+        return redirect('/company/login');
     }
 }

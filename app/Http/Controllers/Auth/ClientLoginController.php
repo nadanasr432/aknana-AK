@@ -29,7 +29,7 @@ class ClientLoginController extends Controller
 
         if (Auth::guard('client')->attempt($request->only('email', 'password'))) {
             $request->session()->regenerate();
-            return redirect()->intended('/client/dashboard');
+            return redirect()->intended('/client/profile');
         }
 
         throw ValidationException::withMessages([
@@ -43,6 +43,6 @@ class ClientLoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/client/login');
     }
 }

@@ -331,25 +331,84 @@
                             </ul>
                         </div>
                     @endif
-                    <div class="dropdown">
-                        <button class="btn btn-success dropdown-toggle" type="button" id="loginDropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                            style="font-family: Cairo;background-color:#DF8317;border:#DF8317">
-                            @lang('file.login')
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="loginDropdown">
-                            <a class="dropdown-item" style="font-family: Cairo;"
-                                href="{{ route('client.login') }}">@lang('file.Client Login')</a>
-                            <a class="dropdown-item" style="font-family: Cairo;"
-                                href="{{ route('company.login') }}">@lang('file.Company Login')</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" style="font-family: Cairo;"
-                                href="{{ route('client.register') }}">@lang('file.Client Registration')</a>
-                            <a class="dropdown-item" style="font-family: Cairo;"
-                                href="{{ route('company.register') }}">@lang('file.Company Registration')</a>
-                        </div>
+                    <div>
+                        @auth('client')
+                            <div class="dropdown">
+                                <button class="btn btn-success dropdown-toggle" type="button" id="clientAccountDropdown"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                    style="font-family: Cairo; background-color: #DF8317; border: #DF8317;">
+                                    <i class="fas fa-user"></i> @lang('file.Account')
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="clientAccountDropdown">
+                                    <a class="dropdown-item" style="font-family: Cairo;"
+                                        href="{{ route('client.profile') }}">
+                                        @lang('file.Profile')
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('client.logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('client-logout-form').submit();"
+                                        style="font-family: Cairo;">
+                                        @lang('file.Logout')
+                                    </a>
+                                    <form id="client-logout-form" action="{{ route('client.logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </div>
+                        @endauth
+
+                        @auth('company')
+                            <div class="dropdown">
+                                <button class="btn btn-success dropdown-toggle" type="button"
+                                    id="companyAccountDropdown" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false"
+                                    style="font-family: Cairo; background-color: #DF8317; border: #DF8317;">
+                                    <i class="fas fa-user"></i> @lang('file.Account')
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="companyAccountDropdown">
+                                    <a class="dropdown-item" style="font-family: Cairo;"
+                                        href="{{ route('company.profile') }}">
+                                        @lang('file.Profile')
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('company.logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('company-logout-form').submit();"
+                                        style="font-family: Cairo;">
+                                        @lang('file.Logout')
+                                    </a>
+                                    <form id="company-logout-form" action="{{ route('company.logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </div>
+                        @endauth
+
+                        @guest('client')
+                            @guest('company')
+                                <div class="dropdown">
+                                    <button class="btn btn-success dropdown-toggle" type="button" id="loginDropdown"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        style="font-family: Cairo; background-color: #DF8317; border: #DF8317;">
+                                        @lang('file.login')
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="loginDropdown">
+                                        <a class="dropdown-item" style="font-family: Cairo;"
+                                            href="{{ route('client.login') }}">@lang('file.Client Login')</a>
+                                        <a class="dropdown-item" style="font-family: Cairo;"
+                                            href="{{ route('company.login') }}">@lang('file.Company Login')</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" style="font-family: Cairo;"
+                                            href="{{ route('client.register') }}">@lang('file.Client Registration')</a>
+                                        <a class="dropdown-item" style="font-family: Cairo;"
+                                            href="{{ route('company.register') }}">@lang('file.Company Registration')</a>
+                                    </div>
+                                </div>
+                            @endguest
+                        @endguest
                     </div>
-                    <form method="post" action="{{ route('language.switch') }}" id="languageForm" class="pl-4 pr-4">
+
+                    <form method="post" action="{{ route('language.switch') }}" id="languageForm"
+                        class="pl-4 pr-4">
                         @csrf
                         <a type="button" onclick="toggleLanguage()" class="btn btn-link"
                             style="color: #121743;font-family: Cairo; font-size:18px;
@@ -414,23 +473,79 @@
                         </a>
                         <input type="hidden" name="locale" id="localeInput" value="{{ app()->getLocale() }}">
                     </form>
-                    <div class="dropdown">
-                        <button class="btn btn-success dropdown-toggle" type="button" id="loginDropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                            style="font-family: Cairo;background-color:#DF8317;border:#DF8317">
-                            @lang('file.login')
-                        </button>
-                        <div class="dropdown-menu  text-end" aria-labelledby="loginDropdown">
-                            <a class="dropdown-item text-right" style="font-family: Cairo;"
-                                href="{{ route('client.login') }}">@lang('file.Client Login')</a>
-                            <a class="dropdown-item  text-right" style="font-family: Cairo;"
-                                href="{{ route('company.login') }}">@lang('file.Company Login')</a>
-                            <div class="dropdown-divider  text-right"></div>
-                            <a class="dropdown-item  text-right" style="font-family: Cairo;"
-                                href="{{ route('client.register') }}">@lang('file.Client Registration')</a>
-                            <a class="dropdown-item  text-right" style="font-family: Cairo;"
-                                href="{{ route('company.register') }}">@lang('file.Company Registration')</a>
-                        </div>
+                    <div>
+                        @auth('client')
+                            <div class="dropdown">
+                                <button class="btn btn-success dropdown-toggle" type="button" id="clientAccountDropdown"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                    style="font-family: Cairo; background-color: #DF8317; border: #DF8317;">
+                                    <i class="fas fa-user"></i> @lang('file.Account')
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="clientAccountDropdown">
+                                    <a class="dropdown-item" style="font-family: Cairo;"
+                                        href="{{ route('client.profile') }}">
+                                        @lang('file.Profile')
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('client.logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('client-logout-form').submit();"
+                                        style="font-family: Cairo;">
+                                        @lang('file.Logout')
+                                    </a>
+                                    <form id="client-logout-form" action="{{ route('client.logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </div>
+                        @endauth
+
+                        @auth('company')
+                            <div class="dropdown">
+                                <button class="btn btn-success dropdown-toggle" type="button"
+                                    id="companyAccountDropdown" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false"
+                                    style="font-family: Cairo; background-color: #DF8317; border: #DF8317;">
+                                    <i class="fas fa-user"></i> @lang('file.Account')
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="companyAccountDropdown">
+                                    <a class="dropdown-item" style="font-family: Cairo;"
+                                        href="{{ route('company.profile') }}">
+                                        @lang('file.Profile')
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('company.logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('company-logout-form').submit();"
+                                        style="font-family: Cairo;">
+                                        @lang('file.Logout')
+                                    </a>
+                                    <form id="company-logout-form" action="{{ route('company.logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </div>
+                        @endauth
+                        @guest('client')
+                            @guest('company')
+                                <div class="dropdown">
+                                    <button class="btn btn-success dropdown-toggle" type="button" id="loginDropdown"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        style="font-family: Cairo; background-color: #DF8317; border: #DF8317;">
+                                        @lang('file.login')
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="loginDropdown">
+                                        <a class="dropdown-item" style="font-family: Cairo;"
+                                            href="{{ route('client.login') }}">@lang('file.Client Login')</a>
+                                        <a class="dropdown-item" style="font-family: Cairo;"
+                                            href="{{ route('company.login') }}">@lang('file.Company Login')</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" style="font-family: Cairo;"
+                                            href="{{ route('client.register') }}">@lang('file.Client Registration')</a>
+                                        <a class="dropdown-item" style="font-family: Cairo;"
+                                            href="{{ route('company.register') }}">@lang('file.Company Registration')</a>
+                                    </div>
+                                </div>
+                            @endguest
+                        @endguest
                     </div>
                     @if (is_array($header->getTranslation('routes', 'ar')))
                         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">

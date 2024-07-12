@@ -1,8 +1,8 @@
 <?php
 // app/Http/Controllers/Auth/CompanyRegisterController.php
-
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Media;
 use App\Models\Footer;
 use App\Models\Header;
 use App\Models\Company;
@@ -31,7 +31,7 @@ class CompanyRegisterController extends Controller
 
         Auth::guard('company')->login($company);
 
-        return redirect()->route('home');
+        return redirect()->route('company.profile');
     }
 
     protected function validator(array $data)
@@ -43,18 +43,29 @@ class CompanyRegisterController extends Controller
             'type_of_company' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:15'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'logo' => ['nullable', 'image', 'mimes:jpeg,png,gif', 'max:2048'],  
         ]);
     }
 
+
     protected function create(array $data)
     {
-        return Company::create([
+        $company = Company::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'address' => $data['address'],
             'type_of_company' => $data['type_of_company'],
             'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
+            'serial_id' => $data['serial_id'],
         ]);
+
+        if (request()->hasFile('logo')) {
+            $logoPath = request()->file('logo')->store('logos', 'public');
+            $company->media()->create(['file_path' => $logoPath, 'type' => 'logo']);
+        }
+
+        return $company;
     }
+
 }

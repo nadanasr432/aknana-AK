@@ -25,6 +25,7 @@ use App\Http\Controllers\Dashboard\TemplateController;
 use App\Http\Controllers\Auth\ClientRegisterController;
 use App\Http\Controllers\Dashboard\ContactUsController;
 use App\Http\Controllers\Auth\CompanyRegisterController;
+use App\Http\Controllers\Dashboard\CertificateController;
 use App\Http\Controllers\Dashboard\HomeController as DashboardHomeController;
 
 
@@ -70,6 +71,13 @@ Route::prefix('client')->group(function () {
     Route::get('login', [ClientLoginController::class, 'showLoginForm'])->name('client.login');
     Route::post('login', [ClientLoginController::class, 'login'])->name('client.store.login');
     Route::post('logout', [ClientLoginController::class, 'logout'])->name('client.logout');
+    Route::get('/certificate/search', [CertificateController::class, 'searchByCertificateNo'])->name('certificate.search');
+
+    Route::middleware('auth:client')->group(function () {
+        Route::get('/profile', [ClientController::class, 'showProfile'])->name('client.profile');
+        Route::put('/{id}/update', [ClientController::class, 'update'])->name('client.update');
+        Route::put('/{id}/change-password', [ClientController::class, 'changePassword'])->name('client.changePassword');
+    });
 });
 
 Route::prefix('company')->group(function () {
@@ -78,6 +86,11 @@ Route::prefix('company')->group(function () {
     Route::get('login', [CompanyLoginController::class, 'showLoginForm'])->name('company.login');
     Route::post('login', [CompanyLoginController::class, 'login'])->name('company.store.login');
     Route::post('logout', [CompanyLoginController::class, 'logout'])->name('company.logout');
+    Route::middleware('auth:company')->group(function () {
+        Route::get('/profile', [CompanyController::class, 'showProfile'])->name('company.profile');
+        Route::put('/{id}/update', [CompanyController::class, 'update'])->name('company.update');
+        Route::put('/{id}/change-password', [CompanyController::class, 'changePassword'])->name('company.changePassword');
+    });
 });
 // routes/web.php
 Route::get('/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
@@ -85,7 +98,8 @@ Route::post('/login', [AdminController::class, 'login']);
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::get('/', [DashboardHomeController::class, 'index'])->name('dashboard');
-
+    Route::get('/certificates', [CertificateController::class, 'index'])->name('certificate.index');
+    Route::post('/certificates/import', [CertificateController::class, 'import'])->name('certificates.import');
     Route::get('/courses/show', [App\Http\Controllers\Dashboard\CoursesController::class, 'index'])->name('dashboard.courses.index');
     Route::get('/courses/Create', [App\Http\Controllers\Dashboard\CoursesController::class, 'create'])->name('dashboard.courses.create');
     Route::post('/courses/Store', [App\Http\Controllers\Dashboard\CoursesController::class, 'store'])->name('dashboard.courses.store');
@@ -153,5 +167,4 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::post('/footer/store', [FooterController::class, 'store'])->name('footer.store');
     Route::get('/footer/{id}/edit', [FooterController::class, 'edit'])->name('footer.edit');
     Route::put('/footer/{id}', [FooterController::class, 'update'])->name('footer.update');
-
 });
